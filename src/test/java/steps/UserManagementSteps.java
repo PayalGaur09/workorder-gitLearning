@@ -63,19 +63,19 @@ public class UserManagementSteps {
     }
 
     @And("^User select \"([^\"]*)\" status$")
-    public void userSelectStatus(String userStatus)  {
-        users.selectFilterDropdown(userStatus);
+    public void userSelectStatus(String Status)  {
+        users.selectFilterDropdown(Status);
         users.tapOnFilterButton();
-        users.verifyUserStatus(userStatus);
+        users.verifyStatus(Status);
+    }
+
+    @When("^User enters a keyword \"([^\"]*)\" in the search field$")
+    public void userEntersAKeywordInTheSearchField(String searchKey) throws Throwable {
+        users.enterKeyInSearchField(searchKey);
     }
 
 
-    @When("^User enters a user name$")
-    public void userEntersAUserName() {
-        users.enterKeyInSearchField();
-    }
-
-    @Then("^User list displayed is according to the entered keyword$")
+    @Then("^List displayed is according to the entered keyword$")
     public void userListDisplayedIsAccordingToTheEnteredKeyword() {
         users.verifyUserName();
     }
@@ -95,9 +95,4 @@ public class UserManagementSteps {
         users.verifyChangedStatus();
     }
 
-
-//    @And("^Status of user changes to \"([^\"]*)\"$")
-//    public void statusOfUserChangesTo(String arg0) throws Throwable {
-//        users.statusChanged(arg0);
-//    }
 }

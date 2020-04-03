@@ -10,6 +10,7 @@ public class DetailsModel {
     private String location;
     private Integer accountNo;
     private String userRole;
+    private String keyword;
 
     public String getName() {
         return name;
@@ -73,5 +74,13 @@ public class DetailsModel {
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

@@ -57,14 +57,13 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade deactivateFromAction;
 
 
-
     public void tapOnAddUserButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUserButton).click();
     }
 
     public void addInputFiledsOfUserForm() {
         detailsModel.setName("Madhvan" + RandomGenerator.randomAlphabetic(3));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(userFirstName).sendKeys(detailsModel.getName());
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(userFirstName).sendKeys(detailsModel.getName());
         detailsModel.setSurname(RandomGenerator.randomAlphabetic(3));
         userLastName.sendKeys(detailsModel.getSurname());
         detailsModel.setContact(RandomGenerator.randomInteger(10));
@@ -103,14 +102,19 @@ public class UserManagementPage extends PageObject {
     }
 
     private By status(String opt) {
-        return By.xpath("//label[contains(text(),'"+opt+"')]");
+        return By.xpath("//label[contains(text(),'" + opt + "')]");
     }
 
     public void selectFilterDropdown(String opt) {
         element(dropdownOptions(opt)).click();
     }
 
-    public void enterKeyInSearchField(){ withTimeoutOf(10,TimeUnit.SECONDS).waitFor(searchUser).sendKeys("Madhvan"); }
+    public void enterKeyInSearchField(String searchKey) {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchUser);
+        detailsModel.setKeyword(searchKey);
+        searchUser.sendKeys(detailsModel.getKeyword());
+       // withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchUser).sendKeys("Madhvan");
+    }
 
     public void tapOnFilterButton() {
         waitFor(filterButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
@@ -122,11 +126,13 @@ public class UserManagementPage extends PageObject {
 
     public void verifyUserName() {
         waitABit(5000);
-       // withTimeoutOf(20,TimeUnit.SECONDS).waitFor("//tbody/tr");
+        // withTimeoutOf(20,TimeUnit.SECONDS).waitFor("//tbody/tr");
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         for (int i = 1; i <= num; i++) {
             String vName = element(userNameSearch(i)).getText();
-            Assert.assertTrue(vName.contains("Madhvan"));
+            Assert.assertTrue(vName.contains(detailsModel.getKeyword()));
+            //Assert.assertTrue(vName.contains("Madhvan"));
+
         }
     }
 
@@ -149,12 +155,13 @@ public class UserManagementPage extends PageObject {
         }
 
     }
+
     private By statusInTable(int count) {
         return By.xpath("(//tbody//tr[" + count + "]/td)[6]");
     }
 
 
-    public void verifyUserStatus(String userStatus) {
+    public void verifyStatus(String userStatus) {
         waitABit(2000);
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         for (int i = 1; i <= num; i++) {
@@ -170,32 +177,32 @@ public class UserManagementPage extends PageObject {
 
     }
 
-    private By statusIcon(String title){ return By.xpath("//em[@title='" + title + "']"); }
-
-    public void tapOnStatusIcon(String title){
-        element(statusIcon(title)).withTimeoutOf(10,TimeUnit.SECONDS).click();
+    private By statusIcon(String title) {
+        return By.xpath("//em[@title='" + title + "']");
     }
 
-    public void changeUserStatus(){
-         userStatus = withTimeoutOf(10,TimeUnit.SECONDS).waitFor(statusOnDetailScreen).getText();
-        if(userStatus.equals("Inactive")){
-            withTimeoutOf(10,TimeUnit.SECONDS).waitFor(activateFromAction).click();
-        }
-        else if(userStatus.equals("Active")){
-            withTimeoutOf(10,TimeUnit.SECONDS).waitFor(deactivateFromAction).click();
+    public void tapOnStatusIcon(String title) {
+        element(statusIcon(title)).withTimeoutOf(10, TimeUnit.SECONDS).click();
+    }
+
+    public void changeUserStatus() {
+        userStatus = withTimeoutOf(10, TimeUnit.SECONDS).waitFor(statusOnDetailScreen).getText();
+        if (userStatus.equals("Inactive")) {
+            withTimeoutOf(10, TimeUnit.SECONDS).waitFor(activateFromAction).click();
+        } else if (userStatus.equals("Active")) {
+            withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deactivateFromAction).click();
         }
         waitFor(2000);
     }
 
-    public void verifyChangedStatus(){
+    public void verifyChangedStatus() {
 
-        if(userStatus.equals("Inactive")){
+        if (userStatus.equals("Inactive")) {
             WebElementFacade status = element(status("Active"));
-            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
-        }
-        else if(userStatus.equals("Active")){
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
+        } else if (userStatus.equals("Active")) {
             WebElementFacade status = element(status("Inactive"));
-            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
         }
     }
 

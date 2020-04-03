@@ -42,7 +42,7 @@ public class VendorManagementSteps {
 
     @And("^User clicks on Cancel button$")
     public void userClicksOnCancelButton() {
-        vendor.cancelAddVendorForm();
+        vendor.tapOnCancelButton();
     }
 
 

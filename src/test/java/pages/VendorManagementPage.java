@@ -55,7 +55,7 @@ public class VendorManagementPage extends PageObject {
     @FindBy(xpath = "//label[contains(text(),'Account Number')]/..//p")
     WebElementFacade vendorAccountNumberDetail;
 
-    @FindBy(xpath = "//em[contains(@class,'fa-edit')]")
+    @FindBy(xpath = "//em[contains(@title,'Edit')]")
     WebElementFacade editIcon;
     @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
     WebElementFacade deleteIcon;
@@ -98,15 +98,7 @@ public class VendorManagementPage extends PageObject {
         withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
-    private By msg(String text) {
-        return By.xpath("//div[contains(text(),'" + text + "')]");
-    }
-
-    public void SuccessMsg(String text) {
-        element(msg(text)).waitUntilVisible();
-    }
-
-
+   // private By msg(String text) {return By.xpath("//div[contains(text(),'" + text + "')]");}
     public void scrollTo(String element){
         JavascriptExecutor jse = (JavascriptExecutor)getDriver();
         jse.executeScript("arguments[0].scrollIntoView(true);",element);
@@ -157,12 +149,13 @@ public class VendorManagementPage extends PageObject {
         waitFor(2000);
     }
 
-    public void cancelAddVendorForm() {
-        waitFor(cancelButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+    public void tapOnCancelButton() {
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
+       // withTimeoutOf(10,TimeUnit.SECONDS).waitFor(cancelButton).click();
     }
 
     public void tapOnEditIcon() {
-        waitFor(editIcon).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
     }
 
     public void tapOnNameLink() {
@@ -170,7 +163,8 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnActionButton() {
-        waitFor(actionButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+   //     withTimeoutOf(30,TimeUnit.SECONDS).waitFor(actionButton).waitUntilClickable();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 
     public void editFromActionButton() {
@@ -192,7 +186,6 @@ public class VendorManagementPage extends PageObject {
 
     public void tapOnEditNoteIcon() {
         waitFor(editNoteIcon).withTimeoutOf(10, TimeUnit.SECONDS).click();
-
     }
 
     public void countNotesForVendor() {
@@ -271,7 +264,6 @@ public class VendorManagementPage extends PageObject {
     public void acceptOptionInJSPopup(){
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
-
     }
 
 
