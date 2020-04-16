@@ -19,6 +19,7 @@ public class FacilityManagementPage extends PageObject {
 
     @FindBy(xpath = "//a[contains(text(),'New Facility')]")
     private WebElementFacade addFacilityButton;
+
     @FindBy(xpath = "//select[@name='complaintsAssigneeId']")
     private WebElementFacade assigneeForComplaint;
 
