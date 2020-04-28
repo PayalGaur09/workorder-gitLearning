@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="afdd8b1881f53d046f781c9ae3f786a03d0665a422d0dd50e297b168fef2e88d.html">Unit Management</a></span>
+                > <span class="truncate-60"><a
+                    href="5fbac277b7cde185f27842d89a26f20a3e0d07c7d856ef5d82f57acb89f07142.html">Edit an existing unit from facility detail screen and cross verify the modification </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 28-04-2020 10:42</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Unit Management</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                As an Account Owner and a client Admin
+I can land on facility detail page
+So that I can manage units of the facility
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">Edit an existing unit from facility detail screen and cross verify the modification
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="0a27da8e7739da732c5a594be42987eada0a432dea06fd71391dff7765279f56.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="64b39fa2221b893352320d26d2ab01477feb1656eb27059c2a9bb347207cbbb9.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="3a2415d9ee6a6bdf8fb8dc1e320bd749e88dc1de22c8ad2a127fe34f2c861f73.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="38eac982a768b011c8176c81ed35ab01894a9c1c50410876c9210a0b4c19ea5c.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="6687859782cf06f52810c067b7fa5a094736c9314a910e652c07f3b8ddefeef3.png" title="And User tap on the &quot;Facilities&quot; link from side navigation" width="1366"/>
+                <img src="fcec60ee54fbc2316d253187b0026b3b7bdd3a4c6fed01c034f94ccb619c476e.png" title="Then User is on detail screen" width="1366"/>
+                <img src="67c706877c5186b427424e839f7aa140e59c50d3d83818f8d1b425bfe3784066.png" title="Then User is on detail screen" width="1366"/>
+                <img src="48009e4704ee78ac4e3d025b79ef8a4d2c47671c7491f0e9534d2f4737df5728.png" title="Given User navigates to edit page from list screen" width="1366"/>
+                <img src="60d50e623e44c04fed9bedb1c7dec4c29e2f41ee7013014cf6e2741c1eb59419.png" title="Given User navigates to edit page from list screen" width="1366"/>
+                <img src="58efcd54655ba373aa4bf399fcff82ba64da35e2b0a96daedaeb1dfd9c4cf4d2.png" title="When User enters all the field in unit screen" width="1366"/>
+                <img src="df90f80558dd38a1d9521c970c9745dc0db34929e1ece4d76b451f4f4fd8bcce.png" title="When User enters all the field in unit screen" width="1366"/>
+                <img src="810528ad20b90fd90fa75667307aa99972886f79709d492cbb898044c886e898.png" title="And User taps on the Submit button" width="1366"/>
+                <img src="119705a250ac13a98542daaf3262bb511ee99619de756e8d75f510b9505f1483.png" title="And User taps on the Submit button" width="1366"/>
+                <img src="b840ef23cea7c5e1f7e8a7ad6be0d6d1564c5e6f2bae51f1983991cb07cd732a.png" title="Then Success message &quot;Unit has been updated successfully&quot; should be displayed" width="1366"/>
+                <img src="81592f20210842c4c4fd5679447e6cfbe264ae42830a22bbcf470b6d0268478e.png" title="Then Success message &quot;Unit has been updated successfully&quot; should be displayed" width="1366"/>
+                <img src="a7fe7521a97cd61143c3ebab52e70fa40417b8acadb3a99f301aab46495172b3.png" title="And User verify unit detail screen" width="1366"/>
+                <img src="df0606782ffe45e94c0410afd302dc88763578fd37c01500e4ecfc18cd6c0cbf.png" title="And User verify unit detail screen: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

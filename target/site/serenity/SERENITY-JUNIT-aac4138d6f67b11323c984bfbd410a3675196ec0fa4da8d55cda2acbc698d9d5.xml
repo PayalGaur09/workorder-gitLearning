@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="2" failures="0" name="Unit Management" skipped="0" tests="10" time="232.92" timestamp="2020-04-28 10:41:36"><testcase name="Create a unit and cross verify the detail entered"/><testcase name="To verify validations on add unit screen"/><testcase name="Edit an existing unit from facility detail screen and cross verify the modification"/><testcase name="Edit an existing unit from unit detail screen and cross verify the modification"/><testcase name="Deactivate and Activate unit from unit list screen"><error message="Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@14c141c0&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.TimeoutException">Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@14c141c0
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown</error><system-err>Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@14c141c0
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown&#13;
+pages.VendorManagementPage.verifyValidationMessage(VendorManagementPage.java:80)&#13;
+steps.VendorManagementSteps.successMessageShouldBeDisplayed(VendorManagementSteps.java:70)&#13;
+✽.Success message "Facility has been deactivated successfully." should be displayed(src/test/resources/feature/web/unitManagement.feature:43)&#13;
+</system-err></testcase><testcase name="Deactivate user from unit detail screen and cross verify the status"/><testcase name="Filter the unit list upon selecting status"><error message="Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@29079032&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.TimeoutException">Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@29079032
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown</error><system-err>Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@29079032
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown&#13;
+pages.UserManagementPage.verifyStatus(UserManagementPage.java:186)&#13;
+steps.UserManagementSteps.userSelectStatus(UserManagementSteps.java:69)&#13;
+✽.User select "Active" status(src/test/resources/feature/web/unitManagement.feature:58)&#13;
+</system-err></testcase><testcase name="User should be able to search when he enters the keyword and clicks on 'Filter' button"/><testcase name="User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard"/></testsuite>

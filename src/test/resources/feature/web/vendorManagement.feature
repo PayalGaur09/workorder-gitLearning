@@ -4,7 +4,7 @@ Feature: Vendor Management
   So that I can manage Vendors of the Company
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Vendors" link from side navigation
 
@@ -73,13 +73,6 @@ Feature: Vendor Management
     And User clicks on Select dropdown and select a vendor type
     Then Vendor list displayed is according to the searched keyword and vendor type
     And User clicks on Reset button
-
-#  Scenario:Search results should be cleared on clicking clear search button
-#    When User enters a keyword
-#    And User clicks on Select dropdown and select a vendor type
-#    And User clicks on Reset button
-#    Then Search result is getting cleared
-
 
   Scenario: The functionality of "Delete" icon on the list view page
     When User clicks on delete icon

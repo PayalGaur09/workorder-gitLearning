@@ -24,7 +24,7 @@ public class VendorManagementSteps {
 
     @When("^User enters all the field$")
     public void userEntersAllTheField() {
-        vendor.addInputFiledsOfVendorForm();
+        vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
     }
 

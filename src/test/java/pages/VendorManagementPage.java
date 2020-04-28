@@ -15,112 +15,116 @@ public class VendorManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
 
-    @FindBy(xpath = "//span[contains(text(),'Vendors')]")
-    WebElementFacade vendorLink;
     @FindBy(xpath = "//a[contains(text(),'New Vendor')]")
-    WebElementFacade addVendorButton;
-
-    @FindBy(xpath = "//label[contains(text(),'Name')]/..//input")
-    WebElementFacade vendorName;
+    private WebElementFacade addVendorButton;
     @FindBy(xpath = "//select")
-    WebElementFacade vendorTypeDropdown;
-    @FindBy(xpath = "//label[contains(text(),'Contact')]/..//input")
-    WebElementFacade vendorContactNumber;
-    @FindBy(xpath = "//label[contains(text(),'Email')]/..//input")
-    WebElementFacade vendorEmailId;
-    @FindBy(xpath = "//label[contains(text(),'Location')]/..//input")
-    WebElementFacade vendorLocation;
-    @FindBy(xpath = "//label[contains(text(),'Account Number')]/..//input")
-    WebElementFacade vendorAccountNumber;
+    private WebElementFacade vendorTypeDropdown;
 
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
-    WebElementFacade submitButton;
+    private WebElementFacade submitButton;
     @FindBy(xpath = "//a[text()='Cancel']")
-    WebElementFacade cancelButton;
+    private WebElementFacade cancelButton;
     @FindBy(xpath = "//span[@class='link']")
-    WebElementFacade nameLink;
+    private WebElementFacade nameLink;
 
-
-    //detail screen
-    @FindBy(xpath = "//label[contains(text(),'Name')]/..//p")
-    WebElementFacade vendorNameDetail;
-    @FindBy(xpath = "//label[contains(text(),'Type')]/..//p")
-    WebElementFacade vendorTypeDetail;
-    @FindBy(xpath = "//label[contains(text(),'Phone')]/..//p")
-    WebElementFacade vendorContactNumberDetail;
-    @FindBy(xpath = "//label[contains(text(),'Email')]/..//p")
-    WebElementFacade vendorEmailIdDetail;
-    @FindBy(xpath = "//label[contains(text(),'Location')]/..//p")
-    WebElementFacade vendorLocationDetail;
-    @FindBy(xpath = "//label[contains(text(),'Account Number')]/..//p")
-    WebElementFacade vendorAccountNumberDetail;
 
     @FindBy(xpath = "//em[contains(@title,'Edit')]")
-    WebElementFacade editIcon;
+    private WebElementFacade editIcon;
     @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
-    WebElementFacade deleteIcon;
+    private WebElementFacade deleteIcon;
 
 
     @FindBy(xpath = "//button[contains(text(),'Action')]")
-    WebElementFacade actionButton;
+    private WebElementFacade actionButton;
     @FindBy(xpath = "//span[contains(text(),'Delete')]")
-    WebElementFacade deleteButton;
+    private WebElementFacade deleteButton;
     @FindBy(xpath = "//span[contains(text(),'Edit')]")
-    WebElementFacade editButton;
+    private WebElementFacade editButton;
     @FindBy(xpath = "//span[contains(text(),'Notes')]")
-    WebElementFacade notesButton;
+    private WebElementFacade notesButton;
     @FindBy(xpath = "//button[contains(text(),'Add')]")
-    WebElementFacade addNoteButton;
+    private WebElementFacade addNoteButton;
     @FindBy(xpath = "//i/../../button")
-    WebElementFacade editNoteIcon;
+    private WebElementFacade editNoteIcon;
 
     @FindBy(xpath = "//label[contains(text(),'Note')]/..//textarea")
-    WebElementFacade noteTestArea;
+    private WebElementFacade noteTestArea;
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
-    WebElementFacade submitNoteButton;
+    private WebElementFacade submitNoteButton;
     @FindBy(xpath = "//h3[contains(text(),'Note')]/span")
-    WebElementFacade notesCount;
+    private WebElementFacade notesCount;
     @FindBy(xpath = "//div[@class='col-md-3']//select")
-    WebElementFacade selectFilterDropdown;
+    private WebElementFacade selectFilterDropdown;
     @FindBy(xpath = "//button[contains(text(),'Filter')]")
-    WebElementFacade filterButton;
+    private WebElementFacade filterButton;
     @FindBy(xpath = "//button[contains(text(),'Reset')]")
-    WebElementFacade resetButton;
+    private WebElementFacade resetButton;
     @FindBy(xpath = "//input[contains(@placeholder,'Filter')]")
-    WebElementFacade searchVendor;
+    private WebElementFacade searchVendor;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
     }
 
-    public void verifyValidationMessage(String text) {
-        WebElementFacade a = element(validationMessage(text));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+    private By vendorFormField(String text) {
+        return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
     }
 
-   // private By msg(String text) {return By.xpath("//div[contains(text(),'" + text + "')]");}
-    public void scrollTo(String element){
-        JavascriptExecutor jse = (JavascriptExecutor)getDriver();
-        jse.executeScript("arguments[0].scrollIntoView(true);",element);
+    private By vendorDetail(String detail) {
+        return By.xpath("//label[contains(text(),'" + detail + "')]/..//p");
+    }
+
+
+    public void verifyValidationMessage(String text) {
+        WebElementFacade a = element(validationMessage(text));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+    }
+
+    private void enterValueInName() {
+        element(vendorFormField("Name")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        element(vendorFormField("Name")).clear();
+        detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
+        element(vendorFormField("Name")).sendKeys(detailsModel.getName());
+    }
+
+    private void enterValueInPhone() {
+        element(vendorFormField("Contact")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        element(vendorFormField("Contact")).clear();
+        detailsModel.setContact(RandomGenerator.randomInteger(10));
+        element(vendorFormField("Contact")).sendKeys(detailsModel.getContact());
+    }
+
+    private void enterValueInEmail() {
+        element(vendorFormField("Email")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        element(vendorFormField("Email")).clear();
+        detailsModel.setEmail("vendor" + RandomGenerator.randomInteger(4) + "@mailinator.com");
+        element(vendorFormField("Email")).sendKeys(detailsModel.getEmail());
+    }
+
+    private void enterValueInLocation() {
+        element(vendorFormField("Location")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        element(vendorFormField("Location")).clear();
+        detailsModel.setLocation("Location" + RandomGenerator.randomAlphabetic(6));
+        element(vendorFormField("Location")).sendKeys(detailsModel.getLocation());
+    }
+
+    private void enterValueInAccountNo() {
+        element(vendorFormField("Account Number")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        element(vendorFormField("Account Number")).clear();
+        detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
+        element(vendorFormField("Account Number")).sendKeys(detailsModel.getAccountNo().toString());
     }
 
     public void tapOnAddVendorButton() {
         waitFor(addVendorButton).withTimeoutOf(20, TimeUnit.SECONDS).click();
     }
 
-    public void addInputFiledsOfVendorForm() { 
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(vendorName).waitUntilVisible();
-        detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
-        vendorName.type(detailsModel.getName());
-        System.out.println(RandomGenerator.randomInteger(10));
-        detailsModel.setContact(RandomGenerator.randomInteger(10));
-        vendorContactNumber.type(detailsModel.getContact());
-        detailsModel.setEmail("vendormail" + RandomGenerator.randomInteger(2) + "@mailinator.com");
-        vendorEmailId.type(detailsModel.getEmail());
-        detailsModel.setLocation("Location" + RandomGenerator.randomAlphabetic(6));
-        vendorLocation.type(detailsModel.getLocation());
-        detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
-        vendorAccountNumber.type(detailsModel.getAccountNo().toString());
+    public void addInputFieldsOfVendorForm() {
+        enterValueInName();
+        enterValueInPhone();
+        enterValueInEmail();
+        enterValueInLocation();
+        enterValueInAccountNo();
     }
 
     public void selectTypeFromDropdown() {
@@ -136,22 +140,23 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnSubmitButton() {
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(submitButton).click();
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(submitButton).click();
     }
 
     public void vendorDetailsVerify() {
-        Assert.assertEquals(detailsModel.getName(), vendorNameDetail.getText());
-        Assert.assertTrue(detailsModel.getType().contains(vendorTypeDetail.getText()));
-        Assert.assertEquals(detailsModel.getContact(), vendorContactNumberDetail.getText());
-        Assert.assertEquals(detailsModel.getEmail(), vendorEmailIdDetail.getText());
-        Assert.assertEquals(detailsModel.getLocation(), vendorLocationDetail.getText());
-        Assert.assertEquals(detailsModel.getAccountNo().toString(), vendorAccountNumberDetail.getText());
+        WebElementFacade a = element(vendorDetail("Name"));
+        Assert.assertEquals(detailsModel.getName(),
+                withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).getText());
+        Assert.assertTrue(detailsModel.getType().contains(element(vendorDetail("Type")).getText()));
+        Assert.assertEquals(detailsModel.getContact(), element(vendorDetail("Phone")).getText());
+        Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
+        Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
+        Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
         waitFor(2000);
     }
 
     public void tapOnCancelButton() {
-        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
-       // withTimeoutOf(10,TimeUnit.SECONDS).waitFor(cancelButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
     }
 
     public void tapOnEditIcon() {
@@ -163,7 +168,6 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnActionButton() {
-   //     withTimeoutOf(30,TimeUnit.SECONDS).waitFor(actionButton).waitUntilClickable();
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 
@@ -180,8 +184,9 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void enterNote() {
-        waitFor(noteTestArea).withTimeoutOf(10, TimeUnit.SECONDS).sendKeys("Automation note is added.");
-        waitFor(submitNoteButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notesCount).clear();
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notesCount).sendKeys("Automation note is added.");
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(submitNoteButton).click();
     }
 
     public void tapOnEditNoteIcon() {
@@ -190,6 +195,7 @@ public class VendorManagementPage extends PageObject {
 
     public void countNotesForVendor() {
         String value = notesCount.getText();
+        //String a=value.replace("Showing 1 to 10 of ","");
         int intValue = Integer.parseInt(value.replaceAll("[^0-9]", ""));
         System.out.println(intValue);
 
@@ -210,23 +216,31 @@ public class VendorManagementPage extends PageObject {
 
     public void verifyVendorType() {
 
-        int num= getDriver().findElements(By.xpath("//tbody/tr")).size();
+        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         waitABit(2000);
-        for(int i=1;i<=num;i++){
+        for (int i = 1; i <= num; i++) {
             String vType = element(vendorTypeDynamic(i)).getText();
             Assert.assertEquals("Electricity Provider", vType);
         }
 
     }
 
-    public void tapOnResetButton() { withTimeoutOf(10,TimeUnit.SECONDS).waitFor(resetButton).click();
-    waitABit(1000);}
+    public void tapOnResetButton() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(resetButton).click();
+        waitABit(1000);
+    }
 
-    public void enterKeywordInSearchField(){ withTimeoutOf(10,TimeUnit.SECONDS).waitFor(searchVendor).sendKeys("Vendor"); }
+    public void enterKeywordInSearchField() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchVendor).sendKeys("Vendor");
+    }
 
-    public void tapOnFilterButton(){ waitFor(filterButton).withTimeoutOf(10,TimeUnit.SECONDS).click(); }
+    public void tapOnFilterButton() {
+        waitFor(filterButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+    }
 
-    public void pressEnterKey(){ withTimeoutOf(10,TimeUnit.SECONDS).waitFor(searchVendor).sendKeys(Keys.ENTER); }
+    public void pressEnterKey() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchVendor).sendKeys(Keys.ENTER);
+    }
 
     private By vendorNameSearch(int count) {
         return By.xpath("((//tbody/tr)[" + count + "]/td)[1]");
@@ -241,7 +255,7 @@ public class VendorManagementPage extends PageObject {
         }
     }
 
-    public void verifyIntergrationOfSearchFilter(){
+    public void verifyIntergrationOfSearchFilter() {
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         waitABit(2000);
         for (int i = 1; i <= num; i++) {
@@ -252,16 +266,16 @@ public class VendorManagementPage extends PageObject {
         }
     }
 
-    public void clickOnDeleteIcon(){
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(deleteIcon).click();
+    public void clickOnDeleteIcon() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deleteIcon).click();
     }
 
-    public void clickOnDeleteButton(){
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(actionButton).click();
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(deleteButton).click();
+    public void clickOnDeleteButton() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(actionButton).click();
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deleteButton).click();
     }
 
-    public void acceptOptionInJSPopup(){
+    public void acceptOptionInJSPopup() {
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
     }
