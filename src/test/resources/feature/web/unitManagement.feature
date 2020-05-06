@@ -4,7 +4,7 @@ Feature: Unit Management
   So that I can manage units of the facility
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     And User tap on the "Facilities" link from side navigation
     Then User is on detail screen
@@ -63,13 +63,13 @@ Feature: Unit Management
       | Inactive |
 
   Scenario: User should be able to search when he enters the keyword and clicks on 'Filter' button
-    When User enters a keyword "Pvt Ltd" in the search field
+    When User enters a keyword "Unit" in the search field
     And User clicks on Filter button
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
   Scenario: User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard
-    When User enters a keyword "Pvt Ltd" in the search field
+    When User enters a keyword "Unit" in the search field
     And User hits 'Enter' button on keyboard
     Then List displayed is according to the entered keyword
     And User clicks on Reset button

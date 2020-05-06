@@ -9,17 +9,17 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.UserSigninPage;
 import utilities.ConfigLoader;
+import utilities.LoadProperties;
 
 import java.util.List;
 import java.util.Map;
 
 public class UserSigninSteps {
-    private static boolean loginStatus = false;
     private Config conf = ConfigLoader.load();
     private UserSigninPage userSigninPage;
 
-    @Given("^User is on workorder signin page$")
-    public void userIsOnWorkorderSigninPage() {
+    @Given("^User is on work order sign in page$")
+    public void userIsOnWorkOrderSignInPage() {
         userSigninPage.getDriver().get(conf.getString("test_url"));
     }
 
@@ -58,6 +58,8 @@ public class UserSigninSteps {
 
     @Given("^User sign in with valid credential of Account Owner$")
     public void userSignInWithValidCredentialOfAccountOwner() {
-        userSigninPage.enterCredentials("shashank.g@mailinator.com", "1234567890");
+        String id= LoadProperties.getValueFromPropertyFile("testData","AccountOwnerId");
+        String pwd= LoadProperties.getValueFromPropertyFile("testData","AccountOwnerPassword");
+        userSigninPage.enterCredentials(id,pwd);
     }
 }

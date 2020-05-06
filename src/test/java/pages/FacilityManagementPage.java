@@ -191,7 +191,6 @@ public class FacilityManagementPage extends PageObject {
     public void updateDuplicateName() {
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityField("Facility"));
         element(facilityField("Facility")).clear();
-        waitABit(1000);
         element(facilityField("Facility")).sendKeys(facilityName);
     }
 
@@ -202,7 +201,6 @@ public class FacilityManagementPage extends PageObject {
 
 
     public void verifyAssignee() {
-//        element(assigneeOnDetailPage(selectedItems.get(0))).withTimeoutOf(20,TimeUnit.SECONDS).waitUntilVisible();
         waitABit(5000);
         for (int i = 0; i < selectedItems.size(); i++) {
             element(assigneeOnDetailPage(selectedItems.get(i))).shouldBeVisible();
@@ -217,7 +215,7 @@ public class FacilityManagementPage extends PageObject {
     private void enterValueInUnitName() {
         element(facilityField("Unit")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Unit")).clear();
-        facilityModel.setUnitName(RandomGenerator.randomAlphabetic(6));
+        facilityModel.setUnitName("Unit" + RandomGenerator.randomAlphabetic(4));
         element(facilityField("Unit")).sendKeys(facilityModel.getUnitName());
     }
 

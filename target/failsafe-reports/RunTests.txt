@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: RunTests
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 235.492 s <<< FAILURE! - in RunTests
+Deactivate and Activate unit from unit list screen(Unit Management)  Time elapsed: 32.165 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@14c141c0
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+
+Filter the unit list upon selecting status(Unit Management)  Time elapsed: 36.483 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@29079032
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+

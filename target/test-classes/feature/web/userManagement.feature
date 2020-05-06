@@ -4,7 +4,7 @@ Feature: User Management
   So that I can manage users of the Company
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 
@@ -29,11 +29,11 @@ Feature: User Management
     When User taps on the Submit button
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
-#    And User clicks on Cancel button     (reported enhancement)
 
   Scenario: Edit an existing user from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
     When User enters all the field in user screen
+    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
     And Verify user detail screen
@@ -42,9 +42,10 @@ Feature: User Management
     Given User is on detail screen
     When User clicks on edit option from action dropdown
     And User enters all the field in user screen
+    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
-#    And Verify user detail screen      (reported enhancement)
+    And Verify user detail screen
 
   Scenario: Deactivate user from user list screen
     When User clicks on "Deactivate" icon on list page

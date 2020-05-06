@@ -4,7 +4,7 @@ Feature: Facility Management
   So that I can manage facilities of the Company
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Facilities" link from side navigation
 
@@ -53,16 +53,6 @@ Feature: Facility Management
     Then Success message "Facility has been deactivated successfully." should be displayed
     When User clicks on "Activate" icon on list page
     Then Success message "Facility has been activated successfully." should be displayed
-
-  Scenario: Deactivate user from facility detail screen and cross verify the status
-    Given User is on detail screen
-    When User clicks on the action button
-    And User verify status and takes necessary actions to change the status
-    Then User verified the changed status
-    And User clicks on the action button
-    And User verify status and takes necessary actions to change the status
-    Then User verified the changed status
-
 
   Scenario: Verify that the user is able to select multiple users in ‘Members Assigned’ dropdown
     Given User is on add facility screen
