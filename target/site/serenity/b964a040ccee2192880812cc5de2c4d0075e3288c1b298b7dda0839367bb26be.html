@@ -53,15 +53,15 @@
     <script class="code" type="text/javascript">$(document).ready(function () {
         var test_results_plot = $.jqplot('test_results_pie_chart', [
             [
-                ['Passing', 0.333333],
+                ['Passing', 0.192308],
                 
                 ['Pending', 0],
                 
                 ['Ignored/Skipped', 0],
                 
-                ['Failing', 0],
+                ['Failing', 0.076923],
                 
-                ['Errors',  0.666667],
+                ['Errors',  0.730769],
                 ['Compromised',  0]
             ]
         ], {
@@ -92,26 +92,26 @@
                 marginTop: '15px'
             },
             series: [
-                {label: '1 / 3 tests passed' },
-                {label: '0 / 3 tests pending'},
-                {label: '0 / 3 tests not executed'},
-                {label: '0 / 3 tests failed'},
-                {label: '2 / 3 errors'},
-                {label: '0 / 3 compromised tests'}
+                {label: '5 / 26 tests passed' },
+                {label: '0 / 26 tests pending'},
+                {label: '0 / 26 tests not executed'},
+                {label: '2 / 26 tests failed'},
+                {label: '19 / 26 errors'},
+                {label: '0 / 26 compromised tests'}
             ]
         });
 
         var weighted_test_results_plot = $.jqplot('weighted_test_results_pie_chart', [
             [
-                ['Passing', 0.333333],
+                ['Passing', 0.15544],
                 
                 ['Pending', 0],
                 
                 ['Ignored', 0],
                 
-                ['Failing', 0],
+                ['Failing', 0.072539],
                 
-                ['Errors', 0.666667],
+                ['Errors', 0.772021],
                 ['Compromised', 0],
             ]
         ], {
@@ -143,11 +143,11 @@
                 marginTop: '15px'
             },
             series: [
-                {label: '1 / 3 tests passed (0.333333% of all test steps)' },
-                {label: '0 / 3 tests pending'},
-                {label: '0 / 3 tests not executed'},
-                {label: '0 / 3 tests failed (0% of all test steps)'},
-                {label: '2 / 3 errors (0.666667% of all test steps)'}
+                {label: '5 / 26 tests passed (0.15544% of all test steps)' },
+                {label: '0 / 26 tests pending'},
+                {label: '0 / 26 tests not executed'},
+                {label: '2 / 26 tests failed (0.072539% of all test steps)'},
+                {label: '19 / 26 errors (0.772021% of all test steps)'}
             ]
         });
 
@@ -183,7 +183,7 @@
     <div id="topbanner">
         <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
         <div id="projectname-banner" style="float:right">
-            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+            <span class="projectname">10Fed- Work Order</span>
         </div>
     </div>
 </div>
@@ -212,7 +212,7 @@
             <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 28-04-2020 10:45</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 07-05-2020 14:35</span>
     <br style="clear:left"/>
 </div>
 <div class="clr"></div>
@@ -226,21 +226,21 @@
     <tr>
         <td width="375px" valign="top">
             <div class="test-count-summary">
-                <span class="test-count-title">2
-                    test scenarios (3 tests in all, including 2
+                <span class="test-count-title">15
+                    test scenarios (26 tests in all, including 14
                     rows of test data)</span>
                 <div>
 
                     <span class="test-count"> |
-                        2
+                        15
 unsuccessful
                     </span>(
                     <span class="test-count">
-                        0
+                        2
 failed,
                     </span>
                     <span class="test-count">
-                        2
+                        13
 errors
                     </span>)
 
@@ -293,9 +293,9 @@ errors
         <body>
         <tr>
             <td class="summary-leading-column">Automated</td>
-            <td>3</td>
-            <td>1 (33%)</td>
-            <td>2 (67%)</td>
+            <td>26</td>
+            <td>5 (19%)</td>
+            <td>21 (81%)</td>
             <td>0 (0%)</td>
             <td>0 (0%)</td>
         </tr>
@@ -309,15 +309,15 @@ errors
         </tr>
         <tr>
             <td class="summary-leading-column">Total</td>
-            <td>3</td>
-            <td>1 (33%)</td>
-            <td>2 (67%)</td>
+            <td>26</td>
+            <td>5 (19%)</td>
+            <td>21 (81%)</td>
             <td>0 (0%)</td>
             <td>0 (0%)</td>
         </tr>
         <tr>
             <td class="summary-leading-column">Total Duration</td>
-                <td colspan="5">1 minutes 32 seconds</td>
+                <td colspan="5">7 minutes 7 seconds</td>
         </tr>
         </body>
     </table>
@@ -340,7 +340,7 @@ errors
                     <table>
                         <tr>
                             <td colspan="2">
-                                <span class="caption">Test results weighted by test size in steps (average steps per test: 8) .</span>
+                                <span class="caption">Test results weighted by test size in steps (average steps per test: 7) .</span>
                                 <span class="togglePieChart" id="toggleWeightedPieChart"><a href="#">Show/Hide Pie
                                     Chart</a></span>
                             </td>
@@ -372,9 +372,9 @@ errors
         <body>
         <tr>
             <td class="summary-leading-column">Automated</td>
-            <td>3</td>
-            <td>1 (33%)</td>
-            <td>2 (67%)</td>
+            <td>26</td>
+            <td>5 (19%)</td>
+            <td>21 (81%)</td>
             <td>0 (0%)</td>
             <td>0 (0%)</td>
         </tr>
@@ -388,15 +388,15 @@ errors
         </tr>
         <tr>
             <td class="summary-leading-column">Total</td>
-            <td>3</td>
-            <td>1 (33%)</td>
-            <td>2 (67%)</td>
+            <td>26</td>
+            <td>5 (19%)</td>
+            <td>21 (81%)</td>
             <td>0 (0%)</td>
             <td>0 (0%)</td>
         </tr>
         <tr>
             <td class="summary-leading-column">Total Duration</td>
-                <td colspan="5">1 minutes 32 seconds</td>
+                <td colspan="5">7 minutes 7 seconds</td>
         </tr>
         </body>
     </table>
@@ -440,27 +440,27 @@ errors
                         </thead>
                         <tbody>
 
-                            <tr class="test-ERROR">
-                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                            <tr class="test-FAILURE">
+                                <td><span class="summary-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
                                     
-                                    <span style="display:none">ERROR</span></td>
-                                <td class="ERROR-text">
+                                    <span style="display:none">FAILURE</span></td>
+                                <td class="FAILURE-text">
                                     <div class="ellipsis">
 
-                                        <a href="84d8dd0386c65adce4500278c4dea98f3b432fe1f501fc6a99429180e64d4b68.html" class="ellipsis"
-                                           title="Deactivate and Activate unit from unit list screen Timeout exception: Timed out after 20...">
-                                            Deactivate and Activate unit from unit list screen
+                                        <a href="fe249189c3f997202539a9dc8db3420f8c312bf6cf9eaa38671caaae1c1b7add.html" class="ellipsis"
+                                           title="To verify that correct count is displayed in the work order tiles Assertion error">
+                                            To verify that correct count is displayed in the work order tiles&nbsp;(6  examples)
                                                 <span class="related-issue-title"></span>
                                         </a>
                                     </div>
                                 </td>
 
-                                <td class="ERROR-text">8</td>
+                                <td class="FAILURE-text">36</td>
 
 
-                                <td class="ERROR-text" data-sort="2020-04-28 10:42:57">10:42:57</td>
+                                <td class="FAILURE-text" data-sort="2020-05-07 14:13:39">14:13:39</td>
 
-                                <td class="ERROR-text">32.23</td>
+                                <td class="FAILURE-text">60.52</td>
                             </tr>
 
                             <tr class="test-ERROR">
@@ -470,20 +470,319 @@ errors
                                 <td class="ERROR-text">
                                     <div class="ellipsis">
 
-                                        <a href="315fe9e59187a45032c43be56eb739707660950fb20fab95fdbdd63f63091c5d.html" class="ellipsis"
-                                           title="Filter the unit list upon selecting status Timeout exception: Timed out after 20...">
-                                            Filter the unit list upon selecting status&nbsp;(2  examples)
+                                        <a href="1e1ebb5bc258842cbb2959bf05644ffc1590463bc9937b81503fcf9c32f76cbc.html" class="ellipsis"
+                                           title="Verify that the same name facility is not added twice in the same company Timeout exception: Timed out after 20...">
+                                            Verify that the same name facility is not added twice in the same company
                                                 <span class="related-issue-title"></span>
                                         </a>
                                     </div>
                                 </td>
 
-                                <td class="ERROR-text">16</td>
+                                <td class="ERROR-text">8</td>
 
 
-                                <td class="ERROR-text" data-sort="2020-04-28 10:43:54">10:43:54</td>
+                                <td class="ERROR-text" data-sort="2020-05-07 14:17:31">14:17:31</td>
 
-                                <td class="ERROR-text">60.17</td>
+                                <td class="ERROR-text">32.29</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="8d4b8cdb139933fae84fd8a003c7beaebb3d6eb76ac12133b49b8d8562beb78f.html" class="ellipsis"
+                                           title="Create an admin and cross verify the detail entered Element click intercepted exception: ...">
+                                            Create an admin and cross verify the detail entered
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">9</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:22:03">14:22:03</td>
+
+                                <td class="ERROR-text">11.85</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="bedfa20dff3ecb603b260fe3e526246ceb8e8470081451e907b867b65dfd1ef7.html" class="ellipsis"
+                                           title="Edit an existing user from vendor list screen and cross verify the modification Timeout exception: Timed out after 20...">
+                                            Edit an existing user from vendor list screen and cross verify the modification
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">9</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:22:43">14:22:43</td>
+
+                                <td class="ERROR-text">28.62</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="444662d02b84b1a5c078c6abee1c642c7663307c41e77c708ae87f76a2cc8a3e.html" class="ellipsis"
+                                           title="Edit an existing user from user list screen and cross verify the modification Timeout exception: Timed out after 20...">
+                                            Edit an existing user from user list screen and cross verify the modification
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">10</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:23:12">14:23:12</td>
+
+                                <td class="ERROR-text">30.77</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="f39048188035c98bb74d752b47d8460388077d14b18889be0e66a8622fa87314.html" class="ellipsis"
+                                           title="The functionality of 'Delete' icon on the user list screen No alert present exception: no such a...">
+                                            The functionality of &quot;Delete&quot; icon on the user list screen
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">6</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:26:02">14:26:02</td>
+
+                                <td class="ERROR-text">8.23</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="d54286f5bfff7365df4aefe8f863e67ecbf37c84e228e71ba94be9e4262ea0e6.html" class="ellipsis"
+                                           title="The functionality of 'Delete' button on the user detail screen No alert present exception: no such a...">
+                                            The functionality of &quot;Delete&quot; button on the user detail screen
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">7</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:26:10">14:26:10</td>
+
+                                <td class="ERROR-text">9.92</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="ccf0fe56c5b638744f13443007783e8387058da37719e9ed2d9a958e3a2771ea.html" class="ellipsis"
+                                           title="Create a vendor and cross verify the detail entered Element click intercepted exception: ...">
+                                            Create a vendor and cross verify the detail entered
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">8</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:26:59">14:26:59</td>
+
+                                <td class="ERROR-text">8.81</td>
+                            </tr>
+
+                            <tr class="test-FAILURE">
+                                <td><span class="summary-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
+                                    
+                                    <span style="display:none">FAILURE</span></td>
+                                <td class="FAILURE-text">
+                                    <div class="ellipsis">
+
+                                        <a href="8fe6e50286cf75b0c8b16b0cfc98cb3f8c97d6a1a12c0ba72979c17861153afd.html" class="ellipsis"
+                                           title="Edit an existing vendor from vendor list screen and cross verify the modification Assertion error: expected:([]VendorhD...">
+                                            Edit an existing vendor from vendor list screen and cross verify the modification
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="FAILURE-text">8</td>
+
+
+                                <td class="FAILURE-text" data-sort="2020-05-07 14:27:18">14:27:18</td>
+
+                                <td class="FAILURE-text">21.16</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="0b3fffaa220d3081bac1d89007c6d743c4be870af9f5bede425167bf1e3eb814.html" class="ellipsis"
+                                           title="Edit an existing vendor from vendor detail screen and cross verify the modification Timeout exception: Timed out after 20...">
+                                            Edit an existing vendor from vendor detail screen and cross verify the modification
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">9</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:27:39">14:27:39</td>
+
+                                <td class="ERROR-text">30.44</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="5a904038912241672933ca40677e3885d84e4ef5140e13ca63320adf6697cbba.html" class="ellipsis"
+                                           title="Adding and editing a note to the Vendor Element not interactable exception: e...">
+                                            Adding and editing a note to the Vendor
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">10</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:28:10">14:28:10</td>
+
+                                <td class="ERROR-text">11.6</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="4f763f31d50615401da6747ec1852d0592c200040599b4a61a75e7eb04788b2a.html" class="ellipsis"
+                                           title="To verify the functionality of 'Delete' icon on the list view page No alert present exception: no such a...">
+                                            To verify the functionality of &quot;Delete&quot; icon on the list view page
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">6</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:29:37">14:29:37</td>
+
+                                <td class="ERROR-text">8.16</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="5b2285eb33f75721a0c523313dd092e4a2123fd8fac1b59bca294ae347bc5aef.html" class="ellipsis"
+                                           title="To verify the functionality of 'Delete' button on the detailed view page No alert present exception: no such a...">
+                                            To verify the functionality of &quot;Delete&quot; button on the detailed view page
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">7</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:29:45">14:29:45</td>
+
+                                <td class="ERROR-text">9.88</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="ff86ebaa688fbc0dde145dcf310271a3a6e15e86ab7430614861202d55985016.html" class="ellipsis"
+                                           title="Filter the user list upon selecting work order status Timeout exception: Timed out after 10...">
+                                            Filter the user list upon selecting work order status&nbsp;(4  examples)
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">32</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:31:28">14:31:28</td>
+
+                                <td class="ERROR-text">78.94</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="7769a5f8777dd939e163d3a8ba7665c1289e45413603d53088d1e28ef532e753.html" class="ellipsis"
+                                           title="Filter the user list upon selecting assignee Timeout exception: Timed out after 10...">
+                                            Filter the user list upon selecting assignee&nbsp;(4  examples)
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">28</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-07 14:34:03">14:34:03</td>
+
+                                <td class="ERROR-text">76.64</td>
                             </tr>
                         </tbody>
                     </table>

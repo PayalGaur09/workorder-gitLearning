@@ -36,15 +36,15 @@
     <script class="code" type="text/javascript">$(document).ready(function () {
         var test_results_plot = $.jqplot('test_results_pie_chart', [
             [
-                ['Passing', 0.8],
+                ['Passing', 0.625],
                 
-                ['Pending', 0],
+                ['Pending', 0.15625],
                 
                 ['Ignored', 0],
                 
-                ['Failing', 0],
+                ['Failing', 0.020833],
                 
-                ['Errors',  0.2]
+                ['Errors',  0.197917]
             ]
         ], {
 
@@ -73,25 +73,25 @@
                 marginTop: '15px'
             },
             series: [
-                {label: '8 / 10 tests passed' },
-                {label: '0 / 10 tests pending'},
-                {label: '0 / 10 tests not executed'},
-                {label: '0 / 10 tests failed'},
-                {label: '2 / 10 errors'}
+                {label: '60 / 96 tests passed' },
+                {label: '15 / 96 tests pending'},
+                {label: '0 / 96 tests not executed'},
+                {label: '2 / 96 tests failed'},
+                {label: '19 / 96 errors'}
             ]
         });
 
         var weighted_test_results_plot = $.jqplot('weighted_test_results_pie_chart', [
             [
-                ['Passing', 0.816092],
+                ['Passing', 0.587644],
                 
-                ['Pending', 0],
+                ['Pending', 0.122126],
                 
                 ['Ignored', 0],
                 
-                ['Failing', 0],
+                ['Failing', 0.020115],
                 
-                ['Errors', 0.183908]
+                ['Errors', 0.260057]
             ]
         ], {
 
@@ -121,11 +121,11 @@
                 marginTop: '15px'
             },
             series: [
-                {label: '8 / 10 tests passed (0.816092% of all test steps)' },
-                {label: '0 / 10 tests pending'},
-                {label: '0 / 10 tests not executed'},
-                {label: '0 / 10 tests failed (0% of all test steps)'},
-                {label: '2 / 10 errors (0.183908% of all test steps)'}
+                {label: '60 / 96 tests passed (0.587644% of all test steps)' },
+                {label: '15 / 96 tests pending'},
+                {label: '0 / 96 tests not executed'},
+                {label: '2 / 96 tests failed (0.020115% of all test steps)'},
+                {label: '19 / 96 errors (0.260057% of all test steps)'}
             ]
         });
 
@@ -160,7 +160,7 @@
     <div id="topbanner">
         <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
         <div id="projectname-banner" style="float:right">
-            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+            <span class="projectname">10Fed- Work Order</span>
         </div>
     </div>
 </div>
@@ -186,7 +186,7 @@
             <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 28-04-2020 10:45</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 07-05-2020 14:35</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>

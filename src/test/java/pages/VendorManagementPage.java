@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import utilities.RandomGenerator;
 import models.DetailsModel;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class VendorManagementPage extends PageObject {
@@ -81,42 +82,42 @@ public class VendorManagementPage extends PageObject {
     }
 
     private void enterValueInName() {
-        element(vendorFormField("Name")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(vendorFormField("Name")).clear();
+        WebElementFacade nameField = element(vendorFormField("Name"));
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(nameField).waitUntilVisible().clear();
         detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
-        element(vendorFormField("Name")).sendKeys(detailsModel.getName());
+        nameField.sendKeys(detailsModel.getName());
     }
 
     private void enterValueInPhone() {
-        element(vendorFormField("Contact")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(vendorFormField("Contact")).clear();
+        WebElementFacade contactField = element(vendorFormField("Contact"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(contactField).waitUntilVisible().clear();
         detailsModel.setContact(RandomGenerator.randomInteger(10));
-        element(vendorFormField("Contact")).sendKeys(detailsModel.getContact());
+        contactField.sendKeys(detailsModel.getContact());
     }
 
     private void enterValueInEmail() {
-        element(vendorFormField("Email")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(vendorFormField("Email")).clear();
+        WebElementFacade emailField = element(vendorFormField("Email"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().clear();
         detailsModel.setEmail("vendor" + RandomGenerator.randomInteger(4) + "@mailinator.com");
-        element(vendorFormField("Email")).sendKeys(detailsModel.getEmail());
+        emailField.sendKeys(detailsModel.getEmail());
     }
 
     private void enterValueInLocation() {
-        element(vendorFormField("Location")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(vendorFormField("Location")).clear();
+        WebElementFacade locationField = element(vendorFormField("Location"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(locationField).waitUntilVisible().clear();
         detailsModel.setLocation("Location" + RandomGenerator.randomAlphabetic(6));
-        element(vendorFormField("Location")).sendKeys(detailsModel.getLocation());
+        locationField.sendKeys(detailsModel.getLocation());
     }
 
     private void enterValueInAccountNo() {
-        element(vendorFormField("Account Number")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(vendorFormField("Account Number")).clear();
+        WebElementFacade accNoField = element(vendorFormField("Account"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(accNoField).waitUntilVisible().clear();
         detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
-        element(vendorFormField("Account Number")).sendKeys(detailsModel.getAccountNo().toString());
+        accNoField.sendKeys(detailsModel.getAccountNo().toString());
     }
 
     public void tapOnAddVendorButton() {
-        waitFor(addVendorButton).withTimeoutOf(20, TimeUnit.SECONDS).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
     public void addInputFieldsOfVendorForm() {
@@ -128,7 +129,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void selectTypeFromDropdown() {
-        vendorTypeDropdown.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).click();
         Select type = new Select(vendorTypeDropdown);
         detailsModel.setType("Electricity Provider ");
         type.selectByVisibleText(detailsModel.getType());
@@ -279,6 +280,5 @@ public class VendorManagementPage extends PageObject {
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
     }
-
 
 }

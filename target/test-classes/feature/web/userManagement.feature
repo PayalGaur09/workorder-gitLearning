@@ -64,7 +64,8 @@ Feature: User Management
 
   Scenario Outline: Filter the user list upon selecting role
     When User clicks on Select role dropdown
-    Then  User select "<userRoles>" role
+    And  User select "<userRoles>" role
+    Then List displayed is according to the selected "<userRoles>" role
     And User clicks on Reset button
     Examples:
       | userRoles     |
@@ -73,10 +74,11 @@ Feature: User Management
 
   Scenario Outline: Filter the user list upon selecting status
     When User clicks on Select status dropdown
-    And  User select "<Status>" status
+    And  User select "<status>" status
+    Then List displayed is according to the selected "<status>" status
     And User clicks on Reset button
     Examples:
-      | Status   |
+      | status   |
       | Active   |
       | Inactive |
 

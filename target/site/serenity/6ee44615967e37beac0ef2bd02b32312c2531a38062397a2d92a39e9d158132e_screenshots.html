@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="6c28aad1e22d2acc81735c917da8824043f0a459b9082196bff0bc681ca79db1.html">Dashboard Management</a></span>
+                > <span class="truncate-60"><a
+                    href="6ee44615967e37beac0ef2bd02b32312c2531a38062397a2d92a39e9d158132e.html">To verify that upon tapping the management tile user should be redirected to the respective list </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 07-05-2020 14:13</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Dashboard Management</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                As a client user
+I can land on dashboard
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">To verify that upon tapping the management tile user should be redirected to the respective list
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+    <div class="story-title">
+        <h3>Scenario:</h3>
+        <div class="scenario">When User taps on company "&lt;module&gt;" tile<br>Then User should be redirected to the "&lt;List&gt;" list screen</div>
+    </div>
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="To verify that upon tapping the management tile user should be redirected to the respective list #1: {module=Admin, List=Administrators}" width="1366"/>
+                <img src="d995c40a5f942f66f326695eea6bf647181f7a9ef28035381f9ed87581584758.png" title="To verify that upon tapping the management tile user should be redirected to the respective list #1: {module=Admin, List=Administrators}" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="96af36bbcd29b2991d920d2bf9fc67458e24066ff149a98c09ad45dc014d3af2.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="ba6bc80ba29c26e04eb0f827750702d31aadeb429e0b04e82980e8d9a2998f40.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Admin&quot; tile" width="1366"/>
+                <img src="70df1da7ddc76e55250c7f888bca67ab630fd698901ade68fd0b10e8a2d826ab.png" title="When User taps on company &quot;Admin&quot; tile" width="1366"/>
+                <img src="142945b3e21af390d13f96b82d9a76a4a2eacd02ffa99d2e3e5c65ddc61f4af7.png" title="Then User should be redirected to the &quot;Administrators&quot; list screen" width="1366"/>
+                <img src="5ec9f66cd2b9745472411b3946d2c13334785cb70197169815e5cff02128d9eb.png" title="Then User should be redirected to the &quot;Administrators&quot; list screen" width="1366"/>
+                <img src="121c1ca57b2a8967f7d0fa9fdd8df3aa0dfaacf4ec4547cef2ca58ce4784be5b.png" title="To verify that upon tapping the management tile user should be redirected to the respective list #2: {module=Personnel, List=Personnel}" width="1366"/>
+                <img src="1cf8157e5f1a343f5d0ec4b891f35c32f6cfaf083566ff230a2c9f2db01eede8.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="9f8a1d46dd7901917f9ee37aa805476b9b63a1710d832494d3ab23af8b30d5d8.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Personnel&quot; tile" width="1366"/>
+                <img src="e185bc077bde66b66e7bee8024284cfb5ceef9f3c87a276a25afa8738533b417.png" title="When User taps on company &quot;Personnel&quot; tile" width="1366"/>
+                <img src="9d9a6cfc2323b9eafe53a0341d6552a919b81bbed1118a85a74ccb6321e19e7e.png" title="Then User should be redirected to the &quot;Personnel&quot; list screen" width="1366"/>
+                <img src="40dbd6dec27c7146b7813ebefc0cac4dfd759e56e0c0ef55fd47ec7d0e6999e2.png" title="Then User should be redirected to the &quot;Personnel&quot; list screen" width="1366"/>
+                <img src="925e8b392a8e95aad27c5318fd27376bc82bbf59d068436aacdb34efe75a2b39.png" title="To verify that upon tapping the management tile user should be redirected to the respective list #3: {module=Facilities, List=Facilities}" width="1366"/>
+                <img src="a6c8f595bc1567c943f0bd6111ab67a93fc42faf734e50a9de6284df4d040428.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="42e8be7b634edca0c9abf935f9e4b3d8c1a319d41f09a4b0ed25a62b8289c948.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Facilities&quot; tile" width="1366"/>
+                <img src="4dcaa067e1e3f68a523bdff42cfc5abd193e19379f105531f187d8b11be93e52.png" title="When User taps on company &quot;Facilities&quot; tile" width="1366"/>
+                <img src="77d99f8b5a71a58899cdbe631aecd04eed291964fa395aa28049be11ce9c02d4.png" title="Then User should be redirected to the &quot;Facilities&quot; list screen" width="1366"/>
+                <img src="97d24e7e4fe739db143a0dd5f79b38169ec3a2da6b1a02ab8c8bfd1386612297.png" title="Then User should be redirected to the &quot;Facilities&quot; list screen" width="1366"/>
+                <img src="00d4fe38e28d76642aaa45f90bff477518743ad5af0c59aaf96b31568878b2df.png" title="To verify that upon tapping the management tile user should be redirected to the respective list #4: {module=Vendors, List=Vendors}" width="1366"/>
+                <img src="0e9a2d7e152504c71d86545b7e9636bf09499227722b5cd296cb3bc9fecb9ec5.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="e2f8f4d9a41ab996e93e49bcc9b773814f064b4a0390eb135ae32360bed5859d.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Vendors&quot; tile" width="1366"/>
+                <img src="0dfee195ea7635415fb2c8d83bb08c600352e47241ecfb9d995fb897672718f5.png" title="When User taps on company &quot;Vendors&quot; tile" width="1366"/>
+                <img src="fc6c8e20a33508c5f1d5f691e7418c0d138e05d0bb384f7fce3e4d4c2c385965.png" title="Then User should be redirected to the &quot;Vendors&quot; list screen" width="1366"/>
+                <img src="00d4fe38e28d76642aaa45f90bff477518743ad5af0c59aaf96b31568878b2df.png" title="Then User should be redirected to the &quot;Vendors&quot; list screen: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Facility Management" skipped="0" tests="13" time="229.47" timestamp="2020-05-07 02:15:20"><testcase name="Create a facility and cross verify the detail entered"/><testcase name="To verify validations on add facility screen"/><testcase name="Verify the company ID displayed in add facility screen"/><testcase name="Verify that by default 'All' is selected in members assigned"/><testcase name="Edit an existing facility from facility list screen and cross verify the modification"/><testcase name="Edit an existing facility from facility detail screen and cross verify the modification"/><testcase name="Deactivate and Activate facility from facility list screen"/><testcase name="Verify that the user is able to select multiple users in ‘Members Assigned’ dropdown"/><testcase name="Verify that the same name facility is not added twice in the same company"><error message="Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@7159d601&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown&#10;Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'&#10;System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.TimeoutException">Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@7159d601
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown</error><system-err>Timed out after 20000 milliseconds: net.serenitybdd.core.pages.RenderedPageObjectView$2@7159d601
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'PAYALQA', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown&#13;
+pages.VendorManagementPage.verifyValidationMessage(VendorManagementPage.java:81)&#13;
+steps.VendorManagementSteps.successMessageShouldBeDisplayed(VendorManagementSteps.java:80)&#13;
+✽.Success message "This facility already exists in the application for your company" should be displayed(src/test/resources/feature/web/facility.feature:70)&#13;
+</system-err></testcase><testcase name="Filter the facility list upon selecting status"/><testcase name="User should be able to search when he enters the keyword and clicks on 'Filter' button"/><testcase name="User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard"/></testsuite>

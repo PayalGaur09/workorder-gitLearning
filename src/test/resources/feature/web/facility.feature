@@ -71,10 +71,11 @@ Feature: Facility Management
 
   Scenario Outline: Filter the facility list upon selecting status
     When User clicks on Select status dropdown
-    And  User select "<Status>" status
+    And  User select "<status>" status
+    Then List displayed is according to the selected "<status>" status
     And User clicks on Reset button
     Examples:
-      | Status   |
+      | status   |
       | Active   |
       | Inactive |
 

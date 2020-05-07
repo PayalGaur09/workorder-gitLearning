@@ -1,9 +1,12 @@
 package utilities;
 
+import com.jayway.restassured.response.Response;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class ConfigLoader {
     public static Config config = ConfigFactory.load("env");
@@ -19,9 +22,6 @@ public class ConfigLoader {
         return config;
     }
 }
-//    private static Config conf = ConfigLoader.load();
-//
-//    public static void setEnvironMent(String environment){
-//        System.setProperty("env",environment);
-//        conf=ConfigLoader.load();
-//    }
+
+
+

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="e87a0079057e3e3cac7d84eafd1e062c6330cc88f2d4d2209133521398173f16.html">Login Functionality For Work Order Web</a></span>
+                > <span class="truncate-60"><a
+                    href="526431a55761b81be37eb7dd54a8ac5d4b4479a33480c668073f7a8fe91ba871.html">User valid Login with all user roles </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 07-05-2020 14:26</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Login Functionality For Work Order Web</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">User valid Login with all user roles
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+    <div class="story-title">
+        <h3>Scenario:</h3>
+        <div class="scenario">When User enter credentials and tap on the signin button<br>Then User successfully logged in and Dashboard page displayed<br>And User logout from workorder platform</div>
+    </div>
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="6e67b1086b169eb1047b6fb3a36ec548534137a7a4d8d6c99a33213571543c0b.png" title="User valid Login with all user roles #1: {userEmail=admin, password=Password@123}" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="User valid Login with all user roles #1: {userEmail=admin, password=Password@123}" width="1366"/>
+                <img src="6e67b1086b169eb1047b6fb3a36ec548534137a7a4d8d6c99a33213571543c0b.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="9683e39eaa49e982d303c2adbd9310b3c0497abd89ebc98dbaa4b4d616155da8.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="cda9ad8fe0552dd7b0c316dc81c0905e638aa73aea550308d4f79d74b9cc3651.png" title="When User enter credentials and tap on the signin button
+| userEmail | password |
+| admin | Password@123 |" width="1366"/>
+                <img src="c91ffc2e0d43e2b18dc8db10101f072bfccf9f172cf0bf0107d179fa51247eea.png" title="When User enter credentials and tap on the signin button
+| userEmail | password |
+| admin | Password@123 |" width="1366"/>
+                <img src="c91ffc2e0d43e2b18dc8db10101f072bfccf9f172cf0bf0107d179fa51247eea.png" title="Then User successfully logged in and Dashboard page displayed" width="1366"/>
+                <img src="c91ffc2e0d43e2b18dc8db10101f072bfccf9f172cf0bf0107d179fa51247eea.png" title="And User logout from workorder platform" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="And User logout from workorder platform" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="User valid Login with all user roles #2: {userEmail=shashank.g@mailinator.com, password=1234567890}" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="98b223e5f560c4407ae9c34e5826a87ef1c09091a73cc5418c85735bca5ea708.png" title="When User enter credentials and tap on the signin button
+| userEmail | password |
+| shashank.g@mailinator.com | 1234567890 |" width="1366"/>
+                <img src="ed2d37c23a703a1d59c5e474441da977842a936adefe729bcff38577ba04001c.png" title="Then User successfully logged in and Dashboard page displayed" width="1366"/>
+                <img src="4185fdd22718c4c40c75c838644c23d0914b96a37260080e2ac7f7a5b92bf1c6.png" title="Then User successfully logged in and Dashboard page displayed" width="1366"/>
+                <img src="81dc307cae5cff45d37f3e6bdc7de19c226acb2d35072c748a22b606cb606d8e.png" title="And User logout from workorder platform" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="And User logout from workorder platform" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="User valid Login with all user roles #3: {userEmail=payal.gaur@successive.tech, password=1234567890}" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="e03f4ec63e0b8be5b9ab7db24715f768a1cb072eafa26243de1ebd6033f4a5fe.png" title="When User enter credentials and tap on the signin button
+| userEmail | password |
+| payal.gaur@successive.tech | 1234567890 |" width="1366"/>
+                <img src="049e1bb63fffb3c2f5c26ec26cc8883c64cc09f5ac834fa3e2f4ae790c4dc32b.png" title="Then User successfully logged in and Dashboard page displayed" width="1366"/>
+                <img src="a882a5b317f9f90d6225615bedc27d5a01f98081cee7dfc6a521c1f5eec52a5b.png" title="Then User successfully logged in and Dashboard page displayed" width="1366"/>
+                <img src="44a68d2dc03f4981bfc77be854e819bcf33dfc19451eb547e721d0076a3b7293.png" title="And User logout from workorder platform" width="1366"/>
+                <img src="425c3435700c3ac9779f5917d16172dfe7659829ff79a5b3f1d69a9350306b07.png" title="And User logout from workorder platform: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

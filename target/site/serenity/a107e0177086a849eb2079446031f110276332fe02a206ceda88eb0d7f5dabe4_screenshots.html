@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="6c28aad1e22d2acc81735c917da8824043f0a459b9082196bff0bc681ca79db1.html">Dashboard Management</a></span>
+                > <span class="truncate-60"><a
+                    href="a107e0177086a849eb2079446031f110276332fe02a206ceda88eb0d7f5dabe4.html">To verify that correct count is displayed in the company tiles </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 07-05-2020 14:14</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Dashboard Management</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                As a client user
+I can land on dashboard
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">To verify that correct count is displayed in the company tiles
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+    <div class="story-title">
+        <h3>Scenario:</h3>
+        <div class="scenario">Given User observes the company "&lt;module&gt;"count displayed<br>When User taps on company "&lt;module&gt;" tile<br>Then User verifies the number displayed in the list</div>
+    </div>
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="1ecae9731b8f5d995c0ab2d7428118f7f58f13559cb9bf235ab777de51be145b.png" title="To verify that correct count is displayed in the company tiles #1: {module=Total Administrator}" width="1366"/>
+                <img src="2d8bf2acaaa249c6b6cc2eff0b9838976a9c6ac59bb4c5fb4bb4aaa75540b118.png" title="To verify that correct count is displayed in the company tiles #1: {module=Total Administrator}" width="1366"/>
+                <img src="1ecae9731b8f5d995c0ab2d7428118f7f58f13559cb9bf235ab777de51be145b.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="52bb5d8769f2fa7f31fd21f43ae339e1dd9544f3c2d7f0efcfd9593fd0a79957.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="c14509bede54941672851f3348609bd0f451efa050f84e4f68708538c8b342bc.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="Given User observes the company &quot;Total Administrator&quot;count displayed" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Total Administrator&quot; tile" width="1366"/>
+                <img src="a0c2e3c9b576207879cfbaf3ffec06cce8df6ca79873c71fbb0dd5d695800c15.png" title="When User taps on company &quot;Total Administrator&quot; tile" width="1366"/>
+                <img src="7d5c66886f78a87b701f22e8059f783d1841b0bf617581e46b77c376801101a8.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="2d8bf2acaaa249c6b6cc2eff0b9838976a9c6ac59bb4c5fb4bb4aaa75540b118.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="121c1ca57b2a8967f7d0fa9fdd8df3aa0dfaacf4ec4547cef2ca58ce4784be5b.png" title="To verify that correct count is displayed in the company tiles #2: {module=Total Personnel}" width="1366"/>
+                <img src="9e799e6ec3f3ce8ed5d023c84e6d50620b5a7e3d1a7623b757bf7eae3a6889ae.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="60b45a433f6d2cfeeee3524f52075faad049e86dc6c9859a513b4a6fb07b1cc6.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="Given User observes the company &quot;Total Personnel&quot;count displayed" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Total Personnel&quot; tile" width="1366"/>
+                <img src="b311e89c46dd428203f4e5442fc9387a796a28134cd04a88cb629d0346708e44.png" title="When User taps on company &quot;Total Personnel&quot; tile" width="1366"/>
+                <img src="ae4f26dfd9fc266600f29f852eda9825d5d575a80180c3f47c50d3ae38fbdd20.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="121c1ca57b2a8967f7d0fa9fdd8df3aa0dfaacf4ec4547cef2ca58ce4784be5b.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="925e8b392a8e95aad27c5318fd27376bc82bbf59d068436aacdb34efe75a2b39.png" title="To verify that correct count is displayed in the company tiles #3: {module=Total Facilities}" width="1366"/>
+                <img src="1d41a9ac7af162e04f74c8444341b9a3890ca3ced2254baac897d13bc57ace0f.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="3edb848439845f19f9cbbbf190198b39d325e10bfce4d1729fc896b6607ba6c9.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="Given User observes the company &quot;Total Facilities&quot;count displayed" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Total Facilities&quot; tile" width="1366"/>
+                <img src="c8ce891775591b1c7497a3d21a9efe6d4edf5d74c7bf206807ebf579122434cb.png" title="When User taps on company &quot;Total Facilities&quot; tile" width="1366"/>
+                <img src="022b863030297e76dbecffd2878ef82701a1690ed2eff5c247c614e328ed8e33.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="925e8b392a8e95aad27c5318fd27376bc82bbf59d068436aacdb34efe75a2b39.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="00d4fe38e28d76642aaa45f90bff477518743ad5af0c59aaf96b31568878b2df.png" title="To verify that correct count is displayed in the company tiles #4: {module=Total Vendors}" width="1366"/>
+                <img src="56cc38e16b43d4d8632c93a527246a318585c5bcba6bd14674c276c174a64602.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="1f5bd4654ba28443f32de0f1a9f2cf450ec046a5ce967819204ea53c5666ee21.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="Given User observes the company &quot;Total Vendors&quot;count displayed" width="1366"/>
+                <img src="04e88883c0a20f26a4c56700e2cc44a5fa2a50591063eb1e8958aa7ccbee4221.png" title="When User taps on company &quot;Total Vendors&quot; tile" width="1366"/>
+                <img src="01583e1e14ce02ff893a28bf6eaf1aebbeaf20d7d8830c1a64c5ccdc9c8512b0.png" title="When User taps on company &quot;Total Vendors&quot; tile" width="1366"/>
+                <img src="974060d39a87b9a45007cf1dc10ccac79a90d84429b33e61df11ef0aa7a29b35.png" title="Then User verifies the number displayed in the list" width="1366"/>
+                <img src="00d4fe38e28d76642aaa45f90bff477518743ad5af0c59aaf96b31568878b2df.png" title="Then User verifies the number displayed in the list: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

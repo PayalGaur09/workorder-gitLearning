@@ -24,7 +24,7 @@ Feature: Vendor Management
 
   Scenario: Edit an existing vendor from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
-    When User enters all the field
+    When User updates all the field of vendor form
     And User taps on the Submit button
     Then Success message "Vendor has been updated successfully" should be displayed
     And User verify vendor detail screen
@@ -74,12 +74,12 @@ Feature: Vendor Management
     Then Vendor list displayed is according to the searched keyword and vendor type
     And User clicks on Reset button
 
-  Scenario: The functionality of "Delete" icon on the list view page
+  Scenario: To verify the functionality of "Delete" icon on the list view page
     When User clicks on delete icon
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed
 
-  Scenario: The functionality of "Delete" button on the detailed view page
+  Scenario: To verify the functionality of "Delete" button on the detailed view page
     Given User is on detail screen
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
