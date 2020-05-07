@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import utilities.RandomGenerator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class UserManagementPage extends PageObject {
@@ -41,6 +43,10 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade deactivateFromAction;
     @FindBy(xpath = "//td[text()='No matching records found']")
     private WebElementFacade noRecordFound;
+    @FindBy(xpath = "//button[contains(text(),'Choose file')]")
+    private WebElementFacade chooseFile;
+    @FindBy(xpath = "//button[text()='Upload']")
+    private WebElementFacade uploadImageButton;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -55,43 +61,53 @@ public class UserManagementPage extends PageObject {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUserButton).click();
     }
 
-    private void enterValueInFirstName() {
-        element(userFormField("First")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(userFormField("First")).clear();
-        detailsModel.setName("Madhvan" + RandomGenerator.randomAlphabetic(3));
-        element(userFormField("First")).sendKeys(detailsModel.getName());
-    }
-    private void enterValueInSurname() {
-        element(userFormField("Last")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(userFormField("Last")).clear();
-        detailsModel.setSurname(RandomGenerator.randomAlphabetic(3));
-        element(userFormField("Last")).sendKeys(detailsModel.getSurname());
+    //Select and upload profile picture
+    public void uploadProfilePicture() throws IOException {
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(chooseFile).shouldBeVisible();
+        String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
+        getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(uploadImageButton).click();
     }
 
-    private void enterValueInPhone() {
-        element(userFormField("Phone")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(userFormField("Phone")).clear();
-        detailsModel.setContact(RandomGenerator.randomInteger(10));
-        element(userFormField("Phone")).sendKeys(detailsModel.getContact());
+    private void enterValueInFirstName() {
+        WebElementFacade firstField = element(userFormField("First"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstField).waitUntilVisible().clear();
+        detailsModel.setName("Madhvan" + RandomGenerator.randomAlphabetic(3));
+        firstField.sendKeys(detailsModel.getName());
+    }
+    private void enterValueInSurname() {
+        WebElementFacade lastNameField = element(userFormField("Last"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(lastNameField).waitUntilVisible().clear();
+        detailsModel.setSurname(RandomGenerator.randomAlphabetic(3));
+        lastNameField.sendKeys(detailsModel.getSurname());
     }
 
     private void enterValueInEmail() {
-        element(userFormField("Email")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
-        element(userFormField("Email")).clear();
+        WebElementFacade emailField = element(userFormField("Email"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().clear();
         detailsModel.setEmail("user" + RandomGenerator.randomInteger(4) + "@mailinator.com");
-        element(userFormField("Email")).sendKeys(detailsModel.getEmail());
+        emailField.sendKeys(detailsModel.getEmail());
+    }
+
+    private void enterValueInPhone() {
+        WebElementFacade phoneField = element(userFormField("Phone"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(phoneField).waitUntilVisible().clear();
+        detailsModel.setContact(RandomGenerator.randomInteger(10));
+        phoneField.sendKeys(detailsModel.getContact());
     }
 
 
-    public void addInputFiledsOfUserForm() {
+
+    public void addInputFieldsOfUserForm() {
         enterValueInFirstName();
         enterValueInSurname();
-        enterValueInPhone();
         enterValueInEmail();
+        enterValueInPhone();
+
     }
 
     public void selectRole(String roles) {
-        userRoleDropdown.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(userRoleDropdown).click();
         Select type = new Select(userRoleDropdown);
         detailsModel.setUserRole(roles);
         type.selectByVisibleText(detailsModel.getUserRole());
@@ -109,7 +125,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void selectRoleDropdown() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(roleDropdown).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(roleDropdown).click();
     }
 
     public void selectStatusDropdown() {

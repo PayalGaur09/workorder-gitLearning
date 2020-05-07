@@ -1,10 +1,12 @@
 package utilities;
 
+import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
@@ -51,12 +53,18 @@ public class LoadProperties {
         }
     }
 
-
     public static String getProp(String key) {
         if ((key == null) || (key.isEmpty())) {
             return "";
         } else {
             return properties.getProperty(key);
         }
+    }
+
+    public static void saveValueInPropertiesFile(String key, String value, String fileName) throws IOException, ConfigurationException {
+        String filePath = new File(".").getCanonicalPath() + File.separator+"src"+File.separator+"test"+File.separator+"resources"+File.separator+"testData"+File.separator+fileName+".properties";
+        PropertiesConfiguration properties = new PropertiesConfiguration(filePath);
+        properties.setProperty(key, value);
+        properties.save();
     }
 }

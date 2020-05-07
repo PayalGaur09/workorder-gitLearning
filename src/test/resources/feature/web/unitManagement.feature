@@ -40,9 +40,9 @@ Feature: Unit Management
 
   Scenario: Deactivate and Activate unit from unit list screen
     When User clicks on "Deactivate" icon on list page
-    Then Success message "Facility has been deactivated successfully." should be displayed
+    Then Success message "Unit has been deactivated successfully." should be displayed
     When User clicks on "Activate" icon on list page
-    Then Success message "Facility has been activated successfully." should be displayed
+    Then Success message "Unit has been activated successfully." should be displayed
 
   Scenario: Deactivate user from unit detail screen and cross verify the status
     Given User is on detail screen
@@ -55,10 +55,11 @@ Feature: Unit Management
 
   Scenario Outline: Filter the unit list upon selecting status
     When User clicks on Select status dropdown
-    And  User select "<Status>" status
+    And  User select "<status>" status
+    Then List displayed is according to the selected "<status>" status
     And User clicks on Reset button
     Examples:
-      | Status   |
+      | status   |
       | Active   |
       | Inactive |
 
