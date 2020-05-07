@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Dashboard Management" skipped="0" tests="16" time="165.26" timestamp="2020-05-07 02:12:35"><testcase name="To verify that upon signing in the application user is landed on the dashboard"/><testcase name="verify GUI components of Work order dashboard"/><testcase name="To verify that upon tapping the management tile user should be redirected to the respective list"/><testcase name="To verify that correct count is displayed in the work order tiles"><failure type="java.lang.AssertionError"/><system-err>null&#13;
-pages.DashboardPage.verifyItemCountInList(DashboardPage.java:99)&#13;
-steps.DashboardSteps.userVerifiesTheNumberOfWorkOrderInTheList(DashboardSteps.java:86)&#13;
-✽.User verifies the number of work order in the list(src/test/resources/feature/web/dashboard.feature:38)&#13;
-</system-err></testcase><testcase name="To verify that correct count is displayed in the company tiles"/></testsuite>

@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Login functionality for Work Order Web" skipped="0" tests="6" time="38.71" timestamp="2020-05-07 02:26:20"><testcase name="User valid Login with all user roles"/><testcase name="Invalid User Login"/><testcase name="User Login with invalid credentials"/></testsuite>

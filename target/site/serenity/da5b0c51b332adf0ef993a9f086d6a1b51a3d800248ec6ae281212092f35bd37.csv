@@ -1,3 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"Dashboard Management","To verify that correct count is displayed in the work order tiles","FAILURE","2020-05-07T14:13:39.6563214+05:30[Asia/Calcutta]","0.0","60.52"
-"Vendor Management","Edit an existing vendor from vendor list screen and cross verify the modification","FAILURE","2020-05-07T14:27:18.792492+05:30[Asia/Calcutta]","0.0","21.16"
