@@ -58,6 +58,6 @@ public class UserSigninSteps {
 
     @Given("^User sign in with valid credential of Account Owner$")
     public void userSignInWithValidCredentialOfAccountOwner() {
-        userSigninPage.enterCredentials("personnel@mailinator.com", "12345678");
+        userSigninPage.enterCredentials("shashank.singh@successive.tech", "1234567890");
     }
 }

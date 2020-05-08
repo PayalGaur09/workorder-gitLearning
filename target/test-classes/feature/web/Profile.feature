@@ -1,3 +1,5 @@
+@file
+
 Feature: Functionality of profile
 
 
@@ -21,7 +23,7 @@ Feature: Functionality of profile
     Then user should to redirects to the edit page
     And Edit the profile details
       | First Name | Email                    | Phone        |
-      | personnel  | personnel@mailinator.com | 876567898765 |
+      | Shashank  | shashank.singh@successive.tech |98475937456 |
     And  User clicks on submit button
     Then success message should be displayed " Your profile has been updated successfully. "
 
@@ -40,10 +42,10 @@ Feature: Functionality of profile
     And  user click on the action button
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
-    And   user erase all the data from all the input box
-    And  User clicks on submit button
+   And   user erase all the data from all the input box
+   And  User clicks on submit button
     Then Error message should be displayed
-      | First name is required | Email is required | Phone is required |
+      |  First name is required |  Email is required  |  Phone is required  |
 
 
   Scenario:To verify when user enters wrong password in old password and enters same password in new password and confirm password
@@ -69,7 +71,7 @@ Feature: Functionality of profile
     And  user click on the action button
     When I  clicking  on the " Change Password " button
     And user taps on the submit button
-    Then the error message is displayed
+    Then Error message should be displayed
       | Please enter old password | Please enter new password | Please enter new password |
 
 

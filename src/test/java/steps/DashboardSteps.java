@@ -13,4 +13,6 @@ public class DashboardSteps {
     public void userTapOnTheLinkFromSideNavigation(String arg0)  {
         dashboard.tapOnMenuItems(arg0);
     }
+
+
 }

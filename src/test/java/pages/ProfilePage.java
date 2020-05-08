@@ -62,6 +62,8 @@ public class ProfilePage extends PageObject {
     WebElementFacade changepasscancelbutton;
     @FindBy(xpath = "//h3[text()=' My Profile ']")
     WebElementFacade verifyprofilepage;
+    @FindBy(xpath = "(//em[@class='fa fa-edit cursor-pointer'])[1]")
+    WebElementFacade editbtn;
 
 
     private By validationHeader(String header) {
@@ -75,6 +77,7 @@ public class ProfilePage extends PageObject {
     private By invalidMessage(String ErrorMessage) {
         return By.xpath("//*[contains(text(),'" + ErrorMessage + "')]/..");
     }
+
     private By validationPopup(String successMessage) {
         return By.xpath("//*[contains(text(),'" + successMessage + "')]/..");
     }
@@ -154,12 +157,14 @@ public class ProfilePage extends PageObject {
 
     public void myprofilepage() {
         Assert.assertTrue(myprofile.waitUntilVisible().isDisplayed());
-
     }
 
     public void clearData() {
+        waitABit(1000);
         waitFor(firstname).waitUntilVisible().clear();
+        waitABit(1000);
         waitFor(email).waitUntilVisible().clear();
+        waitABit(1000);
         waitFor(phone).waitUntilVisible().clear();
     }
 
@@ -232,15 +237,31 @@ public class ProfilePage extends PageObject {
 
 
     public void verifyMessage(String ErrorMessage) {
+        waitABit(2000);
+
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
 
 
-    public void successPopup(String successMessage){
-        Assert.assertTrue( element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
+    public void successPopup(String successMessage) {
+        Assert.assertTrue(element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
     }
 
+    public void editAllContentDetails(DataTable Credentials) {
+        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
+        EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
+        MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
+        waitFor(firstName).waitUntilVisible().clear();
+        waitABit(2000);
+        waitFor(firstName).waitUntilVisible().clear();
+        waitFor(firstName).waitUntilVisible().sendKeys(FirstName);
+        waitFor(emailAdd).waitUntilVisible().clear();
+        waitFor(emailAdd).waitUntilVisible().sendKeys(EmailAdd);
+        waitFor(mobNo).waitUntilVisible().clear();
+        waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
     }
+
+}
 
 
 

@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import pages.ProfilePage;
 import utilities.ConfigLoader;
 
