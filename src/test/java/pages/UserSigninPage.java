@@ -12,23 +12,17 @@ import java.util.concurrent.TimeUnit;
 public class UserSigninPage extends PageObject {
 
     @FindBy(xpath = "//input[@name='userName']")
-    WebElementFacade userName;
+    private WebElementFacade userName;
     @FindBy(xpath = "//input[@name='password']")
-    WebElementFacade password;
+    private WebElementFacade password;
     @FindBy(xpath = "//button[text()='Sign In']")
-    WebElementFacade signinButton;
+    private WebElementFacade signinButton;
     @FindBy(xpath = "//h3[text()=' Dashboard ']")
-    WebElementFacade dashboardTitle;
-    @FindBy(xpath = "//span[contains(@class,'kt-header__topbar-username')]")
-    WebElementFacade topbarUsername;
-    @FindBy(xpath = "//a[text()='Sign Out']")
-    WebElementFacade signoutButton;
+    private WebElementFacade dashboardTitle;
     @FindBy(xpath = "//span[text()='Sign Out']")
-    WebElementFacade signoutLink;
-
-
+    private WebElementFacade signoutLink;
     @FindBy(xpath = "//div[text()=' Invalid credential. ']")
-    WebElementFacade invalidCredentials;
+    private WebElementFacade invalidCredentials;
 
 
     private By validationOnLoginScreen(String errorMessage) {
@@ -57,7 +51,6 @@ public class UserSigninPage extends PageObject {
     }
 
     public void signout() {
-       // withTimeoutOf(10,TimeUnit.SECONDS).waitFor(topbarUsername).click();
         withTimeoutOf(10,TimeUnit.SECONDS).waitFor(signoutLink).click();
     }
 

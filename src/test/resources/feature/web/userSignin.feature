@@ -1,7 +1,7 @@
 Feature: Login functionality for Work Order Web
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
 
   Scenario Outline: User valid Login with all user roles
     When User enter credentials and tap on the signin button

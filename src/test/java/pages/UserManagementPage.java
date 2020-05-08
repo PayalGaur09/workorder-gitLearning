@@ -5,10 +5,13 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import utilities.RandomGenerator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class UserManagementPage extends PageObject {
@@ -19,27 +22,8 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade userLink;
     @FindBy(xpath = "//a[contains(text(),'New User')]")
     private WebElementFacade addUserButton;
-    @FindBy(xpath = "//label[contains(text(),'First')]/..//input")
-    private WebElementFacade userFirstName;
-    @FindBy(xpath = "//label[contains(text(),'Last')]/..//input")
-    private WebElementFacade userLastName;
-    @FindBy(xpath = "//label[contains(text(),'Email')]/..//input")
-    private WebElementFacade userEmailId;
-    @FindBy(xpath = "//label[contains(text(),'Phone')]/..//input")
-    private WebElementFacade userContactNo;
     @FindBy(xpath = "//select")
     private WebElementFacade userRoleDropdown;
-
-    @FindBy(xpath = "//label[contains(text(),'First')]/..//p")
-    private WebElementFacade userFirstNameDetail;
-    @FindBy(xpath = "//label[contains(text(),'Last')]/..//p")
-    private WebElementFacade userLastNameDetail;
-    @FindBy(xpath = "//label[contains(text(),'Email')]/..//p")
-    private WebElementFacade userEmailIdDetail;
-    @FindBy(xpath = "//label[contains(text(),'Phone')]/..//p")
-    private WebElementFacade userContactNoDetail;
-    @FindBy(xpath = "//label[contains(text(),'Role')]/..//p")
-    private WebElementFacade userRoleDetail;
 
     @FindBy(xpath = "(//select)[1]")
     private WebElementFacade roleDropdown;
@@ -49,49 +33,99 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade filterButton;
     @FindBy(xpath = "//input[contains(@placeholder,'Filter')]")
     private WebElementFacade searchUser;
+    @FindBy(xpath = "//span[contains(@class,'badge badge')]")
+    private WebElementFacade statusInList;
     @FindBy(xpath = "(//label[contains(text(),'Status')]/..//label)[2]")
     private WebElementFacade statusOnDetailScreen;
     @FindBy(xpath = "//span[contains(text(),'Activate')]")
     private WebElementFacade activateFromAction;
     @FindBy(xpath = "//span[contains(text(),'Deactivate')]")
     private WebElementFacade deactivateFromAction;
+    @FindBy(xpath = "//td[text()='No matching records found']")
+    private WebElementFacade noRecordFound;
+    @FindBy(xpath = "//button[contains(text(),'Choose file')]")
+    private WebElementFacade chooseFile;
+    @FindBy(xpath = "//button[text()='Upload']")
+    private WebElementFacade uploadImageButton;
 
+    private By userFormField(String text) {
+        return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
+    }
+
+    private By userDetail(String detail) {
+        return By.xpath("//label[contains(text(),'" + detail + "')]/..//p");
+    }
 
 
     public void tapOnAddUserButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUserButton).click();
     }
 
-    public void addInputFiledsOfUserForm() {
+    //Select and upload profile picture
+    public void uploadProfilePicture() throws IOException {
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(chooseFile).shouldBeVisible();
+        String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
+        getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(uploadImageButton).click();
+    }
+
+    private void enterValueInFirstName() {
+        WebElementFacade firstField = element(userFormField("First"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstField).waitUntilVisible().clear();
         detailsModel.setName("Madhvan" + RandomGenerator.randomAlphabetic(3));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(userFirstName).sendKeys(detailsModel.getName());
+        firstField.sendKeys(detailsModel.getName());
+    }
+    private void enterValueInSurname() {
+        WebElementFacade lastNameField = element(userFormField("Last"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(lastNameField).waitUntilVisible().clear();
         detailsModel.setSurname(RandomGenerator.randomAlphabetic(3));
-        userLastName.sendKeys(detailsModel.getSurname());
+        lastNameField.sendKeys(detailsModel.getSurname());
+    }
+
+    private void enterValueInEmail() {
+        WebElementFacade emailField = element(userFormField("Email"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().clear();
+        detailsModel.setEmail("user" + RandomGenerator.randomInteger(4) + "@mailinator.com");
+        emailField.sendKeys(detailsModel.getEmail());
+    }
+
+    private void enterValueInPhone() {
+        WebElementFacade phoneField = element(userFormField("Phone"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(phoneField).waitUntilVisible().clear();
         detailsModel.setContact(RandomGenerator.randomInteger(10));
-        userContactNo.sendKeys(detailsModel.getContact());
-        userEmailId.clear();
-        detailsModel.setEmail("User" + RandomGenerator.randomInteger(2) + "@mailinator.com");
-        userEmailId.sendKeys(detailsModel.getEmail());
+        phoneField.sendKeys(detailsModel.getContact());
+    }
+
+
+
+    public void addInputFieldsOfUserForm() {
+        enterValueInFirstName();
+        enterValueInSurname();
+        enterValueInEmail();
+        enterValueInPhone();
+
     }
 
     public void selectRole(String roles) {
-        userRoleDropdown.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(userRoleDropdown).click();
         Select type = new Select(userRoleDropdown);
         detailsModel.setUserRole(roles);
         type.selectByVisibleText(detailsModel.getUserRole());
     }
 
     public void userDetailsVerify() {
-        Assert.assertEquals(detailsModel.getName(), userFirstNameDetail.getText());
-        Assert.assertEquals(detailsModel.getSurname(), userLastNameDetail.getText());
-        Assert.assertEquals(detailsModel.getEmail(), userEmailIdDetail.getText());
-        Assert.assertEquals(detailsModel.getContact(), userContactNoDetail.getText());
-        Assert.assertEquals(detailsModel.getUserRole(), userRoleDetail.getText());
+        WebElementFacade a = element(userDetail("First"));
+        Assert.assertEquals(detailsModel.getName(),
+                withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).getText());
+        Assert.assertEquals(detailsModel.getSurname(),element(userDetail("Last")).getText());
+        Assert.assertEquals(detailsModel.getEmail(), element(userDetail("Email")).getText());
+        Assert.assertEquals(detailsModel.getContact(), element(userDetail("Phone")).getText());
+        Assert.assertEquals(detailsModel.getUserRole(), element(userDetail("Role")).getText());
         waitFor(2000);
     }
 
     public void selectRoleDropdown() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(roleDropdown).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(roleDropdown).click();
     }
 
     public void selectStatusDropdown() {
@@ -103,17 +137,24 @@ public class UserManagementPage extends PageObject {
     }
 
     private By status(String opt) {
-        return By.xpath("//label[contains(text(),'"+opt+"')]");
+        return By.xpath("//label[contains(text(),'" + opt + "')]");
     }
 
     public void selectFilterDropdown(String opt) {
-        element(dropdownOptions(opt)).click();
+        WebElementFacade a = element(dropdownOptions(opt));
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).click();
+
     }
 
-    public void enterKeyInSearchField(){ withTimeoutOf(10,TimeUnit.SECONDS).waitFor(searchUser).sendKeys("Madhvan"); }
+    public void enterKeyInSearchField(String searchKey) {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchUser);
+        detailsModel.setKeyword(searchKey);
+        searchUser.sendKeys(detailsModel.getKeyword());
+    }
 
     public void tapOnFilterButton() {
         waitFor(filterButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitABit(5000);
     }
 
     private By userNameSearch(int count) {
@@ -121,82 +162,87 @@ public class UserManagementPage extends PageObject {
     }
 
     public void verifyUserName() {
-        waitABit(5000);
-       // withTimeoutOf(20,TimeUnit.SECONDS).waitFor("//tbody/tr");
+        waitABit(3000);
+        WebElementFacade firstName= element(userNameSearch(1));
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(firstName).shouldBeVisible();
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         for (int i = 1; i <= num; i++) {
             String vName = element(userNameSearch(i)).getText();
-            Assert.assertTrue(vName.contains("Madhvan"));
+            Assert.assertTrue(vName.contains(detailsModel.getKeyword()));
         }
     }
+        private By roleInTable ( int count){
+            return By.xpath("(//tbody//tr[" + count + "]/td)[4]");
+        }
 
-    private By roleInTable(int count) {
-        return By.xpath("(//tbody//tr[" + count + "]/td)[4]");
-    }
+
+        public void verifyUserRole (String userRoles){
+        WebElementFacade firstRole= element(roleInTable(1));
+            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(firstRole).shouldBeVisible();
+            int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
+            for (int i = 1; i <= num; i++) {
+                WebElementFacade temp = element(roleInTable(i));
+                String vType = withTimeoutOf(20,TimeUnit.SECONDS).waitFor(temp).getText();
+                if (userRoles.equals("Administrator")) {
+                    Assert.assertEquals("Administrator", vType);
+
+                } else if (userRoles.equals("Personnel")) {
+                    Assert.assertEquals("Personnel", vType);
+                }
+            }
+
+        }
+
+        private By statusInTable ( int count){
+            return By.xpath("(//span[contains(@class,'badge badge')])[" + count + "]");
+        }
 
 
-    public void verifyUserRole(String userRoles) {
-        waitABit(2000);
-        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
-        for (int i = 1; i <= num; i++) {
-            String vType = element(roleInTable(i)).getText();
-            if (userRoles.equals("Administrator")) {
-                Assert.assertEquals("Admin", vType);
+        public void verifyStatus (String userStatus){
+            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(statusInList).shouldBeVisible();
+            int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
+            for (int i = 1; i <= num; i++) {
+                WebElementFacade s=element(statusInTable(i));
+                String vType = withTimeoutOf(20,TimeUnit.SECONDS).waitFor(s).getText();
+                if (userStatus.equals("Active")) {
+                    Assert.assertEquals("Active", vType);
 
-            } else if (userRoles.equals("Personnel")) {
-                Assert.assertEquals("Personnel", vType);
+                } else if (userStatus.equals("Inactive")) {
+
+                    Assert.assertEquals("Inactive", vType);
+                }
+            }
+
+        }
+
+        private By statusIcon (String title){
+            return By.xpath("//em[@title='" + title + "']");
+        }
+
+        public void tapOnStatusIcon (String title){
+            element(statusIcon(title)).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        }
+
+        public void changeUserStatus () {
+            userStatus = withTimeoutOf(10, TimeUnit.SECONDS).waitFor(statusOnDetailScreen).getText();
+            if (userStatus.equals("Inactive")) {
+                withTimeoutOf(10, TimeUnit.SECONDS).waitFor(activateFromAction).click();
+            } else if (userStatus.equals("Active")) {
+                withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deactivateFromAction).click();
+            }
+            waitFor(2000);
+        }
+
+        public void verifyChangedStatus () {
+        waitABit(4000);
+
+            if (userStatus.equals("Inactive")) {
+                WebElementFacade status = element(status("Active"));
+                withTimeoutOf(20, TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
+            } else if (userStatus.equals("Active")) {
+                WebElementFacade status = element(status("Inactive"));
+                withTimeoutOf(20, TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
             }
         }
 
     }
-    private By statusInTable(int count) {
-        return By.xpath("(//tbody//tr[" + count + "]/td)[6]");
-    }
-
-
-    public void verifyUserStatus(String userStatus) {
-        waitABit(2000);
-        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
-        for (int i = 1; i <= num; i++) {
-            String vType = element(statusInTable(i)).getText();
-            if (userStatus.equals("Active")) {
-                Assert.assertEquals("Active", vType);
-
-            } else if (userStatus.equals("Inactive")) {
-
-                Assert.assertEquals("Inactive", vType);
-            }
-        }
-
-    }
-
-    private By statusIcon(String title){ return By.xpath("//em[@title='" + title + "']"); }
-
-    public void tapOnStatusIcon(String title){
-        element(statusIcon(title)).withTimeoutOf(10,TimeUnit.SECONDS).click();
-    }
-
-    public void changeUserStatus(){
-         userStatus = withTimeoutOf(10,TimeUnit.SECONDS).waitFor(statusOnDetailScreen).getText();
-        if(userStatus.equals("Inactive")){
-            withTimeoutOf(10,TimeUnit.SECONDS).waitFor(activateFromAction).click();
-        }
-        else if(userStatus.equals("Active")){
-            withTimeoutOf(10,TimeUnit.SECONDS).waitFor(deactivateFromAction).click();
-        }
-        waitFor(2000);
-    }
-
-    public void verifyChangedStatus(){
-
-        if(userStatus.equals("Inactive")){
-            WebElementFacade status = element(status("Active"));
-            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
-        }
-        else if(userStatus.equals("Active")){
-            WebElementFacade status = element(status("Inactive"));
-            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(status).shouldBeVisible();
-        }
-    }
-
-}
