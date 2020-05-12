@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.PendingException;
@@ -184,8 +184,34 @@ public class VendorManagementSteps {
 
     @When("^User clicks on delete button$")
     public void userClicksOnDeleteButton() {
+        vendor.tapOnActionButton();
         vendor.clickOnDeleteButton();
     }
 
+
+    @Then("^Add, Edit and delete icon should not be visible to client personnel$")
+    public void addEditAndDeleteIconShouldNotBeVisibleToClientPersonnel() {
+        vendor.verifyEditDeleteForClientPersonnel();
+    }
+
+//    @Then("^Pagination is working or not$")
+//    public void paginationIsWorkingOrNot() {
+//        vendor.verifyPagination();
+//    }
+
+    @Given("^User gets the total count from the list$")
+    public void userGetsTheTotalCountFromTheList() {
+        vendor.totalRecordCount();
+    }
+
+    @Then("^User verify pagination with \"([^\"]*)\" per page$")
+    public void userVerifyPaginationWithPerPage(String option) throws Throwable {
+        vendor.verifyPaginationFunction(option);
+    }
+
+//    @Then("^pagination$")
+//    public void pagination() {
+//        vendor.verifyPaginationFunction(String option);
+//    }
 }
 

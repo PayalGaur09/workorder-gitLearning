@@ -8,7 +8,7 @@ Feature: Login functionality for Work Order Web
       | userEmail   | password   |
       | <userEmail> | <password> |
     Then User successfully logged in and Dashboard page displayed
-    And User logout from workorder platform
+    And User logout from work order platform
 
     Examples:
       | userEmail                  | password     |
