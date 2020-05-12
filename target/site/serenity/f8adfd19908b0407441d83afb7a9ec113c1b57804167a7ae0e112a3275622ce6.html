@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity Reports</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.css" rel="Stylesheet"/>
+<link type="text/css" href="css/tables.css" rel="stylesheet" />
+
+<script type="text/javascript" src="datatables/1.10.4/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.4/media/jqueryui/dataTables.jqueryui.min.js"></script><!-- jQplot -->
+<!--[if IE]>
+<script language="javascript" type="text/javascript" src="excanvas/3/excanvas.compiled.js"></script>
+<![endif]--><link rel="stylesheet" type="text/css" href="jqplot/1.0.8/jquery.jqplot.min.css"/>
+<script type="text/javascript" src="jqplot/1.0.8/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="jqplot/1.0.8/plugins/jqplot.pieRenderer.min.js"></script>
+
+
+
+
+    <script class="code" type="text/javascript">$(document).ready(function () {
+        var test_results_plot = $.jqplot('test_results_pie_chart', [
+            [
+                ['Passing', 0.6],
+                
+                ['Pending', 0],
+                
+                ['Ignored/Skipped', 0],
+                
+                ['Failing', 0],
+                
+                ['Errors',  0.4],
+                ['Compromised',  0]
+            ]
+        ], {
+
+            gridPadding: {top: 0, bottom: 38, left: 0, right: 0},
+            seriesColors: ['#30cb23',
+                
+                '#a2f2f2',
+                
+                '#eeeadd',
+                
+                '#f8001f',
+                
+                '#fc6e1f',
+                'fuchsia'],
+            seriesDefaults: {
+                renderer: $.jqplot.PieRenderer,
+                trendline: { show: false },
+                rendererOptions: { padding: 8, showDataLabels: true }
+            },
+            legend: {
+                show: true,
+                placement: 'outside',
+                rendererOptions: {
+                    numberRows: 2
+                },
+                location: 's',
+                marginTop: '15px'
+            },
+            series: [
+                {label: '12 / 20 tests passed' },
+                {label: '0 / 20 tests pending'},
+                {label: '0 / 20 tests not executed'},
+                {label: '0 / 20 tests failed'},
+                {label: '8 / 20 errors'},
+                {label: '0 / 20 compromised tests'}
+            ]
+        });
+
+        var weighted_test_results_plot = $.jqplot('weighted_test_results_pie_chart', [
+            [
+                ['Passing', 0.542553],
+                
+                ['Pending', 0],
+                
+                ['Ignored', 0],
+                
+                ['Failing', 0],
+                
+                ['Errors', 0.457447],
+                ['Compromised', 0],
+            ]
+        ], {
+
+            gridPadding: {top: 0, bottom: 38, left: 0, right: 0},
+            seriesColors: ['#30cb23',
+                
+                '#a2f2f2',
+                
+                '#eeeadd',
+                
+                '#f8001f',
+                
+                '#fc6e1f',
+                'mediumvioletred'],
+
+            seriesDefaults: {
+                renderer: $.jqplot.PieRenderer,
+                trendline: { show: false },
+                rendererOptions: { padding: 8, showDataLabels: true }
+            },
+            legend: {
+                show: true,
+                placement: 'outside',
+                rendererOptions: {
+                    numberRows: 2
+                },
+                location: 's',
+                marginTop: '15px'
+            },
+            series: [
+                {label: '12 / 20 tests passed (0.542553% of all test steps)' },
+                {label: '0 / 20 tests pending'},
+                {label: '0 / 20 tests not executed'},
+                {label: '0 / 20 tests failed (0% of all test steps)'},
+                {label: '8 / 20 errors (0.457447% of all test steps)'}
+            ]
+        });
+
+        // Results table
+        $('#test-results-table').DataTable({
+            "order": [
+                [ 1, "asc" ]
+            ],
+            "pageLength": 100,
+            "lengthMenu": [ [50, 100, 200, -1] , [50, 100, 200, "All"] ]
+        });
+
+        // Pie charts
+        $('#test-results-tabs').tabs();
+
+        $('#toggleNormalPieChart').click(function () {
+            $("#test_results_pie_chart").toggle();
+        });
+
+        $('#toggleWeightedPieChart').click(function () {
+            $("#weighted_test_results_pie_chart").toggle();
+        });
+
+
+
+    })
+    ;
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+
+
+<div id="contenttop">
+    <div class="middlebg">
+        <span class="breadcrumbs"><a href="index.html">Home</a>
+                > Tag  (with Tag Smoke)
+                > <span class="truncate-60">Smoke</span>
+        </span>
+    </div>
+    <div class="rightbg"></div>
+</div>
+
+<div class="clr"></div>
+
+<!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 11:00</span>
+    <br style="clear:left"/>
+</div>
+<div class="clr"></div>
+<div id="beforetable"></div>
+<div id="results-dashboard">
+<div class="middlb">
+<div class="table">
+
+<h2><i class='fa fa-tags'></i> Tag: Smoke</h2>
+<table class='overview'>
+    <tr>
+        <td width="375px" valign="top">
+            <div class="test-count-summary">
+                <span class="test-count-title">20
+                    test scenarios </span>
+                <div>
+
+                    <span class="test-count"> |
+                        12
+                            <a href="ef7fb3f240bd313015d7773b1719b732535530a055dece3d05e87e2b3dadc9b3.html">passed</a>
+                        
+                    </span>
+                    <span class="test-count"> |
+                        8
+                            <a href="d5184c6c3a6c805552b25168adeed360888f5ec59f54ff9bf7744070d374f4c7.html">unsuccessful</a>
+                        
+                    </span>(
+                    <span class="test-count">
+                        0
+                            <a href="111fc538422be3c2f39213752ee9b0a1b662c1b1d8e949b8748dbc41c91ecdb9.html">failed</a>
+                        ,
+                    </span>
+                    <span class="test-count">
+                        8
+                            <a href="2cbde78a0463c4d26fed52baf3f5ff984b9de37c3d8f237b172688d9a8a229db.html">with errors</a>
+                        
+                    </span>)
+
+                
+
+
+
+                 |
+                    <a href="f8adfd19908b0407441d83afb7a9ec113c1b57804167a7ae0e112a3275622ce6.csv" title="Download CSV"> <i class="fa fa-download" title="Download CSV"></i></a>
+                </div>
+            </div>
+
+            <div id="test-results-tabs">
+                <ul>
+                    <li><a href="#test-results-tabs-1">Test Count</a></li>
+                    <li><a href="#test-results-tabs-2">Weighted Tests</a></li>
+                </ul>
+                <div id="test-results-tabs-1">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <span class="caption">Distribution of tests (including rows in data-driven tests) by test result.</span>
+                                <span class="togglePieChart" id="toggleNormalPieChart"><a href="#">Show/Hide Pie Chart</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: text-top;">
+                                <div id="test_results_pie_chart"></div>
+                            </td>
+                            <td class="related-tags-section">
+                                <div>
+
+
+
+
+
+<div>
+    <h4>Test Result Summary</h4>
+    <table class="summary-table">
+        <head>
+            <tr>
+                <th>Test Type</th>
+                <th>Total</th>
+                <th>Pass&nbsp;<i class="icon-check"/> </th>
+                <th>Fail&nbsp;<i class="icon-thumbs-down"/></th>
+                <th>Pending&nbsp;<i class="icon-calendar"/></th>
+                <th>Ignore/Skip&nbsp;<i class="icon-ban-circle"/></th>
+            </tr>
+        </head>
+        <body>
+        <tr>
+            <td class="summary-leading-column">Automated</td>
+            <td>20</td>
+            <td>12 (60%)</td>
+            <td>8 (40%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Manual</td>
+            <td>0</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total</td>
+            <td>20</td>
+            <td>12 (60%)</td>
+            <td>8 (40%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total Duration</td>
+                <td colspan="5">11 minutes 10 seconds</td>
+        </tr>
+        </body>
+    </table>
+</div>                                </div>
+                                <div>
+<table class="tags-summary-table">
+    <tr>
+        <td width="300px"><h3>Related Tags</h3></td>
+        <td width="90px" class="tag-count-header">% Passed</td>
+        <td width="130px" class="test-count">&nbsp;</td>
+        <td class="tag-count-header">Test count</td>
+    </tr>
+</table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="test-results-tabs-2">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <span class="caption">Test results weighted by test size in steps (average steps per test: 9) .</span>
+                                <span class="togglePieChart" id="toggleWeightedPieChart"><a href="#">Show/Hide Pie
+                                    Chart</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: text-top;">
+                                <div id="weighted_test_results_pie_chart"></div>
+                            </td>
+                            <td class="related-tags-section">
+                                <div>
+
+
+
+
+
+<div>
+    <h4>Test Result Summary</h4>
+    <table class="summary-table">
+        <head>
+            <tr>
+                <th>Test Type</th>
+                <th>Total</th>
+                <th>Pass&nbsp;<i class="icon-check"/> </th>
+                <th>Fail&nbsp;<i class="icon-thumbs-down"/></th>
+                <th>Pending&nbsp;<i class="icon-calendar"/></th>
+                <th>Ignore/Skip&nbsp;<i class="icon-ban-circle"/></th>
+            </tr>
+        </head>
+        <body>
+        <tr>
+            <td class="summary-leading-column">Automated</td>
+            <td>20</td>
+            <td>12 (60%)</td>
+            <td>8 (40%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Manual</td>
+            <td>0</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total</td>
+            <td>20</td>
+            <td>12 (60%)</td>
+            <td>8 (40%)</td>
+            <td>0 (0%)</td>
+            <td>0 (0%)</td>
+        </tr>
+        <tr>
+            <td class="summary-leading-column">Total Duration</td>
+                <td colspan="5">11 minutes 10 seconds</td>
+        </tr>
+        </body>
+    </table>
+</div>                                </div>
+                                <div>
+<table class="tags-summary-table">
+    <tr>
+        <td width="300px"><h3>Related Tags</h3></td>
+        <td width="90px" class="tag-count-header">% Passed</td>
+        <td width="130px" class="test-count">&nbsp;</td>
+        <td class="tag-count-header">Test count</td>
+    </tr>
+</table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <div><h3>Tests</h3></div>
+            <div id="test_list_tests" class="table">
+                <div class="test-results">
+                    <table id="test-results-table">
+                        <thead>
+                        <tr>
+                            <th width="50" class="test-results-heading">&nbsp;</th>
+                            <th width="%" class="test-results-heading">Tests</th>
+                            <th width="70" class="test-results-heading">Steps</th>
+
+                            <th width="100" class="test-results-heading">Started</th>
+                            <th width="100" class="test-results-heading">Took<br>(secs)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="793bc285b89f892e236ec5fa0211225e3d37e1849cc149cb847a54e6a5fdc720.html" class="ellipsis"
+                                           title="To verify user redirects to the kiosk page ">
+                                            To verify user redirects to the kiosk page
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">6</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:49:23">10:49:23</td>
+
+                                <td class="SUCCESS-text">36.03</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="8abf0f54f555ee30d3ad84682bfe3a30f3ff7ace8c347ad6d2134d017e07a8e0.html" class="ellipsis"
+                                           title="To verify the registration of new kiosk application ">
+                                            To verify the registration of new kiosk application
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">10</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:49:59">10:49:59</td>
+
+                                <td class="SUCCESS-text">23.17</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="2fbf4cce95b391fa2cb7721d0008ed3664c5df1d9883574b905b1b0262e19051.html" class="ellipsis"
+                                           title="To verify the registration of new kiosk application for already used key Timeout exception: Expected condition...">
+                                            To verify the registration of new kiosk application for already used key
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">11</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:50:22">10:50:22</td>
+
+                                <td class="ERROR-text">29.05</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="d3cd59c04017bccd68a1599b0158ae9c5f9d95fb4f5585504739ac845c957fcf.html" class="ellipsis"
+                                           title="To verify the validations on the Register kiosk page ">
+                                            To verify the validations on the Register kiosk page
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">8</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:50:51">10:50:51</td>
+
+                                <td class="SUCCESS-text">17.01</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="569d87383ef51665cfb7c74c8a206b944eaac1d5bc7d87c197ae5a54143214e6.html" class="ellipsis"
+                                           title="To verify the functionality of show entries dropdown in list view of manage kiosk ">
+                                            To verify the functionality of show entries dropdown in list view of manage kiosk
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">6</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:51:08">10:51:08</td>
+
+                                <td class="SUCCESS-text">10.89</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="9c56fb65a85cc81cd07f0b3139555d1045141a38071f79f07b0a61fb902ac164.html" class="ellipsis"
+                                           title="Presence of pagination of landing page plan list Timeout exception: Expected condition...">
+                                            Presence of pagination of landing page plan list
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">7</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:51:19">10:51:19</td>
+
+                                <td class="ERROR-text">210.44</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="a8cc48192f20e63c289d0faace46449f38374ef167088ee0e054d60d183231c0.html" class="ellipsis"
+                                           title="To verify the functionality of delete tag ">
+                                            To verify the functionality of delete tag
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">6</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:54:49">10:54:49</td>
+
+                                <td class="SUCCESS-text">10.92</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="e71cec0d83d6541d8980a3c01f62a418c1714795306384b0abb123f5aa951967.html" class="ellipsis"
+                                           title="To verify the Functionality of each pages ">
+                                            To verify the Functionality of each pages
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">6</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:55:00">10:55:00</td>
+
+                                <td class="SUCCESS-text">12.34</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="392630c76ca5436488c99c2799e25b5db416f6ade2e721616bd6ff4d1444f5db.html" class="ellipsis"
+                                           title="To verify user is able to upload the  png type content from signage application ">
+                                            To verify user is able to upload the  png type content from signage application
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">11</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:55:13">10:55:13</td>
+
+                                <td class="SUCCESS-text">27.51</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="7ff375c3b2a4e30c6894e1f72ed6b74002431c2513de2d5c551f305ea7a06949.html" class="ellipsis"
+                                           title="To verify user is able to upload the  jpeg type content from signage application Timeout exception: Expected condition...">
+                                            To verify user is able to upload the  jpeg type content from signage application
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">11</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:55:40">10:55:40</td>
+
+                                <td class="ERROR-text">31.31</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="4b1fb95eb820963798c423eb393bff9951163ad7c2fc73f4119ee00490756a7a.html" class="ellipsis"
+                                           title="To verify user is able to upload the  video type content from signage application and upload Jpg file in thumbnail Timeout exception: Expected condition...">
+                                            To verify user is able to upload the  video type content from signage application and upload Jpg file in thumbnail
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">12</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:56:11">10:56:11</td>
+
+                                <td class="ERROR-text">33.63</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="500649e5040d7ecbd989427dac5ab98965e04a3a114efa5efafd8e03923a99bb.html" class="ellipsis"
+                                           title="To verify user is able to upload the  pdf type  content from signage application Timeout exception: Expected condition...">
+                                            To verify user is able to upload the  pdf type  content from signage application
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">11</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:56:45">10:56:45</td>
+
+                                <td class="ERROR-text">30.27</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="9be477b7e557ab72354e911616435fe226e83e141aa72721aa4eec3a25be30f2.html" class="ellipsis"
+                                           title="Verify the functionality of delete file No such element exception: Timed out ...">
+                                            Verify the functionality of delete file
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">10</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:57:15">10:57:15</td>
+
+                                <td class="ERROR-text">26.44</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="dfc31944033513d0d56a9e1ac0461b1d66a15baeeef4d22d4fd403e1b832b933.html" class="ellipsis"
+                                           title="To verify when user clicks on the cancel button on add content field ">
+                                            To verify when user clicks on the cancel button on add content field
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">9</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:57:42">10:57:42</td>
+
+                                <td class="SUCCESS-text">18.82</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="d8794ae352312886cd1ec54aa589318d06c9208720dd90cc76b5e5def3567620.html" class="ellipsis"
+                                           title="To verify the Validations  on the Add content page ">
+                                            To verify the Validations  on the Add content page
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">9</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:58:01">10:58:01</td>
+
+                                <td class="SUCCESS-text">19.63</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="d7e88f8a78b95448a6d27905300d0136bd995e8080cfd66ea8491a78443c7cdf.html" class="ellipsis"
+                                           title="To verify user is able to edit the content ">
+                                            To verify user is able to edit the content
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">13</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:58:20">10:58:20</td>
+
+                                <td class="SUCCESS-text">33.7</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="43604b3f897240b1f8e09256b15fe2e1091d7ee2614ff4b42378ec7ae4b2d6fa.html" class="ellipsis"
+                                           title="To verify user is able to delete the content Timeout exception: Expected condition...">
+                                            To verify user is able to delete the content
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">9</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 10:58:54">10:58:54</td>
+
+                                <td class="ERROR-text">30.06</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="7e66abed0d3ac6e9e04f16637417d9c8591c2ca878420e782b7d0b86e57bbc4c.html" class="ellipsis"
+                                           title="To verify when user clicks on the cancel button of the delete popup ">
+                                            To verify when user clicks on the cancel button of the delete popup
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">9</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:59:24">10:59:24</td>
+
+                                <td class="SUCCESS-text">21.3</td>
+                            </tr>
+
+                            <tr class="test-SUCCESS">
+                                <td><span class="summary-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                    
+                                    <span style="display:none">SUCCESS</span></td>
+                                <td class="SUCCESS-text">
+                                    <div class="ellipsis">
+
+                                        <a href="8e9de7d3bf7550cf7143146388914bdf7a56d08d9498c01d1b459e21ed95ce1a.html" class="ellipsis"
+                                           title="To verify the functionality of enablity of  toggle button and apply changes button of signage application ">
+                                            To verify the functionality of enablity of  toggle button and apply changes button of signage application
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="SUCCESS-text">9</td>
+
+
+                                <td class="SUCCESS-text" data-sort="2020-05-12 10:59:45">10:59:45</td>
+
+                                <td class="SUCCESS-text">14.26</td>
+                            </tr>
+
+                            <tr class="test-ERROR">
+                                <td><span class="summary-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                                    
+                                    <span style="display:none">ERROR</span></td>
+                                <td class="ERROR-text">
+                                    <div class="ellipsis">
+
+                                        <a href="b221d0d166703e479d80d7edd65473ef38f2b0f245c2228917fb11c6b93c8745.html" class="ellipsis"
+                                           title="To verify the that we are able to create a content for the same title in same tag No such element exception: Timed out ...">
+                                            To verify the that we are able to create a content for the same title in same tag
+                                                <span class="related-issue-title"></span>
+                                        </a>
+                                    </div>
+                                </td>
+
+                                <td class="ERROR-text">15</td>
+
+
+                                <td class="ERROR-text" data-sort="2020-05-12 11:00:00">11:00:00</td>
+
+                                <td class="ERROR-text">33.51</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity version 1.8.1</span>
+</div>
+
+
+</body>
+</html>

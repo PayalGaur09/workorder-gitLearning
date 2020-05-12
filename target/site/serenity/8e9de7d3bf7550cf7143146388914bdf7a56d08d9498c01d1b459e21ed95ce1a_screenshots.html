@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="891e88c46c3c30227bf52afdd28d2b8929a76ec2ee5ec06b0d3e323dd69e2455.html">Functionality Of Signage Application</a></span>
+                > <span class="truncate-60"><a
+                    href="8e9de7d3bf7550cf7143146388914bdf7a56d08d9498c01d1b459e21ed95ce1a.html">To verify the functionality of enablity of  toggle button and apply changes button of signage application </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 10:59</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Signage Application</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="65a2df077748f74ccd607af4e962738958bdf672b0d6b0150ae42bcfa475044e.html">Smoke
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">To verify the functionality of enablity of  toggle button and apply changes button of signage application
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="367425aa1b9fca5100d10c7196bae0a023a620ac2f0e8e48b31fbdd207799150.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="65b6497e9d946bfceade8a6fe6ba63aaa034d860679fd950e9e712ad785e2c9e.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="7c63b89f2f3d36e2c3b81c2f037c99341a10608ddd9ff1252942ea035beaee7d.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="1d0f02b9f35d33409b4ade5c09beae5e19481e4767935251708505c39f3e8864.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="cd1781fcff4bc292ee94f852704540e594708926971de1705b1e97a8e23ab781.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="50c3ba676a12a41a4088ecac8840d66c788181d0acf6b367287ba1c00812a0f8.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="f5682b705e65501423f8d685ea7dd8a0d8038f242eb779ac740b757166e3d24f.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="251d36ca7cc042b28aa505123987d427d0c6dd10659354b001056df308ed87e3.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="c8d84c4833c6db4c1d430e3e4f87e273a7763fee933fa31aa26a62e041bc228d.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="5548456dd51c55470f062d1fafdea642664a00194fc044670c24f9b8676fc267.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="4a144ee047defa38b7630370b4cb37e24f19db46d8aa3685ac489722a8d4d026.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="b9296f6131092c11da418d7379f442a5142a38f456d9bc1a592681392e9dd03b.png" title="And user check the functionality of toggle button" width="1366"/>
+                <img src="61850321bfd363a8a5265f3d218281922bff69be6eac490e2c1e67e801f8ec28.png" title="And user check the functionality of toggle button" width="1366"/>
+                <img src="67c4a6eea4fb0ee8cc3e5966f165c9b5736bd673bfa5fb203f1d3104de8a767b.png" title="And user clicks on apply changes button" width="1366"/>
+                <img src="d74e39edc26b89e4b252521b0265333776ac61e0f284f4feafa06e708d23807e.png" title="And user clicks on apply changes button" width="1366"/>
+                <img src="819ec7165d3f8e3ec9344db55a2ae12c11a2248f2d6b569ba450b7f4dd33cdfb.png" title="Then success message should be displayed &quot; Changes has been applied successfully &quot;" width="1366"/>
+                <img src="62eb513232a86bd620fa1b7b487bad6d9457a23a43d656786df062408f2fbb66.png" title="Then success message should be displayed &quot; Changes has been applied successfully &quot;: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

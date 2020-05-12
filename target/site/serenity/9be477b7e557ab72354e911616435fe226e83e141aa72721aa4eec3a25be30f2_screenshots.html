@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="891e88c46c3c30227bf52afdd28d2b8929a76ec2ee5ec06b0d3e323dd69e2455.html">Functionality Of Signage Application</a></span>
+                > <span class="truncate-60"><a
+                    href="9be477b7e557ab72354e911616435fe226e83e141aa72721aa4eec3a25be30f2.html">Verify the functionality of delete file </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 10:57</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Signage Application</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="65a2df077748f74ccd607af4e962738958bdf672b0d6b0150ae42bcfa475044e.html">Smoke
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
+                            <span class="test-case-title">
+                                <span class="error-color">Verify the functionality of delete file
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+                        <div class="panel-heading title="No such element exception: Timed out after 2 seconds. Element not found">
+                            No such element exception: Timed out after 2 seconds. Element not found
+                        </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-overall">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-overall" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    org.openqa.selenium.NoSuchElementException
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>
+                                        <pre>Timed out after 2 seconds. Element not found<br>For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown<br>For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown</pre>
+                                    </h5>
+                                    pages.SignageApplicationPage.clicksOnAddContentBtn(SignageApplicationPage.java
+                                    :200) <br>
+                                    steps.SignageApplicationSteps.userClicksOnTheAddcontentButton(SignageApplicationSteps.java
+                                    :103) <br>
+                                    ✽.user clicks on the addcontent button(src/test/resources/feature/web/signageApplication.feature
+                                    :131) <br>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-body">
+                    <a href="pagesource14144423710789444156.html.txt" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="f628670794a11d17309d86adf459fecd9c0db55faab81381b82a7527a6237a2b.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="bea3f07d590bb51aaf942fa54cd75bcf3aef34ff10f6cc650b8d4381311e587d.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="1646857ad137b78be68c7116e0186fe11564b71e8d33309da62bb036b09a1171.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="1d0f02b9f35d33409b4ade5c09beae5e19481e4767935251708505c39f3e8864.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="546b0a9988be42d805776087fb95344407674bcfb826e98138286a00b6ab932b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="763f2dc2e43f9cf82085897ddc3298619aa6dc28555f0dec7f595f7e8c5691c6.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="a801dd09f35baabd1b6dd4edf5653c7acabe1c15606548a8a2cabd71a8e47f03.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="251d36ca7cc042b28aa505123987d427d0c6dd10659354b001056df308ed87e3.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="0d7271a65590f4958aa461ce20766da706dc29219846f98cdf195ace93bc2225.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="148dde1321463b74903e63c5972d4c2d75428ccdc44e1ffadb62ec89b72afe90.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="d62add3918f792798732221a01599c5f80f67a5d8fc423939c7ffd30dda90fe9.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="1004a1d78fdff446f40c728463f826759d8406bf3a0c9b452fa5835f9d762162.png" title="And user clicks on the upload content or manage content button" width="1366"/>
+                <img src="dd26189700a2bff72c7d8b3db6f84bf10c24a46e7ee03bd252788bee075b32c7.png" title="And user clicks on the upload content or manage content button" width="1366"/>
+                <img src="ec0764a09ed0956cfc9e91b52d0a4c1f6b2be4f0c069a2f2fbae0e5823aca6e3.png" title="And user clicks on the addcontent button" width="1366"/>
+                <img src="4063635146b1fb823d01bf8a55af2b0e6798001b195aefbe0f0f645377d0cfb5.png" title="And user clicks on the addcontent button: <span class='error-color'>ERROR</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

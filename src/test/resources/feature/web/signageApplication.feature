@@ -18,7 +18,7 @@ Feature: Functionality of signage application
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
      |registrationKey |tag|
-      | 415215         |415215|
+      | 485907         |415485907215|
     And user clicks on the configure  button
     Then error message should be come " Registration key already used "
 
@@ -42,12 +42,10 @@ Feature: Functionality of signage application
    Then Error message should be displayed
       |  Facility is required |  Registration key is required  |  Tag is required |
 
-
-   Scenario: To verify the functionality of show entries dropdown in list view of manage kiosk
+  Scenario: To verify the functionality of show entries dropdown in list view of manage kiosk
      Given user is on the dashboard page of workorder application
      And User click on side menu of "Manage Kiosk" button
      And user clicks on the show entries dropdown in list view of manage kiosk page
-
 
   Scenario: Presence of pagination of landing page plan list
     Given user is on the dashboard page of workorder application
@@ -60,6 +58,10 @@ Feature: Functionality of signage application
        And User click on side menu of "Manage Kiosk" button
        And user delete the tag from the list
 
+  Scenario: To verify the Functionality of each pages
+    Given user is on the dashboard page of workorder application
+    And User click on side menu of "Manage Kiosk" button
+    Then verify the functionality of pagination
 
   Scenario: To verify user is able to upload the  png type content from signage application
     Given user is on the dashboard page of workorder application
@@ -188,7 +190,6 @@ Feature: Functionality of signage application
     And user check the functionality of toggle button
     And user clicks on apply changes button
     Then success message should be displayed " Changes has been applied successfully "
-
 
   Scenario: To verify the that we are able to create a content for the same title in same tag
     Given user is on the dashboard page of workorder application

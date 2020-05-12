@@ -5,6 +5,7 @@ steps\SignageApplicationSteps.class
 helpers\Hooks.class
 pages\ProfilePage.class
 steps\VendorManagementSteps.class
+pages\CompanyModulePage.class
 models\ImageModel.class
 models\FacilityModel.class
 models\ProfileModel.class
@@ -14,6 +15,7 @@ RunTests.class
 pages\SignageApplicationPage.class
 utilities\LoadProperties.class
 pages\MoveInApplicationPage.class
+steps\CompanyModuleSteps.class
 pages\FacilityManagementPage.class
 utilities\ConfigLoader.class
 steps\FacilityManagementSteps.class

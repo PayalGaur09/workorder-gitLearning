@@ -5,8 +5,10 @@ import models.ContentModel;
 import models.ImageModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.actions.Scroll;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.lang.StringUtils;
+import org.jruby.RubyProcess;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -103,17 +105,14 @@ public class SignageApplicationPage extends PageObject {
     @FindBy(xpath = "//div[text()=' One other content exist with same title. ']")
     private WebElement sametitleexist;
 
-
     private By manageKioskValidation(String options) {
         return By.xpath("//*[contains(text(),'" + options + "')]");
     }
-
 
     public void verifyKioskPage() {
         Assert.assertTrue(Verifykioskpage.isVisible());
 
     }
-
 
     public void verifyRegistration() {
 
@@ -134,14 +133,12 @@ public class SignageApplicationPage extends PageObject {
         waitFor(enterregistrationkey).waitUntilVisible().sendKeys(registrationKey);
         waitFor(entertagvalue).waitUntilVisible().sendKeys(tag + RandomGenerator.randomAlphanumeric(2));
 
-
     }
 
     public void clickingOnConfigureButton() {
 
         configurebutton.click();
         waitABit(3000);
-
     }
 
     public void redirectsManageKioskPage() {
@@ -154,20 +151,9 @@ public class SignageApplicationPage extends PageObject {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
-//    public void selectPageFromShowEntriesDropdown() {
-//        waitFor(showentries).withTimeoutOf(80, TimeUnit.SECONDS).click();
-//        Select pagination = new Select(showentries);
-//        pagination.selectByVisibleText("100");
-//    }
-
     public void selectTagFromKiosk() {
         waitFor(selecttag).click();
     }
-
-//    public void uploadContent() {
-//
-//        uploadcontentbutton.click();
-//    }
 
     public void addContentForSignageAppliccation(DataTable text) {
         title = text.asMaps(String.class, String.class).get(0).get("title");
@@ -177,13 +163,11 @@ public class SignageApplicationPage extends PageObject {
         waitFor(adddescription).waitUntilVisible().sendKeys(description + RandomGenerator.randomAlphabetic(5));
         waitFor(addinternaldescription).waitUntilVisible().sendKeys(internalDescription + RandomGenerator.randomAlphanumeric(5));
 
-
     }
 
     public void submitButton() {
-
         submitbtn.click();
-        waitABit(1000);
+        waitABit(700);
 
     }
 
@@ -206,20 +190,15 @@ public class SignageApplicationPage extends PageObject {
 
                 }
                 donebtn.click();
-
             }
         }
     }
-
-//    public void clicksOnManageButton() {
-//
-//        managebtn.click();
-//    }
 
     public void clicksOnAddContentBtn() {
         waitABit(5000);
         addcontentBtn.click();
     }
+
     public void clicksOnCanceltBtn() {
 
         cancelbtntBtn.click();
@@ -236,12 +215,8 @@ public class SignageApplicationPage extends PageObject {
 
     public void editFile() {
         waitABit(5000);
-
-
         changefile.click();
         waitABit(1000);
-
-
     }
 
     public void editAllContentDetails(DataTable details) {
@@ -325,8 +300,6 @@ public class SignageApplicationPage extends PageObject {
             managecontentbutton.click();
             waitABit(10);
             addcontentBtn.click();
-
-
         }
     }
 
@@ -357,64 +330,64 @@ public class SignageApplicationPage extends PageObject {
                     waitABit(1000);
                 }
                 uploadbuttoninthumbnail.click();
-
             }
         }
     }
+
     public void registrationKeyAlreadyExist() {
         regkeyalreadyexist.isDisplayed();
     }
+
     public void userClicksOnFromShowEntriesDropdownOfListvieOfManageKiosk() {
         waitFor(showentries).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select drpdown = new Select(showentries);
         drpdown.selectByVisibleText("100");
     }
 
-    public  void userClicksOnDeleteTag(){
+    public void userClicksOnDeleteTag() {
         deletetag.click();
         writetextinsidedeletepopup.sendKeys("DELETE");
         deleteteconfirm.click();
-
     }
+
     public void userEnterSameTitle(String title, String description) {
         addtitle.sendKeys(title);
         adddescription.sendKeys(description);
         submitbtn.click();
         waitABit(300);
-
-
     }
+
     public void userEntersTitleThatAlradyExist(DataTable values) throws IOException, ConfigurationException {
         title = values.asMaps(String.class, String.class).get(0).get("title") + RandomGenerator.randomAlphanumeric(3);
-        description = values.asMaps(String.class, String.class).get(0).get("description")+ RandomGenerator.randomAlphabetic(5);
+        description = values.asMaps(String.class, String.class).get(0).get("description") + RandomGenerator.randomAlphabetic(5);
         waitFor(addtitle).waitUntilVisible().sendKeys(title);
         waitFor(adddescription).waitUntilVisible().sendKeys(description);
-        LoadProperties.saveValueInPropertiesFile("title",title,"testData");
+        LoadProperties.saveValueInPropertiesFile("title", title, "testData");
     }
 
-    public void titleText(){
-      String titlevalue=LoadProperties.getValueFromPropertyFile("testData","title");
+    public void titleText() {
+        String titlevalue = LoadProperties.getValueFromPropertyFile("testData", "title");
         waitFor(addtitle).waitUntilVisible().clear();
         waitFor(addtitle).waitUntilVisible().sendKeys(titlevalue);
 
     }
 
-    public void enterTitleDescription(){
-        String titlevalue=LoadProperties.getValueFromPropertyFile("testData","title");
+    public void enterTitleDescription() {
+        String titlevalue = LoadProperties.getValueFromPropertyFile("testData", "title");
         waitFor(addtitle).waitUntilVisible().sendKeys(titlevalue);
         waitFor(adddescription).waitUntilVisible().sendKeys(description);
     }
 
-    public void errorMessagePopup(){
-element(errorPopup).waitUntilVisible().isDisplayed();
+    public void errorMessagePopup() {
+        element(errorPopup).waitUntilVisible().isDisplayed();
     }
 
-    public void countOfPlansOnlistPage(){
+    public void countOfPlansOnlistPage() {
         element("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").withTimeoutOf(200, TimeUnit.SECONDS).waitUntilVisible();
         assertThat(findAll("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").size() >= 10);
     }
 
-    public void verifyPaginationExists(){
+    public void verifyPaginationExists() {
         if (findAll("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").size() >= 10) {
             pagination.isDisplayed();
         } else {
@@ -422,4 +395,21 @@ element(errorPopup).waitUntilVisible().isDisplayed();
         }
     }
 
+    public void verifyPagination() {
+        Scroll.to(By.xpath("//li[@class='paginate_button page-item ']//a"));
+        List<WebElement> pagination = getDriver().findElements(By.xpath("//li[@class='paginate_button page-item ']//a"));
+        System.out.println(pagination);
+        if (pagination.size() > 0) {
+            System.out.println("pagination exists");
+            for (int i = 1; i < pagination.size(); i++) {
+                WebElement NextButton =getDriver().findElement(By.xpath("//li[@class='paginate_button page-item next']"));
+                if (NextButton.isEnabled()) {
+                    NextButton.click();
+                } else {
+                    System.out.println("pagination not exists");
+                }
+
+            }
+        }
+    }
 }

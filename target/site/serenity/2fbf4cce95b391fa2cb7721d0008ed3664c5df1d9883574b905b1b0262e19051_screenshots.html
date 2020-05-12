@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="891e88c46c3c30227bf52afdd28d2b8929a76ec2ee5ec06b0d3e323dd69e2455.html">Functionality Of Signage Application</a></span>
+                > <span class="truncate-60"><a
+                    href="2fbf4cce95b391fa2cb7721d0008ed3664c5df1d9883574b905b1b0262e19051.html">To verify the registration of new kiosk application for already used key </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 10:50</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Signage Application</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="65a2df077748f74ccd607af4e962738958bdf672b0d6b0150ae42bcfa475044e.html">Smoke
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
+                            <span class="test-case-title">
+                                <span class="error-color">To verify the registration of new kiosk application for already used key
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+                        <div class="panel-heading title="Timeout exception: Expected condition failed: waiting for By.xpath: //*[contains(text(),' Kiosk has been registered successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'Driver info: driver.version: unknownBuild info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'Driver info: driver.version: unknown">
+                            Timeout exception: Expected condition failed: waiting for By.xpath: //*[contains(text(),' Kiosk has been registered successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)Build info: version: '3.10.0', rev...
+                        </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-overall">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-overall" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    org.openqa.selenium.TimeoutException
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>
+                                        <pre>Expected condition failed: waiting for By.xpath: //*[contains(text(),' Kiosk has been registered successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown</pre>
+                                    </h5>
+                                    pages.ProfilePage.successPopup(ProfilePage.java
+                                    :243) <br>
+                                    steps.ProfileSteps.successMessageShouldBeDisplayed(ProfileSteps.java
+                                    :167) <br>
+                                    jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java
+                                    :-2) <br>
+                                    jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java
+                                    :62) <br>
+                                    jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java
+                                    :43) <br>
+                                    cucumber.runner.Runner.runPickle(Runner.java
+                                    :80) <br>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-body">
+                    <a href="pagesource965618060909611411.html.txt" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="dadda2eb8f97c406d0a47a33f65f55d70e513277f060691a179078b39d2517d1.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="2ca0077cb9cf91fc13f20af4c1807d6ed7ee29b46ecbadc7d20ce11c47139328.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="ec0328fce92a7f7c0fbf94eb761b731af98b322f674a7976e41bae2bb100140a.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="6a018349aa5497c0b5736a29461aaa05197d1313eecd5b57b3cc648b54140b87.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a54039c2c373b8b61d10df90f6e90999cd6148a3c22db4b06c701ab44b95880e.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="275b9a09fd3b652c1c7b7a585c6f73a5e03692048bb0fff0f07c0756e71c73e8.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="84ef52beecf2ff5790082e86a54c6a70ae88262780f73a1ec85c2521a72ae41d.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="251d36ca7cc042b28aa505123987d427d0c6dd10659354b001056df308ed87e3.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="301fdd9d050611d8eb6d65ce4e06158e11bb1359de594120b93b311b61d89978.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="e19dc1e6d7ed50aa45e8df8d54eb5cedac21b6c24070577c21c19d56a71e74c4.png" title="And user clicks on register new kiosk button" width="1366"/>
+                <img src="32039a1d68701cca2eef0bdff532d528b850568dd3b8559dfcedb7de30f0a731.png" title="And user clicks on register new kiosk button" width="1366"/>
+                <img src="d92511f4c9fb15bd79506b9166f8f0c07c2b7ce4d766ec265aff1e262c85e33a.png" title="And User clicks on Select dropdown and select a facility" width="1366"/>
+                <img src="92dbd5daf8c1d106d8852968ce259ab6324189387bbe59415a870ce32287b23b.png" title="And User clicks on Select dropdown and select a facility" width="1366"/>
+                <img src="7ac4dc87a75622875697d8a70d22ef4058624b19fc66e29008e71af74588ade2.png" title="And user enters the registration key and tag field
+| registrationKey | tag |
+| 415215 | 415215 |" width="1366"/>
+                <img src="ae945ea3e44689aea84a637de386556dbc629a5e5a0a6fbbaa5c4eff1d46eb4b.png" title="And user clicks on the configure  button" width="1366"/>
+                <img src="bb993085b45fae06acfcc5da0eeff83b56123741decf0747c18c12dcbfa8f9a2.png" title="And user clicks on the configure  button" width="1366"/>
+                <img src="20810ab15650b5d00438b7eca71a67664346a239f0b21568feaa36a205b90136.png" title="Then success message should be displayed &quot; Kiosk has been registered successfully. &quot;: <span class='error-color'>ERROR</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

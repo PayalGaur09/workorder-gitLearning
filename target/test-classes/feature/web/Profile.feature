@@ -2,12 +2,10 @@
 
 Feature: Functionality of profile
 
-
   Background:
     Given User is on workorder signin page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
-
 
   Scenario:Verify the details showings in my profile
     Given user is on the dashboard page of workorder application
@@ -22,8 +20,8 @@ Feature: Functionality of profile
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
     And Edit the profile details
-      | First Name | Email                    | Phone        |
-      | Shashank  | shashank.singh@successive.tech |98475937456 |
+      | First Name | Email                          | Phone       |
+      | Shashank   | shashank.singh@successive.tech | 98475937456 |
     And  User clicks on submit button
     Then success message should be displayed " Your profile has been updated successfully. "
 
@@ -35,18 +33,16 @@ Feature: Functionality of profile
     And  User click on "Cancel" button
     Then user redirects to the profile page
 
-
   Scenario:To verify the validation on Edit profile page
     Given user is on the dashboard page of workorder application
     And User click on side menu of "My Profile" button
     And  user click on the action button
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
-   And   user erase all the data from all the input box
-   And  User clicks on submit button
+    And   user erase all the data from all the input box
+    And  User clicks on submit button
     Then Error message should be displayed
-      |  First name is required |  Email is required  |  Phone is required  |
-
+      | First name is required | Email is required | Phone is required |
 
   Scenario:To verify when user enters wrong password in old password and enters same password in new password and confirm password
     And User click on side menu of "My Profile" button
@@ -57,7 +53,6 @@ Feature: Functionality of profile
       | 123456789       | 12345678    | 12345678        |
     And user taps on the submit button
     Then Error message should come "Please enter correct old password"
-
 
   Scenario: To verify the functionality of cancel button of change password field
     And User click on side menu of "My Profile" button
@@ -73,8 +68,6 @@ Feature: Functionality of profile
     And user taps on the submit button
     Then Error message should be displayed
       | Please enter old password | Please enter new password | Please enter new password |
-
-
 
   Scenario Outline: Change Password with invalid credentials
     Given user is on the dashboard page of workorder application

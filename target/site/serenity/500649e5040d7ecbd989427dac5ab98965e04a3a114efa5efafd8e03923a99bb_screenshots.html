@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">Demo Project using Serenity and Cucumber</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="891e88c46c3c30227bf52afdd28d2b8929a76ec2ee5ec06b0d3e323dd69e2455.html">Functionality Of Signage Application</a></span>
+                > <span class="truncate-60"><a
+                    href="500649e5040d7ecbd989427dac5ab98965e04a3a114efa5efafd8e03923a99bb.html">To verify user is able to upload the  pdf type  content from signage application </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 10:56</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Signage Application</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="65a2df077748f74ccd607af4e962738958bdf672b0d6b0150ae42bcfa475044e.html">Smoke
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
+                            <span class="test-case-title">
+                                <span class="error-color">To verify user is able to upload the  pdf type  content from signage application
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+            <div class="screenshotFailure panel panel-danger">
+
+                        <div class="panel-heading title="Timeout exception: Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'Driver info: driver.version: unknownBuild info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'Driver info: driver.version: unknown">
+                            Timeout exception: Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)Build info: version: '3.10.0'...
+                        </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-overall">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-overall" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    org.openqa.selenium.TimeoutException
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>
+                                        <pre>Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown<br>Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'<br>System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'<br>Driver info: driver.version: unknown</pre>
+                                    </h5>
+                                    pages.ProfilePage.successPopup(ProfilePage.java
+                                    :243) <br>
+                                    steps.ProfileSteps.successMessageShouldBeDisplayed(ProfileSteps.java
+                                    :167) <br>
+                                    jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java
+                                    :-2) <br>
+                                    jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java
+                                    :62) <br>
+                                    jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java
+                                    :43) <br>
+                                    cucumber.runner.Runner.runPickle(Runner.java
+                                    :80) <br>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel-body">
+                    <a href="pagesource16521439209984284820.html.txt" target="_blank" class="btn btn-info">HTML Source</a>
+                </div>
+            </div>
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="d01dce16102d82a855e2570163f7fa8e534a0064919f071cbe177b396a0b0a28.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="e92d59170ed6c75e181b2e25698a0c295c2ac49ce01710ebdf726ef2740d871a.png" title="Given User is on workorder signin page" width="1366"/>
+                <img src="e4c64a1fdabadabfa442a347c827e0ffe8b45c4b3d3a5c65ecd2e597f3ccf48e.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="b6afeef3686dd9cd2b5e256747503ceced157b0157d0b87842511533954abb2a.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="1d0f02b9f35d33409b4ade5c09beae5e19481e4767935251708505c39f3e8864.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="876bfdd6cc692d8bccaffcd55bb053b6ee0761d95f9aa8a68eda377ad313081e.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="949d115f3d5beabbaafd8b340b053eec4223b31ca0d2326fa36bbd8281c38177.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="6f02ecf75feeefc8c4df0ba2910055374be0ddfc424db2c2aa1f004cc429c4a8.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="251d36ca7cc042b28aa505123987d427d0c6dd10659354b001056df308ed87e3.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="764d8f9d09571fb8ea9102b6dfd20cc05662806dc861ef52bccfe034de3e4bf5.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="e266ae485577a16fd6f6aebaf9df6a27c9a1d7d143ed81663ed7f9cb0ef820df.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="20f3f556f8ef6cf435cdce6d81db64dabc81b809c4247846cb2df66130f14c9c.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="11e2b74614169a09ab84c348be433205ea9d4364c2a992e6c530c9e05b780915.png" title="And user clicks on the upload content or manage content button" width="1366"/>
+                <img src="7e23363c6a7f10530680a5cbe422ea004e51bd47b5ac715143fdd08ac7aeab2a.png" title="And user clicks on the upload content or manage content button" width="1366"/>
+                <img src="0c346f3a0313a93f2ebdb2af3d3211af68608b514faf23940b8b5d5ec30d2b5f.png" title="And user upload the content in choose file
+| content |
+| pdf.pdf |" width="1366"/>
+                <img src="b569dbeff53381d2334707014b335a1c7dbd745f3ece57c7270152cf0fc5a436.png" title="And user upload the content in choose file
+| content |
+| pdf.pdf |" width="1366"/>
+                <img src="082e0ed8dc0f861a11901c4b7329551383612638f7e54b6564051ad0049a203d.png" title="And user fills all the details
+| title | description | internalDescription |
+| shefali | testing1234 | testing12345 |" width="1366"/>
+                <img src="f626de120763e8ba5b7d348d9f0e07163003f4b6f3e67772d9f053006d707127.png" title="And user clicks  on the submit button" width="1366"/>
+                <img src="8563831f5eaf77526ce79856d5d65709adc39ec5e6e64c997d145a096f2f6bf4.png" title="And user clicks  on the submit button" width="1366"/>
+                <img src="fb94e988d821922093e133e87c17dceeecfbfc61fe7c2355b861d5294df5bb90.png" title="Then success message should be displayed &quot; Signage content has been added successfully. &quot;" width="1366"/>
+                <img src="5036f5c1f712f3a67196d064c290f1d2320192d256000e81c42fbabafecf3bbb.png" title="Then success message should be displayed &quot; Signage content has been added successfully. &quot;: <span class='error-color'>ERROR</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

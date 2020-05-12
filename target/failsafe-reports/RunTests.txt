@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+Test set: RunTests
+-------------------------------------------------------------------------------
+Tests run: 20, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 676.76 s <<< FAILURE! - in RunTests
+To verify the registration of new kiosk application for already used key(Functionality of signage application)  Time elapsed: 29.038 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Kiosk has been registered successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Kiosk has been registered successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+Presence of pagination of landing page plan list(Functionality of signage application)  Time elapsed: 210.431 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0] to be displayed (tried for 200 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0] to be displayed (tried for 200 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+To verify user is able to upload the  jpeg type content from signage application(Functionality of signage application)  Time elapsed: 31.321 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+To verify user is able to upload the  video type content from signage application and upload Jpg file in thumbnail(Functionality of signage application)  Time elapsed: 33.616 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+To verify user is able to upload the  pdf type  content from signage application(Functionality of signage application)  Time elapsed: 30.22 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),' Signage content has been added successfully. ')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+Verify the functionality of delete file(Functionality of signage application)  Time elapsed: 26.44 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+To verify user is able to delete the content(Functionality of signage application)  Time elapsed: 30.056 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),'Signage content has been deleted successfully.')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+Caused by: org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for By.xpath: //*[contains(text(),'Signage content has been deleted successfully.')]/.. to be displayed (tried for 5 second(s) with 100 milliseconds interval)
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+
+To verify the that we are able to create a content for the same title in same tag(Functionality of signage application)  Time elapsed: 33.496 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.10.0', revision: '176b4a9', time: '2018-03-02T19:03:16.397Z'
+System info: host: 'lapr055', ip: '192.168.43.127', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '13.0.2'
+Driver info: driver.version: unknown
+

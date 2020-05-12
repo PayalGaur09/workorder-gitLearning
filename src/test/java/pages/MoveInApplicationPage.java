@@ -54,6 +54,7 @@ public class MoveInApplicationPage extends PageObject {
 
     public void uploadAmentiesAndIcons() {
         if (configureButton.isVisible()) {
+
             configureButton.click();
 
         } else if (managebutton.isVisible()) {
@@ -67,8 +68,6 @@ public class MoveInApplicationPage extends PageObject {
         waitFor(selectamenity).withTimeoutOf(50, TimeUnit.SECONDS).click();
         Select amenity = new Select(selectamenity);
         amenity.selectByIndex(4);
-
-
     }
 
     private String getResourceDire() throws IOException {
@@ -97,8 +96,6 @@ public class MoveInApplicationPage extends PageObject {
         if (bool == false) {
             chkbox.click();
         }
-
-
     }
 
     public void clicksOnAddButton() {
@@ -116,7 +113,6 @@ public class MoveInApplicationPage extends PageObject {
         element(this.clickOnSelectAminities(Amenities)).click();
     }
 
-
     public void userClicksOnFromShowEntriesDropdown() {
         waitFor(showeentriesDrpdown).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select drpdown = new Select(showeentriesDrpdown);
@@ -128,8 +124,6 @@ public class MoveInApplicationPage extends PageObject {
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
         waitABit(1000);
-
-
     }
 
     public void clicksOnCancelButtonOfDeleteAmityPopup() {
@@ -137,14 +131,10 @@ public class MoveInApplicationPage extends PageObject {
         Alert alert = getDriver().switchTo().alert();
         alert.dismiss();
         waitABit(1000);
-
     }
-
     public void clicksOnFieldAndCriteriaTab() {
         tab.click();
-
     }
-
 
     public void userClicksOnCheckboxOfDrivingLicenseNumber() {
         boolean bool = drivinglincenchkbox.isSelected();
@@ -166,7 +156,6 @@ public class MoveInApplicationPage extends PageObject {
         } else if (arg0.equals(" Pop Up View ")) {
             index = 1;
         }
-
     }
 
     public void userClicksOnToggleButton() {
@@ -174,11 +163,8 @@ public class MoveInApplicationPage extends PageObject {
 
             togglebtn.click();
         }
-
     }
-
     public void userClicksOnApplyChangesButton() {
         applychangesbtn.click();
-
     }
 }

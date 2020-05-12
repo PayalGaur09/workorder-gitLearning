@@ -132,7 +132,7 @@ public class ProfilePage extends PageObject {
     }
 
     public void editProfile(DataTable Credentials) {
-        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
+        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("Name");
         EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
         MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
         waitFor(firstName).waitUntilVisible().clear();
@@ -144,7 +144,6 @@ public class ProfilePage extends PageObject {
         waitFor(mobNo).waitUntilVisible().clear();
         waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
     }
-
 
     public void submitButton() {
         submitbutton.click();
@@ -173,7 +172,6 @@ public class ProfilePage extends PageObject {
 
     }
 
-
     public void submitButton1() {
         submitbutton1.click();
     }
@@ -185,7 +183,6 @@ public class ProfilePage extends PageObject {
         waitFor(currentpassword).waitUntilVisible().sendKeys(CurrentPassword);
         waitFor(newpassword).waitUntilVisible().sendKeys(NewPassword);
         waitFor(confirmpassword).waitUntilVisible().sendKeys(ConfirmPassword);
-
 
     }
 
@@ -242,7 +239,6 @@ public class ProfilePage extends PageObject {
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
 
-
     public void successPopup(String successMessage) {
         Assert.assertTrue(element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
     }
@@ -252,7 +248,7 @@ public class ProfilePage extends PageObject {
         EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
         MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
         waitFor(firstName).waitUntilVisible().clear();
-        waitABit(2000);
+        waitABit(1000);
         waitFor(firstName).waitUntilVisible().clear();
         waitFor(firstName).waitUntilVisible().sendKeys(FirstName);
         waitFor(emailAdd).waitUntilVisible().clear();

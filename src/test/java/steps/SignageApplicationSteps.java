@@ -244,6 +244,11 @@ public class SignageApplicationSteps {
     public void iWillCheckForPresenceOfPaginationOnLandingPage() throws Throwable {
         managekioskpage.verifyPaginationExists();
     }
+
+    @Then("^verify the functionality of pagination$")
+    public void verifyTheFunctionalityOfPagination() {
+        managekioskpage.verifyPagination();
+    }
 }
 
 
