@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
