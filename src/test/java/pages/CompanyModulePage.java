@@ -5,6 +5,11 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.support.FindBy;
+import utilities.RandomGenerator;
+
+import java.util.List;
+import java.util.Map;
+
 public class CompanyModulePage extends PageObject {
     public static String Name;
     public static String Address;
@@ -37,14 +42,14 @@ public class CompanyModulePage extends PageObject {
     WebElementFacade  entercontactnumber;
     @FindBy(xpath = "//input[@name='email']")
     WebElementFacade  enteremail;
-    @FindBy(xpath = "//label[contains(text(),'Account Owner Contact Number:*')]")
+    @FindBy(xpath = "//input[@name='accountOwnerContactNumber']")
     WebElementFacade  enterownercontactnumber;
     @FindBy(xpath = "//input[@name='accountOwnerName']")
     WebElementFacade  accountownername;
     @FindBy(xpath = "//input[@name='accountOwnerEmail']")
     WebElementFacade  accountownernemail;
-    @FindBy(xpath = "//button[@class='btn btn-primary']")
-    WebElementFacade  submitbtn;
+    @FindBy(xpath = "//button[text()='Submit']")
+    WebElementFacade  submitbtnofcompany;
 
 
     public void enterCredentialsForAdministrator(String username, String password) {
@@ -66,30 +71,25 @@ public class CompanyModulePage extends PageObject {
         Assert.assertTrue(verfyredirection.waitUntilVisible().isDisplayed());
 
     }
-    public void addDetailsForCreatingNewCompany(DataTable adddetails) {
-        Name = adddetails.asMaps(String.class, String.class).get(0).get("Name");
-        Address = adddetails.asMaps(String.class, String.class).get(0).get("Address");
-        Zipcode = adddetails.asMaps(String.class, String.class).get(0).get("Zip Code");
-        website = adddetails.asMaps(String.class, String.class).get(0).get("Website");
-        contactnumber = adddetails.asMaps(String.class, String.class).get(0).get("Contact Number");
-        email = adddetails.asMaps(String.class, String.class).get(0).get("Email");
-        Accountownername = adddetails.asMaps(String.class, String.class).get(0).get("Account Owner Name");
-        Accountowneremail = adddetails.asMaps(String.class, String.class).get(0).get("Account Owner Email");
-        Accountownercontactnumber = adddetails.asMaps(String.class, String.class).get(0).get("Account Owner Contact Number");
-        waitABit(2000);
-        waitFor(entername).waitUntilVisible().sendKeys(Name);
-        waitFor(enteraddress).waitUntilVisible().sendKeys(Address);
-        waitFor(enterzipcode).waitUntilVisible().sendKeys(Zipcode);
-        waitFor(enterwebsite).waitUntilVisible().sendKeys(website);
-        waitFor(entercontactnumber).waitUntilVisible().sendKeys(contactnumber);
-        waitFor(enteremail).waitUntilVisible().sendKeys(email);
-        waitFor(accountownername).waitUntilVisible().sendKeys(Accountownername);
-        waitFor(accountownernemail).waitUntilVisible().sendKeys(Accountowneremail);
-        waitFor(enterownercontactnumber).waitUntilVisible().sendKeys(Accountownercontactnumber);
-
+    public void addDetailsForCreatingNewCompany(DataTable dataTable) {
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+        String name=data.get(0).get("Name")+ RandomGenerator.randomAlphanumeric(3);
+        String email=data.get(0).get("Email")+ RandomGenerator.randomEmailAddress(2)+"@mailinator.com";
+        String contactNumber=data.get(0).get("Contact Number")+ RandomGenerator.randomInteger(2);
+        String accContactNumber=data.get(0).get("Account Owner Contact Number")+ RandomGenerator.randomInteger(2);
+        String accEmail=data.get(0).get("Account Owner Email")+ RandomGenerator.randomEmailAddress(2)+"@mailinator.com";
+        entername.sendKeys(name);
+        enteraddress.sendKeys(data.get(0).get("Address"));
+        enterzipcode.sendKeys(data.get(0).get("Zip Code"));
+        entercontactnumber.sendKeys(contactNumber);
+        enteremail.sendKeys(email);
+        accountownername.sendKeys(data.get(0).get("Account Owner Name"));
+        accountownernemail.sendKeys(accEmail);
+        enterownercontactnumber.sendKeys(accContactNumber);
     }
     public void userClicksOnSubmitButton(){
-        submitbtn.click();
+        submitbtnofcompany.click();
+
 
     }
 

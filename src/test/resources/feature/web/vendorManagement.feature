@@ -4,7 +4,7 @@ Feature: Vendor Management
   So that I can manage Vendors of the Company
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Vendors" link from side navigation
 
@@ -24,7 +24,7 @@ Feature: Vendor Management
 
   Scenario: Edit an existing vendor from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
-    When User enters all the field
+    When User updates all the field of vendor form
     And User taps on the Submit button
     Then Success message "Vendor has been updated successfully" should be displayed
     And User verify vendor detail screen
@@ -74,19 +74,12 @@ Feature: Vendor Management
     Then Vendor list displayed is according to the searched keyword and vendor type
     And User clicks on Reset button
 
-#  Scenario:Search results should be cleared on clicking clear search button
-#    When User enters a keyword
-#    And User clicks on Select dropdown and select a vendor type
-#    And User clicks on Reset button
-#    Then Search result is getting cleared
-
-
-  Scenario: The functionality of "Delete" icon on the list view page
+  Scenario: To verify the functionality of "Delete" icon on the list view page
     When User clicks on delete icon
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed
 
-  Scenario: The functionality of "Delete" button on the detailed view page
+  Scenario: To verify the functionality of "Delete" button on the detailed view page
     Given User is on detail screen
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup

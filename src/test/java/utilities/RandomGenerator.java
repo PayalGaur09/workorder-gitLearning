@@ -34,6 +34,13 @@ public class RandomGenerator {
         return RandomStringUtils.randomAlphanumeric(length);
     }
 
+
+    public static String randomEmailAddress(Integer length) {
+        String email = randomAlphanumeric(length);
+        return email.toLowerCase();
+    }
+
+
     /**
      * Generates random alphabetic String.
      *
@@ -43,5 +50,8 @@ public class RandomGenerator {
         return RandomStringUtils.randomAlphabetic(length);
     }
 }
+
+
+
 
 

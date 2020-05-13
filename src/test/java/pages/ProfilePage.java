@@ -10,6 +10,8 @@ import org.openqa.selenium.safari.SafariDriverService;
 import org.openqa.selenium.support.FindBy;
 import utilities.RandomGenerator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -64,6 +66,12 @@ public class ProfilePage extends PageObject {
     WebElementFacade verifyprofilepage;
     @FindBy(xpath = "(//em[@class='fa fa-edit cursor-pointer'])[1]")
     WebElementFacade editbtn;
+    @FindBy(xpath = "(//button[contains(text(),' Change ')])")
+    WebElementFacade changeprofilepicture;
+    @FindBy(xpath = "//button[text()='Upload']")
+    private WebElementFacade uploadimagebutton;
+    @FindBy(xpath = "//button[contains(text(),' Remove ')]")
+    private WebElementFacade removeprofilepicture;
 
 
     private By validationHeader(String header) {
@@ -240,6 +248,7 @@ public class ProfilePage extends PageObject {
     }
 
     public void successPopup(String successMessage) {
+        waitABit(5000);
         Assert.assertTrue(element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
     }
 
@@ -256,8 +265,23 @@ public class ProfilePage extends PageObject {
         waitFor(mobNo).waitUntilVisible().clear();
         waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
     }
+    public void changeProfilePicture() throws IOException {
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
+        String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
+        getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(uploadimagebutton).click();
+    }
+    public void userRemovesTheProfilePicture(){
+        waitABit(2000);
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
+        waitABit(2000);
 
-}
+
+
+    }
+    }
+
+
 
 
 

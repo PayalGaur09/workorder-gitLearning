@@ -4,7 +4,7 @@ Feature: User Management
   So that I can manage users of the Company
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 
@@ -29,11 +29,11 @@ Feature: User Management
     When User taps on the Submit button
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
-#    And User clicks on Cancel button     (reported enhancement)
 
   Scenario: Edit an existing user from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
     When User enters all the field in user screen
+    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
     And Verify user detail screen
@@ -42,9 +42,10 @@ Feature: User Management
     Given User is on detail screen
     When User clicks on edit option from action dropdown
     And User enters all the field in user screen
+    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
-#    And Verify user detail screen      (reported enhancement)
+    And Verify user detail screen
 
   Scenario: Deactivate user from user list screen
     When User clicks on "Deactivate" icon on list page
@@ -63,7 +64,8 @@ Feature: User Management
 
   Scenario Outline: Filter the user list upon selecting role
     When User clicks on Select role dropdown
-    Then  User select "<userRoles>" role
+    And  User select "<userRoles>" role
+    Then List displayed is according to the selected "<userRoles>" role
     And User clicks on Reset button
     Examples:
       | userRoles     |
@@ -72,23 +74,24 @@ Feature: User Management
 
   Scenario Outline: Filter the user list upon selecting status
     When User clicks on Select status dropdown
-    And  User select "<userStatus>" status
+    And  User select "<status>" status
+    Then List displayed is according to the selected "<status>" status
     And User clicks on Reset button
     Examples:
-      | userStatus |
-      | Active     |
-      | Inactive   |
+      | status   |
+      | Active   |
+      | Inactive |
 
   Scenario: User should be able to search when he enters the keyword and clicks on 'Filter' button
-    When User enters a user name
+    When User enters a keyword "Madhvan" in the search field
     And User clicks on Filter button
-    Then User list displayed is according to the entered keyword
+    Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
   Scenario: User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard
-    When User enters a user name
+    When User enters a keyword "Madhvan" in the search field
     And User hits 'Enter' button on keyboard
-    Then User list displayed is according to the entered keyword
+    Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
   Scenario: The functionality of "Delete" icon on the user list screen

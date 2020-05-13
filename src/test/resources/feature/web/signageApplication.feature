@@ -2,7 +2,7 @@
 Feature: Functionality of signage application
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 

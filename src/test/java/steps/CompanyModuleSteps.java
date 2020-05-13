@@ -30,12 +30,13 @@ public class CompanyModuleSteps extends PageObject {
     }
 
     @And("^user fill the details for crating a new company$")
-    public void userFillTheDetailsForCratingANewCompany(DataTable adddetails) {
-        companysigninpage.addDetailsForCreatingNewCompany(adddetails);
+    public void userFillTheDetailsForCratingANewCompany(DataTable dataTable) {
+        companysigninpage.addDetailsForCreatingNewCompany(dataTable);
     }
 
-    @And("^user clicks on the submit button$")
-    public void userClicksOnTheSubmitButton() {
+    @And("^user clicks on the submit$")
+    public void userClicksOnTheSubmit() {
         companysigninpage.userClicksOnSubmitButton();
+
     }
 }

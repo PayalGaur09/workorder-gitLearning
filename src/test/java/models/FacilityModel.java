@@ -2,13 +2,15 @@ package models;
 
 public class FacilityModel {
 
-    private String facilityName;
+    private String name;
     private String facilityAddress;
     private String zipCode;
     private String pmName;
     private String pmPhone;
     private String pmEmail;
     private String typeOfConstruction;
+    private String companyId;
+    private String unitName;
 
     public String getPmEmail() {
         return pmEmail;
@@ -51,12 +53,12 @@ public class FacilityModel {
         this.typeOfConstruction = typeOfConstruction;
     }
 
-    public String getFacilityName() {
-        return facilityName;
+    public String getName() {
+        return name;
     }
 
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
+    public void setName(String facilityName) {
+        this.name = facilityName;
     }
 
     public String getFacilityAddress() {
@@ -65,5 +67,21 @@ public class FacilityModel {
 
     public void setFacilityAddress(String facilityaddress) {
         this.facilityAddress = facilityaddress;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 }

@@ -10,8 +10,10 @@ import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import pages.ProfilePage;
+import pages.UserManagementPage;
 import utilities.ConfigLoader;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class ProfileSteps extends PageObject {
    private ProfileModel profileModel=new ProfileModel();
     ProfilePage profilePage;
+    UserManagementPage users;
 
     private Config conf = ConfigLoader.load();
 
@@ -166,6 +169,23 @@ public class ProfileSteps extends PageObject {
     public void successMessageShouldBeDisplayed(String successMessage) throws Throwable {
         profilePage.successPopup(successMessage);
 
+    }
+
+    @Then("^User upload new profile picture$")
+    public void userUploadNewProfilePicture() throws IOException {
+        users.uploadProfilePicture();
+    }
+
+    @Then("^user change the profile picture$")
+    public void userChangeTheProfilePicture() throws IOException {
+        profilePage.changeProfilePicture();
+
+
+    }
+
+    @Then("^user  remove the profile picture$")
+    public void userRemoveTheProfilePicture() {
+        profilePage.userRemovesTheProfilePicture();
     }
 }
 

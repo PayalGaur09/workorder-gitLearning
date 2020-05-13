@@ -1,9 +1,9 @@
-@file
+@Phase1
 
 Feature: Functionality of profile
 
   Background:
-    Given User is on workorder signin page
+    Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 
@@ -85,3 +85,11 @@ Feature: Functionality of profile
       | 1234            | 1234        | 1234            | Minimum 8 characters are required                |
       | 12345678        | 98765432    | 12444444        | New password and confirm password does not match |
       | 1234            | 1456        | 2354            | Minimum 8 characters are required                |
+
+    Scenario: To verify the upload, remove and change functionality of profile picture
+      Given user is on the dashboard page of workorder application
+      And User click on side menu of "My Profile" button
+      Then User upload new profile picture
+      Then user change the profile picture
+      Then user  remove the profile picture
+
