@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="72eb2c6593c95365a647aec464a2d875931adf161456edfd043c9e0f9870b5d1.html">Functionality Of Profile</a></span>
+                > <span class="truncate-60"><a
+                    href="da94a500e8c2764dd57a9d4898f06710b5052f8acf660083075b634796a14366.html">User is on edit profile page and clicking on the cancel button </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 21:56</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Profile</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="e26e6f560bf8a3d8d2f55556ad3f25bea4809963507693d956e39f2318bbda36.html">File
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">User is on edit profile page and clicking on the cancel button
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="40c642504cb338a7ed00c915212e21f973bf17f6a4a8c58eb0e91563fef3e52b.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="e0e9646692d0ba616ab58879f0829bd84a9303d4ca7f0cdee2500d77bc6c74d8.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="bce2179a427b95df08633a70d602d442c5feb98515aea52e1628d1d05100773c.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="1b401cad81a054c4d1574c0c95129ea4a0a0eb044be7b63f90274f8cd483c59e.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="13fa2fdb1ae47e8797e7deefcc4bd1be27f02ee9c32072693498d9753655ead4.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="4b363cca499c41ac3343a04c924f1f5a0969265c4dea613a8b08e3b3fde32ad2.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="1323497a6ed3b6fa95569cbd28f97c31490f12eef43f08259319eb90bef950ba.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="1b7a97cdc6bf98a7a99684671b9b6a739cce9d40fecdd1778d19e121a4ccc6e0.png" title="When I  clicking  on the &quot;Edit&quot; button" width="1366"/>
+                <img src="c8fa801e45f0a01e214233afbb670ee55ea00ff06507f09b011155342427be3a.png" title="And User click on &quot;Cancel&quot; button" width="1366"/>
+                <img src="172179052431dbbbebb9ceff4cb65b0c85a031c9c393cca7842955d892b9d142.png" title="And User click on &quot;Cancel&quot; button" width="1366"/>
+                <img src="9a2d9ebbdb79b5fef780c168d5a165b584f7adba1a40d82567a9aa5b94f727f9.png" title="Then user redirects to the profile page" width="1366"/>
+                <img src="d6fd50f216e550a52359f5997487131a2d4aa172154b536b54322e74672160c1.png" title="Then user redirects to the profile page: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

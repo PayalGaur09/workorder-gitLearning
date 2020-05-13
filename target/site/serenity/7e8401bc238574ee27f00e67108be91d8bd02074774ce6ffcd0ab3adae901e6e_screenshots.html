@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="72eb2c6593c95365a647aec464a2d875931adf161456edfd043c9e0f9870b5d1.html">Functionality Of Profile</a></span>
+                > <span class="truncate-60"><a
+                    href="7e8401bc238574ee27f00e67108be91d8bd02074774ce6ffcd0ab3adae901e6e.html">Change Password with invalid credentials </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-05-2020 21:57</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of Profile</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="e26e6f560bf8a3d8d2f55556ad3f25bea4809963507693d956e39f2318bbda36.html">File
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">Change Password with invalid credentials
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+    <div class="story-title">
+        <h3>Scenario:</h3>
+        <div class="scenario">Given user is on the dashboard page of workorder application<br>And User click on side menu of "My Profile" button<br>And user click on the action button<br>When I  clicking  on the " Change Password " button<br>When User enter change password details<br>Then The error message is displayed as "&lt;errorMessage&gt;"</div>
+    </div>
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="e9ece8501bf4b8fb5b900c75e0c419acee013ad4b8f77c541760a6ef4a985a25.png" title="Change Password with invalid credentials #1: {currentPassword=12345678, newPassword=, confirmPassword=, errorMessage=Please enter new password}" width="1366"/>
+                <img src="9cf8d5cfbade935752fb0c8d0066b6e5fc24a8eca4df0ec6a23d91392c6abd57.png" title="Change Password with invalid credentials #1: {currentPassword=12345678, newPassword=, confirmPassword=, errorMessage=Please enter new password}" width="1366"/>
+                <img src="e9ece8501bf4b8fb5b900c75e0c419acee013ad4b8f77c541760a6ef4a985a25.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="533f369825d91850018d71aa8bea83b10c5654efc8816457bd1e809a92ed3c1c.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="0071173424afc3615e7c5b26b79ad822861d0bc5a4bc71f45f3d804adf0b7cc9.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="553920d90867297be47a2e4579e14b29c62b716ec6177cc67ae0acb80fcb5465.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="9b228e25e16fffce34ceb0443e2cd2c782ea48505a0b6962c9d3636e9741798a.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="c52da41b73b362c54c55401a60bc057aa85b212bfa87bb9ecaedaa95f71fb2a8.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="ee35e75a3e3bdf32bdf1f1cabb31d885852a4704f043060761d0ae7dd2420253.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="0e8a29f0bee6482a6e1f4efd2a1b865d86e23bbc620a0b8bc2d8393e036186fb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 |  |  |" width="1366"/>
+                <img src="9cf8d5cfbade935752fb0c8d0066b6e5fc24a8eca4df0ec6a23d91392c6abd57.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 |  |  |" width="1366"/>
+                <img src="9cf8d5cfbade935752fb0c8d0066b6e5fc24a8eca4df0ec6a23d91392c6abd57.png" title="Then The error message is displayed as &quot;Please enter new password&quot;" width="1366"/>
+                <img src="96d7f64ab3987a024841199675549899cdb9a4e63c7312bd7e49942e9b652a8e.png" title="Change Password with invalid credentials #2: {currentPassword=12345678, newPassword=98765432, confirmPassword=, errorMessage=Please enter password again}" width="1366"/>
+                <img src="533f369825d91850018d71aa8bea83b10c5654efc8816457bd1e809a92ed3c1c.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="60e8786b9556c7f7b8097c59aa3d94839f49cb060bc9cb6e89c6aeb28e9c5b0a.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="5114587d25497b423fa9ba411f05c8ab395268d820a80d7f1775c5a20942f671.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="e8d6f4f15c55891f0d3d43d3479f28a52dac3b6534056b56f068a66401c4ce84.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="5419fb8553b67872cc7380bc397f56c632af6bd2a58e003fed75280a4ef5cab3.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="25f541813dc62b48bf465e87561450a91c8a7c79ef406e0ad993a947aa1e1e85.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="c2aa6884baa8d6bbd91377b475e596a5d7d1405cee360fa9c27e339596597716.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 | 98765432 |  |" width="1366"/>
+                <img src="96d7f64ab3987a024841199675549899cdb9a4e63c7312bd7e49942e9b652a8e.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 | 98765432 |  |" width="1366"/>
+                <img src="96d7f64ab3987a024841199675549899cdb9a4e63c7312bd7e49942e9b652a8e.png" title="Then The error message is displayed as &quot;Please enter password again&quot;" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="Change Password with invalid credentials #3: {currentPassword=1234, newPassword=1234, confirmPassword=1234, errorMessage=Minimum 8 characters are required}" width="1366"/>
+                <img src="533f369825d91850018d71aa8bea83b10c5654efc8816457bd1e809a92ed3c1c.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="6adc05a139b2acea4215f81f58df076d662f10bfa504c0f8ea921ad0955dbb49.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="5114587d25497b423fa9ba411f05c8ab395268d820a80d7f1775c5a20942f671.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="6c6d6c8eb93b508c3d520fe0e173476c3d32ebfd5b802b3fa66348ad85ae1e30.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="93428a826f7747c2a4cb8fce3c58508f37fb7a56b80add022180877f9c7d6c7b.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="603de227ffe4bb8d982097fcd5b2d21f72a0ec4cd70f5ae11840e973a15f99f4.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="646eef1d137d97344ca7d8ad90de7c66e842ef48bc70527b4a8d495c2cd4139d.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 1234 | 1234 | 1234 |" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 1234 | 1234 | 1234 |" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="Then The error message is displayed as &quot;Minimum 8 characters are required&quot;" width="1366"/>
+                <img src="02a0faf594d5adb369d409516079be741c7c6e427ecd398e6be094e8cb6578cc.png" title="Change Password with invalid credentials #4: {currentPassword=12345678, newPassword=98765432, confirmPassword=12444444, errorMessage=New password and confirm password does not match}" width="1366"/>
+                <img src="89d188f82f1e9670418457e9902d3b9afc110a44fbff5d5e1bfd3582c4edf1a8.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="97f5d15eeff30f406c5674581aa23a936c764f1e41e14562931aa5cdb88a5155.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="bd0848ae1856f8452854be91197b7819465017c8df1967ea1b5fa1666a9fa55f.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="576421ff8b381db7c8333dc81b7b7b63a32801bc935f8b6dce4714bf87c35e20.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="1ebd0975793e4babd44cc4515f4cdd229ba34dd5d76f882f9eacd0697f7d429a.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="c331ecd5179314af1f0f64aa433b2f1a0780536ca804c69cfa773f9d4c5d9c71.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="37947c314796ad170865e0e75e791bb9bda5ecd0c790365072ea8427100cdf19.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 | 98765432 | 12444444 |" width="1366"/>
+                <img src="3f130b74cadd5d675daf31e2f821cf81cb08443f232fc4fee90eab0b15f9c804.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 12345678 | 98765432 | 12444444 |" width="1366"/>
+                <img src="f05f0bd313331e91f13a2bee6ffd89772388f5a2e575f4b86fffa94b286c5d80.png" title="Then The error message is displayed as &quot;New password and confirm password does not match&quot;" width="1366"/>
+                <img src="02a0faf594d5adb369d409516079be741c7c6e427ecd398e6be094e8cb6578cc.png" title="Then The error message is displayed as &quot;New password and confirm password does not match&quot;" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="Change Password with invalid credentials #5: {currentPassword=1234, newPassword=1456, confirmPassword=2354, errorMessage=Minimum 8 characters are required}" width="1366"/>
+                <img src="533f369825d91850018d71aa8bea83b10c5654efc8816457bd1e809a92ed3c1c.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="646ef9adf3f4b094c4c654fd7bfa4df4cebebebc122d239c580455d5449e39dc.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="a20c78784375d9eb44fca76c753782cd1dc06ad38adfbba4ab74531ad88e971b.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="21ca6a8a9b3c43965147da54c845b83d37987a6b693298c20b1e43e9f095bd6f.png" title="Then User tap on the &quot;Users&quot; link from side navigation" width="1366"/>
+                <img src="ff2a598584ab2d20b9bd3f6f222d314190904935fd7e6a976740c0d412fca2e1.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="2d8df9aae399b18079c52b898e6a358e5d1637f1c1de3871f09b65acc2a884e0.png" title="Given user is on the dashboard page of workorder application" width="1366"/>
+                <img src="7f31b80b6585cf45b4f3fcc72d2ba9def8cc219b12c048d0bea712376bfce8e5.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="003c988fe6c5bc831ee3039c8a864b861984b11fe13d5d1a06f9b202172f26da.png" title="And User click on side menu of &quot;My Profile&quot; button" width="1366"/>
+                <img src="5a14daf03d787b8b60c34f0e3b6e86eea505fa66d8bed2746072efbd8ef73fb5.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="And user click on the action button" width="1366"/>
+                <img src="3c750bb9af44636ec491e621e06ea2cb072f2861441ed2739c82f4e6d67566bb.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When I  clicking  on the &quot; Change Password &quot; button" width="1366"/>
+                <img src="88004ef16293f012f803e6443da1e2cdf624e07cda223f6addf394108bb16f83.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 1234 | 1456 | 2354 |" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="When User enter change password details
+| currentPassword | newPassword | confirmPassword |
+| 1234 | 1456 | 2354 |" width="1366"/>
+                <img src="9a0234bbafc61f03d9b16ab442d1aab9d0d84f0e2c35aeca1741a54f6ca6948b.png" title="Then The error message is displayed as &quot;Minimum 8 characters are required&quot;: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>
