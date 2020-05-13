@@ -48,6 +48,7 @@ public class ProfileSteps extends PageObject {
 
     @Given("^user is on the profile page$")
     public void userIsOnTheProfilePage() {
+        profilePage.profileHeading();
 
     }
 

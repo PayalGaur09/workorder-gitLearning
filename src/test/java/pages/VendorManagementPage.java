@@ -58,6 +58,8 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade addNoteButton;
     @FindBy(xpath = "//i/../../button")
     private WebElementFacade editNoteIcon;
+    @FindBy(xpath = "//div[@class='loader']")
+    private WebElementFacade loader;
 
     @FindBy(xpath = "//label[contains(text(),'Note')]/..//textarea")
     private WebElementFacade noteTestArea;
@@ -143,7 +145,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnAddVendorButton() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
     public void addInputFieldsOfVendorForm() {

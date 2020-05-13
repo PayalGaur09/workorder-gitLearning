@@ -23,6 +23,14 @@ Feature: Vendor Management
       | Vendor name is required | Vendor type is required | Contact number is required | Location is required | Account Number is required |
     And User clicks on Cancel button
 
+  Scenario: To verify the change and remove functionality of vendor profile picture
+    Given User is on add vendor screen
+    When User enters all the field
+    And User taps on the Submit button
+    And User verify vendor detail screen
+    Then user change the profile picture
+    Then user  remove the profile picture
+
   Scenario: Edit an existing vendor from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
     When User updates all the field of vendor form
@@ -86,12 +94,6 @@ Feature: Vendor Management
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed
 
-  Scenario: To verify that client personnel is not able to access add, edit and delete feature
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Personnel
-    And User tap on the "Vendors" link from side navigation
-    Then Add, Edit and delete icon should not be visible to client personnel
-
 
   Scenario Outline: To verify pagination on vendor list screen
     Given User gets the total count from the list
@@ -103,6 +105,14 @@ Feature: Vendor Management
       | 25           |
       | 50           |
       | 100          |
+
+  Scenario: To verify that client personnel is not able to access add, edit and delete feature
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    And User tap on the "Vendors" link from side navigation
+    Then Add, Edit and delete icon should not be visible to client personnel
+
+
 
 
 
