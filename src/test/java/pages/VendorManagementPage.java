@@ -145,7 +145,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnAddVendorButton() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
     public void addInputFieldsOfVendorForm() {

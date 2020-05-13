@@ -24,8 +24,12 @@ public class ProfilePage extends PageObject {
     public static String FirstName;
     public static String EmailAdd;
     public static String MobNo;
+
+
     @FindBy(xpath = "//span[text()='personnel ']")
     WebElementFacade ownername;
+    @FindBy(xpath = "//h3[contains(text(),'My Profile')] ")
+    WebElementFacade profileHeading;
     @FindBy(xpath = "//span[text()='My Profile']")
     WebElementFacade profile;
     @FindBy(xpath = "//button[text()=' Action ']/..")
@@ -140,7 +144,7 @@ public class ProfilePage extends PageObject {
     }
 
     public void editProfile(DataTable Credentials) {
-        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("Name");
+        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
         EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
         MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
         waitFor(firstName).waitUntilVisible().clear();
@@ -275,11 +279,12 @@ public class ProfilePage extends PageObject {
         waitABit(2000);
         withTimeoutOf(20,TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
         waitABit(2000);
+            }
 
-
-
+    public void profileHeading() {
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
     }
-    }
+}
 
 
 
