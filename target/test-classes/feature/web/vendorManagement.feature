@@ -1,3 +1,4 @@
+@Phase1
 Feature: Vendor Management
   As an Account Owner and a client Admin
   I can land on welcome Vendor page
@@ -32,7 +33,7 @@ Feature: Vendor Management
   Scenario: Edit an existing vendor from vendor detail screen and cross verify the modification
     Given User is on detail screen
     When User clicks on edit option from action dropdown
-    And User enters all the field
+    And User updates all the field of vendor form
     And User taps on the Submit button
     Then Success message "Vendor has been updated successfully" should be displayed
     And User verify vendor detail screen
@@ -84,5 +85,27 @@ Feature: Vendor Management
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed
+
+  Scenario: To verify that client personnel is not able to access add, edit and delete feature
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    And User tap on the "Vendors" link from side navigation
+    Then Add, Edit and delete icon should not be visible to client personnel
+
+
+  Scenario Outline: To verify pagination on vendor list screen
+    Given User gets the total count from the list
+    Then  User verify pagination with "<countPerPage>" per page
+    Examples:
+      | countPerPage |
+      | 10           |
+      | 15           |
+      | 25           |
+      | 50           |
+      | 100          |
+
+
+
+
 
 

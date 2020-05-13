@@ -3,10 +3,14 @@ package pages;
 import cucumber.api.DataTable;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +54,13 @@ public class CompanyModulePage extends PageObject {
     WebElementFacade  accountownernemail;
     @FindBy(xpath = "//button[text()='Submit']")
     WebElementFacade  submitbtnofcompany;
+    @FindBy(xpath = "//input[@placeholder='Type DELETE to confirm']")
+    WebElementFacade  writevalueintextbox;
+    @FindBy(xpath = "//button[text()='OK']")
+    WebElementFacade  confirmbutton;
+    private By deleteCompany(String companyname) {
+        return By.xpath("//*[text()='"+ companyname +"']/ancestor::tr//em[@title='Delete']");
+    }
 
 
     public void enterCredentialsForAdministrator(String username, String password) {
@@ -71,9 +82,10 @@ public class CompanyModulePage extends PageObject {
         Assert.assertTrue(verfyredirection.waitUntilVisible().isDisplayed());
 
     }
-    public void addDetailsForCreatingNewCompany(DataTable dataTable) {
+    public void addDetailsForCreatingNewCompany(DataTable dataTable) throws IOException, ConfigurationException {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         String name=data.get(0).get("Name")+ RandomGenerator.randomAlphanumeric(3);
+        LoadProperties.saveValueInPropertiesFile("name",name,"testData");
         String email=data.get(0).get("Email")+ RandomGenerator.randomEmailAddress(2)+"@mailinator.com";
         String contactNumber=data.get(0).get("Contact Number")+ RandomGenerator.randomInteger(2);
         String accContactNumber=data.get(0).get("Account Owner Contact Number")+ RandomGenerator.randomInteger(2);
@@ -90,6 +102,16 @@ public class CompanyModulePage extends PageObject {
     public void userClicksOnSubmitButton(){
         submitbtnofcompany.click();
 
+
+    }
+    public void userDeleteTheCompany(){
+       String companyname=LoadProperties.getValueFromPropertyFile("testData","name");
+        element(deleteCompany(companyname)).waitUntilVisible().click();
+    }
+    public void userCliksOnOkButtonForDeletingTheCompany(){
+        writevalueintextbox.sendKeys("DELETE");
+        confirmbutton.click();
+        waitABit(3000);
 
     }
 

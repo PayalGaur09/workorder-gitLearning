@@ -20,6 +20,22 @@ Feature: Company module
       | tester | abcdhgg     | 76872    | 878687868876   | teste45 | test7678           | accountowner77      | 2874923                 |
     And user clicks on the submit
     Then success message should be displayed " Company has been added successfully. "
+    And User click on side menu of "Companies" button
+    And user delete the company
+    And user clicks on the OK button for deleting the company
+    Then success message should be displayed " Company has been deleted successfully. "
+
+    Scenario: To verify the functionality for edit the company
+      Given user is on the dashboard page of workorder application
+      And User click on side menu of "Companies" button
+      When user clicks on the newcompany button
+      And user fill the details for crating a new company
+        | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
+        | tester | abcdhgg     | 76872    | 878687868876   | teste45 | test7678           | accountowner77      | 2874923
+      And user clicks on the submit
+
+
+
 
 
 

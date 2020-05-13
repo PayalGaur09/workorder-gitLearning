@@ -14,9 +14,6 @@ Feature: Facility Management
     And User taps on the Submit button
     Then Success message "Facility has been added successfully" should be displayed
     And User verify facility detail screen
-    When User is able to log into applicationa
-      |email | password |
-      |mohit.agrawal@successive.tech | Mohit@1989 |
 
   Scenario: To verify validations on add facility screen
     Given User is on add facility screen

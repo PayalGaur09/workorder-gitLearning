@@ -6,7 +6,10 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.core.pages.PageObject;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.CompanyModulePage;
+
+import java.io.IOException;
 
 
 public class CompanyModuleSteps extends PageObject {
@@ -30,13 +33,25 @@ public class CompanyModuleSteps extends PageObject {
     }
 
     @And("^user fill the details for crating a new company$")
-    public void userFillTheDetailsForCratingANewCompany(DataTable dataTable) {
+    public void userFillTheDetailsForCratingANewCompany(DataTable dataTable) throws IOException, ConfigurationException {
         companysigninpage.addDetailsForCreatingNewCompany(dataTable);
     }
 
     @And("^user clicks on the submit$")
     public void userClicksOnTheSubmit() {
         companysigninpage.userClicksOnSubmitButton();
+
+    }
+
+    @And("^user delete the company$")
+    public void userDeleteTheCompany() {
+        companysigninpage.userDeleteTheCompany();
+    }
+
+
+    @And("^user clicks on the OK button for deleting the company$")
+    public void userClicksOnTheOKButtonForDeletingTheCompany() {
+        companysigninpage.userCliksOnOkButtonForDeletingTheCompany();
 
     }
 }
