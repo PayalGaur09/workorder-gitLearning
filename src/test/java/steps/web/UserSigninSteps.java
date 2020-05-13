@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;

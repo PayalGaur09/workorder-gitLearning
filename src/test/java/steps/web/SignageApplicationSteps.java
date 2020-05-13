@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
