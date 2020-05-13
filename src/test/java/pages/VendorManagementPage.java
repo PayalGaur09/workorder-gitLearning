@@ -58,6 +58,8 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade addNoteButton;
     @FindBy(xpath = "//i/../../button")
     private WebElementFacade editNoteIcon;
+    @FindBy(xpath = "//div[@class='loader']")
+    private WebElementFacade loader;
 
     @FindBy(xpath = "//label[contains(text(),'Note')]/..//textarea")
     private WebElementFacade noteTestArea;
