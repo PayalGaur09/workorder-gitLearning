@@ -1,4 +1,4 @@
-package steps.web;
+package steps;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
@@ -24,8 +24,8 @@ public class UserSigninSteps {
     }
 
 
-    @When("^User enter credentials and tap on the signin button$")
-    public void userEnterCredentialsAndTapOnTheSigninButton(DataTable dataTable) {
+    @When("^User enter credentials and tap on the sign in button$")
+    public void userEnterCredentialsAndTapOnTheSignInButton(DataTable dataTable) {
         List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
         String userEmail = list.get(0).get("userEmail");
         String pwd = list.get(0).get("password");
@@ -39,8 +39,8 @@ public class UserSigninSteps {
         userSigninPage.verifyHomepage();
     }
 
-    @And("^User logout from workorder platform$")
-    public void userLogoutFromWorkorderPlatform() {
+    @And("^User logout from work order platform$")
+    public void userLogoutFromWorkOrderPlatform() {
         userSigninPage.signout();
     }
 
@@ -60,6 +60,13 @@ public class UserSigninSteps {
     public void userSignInWithValidCredentialOfAccountOwner() {
         String id= LoadProperties.getValueFromPropertyFile("testData","accountOwnerId");
         String pwd= LoadProperties.getValueFromPropertyFile("testData","accountOwnerPassword");
+        userSigninPage.enterCredentials(id,pwd);
+    }
+
+    @And("^User sign in with valid credential of Client Personnel$")
+    public void userSignInWithValidCredentialOfClientPersonnel() {
+        String id= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelId");
+        String pwd= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelPassword");
         userSigninPage.enterCredentials(id,pwd);
     }
 }

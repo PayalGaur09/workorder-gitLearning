@@ -7,7 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="workorder-web" />
+<<<<<<< HEAD
         <module name="10fed-automation" />
+=======
+>>>>>>> 0eb73fc6c035ec90df2d5053ab27d7fa4aa103a8
       </profile>
     </annotationProcessing>
   </component>

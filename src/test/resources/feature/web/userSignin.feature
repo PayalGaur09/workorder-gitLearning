@@ -1,30 +1,33 @@
+@Phase1
 Feature: Login functionality for Work Order Web
 
   Background:
     Given User is on work order sign in page
 
   Scenario Outline: User valid Login with all user roles
-    When User enter credentials and tap on the signin button
+    When User enter credentials and tap on the sign in button
       | userEmail   | password   |
       | <userEmail> | <password> |
     Then User successfully logged in and Dashboard page displayed
-    And User logout from workorder platform
+    And User logout from work order platform
 
     Examples:
       | userEmail                  | password     |
       | admin                      | Password@123 |
+      | abhishek@mailinator.com    | 1234567890   |
+      | personnel@mailinator.com   | 1234567890   |
       | shashank.g@mailinator.com  | 1234567890   |
       | payal.gaur@successive.tech | 1234567890   |
 
 
   Scenario: Invalid User Login
-    When User enter credentials and tap on the signin button
+    When User enter credentials and tap on the sign in button
       | userEmail        | password |
       | sachin@gmail.com | 1234567  |
     Then Error message "Invalid credential." is displayed
 
   Scenario Outline: User Login with invalid credentials
-    When User enter credentials and tap on the signin button
+    When User enter credentials and tap on the sign in button
       | userEmail   | password   |
       | <userEmail> | <password> |
     Then the error message is displayed "<errorMessage>"
