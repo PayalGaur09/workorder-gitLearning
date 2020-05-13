@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
@@ -24,8 +24,8 @@ public class UserSigninSteps {
     }
 
 
-    @When("^User enter credentials and tap on the signin button$")
-    public void userEnterCredentialsAndTapOnTheSigninButton(DataTable dataTable) {
+    @When("^User enter credentials and tap on the sign in button$")
+    public void userEnterCredentialsAndTapOnTheSignInButton(DataTable dataTable) {
         List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
         String userEmail = list.get(0).get("userEmail");
         String pwd = list.get(0).get("password");
