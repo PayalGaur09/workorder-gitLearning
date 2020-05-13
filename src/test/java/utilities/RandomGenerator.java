@@ -3,6 +3,10 @@ package utilities;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class RandomGenerator {
+
+//    public static String randomAlphabetic(Integer min,Integer max) {
+//        return RandomStringUtils.randomAlphabetic(min,max);
+//    }
     /**
      * Generates random Number.
      *
@@ -30,6 +34,13 @@ public class RandomGenerator {
         return RandomStringUtils.randomAlphanumeric(length);
     }
 
+
+    public static String randomEmailAddress(Integer length) {
+        String email = randomAlphanumeric(length);
+        return email.toLowerCase();
+    }
+
+
     /**
      * Generates random alphabetic String.
      *
@@ -39,3 +50,8 @@ public class RandomGenerator {
         return RandomStringUtils.randomAlphabetic(length);
     }
 }
+
+
+
+
+
