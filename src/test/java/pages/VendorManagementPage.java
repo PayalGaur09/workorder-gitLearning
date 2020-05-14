@@ -180,7 +180,6 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
-        waitFor(2000);
     }
 
     public void tapOnCancelButton() {
@@ -255,7 +254,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnResetButton() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(resetButton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(resetButton).click();
         waitABit(1000);
     }
 

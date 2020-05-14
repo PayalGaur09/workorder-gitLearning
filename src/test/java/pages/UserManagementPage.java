@@ -47,6 +47,10 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade chooseFile;
     @FindBy(xpath = "//button[text()='Upload']")
     private WebElementFacade uploadImageButton;
+    @FindBy(xpath = "//div[@class='loader']")
+    private WebElementFacade loader;
+    @FindBy(xpath = "//th[text()='Action']")
+    private WebElementFacade actionColumn;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -61,6 +65,11 @@ public class UserManagementPage extends PageObject {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUserButton).click();
     }
 
+    public void waitForLoader(){
+       // withTimeoutOf(50,TimeUnit.SECONDS).waitFor(loader).waitUntilVisible();
+        withTimeoutOf(50,TimeUnit.SECONDS).waitFor(loader).waitUntilVisible();
+    }
+
     //Select and upload profile picture
     public void uploadProfilePicture() throws IOException {
         withTimeoutOf(20,TimeUnit.SECONDS).waitFor(chooseFile).shouldBeVisible();
@@ -70,28 +79,34 @@ public class UserManagementPage extends PageObject {
     }
 
     private void enterValueInFirstName() {
+       // waitForLoader();
         WebElementFacade firstField = element(userFormField("First"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstField).waitUntilVisible().clear();
+        waitABit(4000);
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(firstField).waitUntilClickable().click();
+        firstField.clear();
         detailsModel.setName("Madhvan" + RandomGenerator.randomAlphabetic(3));
         firstField.sendKeys(detailsModel.getName());
     }
     private void enterValueInSurname() {
         WebElementFacade lastNameField = element(userFormField("Last"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(lastNameField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(lastNameField).waitUntilVisible().click();
+        lastNameField.clear();
         detailsModel.setSurname(RandomGenerator.randomAlphabetic(3));
         lastNameField.sendKeys(detailsModel.getSurname());
     }
 
     private void enterValueInEmail() {
         WebElementFacade emailField = element(userFormField("Email"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().click();
+        emailField.clear();
         detailsModel.setEmail("user" + RandomGenerator.randomInteger(4) + "@mailinator.com");
         emailField.sendKeys(detailsModel.getEmail());
     }
 
     private void enterValueInPhone() {
         WebElementFacade phoneField = element(userFormField("Phone"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(phoneField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(phoneField).waitUntilVisible().click();
+        phoneField.clear();
         detailsModel.setContact(RandomGenerator.randomInteger(10));
         phoneField.sendKeys(detailsModel.getContact());
     }
@@ -114,6 +129,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void userDetailsVerify() {
+       // waitForLoader();
         WebElementFacade a = element(userDetail("First"));
         Assert.assertEquals(detailsModel.getName(),
                 withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).getText());
@@ -121,7 +137,6 @@ public class UserManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(userDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getContact(), element(userDetail("Phone")).getText());
         Assert.assertEquals(detailsModel.getUserRole(), element(userDetail("Role")).getText());
-        waitFor(2000);
     }
 
     public void selectRoleDropdown() {
@@ -245,4 +260,12 @@ public class UserManagementPage extends PageObject {
             }
         }
 
+    public void addUserForPersonnel() {
+        Assert.assertFalse(addUserButton.isVisible());
+
     }
+
+    public void verifyActionFeatureForPersonnel() {
+        Assert.assertFalse(actionColumn.isVisible());
+    }
+}

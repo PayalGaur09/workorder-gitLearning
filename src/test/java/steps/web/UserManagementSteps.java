@@ -29,6 +29,11 @@ public class UserManagementSteps {
         users.addInputFieldsOfUserForm();
     }
 
+    @When("^User updates all the field of user form$")
+    public void userUpdatesAllTheFieldOfUserForm() {
+        users.addInputFieldsOfUserForm();
+    }
+
 
     @And("^User select Client Admin as the user role$")
     public void userSelectClientAdminAsTheUserRole() {
@@ -108,4 +113,17 @@ public class UserManagementSteps {
         users.verifyChangedStatus();
     }
 
+    @Then("^Add, Edit, delete and deactivate icon for user should not be visible to client personnel$")
+    public void addEditDeleteAndDeactivateIconForUserShouldNotBeVisibleToClientPersonnel() {
+        users.addUserForPersonnel();
+    }
+
+    @Then("^Action column should not be visible to client personnel$")
+    public void actionColumnShouldNotBeVisibleToClientPersonnel() {
+        users.verifyActionFeatureForPersonnel();
+    }
+
+    @Then("^Add User button should not be visible to client personnel$")
+    public void addUserButtonShouldNotBeVisibleToClientPersonnel() {
+    }
 }

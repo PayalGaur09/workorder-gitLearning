@@ -30,9 +30,18 @@ Feature: User Management
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
 
+  Scenario: To verify the change and remove functionality of user profile picture
+    Given User is on add user screen
+    When User enters all the field in user screen
+    And User select Client Personnel as the user role
+    And User taps on the Submit button
+    And Verify user detail screen
+    Then user change the profile picture
+    Then user  remove the profile picture
+
   Scenario: Edit an existing user from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
-    When User enters all the field in user screen
+    When User updates all the field of user form
     And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
@@ -41,7 +50,7 @@ Feature: User Management
   Scenario: Edit an existing user from user list screen and cross verify the modification
     Given User is on detail screen
     When User clicks on edit option from action dropdown
-    And User enters all the field in user screen
+    And User updates all the field of user form
     And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
@@ -104,3 +113,21 @@ Feature: User Management
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "User has been deleted successfully." should be displayed
+
+  Scenario Outline: To verify pagination on user list screen
+    Given User gets the total count from the list
+    Then  User verify pagination with "<countPerPage>" per page
+    Examples:
+      | countPerPage |
+      | 10           |
+      | 15           |
+      | 25           |
+      | 50           |
+      | 100          |
+
+  Scenario: To verify that client personnel is not able to access add, edit and delete feature
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    And User tap on the "Users" link from side navigation
+    Then Add User button should not be visible to client personnel
+    Then Action column should not be visible to client personnel
