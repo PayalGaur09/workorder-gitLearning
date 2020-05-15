@@ -251,10 +251,6 @@ public class ProfilePage extends PageObject {
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
 
-    public void successPopup(String successMessage) {
-        waitABit(5000);
-        Assert.assertTrue(element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
-    }
 
     public void editAllContentDetails(DataTable Credentials) {
         FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
@@ -269,20 +265,22 @@ public class ProfilePage extends PageObject {
         waitFor(mobNo).waitUntilVisible().clear();
         waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
     }
+
     public void changeProfilePicture() throws IOException {
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
         getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(uploadimagebutton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(uploadimagebutton).click();
     }
-    public void userRemovesTheProfilePicture(){
+
+    public void userRemovesTheProfilePicture() {
         waitABit(2000);
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
         waitABit(2000);
-            }
+    }
 
     public void profileHeading() {
-        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
     }
 }
 

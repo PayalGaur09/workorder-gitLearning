@@ -184,6 +184,7 @@ public class VendorManagementSteps {
 
     @When("^User clicks on delete button$")
     public void userClicksOnDeleteButton() {
+        vendor.getUserName();
         vendor.tapOnActionButton();
         vendor.clickOnDeleteButton();
     }

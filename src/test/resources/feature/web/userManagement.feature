@@ -8,18 +8,9 @@ Feature: User Management
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 
-  Scenario: Create an admin and cross verify the detail entered
+  Scenario: Create a user and cross verify the detail entered
     Given User is on add user screen
     When User enters all the field in user screen
-    And User select Client Admin as the user role
-    And User taps on the Submit button
-    Then Success message "User has been added successfully." should be displayed
-    And Verify user detail screen
-
-  Scenario: Create a personnel and cross verify the detail entered
-    Given User is on add user screen
-    When User enters all the field in user screen
-    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been added successfully." should be displayed
     And Verify user detail screen
@@ -33,7 +24,6 @@ Feature: User Management
   Scenario: To verify the change and remove functionality of user profile picture
     Given User is on add user screen
     When User enters all the field in user screen
-    And User select Client Personnel as the user role
     And User taps on the Submit button
     And Verify user detail screen
     Then user change the profile picture
@@ -42,7 +32,6 @@ Feature: User Management
   Scenario: Edit an existing user from vendor list screen and cross verify the modification
     Given User navigates to edit page from list screen
     When User updates all the field of user form
-    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
     And Verify user detail screen
@@ -51,7 +40,6 @@ Feature: User Management
     Given User is on detail screen
     When User clicks on edit option from action dropdown
     And User updates all the field of user form
-    And User select Client Personnel as the user role
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
     And Verify user detail screen
@@ -131,3 +119,12 @@ Feature: User Management
     And User tap on the "Users" link from side navigation
     Then Add User button should not be visible to client personnel
     Then Action column should not be visible to client personnel
+
+  Scenario: Create an admin and verify the detail and notification screen
+    Given User is on add user screen
+    When User enters all the field in user screen
+    And User taps on the Submit button
+    Then Success message "User has been added successfully." should be displayed
+    And Verify user detail screen
+    When User tap on the bell icon
+    Then User is added notification is displayed

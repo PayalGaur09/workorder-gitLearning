@@ -1,8 +1,10 @@
 package pages;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Window;
 import models.DetailsModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.webdriver.WebDriverFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -51,6 +53,10 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade loader;
     @FindBy(xpath = "//th[text()='Action']")
     private WebElementFacade actionColumn;
+    @FindBy(xpath = "//i[contains(@class,'fa fa-bell')]/../..")
+    private WebElementFacade notificationIcon;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
+    private WebElementFacade notificationContent;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -132,7 +138,7 @@ public class UserManagementPage extends PageObject {
        // waitForLoader();
         WebElementFacade a = element(userDetail("First"));
         Assert.assertEquals(detailsModel.getName(),
-                withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).getText());
+                withTimeoutOf(40, TimeUnit.SECONDS).waitFor(a).getText());
         Assert.assertEquals(detailsModel.getSurname(),element(userDetail("Last")).getText());
         Assert.assertEquals(detailsModel.getEmail(), element(userDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getContact(), element(userDetail("Phone")).getText());
@@ -267,5 +273,17 @@ public class UserManagementPage extends PageObject {
 
     public void verifyActionFeatureForPersonnel() {
         Assert.assertFalse(actionColumn.isVisible());
+    }
+
+    public void tapOnBellIcon() {
+        getDriver().navigate().refresh();
+        waitABit(2000);
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notificationIcon).click();
+        waitABit(1000);
+    }
+
+    public void verifyAddUserNotification(){
+        String notification = "New user " +detailsModel.getName()+ " was created. Tap to view details.";
+        Assert.assertEquals(notification,notificationContent.getText());
     }
 }

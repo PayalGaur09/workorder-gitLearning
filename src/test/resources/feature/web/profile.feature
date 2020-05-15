@@ -20,7 +20,7 @@ Feature: Functionality of profile
       | First Name | Email                         | Phone       |
       | Sid        | shreya.sharma@successive.tech | 98475937456 |
     And  User clicks on submit button
-    Then success message should be displayed " Your profile has been updated successfully. "
+    Then Success message " Your profile has been updated successfully. " should be displayed
 
   Scenario:User is on edit profile page and clicking on the cancel button
     Given user is on the profile page

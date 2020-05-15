@@ -166,11 +166,6 @@ public class ProfileSteps extends PageObject {
        profilePage.verifyMessage(ErrorMesaage);
     }
 
-    @Then("^success message should be displayed \"([^\"]*)\"$")
-    public void successMessageShouldBeDisplayed(String successMessage) throws Throwable {
-        profilePage.successPopup(successMessage);
-
-    }
 
     @Then("^User upload new profile picture$")
     public void userUploadNewProfilePicture() throws IOException {

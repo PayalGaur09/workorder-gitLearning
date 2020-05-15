@@ -27,11 +27,13 @@ public class UserManagementSteps {
     public void userEntersAllTheFieldInUserScreen() throws IOException {
         users.uploadProfilePicture();
         users.addInputFieldsOfUserForm();
+        users.selectRole("Administrator");
     }
 
     @When("^User updates all the field of user form$")
     public void userUpdatesAllTheFieldOfUserForm() {
         users.addInputFieldsOfUserForm();
+        users.selectRole("Personnel");
     }
 
 
@@ -113,11 +115,6 @@ public class UserManagementSteps {
         users.verifyChangedStatus();
     }
 
-    @Then("^Add, Edit, delete and deactivate icon for user should not be visible to client personnel$")
-    public void addEditDeleteAndDeactivateIconForUserShouldNotBeVisibleToClientPersonnel() {
-        users.addUserForPersonnel();
-    }
-
     @Then("^Action column should not be visible to client personnel$")
     public void actionColumnShouldNotBeVisibleToClientPersonnel() {
         users.verifyActionFeatureForPersonnel();
@@ -125,5 +122,16 @@ public class UserManagementSteps {
 
     @Then("^Add User button should not be visible to client personnel$")
     public void addUserButtonShouldNotBeVisibleToClientPersonnel() {
+        users.addUserForPersonnel();
+    }
+
+    @When("^User tap on the bell icon$")
+    public void userTapOnTheBellIcon() {
+        users.tapOnBellIcon();
+    }
+
+    @Then("^User is added notification is displayed$")
+    public void userIsAddedNotificationIsDisplayed() {
+        users.verifyAddUserNotification();
     }
 }
