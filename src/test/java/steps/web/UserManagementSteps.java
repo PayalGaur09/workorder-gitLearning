@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
 import pages.UserManagementPage;
 import utilities.ConfigLoader;
@@ -24,14 +25,14 @@ public class UserManagementSteps {
 
 
     @When("^User enters all the field in user screen$")
-    public void userEntersAllTheFieldInUserScreen() throws IOException {
+    public void userEntersAllTheFieldInUserScreen() throws IOException, ConfigurationException {
         users.uploadProfilePicture();
         users.addInputFieldsOfUserForm();
         users.selectRole("Administrator");
     }
 
     @When("^User updates all the field of user form$")
-    public void userUpdatesAllTheFieldOfUserForm() {
+    public void userUpdatesAllTheFieldOfUserForm() throws IOException, ConfigurationException {
         users.addInputFieldsOfUserForm();
         users.selectRole("Personnel");
     }
@@ -133,5 +134,41 @@ public class UserManagementSteps {
     @Then("^User is added notification is displayed$")
     public void userIsAddedNotificationIsDisplayed() {
         users.verifyAddUserNotification();
+    }
+
+
+    @Then("^Notification for Existing User Deactivate is displayed$")
+    public void notificationForExistingUserDeactivateIsDisplayed() {
+        users.VerifyDeactivateNotification();
+    }
+
+    @Then("^Notification for Existing User Deleted is displayed$")
+    public void notificationForExistingUserDeletedIsDisplayed() {
+        users.VerifyDeletedNotification();
+    }
+
+    @Then("^Activity log for user creation is displayed$")
+    public void activityLogForUserCreationIsDisplayed() {
+        users.verifyLogForAddUser();
+    }
+
+    @Then("^Upon tapping the entity user is redirected to the detail screen$")
+    public void uponTappingTheEntityUserIsRedirectedToTheDetailScreen() {
+        users.redirectionOfEntity();
+    }
+
+    @Then("^Activity log for existing user edited is displayed$")
+    public void activityLogForExistingUserEditedIsDisplayed() {
+       // users.verifyLogForEditUser();
+    }
+
+    @Then("^Activity log for existing user deactivated or activated is displayed$")
+    public void activityLogForExistingUserDeactivatedOrActivatedIsDisplayed() {
+        users.verifyLogForDeactivateActivateUser();
+    }
+
+    @Then("^Activity log for existing user deleted is displayed$")
+    public void activityLogForExistingUserDeletedIsDisplayed() {
+        users.verifyLogForDeletedUser();
     }
 }
