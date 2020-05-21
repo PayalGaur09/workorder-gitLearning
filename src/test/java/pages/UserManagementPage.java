@@ -23,6 +23,10 @@ public class UserManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
     String userStatus;
+
+    //String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
+    //String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
+
     @FindBy(xpath = "//span[text()='Users']")
     private WebElementFacade userLink;
     @FindBy(xpath = "//a[contains(text(),'New User')]")
@@ -179,7 +183,8 @@ public class UserManagementPage extends PageObject {
     }
 
     public void enterKeyInSearchField(String searchKey) {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchUser);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchUser).click();
+        searchUser.clear();
         detailsModel.setKeyword(searchKey);
         searchUser.sendKeys(detailsModel.getKeyword());
     }
@@ -307,11 +312,11 @@ public class UserManagementPage extends PageObject {
         Assert.assertTrue(activityLogWidget.containsText(addUserLog));
     }
 
-    public void redirectionOfEntity(){
+    public void redirectionOfEntity() {
         String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-        WebElementFacade entity= element(entityName(userNameStored));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(entity).click();
-        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(detailScreenHeading).shouldBePresent();
+        WebElementFacade entity = element(entityName(userNameStored));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(entity).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(detailScreenHeading).shouldBePresent();
     }
 
     public void VerifyDeactivateNotification() {
@@ -340,5 +345,19 @@ public class UserManagementPage extends PageObject {
         String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
         String deletedLog = userNameStored + " " + surnameStored + "'s account has been deleted";
         Assert.assertTrue(activityLogWidget.containsText(deletedLog));
+    }
+
+    public void verifyLogForEditUser() {
+        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
+        String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
+        String nameEditLog = userNameStored + " " + surnameStored + "'s name has been changed";
+        String roleEditLog = userNameStored + " " + surnameStored + "'s role has been changed";
+        String contactEditLog = userNameStored + " " + surnameStored + "'s contact number has been changed";
+        String emailEditLog = userNameStored + " " + surnameStored + "'s email has been changed";
+        //Assertion for the content of activity log
+        Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
+        Assert.assertTrue(activityLogWidget.containsText(roleEditLog));
+        Assert.assertTrue(activityLogWidget.containsText(contactEditLog));
+        Assert.assertTrue(activityLogWidget.containsText(emailEditLog));
     }
 }

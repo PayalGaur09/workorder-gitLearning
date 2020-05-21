@@ -14,13 +14,16 @@ Feature: User Management
     And User taps on the Submit button
     Then Success message "User has been added successfully." should be displayed
     And Verify user detail screen
+
+
+  Scenario: Verify the activity log and notification of User creation for client admin
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Admin
+    Then Activity log for user creation is displayed
+    Then Upon tapping the entity user is redirected to the detail screen
     When User tap on the bell icon
     Then User is added notification is displayed
 
-    Scenario: Verify the activity log of User creation and the redirection of the entities
-    When User tap on the "Dashboard" link from side navigation
-    Then Activity log for user creation is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
 
   Scenario: To verify validations on add user screen
     Given User is on add user screen
@@ -28,18 +31,20 @@ Feature: User Management
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
 
+
   Scenario: Edit an existing user from user detail screen and cross verify the modification
     Given User is on detail screen
     When User clicks on edit option from action dropdown
     And User updates all the field of user form
     And User taps on the Submit button
     Then Success message "User has been updated successfully." should be displayed
-#    And Verify user detail screen
+    When User is on detail screen
+    Then Verify user detail screen
 
-  Scenario: Verify the activity log of User creation and the redirection of the entities
-    When User tap on the "Dashboard" link from side navigation
+  Scenario: Verify the activity log of User edit and the redirection of the entities
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Admin
     Then Activity log for existing user edited is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
 
   Scenario: Deactivate user from user detail screen and cross verify the status
     Given User is on detail screen
@@ -50,17 +55,15 @@ Feature: User Management
     And User verify status and takes necessary actions to change the status
     Then User verified the changed status
 
-  Scenario: Verify the activity log of User creation and the redirection of the entities
-    When User tap on the "Dashboard" link from side navigation
-    Then Activity log for existing user deactivated or activated is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
 
-  Scenario: Notification of deactivated user is getting displayed to other members
+  Scenario:Verify the activity log and notification of User deactivation-activation for client admin
     Given User logout from work order platform
     When User sign in with valid credential of Client Admin
-    Then User tap on the "Users" link from side navigation
+    Then Activity log for existing user deactivated or activated is displayed
+    And Upon tapping the entity user is redirected to the detail screen
     When User tap on the bell icon
-    Then Notification for Existing User Deactivate is displayed
+    Then Notification for Existing User Deactivated is displayed
+
 
   Scenario: The functionality of "Delete" button on the user detail screen
     Given User is on detail screen
@@ -68,15 +71,11 @@ Feature: User Management
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "User has been deleted successfully." should be displayed
 
-  Scenario: Verify the activity log of User creation and the redirection of the entities
-    When User tap on the "Dashboard" link from side navigation
-    Then Activity log for existing user deleted is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
-
-  Scenario: Notification of Existing user deleted is getting displayed to other members
+  Scenario: Verify the activity log of User deleted and the redirection of the entities
     Given User logout from work order platform
-    When User sign in with valid credential of Account Owner
-    Then User tap on the "Users" link from side navigation
+    When User sign in with valid credential of Client Admin
+    Then Activity log for existing user deleted is displayed
+    And Upon tapping the entity user is redirected to the detail screen
     When User tap on the bell icon
     Then Notification for Existing User Deleted is displayed
 

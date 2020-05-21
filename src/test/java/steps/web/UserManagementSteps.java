@@ -9,13 +9,15 @@ import cucumber.api.java.en.When;
 import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
 import pages.UserManagementPage;
+import pages.UserSigninPage;
 import utilities.ConfigLoader;
 
 import java.io.IOException;
 
 public class UserManagementSteps {
     Config conf = ConfigLoader.load();
-    UserManagementPage users;
+    private UserManagementPage users;
+    private UserSigninPage userSigninPage;
 
 
     @Given("^User is on add user screen$")
@@ -134,17 +136,20 @@ public class UserManagementSteps {
     @Then("^User is added notification is displayed$")
     public void userIsAddedNotificationIsDisplayed() {
         users.verifyAddUserNotification();
+        userSigninPage.signout();
     }
 
 
-    @Then("^Notification for Existing User Deactivate is displayed$")
-    public void notificationForExistingUserDeactivateIsDisplayed() {
+    @Then("^Notification for Existing User Deactivated is displayed$")
+    public void notificationForExistingUserDeactivatedIsDisplayed() {
         users.VerifyDeactivateNotification();
+        userSigninPage.signout();
     }
 
     @Then("^Notification for Existing User Deleted is displayed$")
     public void notificationForExistingUserDeletedIsDisplayed() {
         users.VerifyDeletedNotification();
+        userSigninPage.signout();
     }
 
     @Then("^Activity log for user creation is displayed$")
@@ -159,7 +164,8 @@ public class UserManagementSteps {
 
     @Then("^Activity log for existing user edited is displayed$")
     public void activityLogForExistingUserEditedIsDisplayed() {
-       // users.verifyLogForEditUser();
+        users.verifyLogForEditUser();
+        userSigninPage.signout();
     }
 
     @Then("^Activity log for existing user deactivated or activated is displayed$")
