@@ -88,7 +88,7 @@ public class MoveInApplicationSteps extends PageObject {
 
     @Then("^User Select \"([^\"]*)\" Type$")
     public void userSelectType(String arg0) throws Throwable {
-       moveinapplication.selectDropOrPopUp(arg0,1);
+        moveinapplication.selectDropOrPopUp(arg0, 1);
     }
 
 

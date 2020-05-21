@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Functionality of  application","To check the functionality of delete ametity","ERROR","2020-05-21T13:40:01.0646938+05:30[Asia/Calcutta]","0.0","19.75"
+"Functionality of  application","To verify the functionality when the user clicks on the cancel button  of delete amity popup","ERROR","2020-05-21T13:40:20.8373354+05:30[Asia/Calcutta]","0.0","20.47"
+"Functionality of  application","To verify the validations on amenties and icon fields","ERROR","2020-05-21T13:41:35.6523917+05:30[Asia/Calcutta]","0.0","17.96"

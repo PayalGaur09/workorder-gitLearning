@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
+<![endif]--><!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><!-- Bootstrap -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script><link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- Nivo Slider -->
+<link rel="stylesheet" href="nivo-slider/3.2/nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider/3.2/themes/default/default.css" type="text/css" media="screen" />
+<script src="nivo-slider/3.2/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var screenshotIndex = getUrlVars()["screenshot"];
+
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                startSlide: screenshotIndex,
+                effect: 'fade',
+                animSpeed: 200,
+                manualAdvance: true
+            });
+        });
+
+        $(window).keydown(function(e) {
+            switch(e.which) {
+                case 37:
+                    $('a.nivo-prevNav').click();
+                    break;
+                case 39:
+                    $('a.nivo-nextNav').click();
+                    break;
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">10Fed- Work Order</span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="8deb46eed16364ee1bfb8d1b29eabf421d76161b4939b773f0d8344b223dfaa0.html">Functionality Of  Application</a></span>
+                > <span class="truncate-60"><a
+                    href="31841eb90cdd42e4402faff6fa57e135076f3095e9caabaf1ff0b6b877dabd68.html">To verify the functionality when user clicks on the chechbox of Driving license number </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 21-05-2020 13:40</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fa fa-2x fa-comments-o"></i>
+                                    <span class="story-header-title">Functionality Of  Application</span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;" href="b750d2b96464a7463077bde47eb9801f9d5a508ff47b7b401dda047ad0196bac.html">Func
+                                    (tag)</a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="test-case-title">
+                                <span class="success-color">To verify the functionality when user clicks on the chechbox of Driving license number
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+        <div class="slider-wrapper theme-default">
+            <div id="slider">
+                <img src="684a95c77b228fbac74e9166bbb0181faa75a9494d90063a7612a7b95468bc8b.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="d8937d0a1face9e293c8dfc8402fd37f1ba4c4375809b123f997e8d930d98080.png" title="Given User is on work order sign in page" width="1366"/>
+                <img src="cb5e8db630035aff0005cde80ee9a0c4d4b7a23e2a84a43f48d90d6f2feaca85.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="3e4d2001c1455e7711b0870d3b3bb5e2f8000c07de851f4287a683945cc07940.png" title="When User sign in with valid credential of Account Owner" width="1366"/>
+                <img src="d8dd25b4d7cf9b105f10df7d41b4bc7ec158ba2d2b9d1be2d3cf9f54f0e06d8d.png" title="And User click on side menu of &quot;Manage Kiosk&quot; button" width="1366"/>
+                <img src="4af08b3e3601d08fc2d1e157126d0ad6550b7da484f461488946ffe5cbbb908d.png" title="Given user is on the manage kiosk page of workorder application" width="1366"/>
+                <img src="d9dddf1695d4ddd087c3747998ee882030b26608b3c471c8b13af92b53a4205a.png" title="Given user is on the manage kiosk page of workorder application" width="1366"/>
+                <img src="09a11085710d709313297b3e293ee3a931a36ac3654032d2fee936ce7bef5e16.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="1a39f9f6a29bd6aa72c85d57e9dccc38c220e67de8613538278cfe10a74c6f94.png" title="And user selects the tag kiosk page" width="1366"/>
+                <img src="1d20008e917a596f8d6c600eea44339894446d447d91dacadfe6935207fdf7c0.png" title="When user clicks on configure and manage button" width="1366"/>
+                <img src="055e02cb883102793bf718c2cd9830bdb7feb8c24a7409eceddb5e5184638143.png" title="When user clicks on configure and manage button" width="1366"/>
+                <img src="551b1b207a48fcb2026b2395e404c81171884001f3ee209a81c8da98a82b3799.png" title="Then user should redirects to the  Manage Kiosk  page" width="1366"/>
+                <img src="079e8696c44641a74fb6a7a853870c9de6210791e98d4474db625d8973758a64.png" title="Then user should redirects to the  Manage Kiosk  page" width="1366"/>
+                <img src="0768683a1d7f316aebeef719339b061870c35dd3e4de717335e0d2e56cc05faf.png" title="And user clicks on filed and criteria tab" width="1366"/>
+                <img src="8094f8c28ad72dc5d50800aba8a6ca7733f852ace2d2e04a0f3fc099b7a39909.png" title="And user clicks on filed and criteria tab" width="1366"/>
+                <img src="ba8a176c2653b142025daef8e542934f51cc8750073843d165e8a6eb6229fdbc.png" title="When user cliks on the checkbox od driving license number" width="1366"/>
+                <img src="ce330ab06caa94d83f16eb0baf2b990eee3899e6192a3db7af69524a85d06b19.png" title="When user cliks on the checkbox od driving license number" width="1366"/>
+                <img src="e83051a3a09bf7232e7728ee72e8c3ab319b6f5870496f472b5f5e7d68264d94.png" title="Then Success message &quot;Field status has been changed successfully.&quot; should be displayed: <span class='success-color'>SUCCESS</span>" width="1366"/>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 1.8.1</span>
+</div>
+</body>
+</html>

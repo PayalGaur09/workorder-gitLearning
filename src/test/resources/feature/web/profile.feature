@@ -21,9 +21,9 @@ Feature: Functionality of profile
     Then user should to redirects to the edit page
     And Edit the profile details
       | First Name | Email                          | Phone       |
-      | Shashank   | shashank.singh@successive.tech | 98475937456 |
+      | Shashank   | shreya.sharma@successive.tech | 98475937456 |
     And  User clicks on submit button
-    Then success message should be displayed " Your profile has been updated successfully. "
+    Then Success message " Your profile has been updated successfully. " should be displayed
 
   Scenario:User is on edit profile page and clicking on the cancel button
     Given user is on the dashboard page of workorder application

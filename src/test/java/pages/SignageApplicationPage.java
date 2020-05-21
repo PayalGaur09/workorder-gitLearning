@@ -200,7 +200,7 @@ public class SignageApplicationPage extends PageObject {
     }
 
     public void clicksOnCanceltBtn() {
-
+        waitABit(5000);
         cancelbtntBtn.click();
     }
 
@@ -254,8 +254,6 @@ public class SignageApplicationPage extends PageObject {
     }
 
     public void clicksOndeleteFileIcon() {
-
-
         deletefile.click();
         waitABit(10);
 
@@ -285,11 +283,8 @@ public class SignageApplicationPage extends PageObject {
     }
 
     public void uploadContentInThumbnail() {
-
-
         thumbnail.click();
         waitABit(10);
-
     }
 
     public void userClicksOnUploadContentOrManageContentButton() {
@@ -338,11 +333,7 @@ public class SignageApplicationPage extends PageObject {
         regkeyalreadyexist.isDisplayed();
     }
 
-    public void userClicksOnFromShowEntriesDropdownOfListvieOfManageKiosk() {
-        waitFor(showentries).withTimeoutOf(80, TimeUnit.SECONDS).click();
-        Select drpdown = new Select(showentries);
-        drpdown.selectByVisibleText("100");
-    }
+
 
     public void userClicksOnDeleteTag() {
         deletetag.click();

@@ -28,6 +28,18 @@ public class LoadProperties {
         return value;
 
     }
+    public static String getProp(String key,String fileName) throws IOException {
+        if ((key == null) || (key.isEmpty())) {
+            return "";
+        } else {
+            String path = new File(".").getCanonicalPath() + File.separator+"src"+File.separator+"test"+File.separator+"resources"+File.separator+"TestData"+File.separator + fileName + ".properties";
+            FileInputStream fin = new FileInputStream(path);
+            Properties properties = new Properties();
+            properties.load(fin);
+            return properties.getProperty(key);
+        }
+
+    }
     public static void storeInSaveTestDataFile(String key, String vendorEmail) throws org.apache.commons.configuration.ConfigurationException {
         PropertiesConfiguration properties = new PropertiesConfiguration(saveQueryfile);
         properties.setProperty(key, vendorEmail);

@@ -157,6 +157,7 @@ public class VendorManagementSteps {
         vendor.tapOnFilterButton();
     }
 
+
     @Then("^Vendor list displayed is according to the entered keyword$")
     public void vendorListDisplayedIsAccordingToTheEnteredKeyword() {
         vendor.verifyVendorName();
@@ -208,7 +209,11 @@ public class VendorManagementSteps {
     public void userVerifyPaginationWithPerPage(String option) throws Throwable {
         vendor.verifyPaginationFunction(option);
     }
+    @Given("^user is on the manage kiosk page of workorder application$")
+    public void userIsOnTheManageKioskPageOfWorkorderApplication() {
 
+    }
+//
 //    @Then("^pagination$")
 //    public void pagination() {
 //        vendor.verifyPaginationFunction(String option);

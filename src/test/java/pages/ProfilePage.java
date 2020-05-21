@@ -247,10 +247,6 @@ public class ProfilePage extends PageObject {
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
 
-    public void successPopup(String successMessage) {
-        waitABit(5000);
-        Assert.assertTrue(element(validationPopup(successMessage)).waitUntilVisible().isDisplayed());
-    }
 
     public void editAllContentDetails(DataTable Credentials) {
         FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");

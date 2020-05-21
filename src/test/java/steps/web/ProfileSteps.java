@@ -1,4 +1,5 @@
 package steps.web;
+
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class ProfileSteps extends PageObject {
-   private ProfileModel profileModel=new ProfileModel();
+    private ProfileModel profileModel = new ProfileModel();
     ProfilePage profilePage;
     UserManagementPage users;
 
@@ -103,7 +104,6 @@ public class ProfileSteps extends PageObject {
     }
 
 
-
     @And("^user taps on the submit button$")
     public void userTapsOnTheSubmitbutton() {
         profilePage.submitButton1();
@@ -140,7 +140,6 @@ public class ProfileSteps extends PageObject {
     }
 
 
-
     @And("^User click on \"([^\"]*)\" button$")
     public void userClickOnButton(String button) throws Throwable {
         profilePage.cancelButton(button);
@@ -148,28 +147,22 @@ public class ProfileSteps extends PageObject {
 
     @And("^User click on side menu of \"([^\"]*)\" button$")
     public void userClickOnSideMenuOfButton(String SideMenu) throws Throwable {
-      profilePage.profileButton(SideMenu);
+        profilePage.profileButton(SideMenu);
     }
 
 
     @When("^User enter change password details$")
     public void userEnterChangePasswordDetails(DataTable InvalidCredentials) throws Throwable {
-       profilePage.changeInvalidPassword(InvalidCredentials);
+        profilePage.changeInvalidPassword(InvalidCredentials);
 
     }
-
 
 
     @Then("^The error message is displayed as \"([^\"]*)\"$")
     public void theErrorMessageIsDisplayedAs(String ErrorMesaage) throws Throwable {
-       profilePage.verifyMessage(ErrorMesaage);
+        profilePage.verifyMessage(ErrorMesaage);
     }
 
-    @Then("^success message should be displayed \"([^\"]*)\"$")
-    public void successMessageShouldBeDisplayed(String successMessage) throws Throwable {
-        profilePage.successPopup(successMessage);
-
-    }
 
     @Then("^User upload new profile picture$")
     public void userUploadNewProfilePicture() throws IOException {
