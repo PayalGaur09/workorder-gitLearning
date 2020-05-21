@@ -6,15 +6,18 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
 import pages.UserManagementPage;
+import pages.UserSigninPage;
 import utilities.ConfigLoader;
 
 import java.io.IOException;
 
 public class UserManagementSteps {
     Config conf = ConfigLoader.load();
-    UserManagementPage users;
+    private UserManagementPage users;
+    private UserSigninPage userSigninPage;
 
 
     @Given("^User is on add user screen$")
@@ -24,9 +27,16 @@ public class UserManagementSteps {
 
 
     @When("^User enters all the field in user screen$")
-    public void userEntersAllTheFieldInUserScreen() throws IOException {
+    public void userEntersAllTheFieldInUserScreen() throws IOException, ConfigurationException {
         users.uploadProfilePicture();
         users.addInputFieldsOfUserForm();
+        users.selectRole("Administrator");
+    }
+
+    @When("^User updates all the field of user form$")
+    public void userUpdatesAllTheFieldOfUserForm() throws IOException, ConfigurationException {
+        users.addInputFieldsOfUserForm();
+        users.selectRole("Personnel");
     }
 
 
@@ -108,4 +118,63 @@ public class UserManagementSteps {
         users.verifyChangedStatus();
     }
 
+    @Then("^Action column should not be visible to client personnel$")
+    public void actionColumnShouldNotBeVisibleToClientPersonnel() {
+        users.verifyActionFeatureForPersonnel();
+    }
+
+    @Then("^Add User button should not be visible to client personnel$")
+    public void addUserButtonShouldNotBeVisibleToClientPersonnel() {
+        users.addUserForPersonnel();
+    }
+
+    @When("^User tap on the bell icon$")
+    public void userTapOnTheBellIcon() {
+        users.tapOnBellIcon();
+    }
+
+    @Then("^User is added notification is displayed$")
+    public void userIsAddedNotificationIsDisplayed() {
+        users.verifyAddUserNotification();
+        userSigninPage.signout();
+    }
+
+
+    @Then("^Notification for Existing User Deactivated is displayed$")
+    public void notificationForExistingUserDeactivatedIsDisplayed() {
+        users.VerifyDeactivateNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Notification for Existing User Deleted is displayed$")
+    public void notificationForExistingUserDeletedIsDisplayed() {
+        users.VerifyDeletedNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Activity log for user creation is displayed$")
+    public void activityLogForUserCreationIsDisplayed() {
+        users.verifyLogForAddUser();
+    }
+
+    @Then("^Upon tapping the entity user is redirected to the detail screen$")
+    public void uponTappingTheEntityUserIsRedirectedToTheDetailScreen() {
+        users.redirectionOfEntity();
+    }
+
+    @Then("^Activity log for existing user edited is displayed$")
+    public void activityLogForExistingUserEditedIsDisplayed() {
+        users.verifyLogForEditUser();
+        userSigninPage.signout();
+    }
+
+    @Then("^Activity log for existing user deactivated or activated is displayed$")
+    public void activityLogForExistingUserDeactivatedOrActivatedIsDisplayed() {
+        users.verifyLogForDeactivateActivateUser();
+    }
+
+    @Then("^Activity log for existing user deleted is displayed$")
+    public void activityLogForExistingUserDeletedIsDisplayed() {
+        users.verifyLogForDeletedUser();
+    }
 }

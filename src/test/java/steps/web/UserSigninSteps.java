@@ -20,7 +20,7 @@ public class UserSigninSteps {
 
     @Given("^User is on work order sign in page$")
     public void userIsOnWorkOrderSignInPage() {
-        userSigninPage.getDriver().get(conf.getString("test_url"));
+        userSigninPage.getDriver().get(conf.getString("base_url"));
     }
 
 
@@ -67,6 +67,13 @@ public class UserSigninSteps {
     public void userSignInWithValidCredentialOfClientPersonnel() {
         String id= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelId");
         String pwd= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelPassword");
+        userSigninPage.enterCredentials(id,pwd);
+    }
+
+    @When("^User sign in with valid credential of Client Admin$")
+    public void userSignInWithValidCredentialOfClientAdmin() {
+        String id= LoadProperties.getValueFromPropertyFile("testData","clientAdminId");
+        String pwd= LoadProperties.getValueFromPropertyFile("testData","clientAdminPassword");
         userSigninPage.enterCredentials(id,pwd);
     }
 }

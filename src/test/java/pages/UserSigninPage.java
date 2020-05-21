@@ -29,15 +29,12 @@ public class UserSigninPage extends PageObject {
         return By.xpath("//div[contains(text(),'"+errorMessage+"')]");
     }
 
-    public void homePage() {
-//        setEnvironMent("test");
-    }
 
     public void enterCredentials(String userEmail, String pwd) {
         try {
                 userName.sendKeys(userEmail);
                 password.sendKeys(pwd);
-                waitFor(signinButton).click();
+                withTimeoutOf(20,TimeUnit.SECONDS).waitFor(signinButton).click();
         }
         catch (Exception ignored){
 

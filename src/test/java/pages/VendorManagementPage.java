@@ -3,6 +3,7 @@ package pages;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.pages.PageObject;
+import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import utilities.LoadProperties;
 import utilities.RandomGenerator;
 import models.DetailsModel;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +23,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 public class VendorManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
-    String wait= LoadProperties.getValueFromPropertyFile("testData","wait");
+    String wait = LoadProperties.getValueFromPropertyFile("testData", "wait");
 
     @FindBy(xpath = "//h3[contains(text(),'Vendors')]")
     private WebElementFacade vendorHeading;
@@ -40,10 +42,10 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade nameLink;
 
 
-    @FindBy(xpath = "//em[contains(@title,'Edit')]")
-    private WebElementFacade editIcon;
-    @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
-    private WebElementFacade deleteIcon;
+ //   @FindBy(xpath = "//em[contains(@title,'Edit')]")////////////////////////////////////////
+ //   private WebElementFacade editIcon;
+   // @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
+  //  private WebElementFacade deleteIcon;
 
 
     @FindBy(xpath = "//button[contains(text(),'Action')]")
@@ -97,19 +99,32 @@ public class VendorManagementPage extends PageObject {
         return By.xpath("//option[text()='" + option + "']");
     }
 
+    private By storedName(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]");
+    }
+
+    private By editIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@class,'fa fa-edit')]");
+    }
+
+    private By deleteIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@title,'Delete')]");
+    }
+
 
     public void verifyValidationMessage(String text) {
         WebElementFacade a = element(validationMessage(text));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
-    private void enterValueInName() {
+    private void enterValueInName() throws IOException, ConfigurationException {
         WebElementFacade nameField = element(vendorFormField("Name"));
         waitABit(4000);
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
         nameField.clear();
         detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
         nameField.sendKeys(detailsModel.getName());
+        LoadProperties.saveValueInPropertiesFile("name", detailsModel.getName(), "testData");
     }
 
     private void enterValueInPhone() {
@@ -148,7 +163,7 @@ public class VendorManagementPage extends PageObject {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
-    public void addInputFieldsOfVendorForm() {
+    public void addInputFieldsOfVendorForm() throws IOException, ConfigurationException {
         enterValueInName();
         enterValueInPhone();
         enterValueInEmail();
@@ -180,7 +195,6 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
-        waitFor(2000);
     }
 
     public void tapOnCancelButton() {
@@ -188,11 +202,14 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnEditIcon() {
+        WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+       // System.out.println(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData","name")));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
     }
 
     public void tapOnNameLink() {
-        nameLink.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
     }
 
     public void tapOnActionButton() {
@@ -255,7 +272,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnResetButton() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(resetButton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(resetButton).click();
         waitABit(1000);
     }
 
@@ -288,8 +305,8 @@ public class VendorManagementPage extends PageObject {
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         waitABit(2000);
         for (int i = 1; i <= num; i++) {
-            WebElementFacade a=element(vendorTypeDynamic(i));
-            withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).waitUntilPresent();
+            WebElementFacade a = element(vendorTypeDynamic(i));
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).waitUntilPresent();
             String vType = element(vendorTypeDynamic(i)).getText();
             Assert.assertEquals("Electricity Provider", vType);
             String vName = element(vendorNameSearch(i)).getText();
@@ -298,7 +315,9 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void clickOnDeleteIcon() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deleteIcon).click();
+        WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+       withTimeoutOf(20,TimeUnit.SECONDS).waitFor(deleteIcon).click();
+
     }
 
     public void clickOnDeleteButton() {
@@ -306,16 +325,15 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void acceptOptionInJSPopup() {
-        withTimeoutOf(50,TimeUnit.SECONDS).waitFor(alertIsPresent());
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(alertIsPresent());
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
     }
 
-    public void verifyEditDeleteForClientPersonnel() {
+    public void verifyAddButtonForClientPersonnel() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorHeading).isDisplayed();
         Assert.assertFalse(addVendorButton.isVisible());
-        Assert.assertFalse(editIcon.isVisible());
-        Assert.assertFalse(deleteIcon.isVisible());
+
     }
 
     public int totalRecordCount() {
@@ -358,4 +376,5 @@ public class VendorManagementPage extends PageObject {
 
 
     }
+
 }
