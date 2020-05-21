@@ -24,8 +24,8 @@ public class UserManagementPage extends PageObject {
     private DetailsModel detailsModel = new DetailsModel();
     String userStatus;
 
-    //String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-    //String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
+    String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
+    String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
 
     @FindBy(xpath = "//span[text()='Users']")
     private WebElementFacade userLink;
@@ -53,22 +53,16 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade activateFromAction;
     @FindBy(xpath = "//span[contains(text(),'Deactivate')]")
     private WebElementFacade deactivateFromAction;
-    @FindBy(xpath = "//td[text()='No matching records found']")
-    private WebElementFacade noRecordFound;
     @FindBy(xpath = "//button[contains(text(),'Choose file')]")
     private WebElementFacade chooseFile;
     @FindBy(xpath = "//button[text()='Upload']")
     private WebElementFacade uploadImageButton;
-    @FindBy(xpath = "//div[@class='loader']")
-    private WebElementFacade loader;
     @FindBy(xpath = "//th[text()='Action']")
     private WebElementFacade actionColumn;
     @FindBy(xpath = "//i[contains(@class,'fa fa-bell')]/../..")
     private WebElementFacade notificationIcon;
     @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
     private WebElementFacade notificationContent;
-    @FindBy(xpath = "//p[@class='kt-widget3__text']")
-    private WebElementFacade activityLogContent;
     @FindBy(xpath = "//div[@class='kt-widget3']")
     private WebElementFacade activityLogWidget;
 
@@ -300,34 +294,27 @@ public class UserManagementPage extends PageObject {
     }
 
     public void verifyAddUserNotification() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
         String notification = "New user " + userNameStored + " was created. Tap to view details.";
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void verifyLogForAddUser() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-        String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
         String addUserLog = "New user " + userNameStored + " " + surnameStored + " was created";
         Assert.assertTrue(activityLogWidget.containsText(addUserLog));
     }
 
     public void redirectionOfEntity() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
         WebElementFacade entity = element(entityName(userNameStored));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(entity).click();
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(detailScreenHeading).shouldBePresent();
     }
 
     public void VerifyDeactivateNotification() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
         String notification = userNameStored + "'s account has been deactivated.";
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void verifyLogForDeactivateActivateUser() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-        String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
         String deactivateLog = userNameStored + " " + surnameStored + "'s account has been deactivated";
         String activateLog = userNameStored + " " + surnameStored + "'s account has been activated";
         Assert.assertTrue(activityLogWidget.containsText(deactivateLog));
@@ -335,21 +322,17 @@ public class UserManagementPage extends PageObject {
     }
 
     public void VerifyDeletedNotification() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
+        //String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
         String notification = userNameStored + "'s account has been deleted.";
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void verifyLogForDeletedUser() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-        String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
         String deletedLog = userNameStored + " " + surnameStored + "'s account has been deleted";
         Assert.assertTrue(activityLogWidget.containsText(deletedLog));
     }
 
     public void verifyLogForEditUser() {
-        String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-        String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
         String nameEditLog = userNameStored + " " + surnameStored + "'s name has been changed";
         String roleEditLog = userNameStored + " " + surnameStored + "'s role has been changed";
         String contactEditLog = userNameStored + " " + surnameStored + "'s contact number has been changed";
