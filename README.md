@@ -9,8 +9,6 @@
 
 **Quick Start**
 
-$ git clone https://Payal09@bitbucket.org/successivesoftware/10fed-automation.git
-
 $ cd 10fed-automation
 
 $ git checkout 'branch_name'
