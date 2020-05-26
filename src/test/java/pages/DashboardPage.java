@@ -57,7 +57,7 @@ public class DashboardPage extends PageObject {
     }
 
     public void tapOnMenuItems(String module) {
-        element(menuItems(module)).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
     }
 
     public void verifyWorkOrderTiles(String tile) {

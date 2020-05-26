@@ -2,21 +2,17 @@ package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import pages.ProfilePage;
 import pages.UserManagementPage;
 import utilities.ConfigLoader;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class ProfileSteps extends PageObject {
@@ -49,6 +45,7 @@ public class ProfileSteps extends PageObject {
 
     @Given("^user is on the profile page$")
     public void userIsOnTheProfilePage() {
+        profilePage.profileHeading();
 
     }
 
@@ -179,6 +176,11 @@ public class ProfileSteps extends PageObject {
     @Then("^user  remove the profile picture$")
     public void userRemoveTheProfilePicture() {
         profilePage.userRemovesTheProfilePicture();
+    }
+
+    @Then("^user verify the Edit profile$")
+    public void userVerifyTheEditProfile() {
+        profilePage.userVerifyTheProfileDetails();
     }
 }
 

@@ -17,33 +17,23 @@ import org.slf4j.LoggerFactory;
 import utilities.ConfigLoader;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static utilities.LoadProperties.getValueFromPropertyFile;
 
 
 public class CompanyModulePage extends PageObject {
     private static Config conf = ConfigLoader.load();
     private static final Logger log = LoggerFactory.getLogger(CompanyModulePage.class);
-
-
     private static String dataFileName = File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testdata" + File.separator + "testdata.properties";
-
-
-//    String brandName = (String) new PropertiesConfiguration(testdataFileName).getProperty("bulkInviteVendorBrand");
-
     public static String name;
     public static String Name;
     public static String Address;
     public static String Zipcode;
-    public static String website;
     public static String contactnumber;
     public static String email;
     public static String contactNumber;
@@ -52,69 +42,75 @@ public class CompanyModulePage extends PageObject {
     public static String Accountownername;
     public static String Accountowneremail;
     public static String Accountownercontactnumber;
+    public static String EditAccountowneremail;
+    public static String EditAccountownercontactnumber;
     @FindBy(xpath = "//input[@name='userName']")
-    WebElementFacade userName;
+    private WebElementFacade userName;
     @FindBy(xpath = "//*[@placeholder='Filter companies']")
-    WebElementFacade searchCompany;
+    private WebElementFacade searchCompany;
     @FindBy(xpath = "//td[text()='No matching records found']")
-    WebElementFacade noList;
+    private WebElementFacade noList;
     @FindBy(xpath = "//input[@name='password']")
-    WebElementFacade password;
+    private WebElementFacade password;
     @FindBy(xpath = "//span[text()='Sign Out']")
-    WebElementFacade signoutLink;
+    private WebElementFacade signoutLink;
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElementFacade enterusername;
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElementFacade enterpassword;
     @FindBy(xpath = "//button[text()='Sign In']")
-    WebElementFacade signinButton;
+    private WebElementFacade signinButton;
     @FindBy(xpath = "//a[@class='btn btn-brand btn-elevate btn-icon-sm']")
-    WebElementFacade createnewcompany;
+    private WebElementFacade createnewcompany;
     @FindBy(xpath = "//h3[@class='kt-portlet__head-title']")
-    WebElementFacade verfyredirection;
+    private WebElementFacade verfyredirection;
     @FindBy(xpath = "//input[@id='name']")
-    WebElementFacade entername;
+    private WebElementFacade entername;
     @FindBy(xpath = "//input[@name='address']")
-    WebElementFacade enteraddress;
+    private WebElementFacade enteraddress;
     @FindBy(xpath = "//input[@name='zipCode']")
-    WebElementFacade enterzipcode;
+    private WebElementFacade enterzipcode;
     @FindBy(xpath = "//input[@name='website']")
-    WebElementFacade enterwebsite;
+    private WebElementFacade enterwebsite;
     @FindBy(xpath = "//input[@name='contactNumber']")
-    WebElementFacade entercontactnumber;
+    private WebElementFacade entercontactnumber;
     @FindBy(xpath = "//input[@name='email']")
-    WebElementFacade enteremail;
+    private WebElementFacade enteremail;
     @FindBy(xpath = "//input[@name='accountOwnerContactNumber']")
-    WebElementFacade enterownercontactnumber;
+    private WebElementFacade enterownercontactnumber;
     @FindBy(xpath = "//input[@name='accountOwnerName']")
-    WebElementFacade accountownername;
+    private WebElementFacade accountownername;
     @FindBy(xpath = "//input[@name='accountOwnerEmail']")
-    public WebElementFacade accountownernemail;
+    private WebElementFacade accountownernemail;
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElementFacade submitbtnofcompany;
+    private WebElementFacade submitbtnofcompany;
     @FindBy(xpath = "//input[@placeholder='Type DELETE to confirm']")
-    WebElementFacade writevalueintextbox;
-    @FindBy(xpath = "//button[text()='OK']")
+    private WebElementFacade writevalueintextbox;
+    private @FindBy(xpath = "//button[text()='OK']")
     WebElementFacade confirmbutton;
-    @FindBy(xpath = "//a[text()='Cancel']")
+    private @FindBy(xpath = "//a[text()='Cancel']")
     WebElementFacade cancelbutton;
-    @FindBy(xpath = "//h3[text()=' Companies ']")
+    private @FindBy(xpath = "//h3[text()=' Companies ']")
     WebElementFacade verifyredirection;
-    @FindBy(xpath = "//em[@title='Account Owner Name']")
+    private @FindBy(xpath = "//em[@title='Account Owner Name']")
     WebElementFacade accountownernameverify;
-    @FindBy(xpath = "(//*[text()='Account Owner Detail']/ancestor::div//a[contains(@class,'btn btn-sm btn-outline-brand btn-elevate btn-icon')])[2]")
+    private @FindBy(xpath = "(//*[text()='Account Owner Detail']/ancestor::div//a[contains(@class,'btn btn-sm btn-outline-brand btn-elevate btn-icon')])[2]")
     WebElementFacade editaccountownerdetails;
-    @FindBy(xpath = "(//span[text()='Inactive'])[1]")
+    private @FindBy(xpath = "(//span[text()='Inactive'])[1]")
     WebElementFacade comanyprofileinactive;
-    @FindBy(xpath = "(//span[text()='Active'])[1]")
+    private @FindBy(xpath = "(//span[text()='Active'])[1]")
     WebElementFacade comanyprofilenactive;
     @FindBy(xpath = "//select[@name='status']")
-    WebElementFacade selectStatus;
+    private WebElementFacade selectStatus;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
+    private WebElementFacade notificationContent;
+    @FindBy(xpath = "//*[text()='Account Owner Detail']/ancestor::div//a[contains(@class,'-o')]")
+    private WebElementFacade editbuttonforclientpersonel;
+
 
     private By deleteCompany(String companyname) {
         return By.xpath("//*[text()='" + companyname + "']/ancestor::tr//em[@title='Delete']");
     }
-
 
     private By editCompany(String companynameedit) {
         return By.xpath("//*[contains(text(),'" + companynameedit + "')]/ancestor::tr//em[@title='Edit']");
@@ -122,12 +118,10 @@ public class CompanyModulePage extends PageObject {
 
     private By getEditCompany(String editCompany) {
         return By.xpath("//span[text()='" + editCompany + "']");
-
     }
 
     private By getEditOwner(String editOwner) {
         return By.xpath("(//a[@class='" + editOwner + "'])[2]");
-
     }
 
     private By getEditAccountOwnerDetails(String verifydetails) {
@@ -136,20 +130,15 @@ public class CompanyModulePage extends PageObject {
 
     private By getActivateOrDeactivateTheCompany(String verifycompanystatus) {
         return By.xpath("//*[text()='" + verifycompanystatus + "']/ancestor::tr//em[@title= 'Deactivate']");
-
     }
 
     private By getDeactivateTheCompany(String verifycompanystatus) {
         return By.xpath("//*[text()='" + verifycompanystatus + "']/ancestor::tr//em[@title= 'Activate']");
-
     }
 
-
-    private By userClicksOnTheCompany(String deactivatefromdetailpage) {
-        return By.xpath("//*[text()='" + deactivatefromdetailpage + "']");
-
+    private By userClicksOnTheCompany(String clicksoncompany) {
+        return By.xpath("//*[text()='" + clicksoncompany + "']");
     }
-
 
     public void enterCredentialsForAdministrator(String username, String password) {
         try {
@@ -157,7 +146,6 @@ public class CompanyModulePage extends PageObject {
             enterpassword.sendKeys(password);
             waitFor(signinButton).click();
         } catch (Exception ignored) {
-
 
         }
     }
@@ -168,7 +156,6 @@ public class CompanyModulePage extends PageObject {
 
     public void verifyRedirection() {
         assertTrue(verfyredirection.waitUntilVisible().isDisplayed());
-
     }
 
     public void addDetailsForCreatingNewCompany(DataTable dataTable) throws IOException, ConfigurationException {
@@ -176,15 +163,17 @@ public class CompanyModulePage extends PageObject {
         name = data.get(0).get("Name") + RandomGenerator.randomAlphanumeric(3);
         LoadProperties.saveValueInPropertiesFile("name", name, "testData");
         email = data.get(0).get("Email") + RandomGenerator.randomEmailAddress(2) + "@mailinator.com";
-         contactNumber = data.get(0).get("Contact Number") + RandomGenerator.randomInteger(2);
-         accContactNumber = data.get(0).get("Account Owner Contact Number") + RandomGenerator.randomInteger(2);
+        contactNumber = data.get(0).get("Contact Number") + RandomGenerator.randomInteger(2);
+        accContactNumber = data.get(0).get("Account Owner Contact Number") + RandomGenerator.randomInteger(2);
         accEmail = data.get(0).get("Account Owner Email") + RandomGenerator.randomEmailAddress(2) + "@mailinator.com";
+        Zipcode = data.get(0).get("Zip Code") + RandomGenerator.randomEmailAddress(2);
+        Accountownername = data.get(0).get("Account Owner Name") + RandomGenerator.randomAlphabetic(2);
         entername.sendKeys(name);
         enteraddress.sendKeys(data.get(0).get("Address"));
-        enterzipcode.sendKeys(data.get(0).get("Zip Code"));
         entercontactnumber.sendKeys(contactNumber);
         enteremail.sendKeys(email);
-        accountownername.sendKeys(data.get(0).get("Account Owner Name"));
+        enterzipcode.sendKeys(Zipcode);
+        accountownername.sendKeys(Accountownername);
         accountownernemail.sendKeys(accEmail);
         enterownercontactnumber.sendKeys(accContactNumber);
     }
@@ -203,13 +192,11 @@ public class CompanyModulePage extends PageObject {
         writevalueintextbox.sendKeys("DELETE");
         confirmbutton.click();
         waitABit(3000);
-
     }
 
     public void userclicksOnTheEditButton() {
         String companyedit = getValueFromPropertyFile("testData", "name");
         element(editCompany(companyedit)).waitUntilVisible().click();
-
     }
 
     public void userEditTheCompanyDetails() {
@@ -226,7 +213,6 @@ public class CompanyModulePage extends PageObject {
         accountownername.sendKeys(Accountownername);
         accountownernemail.sendKeys(Accountowneremail);
         enterownercontactnumber.sendKeys(Accountownercontactnumber);
-
     }
 
     public void checkValidationsOnAddCompany(DataTable validation) {
@@ -240,7 +226,6 @@ public class CompanyModulePage extends PageObject {
         Accountowneremail = data.get(0).get("accountOwnerEmail");
         Accountownercontactnumber = data.get(0).get("accountOwnerContactNumber");
         enterInvalidValueInTheFields(Name, Address, Zipcode, contactnumber, email, Accountownername, Accountowneremail, Accountownercontactnumber);
-
     }
 
     public void userCliksOnCancelButtonOfAddCompanyPage() {
@@ -256,7 +241,6 @@ public class CompanyModulePage extends PageObject {
     public void dataVerify() {
         String comName = element(getEditCompany(name)).getText();
         assertEquals(comName, name);
-
     }
 
     public void userCliksOnTheEditButtonForAccountOwnerDetails() {
@@ -265,55 +249,16 @@ public class CompanyModulePage extends PageObject {
     }
 
     public void userEditTheOwnerDetails(DataTable editownerdetails) {
-        Accountownername = editownerdetails.asMaps(String.class, String.class).get(0).get("Account Owner Name")+RandomGenerator.randomAlphabetic(3);
-        Accountowneremail = editownerdetails.asMaps(String.class, String.class).get(0).get("Account Owner Email") + RandomGenerator.randomEmailAddress(2) + "@mailinator.com";
-        Accountownercontactnumber = editownerdetails.asMaps(String.class, String.class).get(0).get("Account Owner Contact Number")+RandomGenerator.randomInteger(3);
+        EditAccountowneremail = editownerdetails.asMaps(String.class, String.class).get(0).get("Account Owner Email") + RandomGenerator.randomEmailAddress(2) + "@mailinator.com";
+        EditAccountownercontactnumber = editownerdetails.asMaps(String.class, String.class).get(0).get("Account Owner Contact Number") + RandomGenerator.randomInteger(3);
         waitFor(accountownername).waitUntilVisible().clear();
         waitFor(accountownername).waitUntilVisible().sendKeys(Accountownername);
         waitABit(2000);
         waitFor(accountownernemail).waitUntilVisible().clear();
-        waitFor(accountownernemail).waitUntilVisible().sendKeys(Accountowneremail);
+        waitFor(accountownernemail).waitUntilVisible().sendKeys(EditAccountowneremail);
         waitFor(enterownercontactnumber).waitUntilVisible().clear();
-        waitFor(enterownercontactnumber).waitUntilVisible().sendKeys(Accountownercontactnumber);
+        waitFor(enterownercontactnumber).waitUntilVisible().sendKeys(EditAccountownercontactnumber);
 
-
-    }
-
-    public void signout() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(signoutLink).click();
-    }
-
-    public void openLoginPage() {
-        getDriver().manage().deleteAllCookies();
-        openUrl(conf.getString("base_url"));
-        getDriver().manage().window().maximize();
-        try {
-            signout();
-        } catch (Exception e) {
-            log.info("Logout button is not available");
-        }
-    }
-
-    public void loginAs(String username) {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(userName).sendKeys(username);
-        if (username.equals("admin"))
-            waitFor(password).sendKeys("Password@123");
-        else if (username.equals("shashank.singh@successive.tech"))
-            waitFor(password).sendKeys("1234567890");
-        else if (username.equals("payal.gaur@successive.tech"))
-            waitFor(password).sendKeys("1234567890");
-        waitFor(signinButton).click();
-    }
-
-    public void enterLogindetails(String emailId, String pwd) {
-        clearEnterText(enterusername, emailId);
-        clearEnterText(enterpassword, pwd);
-        waitFor(signinButton).click();
-    }
-
-    public void clearEnterText(WebElementFacade by, String inputText) {
-        element(by).clear();
-        element(by).sendKeys(inputText);
     }
 
     public void verifyTheDetailsOfTheEditCompany() {
@@ -324,20 +269,19 @@ public class CompanyModulePage extends PageObject {
     public void crossVeriyTheOwnerDetails() {
         element(verifyCompany(Accountownername)).waitUntilVisible();
         element(verifyCompany(Accountownername)).isDisplayed();
-
-
+        element(verifyCompany(EditAccountownercontactnumber)).waitUntilVisible();
+        element(verifyCompany(EditAccountownercontactnumber)).isDisplayed();
+        element(verifyCompany(EditAccountownercontactnumber)).waitUntilVisible();
+        element(verifyCompany(EditAccountowneremail)).isDisplayed();
     }
 
     public void userCheckTheCompanyStatus() {
         if (comanyprofilenactive.isVisible()) {
             String companystatus = getValueFromPropertyFile("testData", "name");
             element(getActivateOrDeactivateTheCompany(companystatus)).waitUntilVisible().click();
-
-
         }
 
     }
-
 
     public WebElement searchText() {
         return waitFor(searchCompany);
@@ -354,27 +298,11 @@ public class CompanyModulePage extends PageObject {
 
     }
 
-
     public void verifyCompanyProfileStatusActive() {
         if (comanyprofileinactive.isVisible()) {
             String companyactivestatusstatus = getValueFromPropertyFile("testData", "name");
             element(getDeactivateTheCompany(companyactivestatusstatus)).waitUntilVisible().click();
-
         }
-    }
-
-    public void userClicksOnEachTabsShowingOnCompanyDetailpage() {
-        List<WebElement> tabs = getDriver().findElements(By.xpath("//h4[@class='kt-widget24__title text-center fs-20']//a"));
-        int Size = tabs.size();
-        for (int i = 0; i < Size; i++) {
-            WebElement tab = getDriver().findElement(By.xpath("//h4[@class='kt-widget24__title text-center fs-20']//a"));
-            tab.click();
-            getDriver().navigate().back();
-
-
-        }
-
-
     }
 
     public void VerifyTheActiveStatus() {
@@ -389,7 +317,6 @@ public class CompanyModulePage extends PageObject {
         for (int i = 0; i < Size; i++) {
             System.out.println(count.get(i).getText());
 
-
         }
     }
 
@@ -398,53 +325,81 @@ public class CompanyModulePage extends PageObject {
         Select active = new Select(selectStatus);
         active.selectByVisibleText("Inactive");
     }
+
     public void verifyAllTheInActiveStatusVisibleToTheuser() {
         List<WebElement> inactive = getDriver().findElements(By.xpath("//span[@class='badge badge-danger']"));
         int Size = inactive.size();
         for (int i = 0; i < Size; i++) {
             System.out.println(inactive.get(i).getText());
-
-
         }
     }
 
     public void navigationPage() {
         String value = getValueFromPropertyFile("testData", "Total_Link");
         int inum = Integer.parseInt(value);
-        for (int i = 2; i <= inum; i++) {
+        for (int i = 1; i <= inum; i++) {
             String currentLink = getValueFromPropertyFile("testData", "Link_" + i);
-            $(" //a[text()=' " +  currentLink +"']/ancestor::h4").click();
-            String header = $("//*[contains(@class,'d-title')]").getText();
-//            Assert.assertEquals(header, currentLink);
+            $(" //*[contains(text(),'" + currentLink + "')]/ancestor::h4").click();
+            String currentHeader = getValueFromPropertyFile("testData", "head_" + i);
+            String header = $("//*[@class='row' or @class='kt-portlet__head-title' or @class='kt-subheader__breadcrumbs-link']/..//*[contains(text(),'" + currentHeader + "')]").getText();
+            Assert.assertEquals(currentHeader, header);
             getDriver().navigate().back();
-
         }
     }
-        public void clickOnCompany () {
-            $("//span[text()='testerbC6']").click();
-        }
-        public void UserClicksOnTheCompany(){
-            String comp = getValueFromPropertyFile("testData", "name");
-            element(userClicksOnTheCompany(comp)).waitUntilVisible().click();
-
-        }
-        public void userVerifyTheCompanyDetails(){
-            element(verifyCompany(name)).waitUntilVisible();
-            element(verifyCompany(name)).isDisplayed();
-            element(verifyCompany(email)).waitUntilVisible();
-            element(verifyCompany(email)).isDisplayed();
-//            element(verifyCompany(contactNumber)).waitUntilVisible();
-//            element(verifyCompany(contactNumber)).isDisplayed();
-
-        }
-
-    private By verifyCompany(String nameCompany){
-        return By.xpath("//div[contains(@class,'col-md-12 detail-form ng-star-inserted')]//div//*[contains(text(),'"+ nameCompany +"')]");
+    public void userVerifyTheCompanyDetails() {
+        element(verifyCompany(name)).waitUntilVisible();
+        element(verifyCompany(name)).isDisplayed();
+        element(verifyCompany(email)).waitUntilVisible();
+        element(verifyCompany(email)).isDisplayed();
+        element(verifyCompany(contactNumber)).waitUntilVisible();
+        element(verifyCompany(contactNumber)).isDisplayed();
+        element(verifyCompany(accContactNumber)).waitUntilVisible();
+        element(verifyCompany(accContactNumber)).isDisplayed();
+        element(verifyCompany(accEmail)).waitUntilVisible();
+        element(verifyCompany(accEmail)).isDisplayed();
+        element(verifyCompany(Zipcode)).waitUntilVisible();
+        element(verifyCompany(Zipcode)).isDisplayed();
+        element(verifyCompany(Accountownername)).waitUntilVisible();
+        element(verifyCompany(Accountownername)).isDisplayed();
 
     }
 
-
+    private By verifyCompany(String nameCompany) {
+        return By.xpath("//*[contains(@class,'col-md-12 detail-form ng-star-inserted')]//div//*[contains(text(),'" + nameCompany + "')]");
     }
+
+    public void verifyAddCompanyNotification() {
+        String addCompanyNotification = name + " was created by an admin. Tap to view details.";
+        Assert.assertEquals(addCompanyNotification, notificationContent.getText());
+    }
+
+    public void verifyDeactivatedCompanyNotification() {
+        String deactivateCompanyNotification = name + " has been deactivated.";
+        Assert.assertEquals(deactivateCompanyNotification, notificationContent.getText());
+    }
+
+    public void verifyDeleteCompanyNotification() {
+        String deleteCompanyNotification = name + " has been deleted.";
+        Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
+    }
+
+    public void checkEditButtonForClientPersoneel() {
+        if (editbuttonforclientpersonel.isDisplayed()) {
+            editbuttonforclientpersonel.click();
+        }
+    }
+
+    public void checkEditButtonForClientAdmin() {
+            editbuttonforclientpersonel.click();
+        }
+    }
+
+
+
+
+
+
+
 
 
 

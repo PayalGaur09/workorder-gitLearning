@@ -24,55 +24,57 @@ public class ProfilePage extends PageObject {
     public static String FirstName;
     public static String EmailAdd;
     public static String MobNo;
+
     @FindBy(xpath = "//span[text()='personnel ']")
-    WebElementFacade ownername;
+     private WebElementFacade ownername;
+    @FindBy(xpath = "//h3[contains(text(),'My Profile')] ")
+     private WebElementFacade profileHeading;
     @FindBy(xpath = "//span[text()='My Profile']")
-    WebElementFacade profile;
+    private WebElementFacade profile;
     @FindBy(xpath = "//button[text()=' Action ']/..")
-    WebElementFacade actionbutton;
+    private WebElementFacade actionbutton;
     @FindBy(xpath = "//h3[text()=' Edit Profile ']")
-    WebElementFacade verifyeditprofile;
+    private WebElementFacade verifyeditprofile;
     @FindBy(xpath = "//input[@name='firstName']")
-    WebElementFacade firstName;
+     private WebElementFacade firstName;
     @FindBy(xpath = "//input[@name='email']")
-    WebElementFacade emailAdd;
+    private WebElementFacade emailAdd;
     @FindBy(xpath = "//input[@name='phone']")
-    WebElementFacade mobNo;
+     private WebElementFacade mobNo;
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElementFacade submitbutton;
+    private WebElementFacade submitbutton;
     @FindBy(xpath = "//button[text()='Cancel']")
-    WebElementFacade cancelbutton;
+     private WebElementFacade cancelbutton;
     @FindBy(xpath = "//h3[text()=' My Profile ']")
-    WebElementFacade myprofile;
+     private WebElementFacade myprofile;
     @FindBy(name = "firstName")
-    WebElementFacade firstname;
+    private WebElementFacade firstname;
     @FindBy(name = "email")
-    WebElementFacade email;
+     private WebElementFacade email;
     @FindBy(name = "phone")
-    WebElementFacade phone;
+    private WebElementFacade phone;
     @FindBy(xpath = "//button[text()='Submit']")
-    WebElementFacade submitbutton1;
+    private WebElementFacade submitbutton1;
     @FindBy(xpath = "//input[@name='currentPassword']")
-    WebElementFacade currentpassword;
+    private WebElementFacade currentpassword;
     @FindBy(xpath = "//input[@name='newPassword']")
-    WebElementFacade newpassword;
+    private WebElementFacade newpassword;
     @FindBy(xpath = "//input[@name='confirmPassword']")
-    WebElementFacade confirmpassword;
+    private WebElementFacade confirmpassword;
     @FindBy(xpath = "//div[text()=' Please enter correct old password ']")
-    WebElementFacade oldpasswordincorrect;
+    private WebElementFacade oldpasswordincorrect;
     @FindBy(xpath = "//a[text()='Cancel']")
-    WebElementFacade changepasscancelbutton;
+    private WebElementFacade changepasscancelbutton;
     @FindBy(xpath = "//h3[text()=' My Profile ']")
-    WebElementFacade verifyprofilepage;
+    private WebElementFacade verifyprofilepage;
     @FindBy(xpath = "(//em[@class='fa fa-edit cursor-pointer'])[1]")
-    WebElementFacade editbtn;
+    private WebElementFacade editbtn;
     @FindBy(xpath = "(//button[contains(text(),' Change ')])")
-    WebElementFacade changeprofilepicture;
+    private WebElementFacade changeprofilepicture;
     @FindBy(xpath = "//button[text()='Upload']")
     private WebElementFacade uploadimagebutton;
     @FindBy(xpath = "//button[contains(text(),' Remove ')]")
     private WebElementFacade removeprofilepicture;
-
 
     private By validationHeader(String header) {
         return By.xpath("//*[contains(text(),'" + header + "')]/..");
@@ -89,12 +91,9 @@ public class ProfilePage extends PageObject {
     private By validationPopup(String successMessage) {
         return By.xpath("//*[contains(text(),'" + successMessage + "')]/..");
     }
-
-
     private By selectButton(String textbutton) {
         return By.xpath("//span[text()='" + textbutton + "']");
     }
-
 
     private By chnagePasswordValidation(String option) {
         return By.xpath("//span[text()='" + option + "']");
@@ -108,6 +107,9 @@ public class ProfilePage extends PageObject {
         return By.xpath("//span[text()='" + SideMenu + "']");
     }
 
+    private By verifyEditProfile(String editprofile) {
+        return By.xpath("//*[text()='" + editprofile + "']");
+    }
 
     public void setOwnername() {
         ownername.click();
@@ -128,7 +130,6 @@ public class ProfilePage extends PageObject {
     public void actionButton() {
         waitABit(2000);
         actionbutton.click();
-
     }
 
     public void editbutton(String textbutton) {
@@ -140,7 +141,7 @@ public class ProfilePage extends PageObject {
     }
 
     public void editProfile(DataTable Credentials) {
-        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("Name");
+        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
         EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
         MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
         waitFor(firstName).waitUntilVisible().clear();
@@ -155,9 +156,7 @@ public class ProfilePage extends PageObject {
 
     public void submitButton() {
         submitbutton.click();
-
     }
-
     public void cancelbutton() {
         cancelbutton.click();
     }
@@ -191,19 +190,14 @@ public class ProfilePage extends PageObject {
         waitFor(currentpassword).waitUntilVisible().sendKeys(CurrentPassword);
         waitFor(newpassword).waitUntilVisible().sendKeys(NewPassword);
         waitFor(confirmpassword).waitUntilVisible().sendKeys(ConfirmPassword);
-
     }
 
     public void invalidoldPassword() {
         oldpasswordincorrect.isDisplayed();
     }
-
-
     public void changePasscancelbutton() {
         changepasscancelbutton.click();
-
     }
-
     public void verifyProfilepage() {
         Assert.assertTrue(verifyprofilepage.waitUntilVisible().isDisplayed());
     }
@@ -212,8 +206,6 @@ public class ProfilePage extends PageObject {
         Assert.assertTrue(element(chnagePasswordValidation(option)).waitUntilVisible().isDisplayed());
 
     }
-
-
     public void cancelButton(String button) {
         element(cancelMessage(button)).waitUntilVisible().isEnabled();
         element(cancelMessage(button)).waitUntilVisible().click();
@@ -232,7 +224,6 @@ public class ProfilePage extends PageObject {
         enterInvalidCredentials(CurrentPassword, NewPassword, ConfirmPassword);
 
     }
-
     public void enterInvalidCredentials(String CurrentPassword, String NewPassword, String ConfirmPassword) {
         currentpassword.sendKeys(CurrentPassword);
         newpassword.sendKeys(NewPassword);
@@ -240,13 +231,10 @@ public class ProfilePage extends PageObject {
         submitbutton.click();
     }
 
-
     public void verifyMessage(String ErrorMessage) {
         waitABit(2000);
-
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
-
 
     public void editAllContentDetails(DataTable Credentials) {
         FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
@@ -261,21 +249,31 @@ public class ProfilePage extends PageObject {
         waitFor(mobNo).waitUntilVisible().clear();
         waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
     }
+    public void userVerifyTheProfileDetails() {
+        element(verifyEditProfile(FirstName)).waitUntilVisible();
+        element(verifyEditProfile(FirstName)).isDisplayed();
+        element(verifyEditProfile(EmailAdd)).waitUntilVisible();
+        element(verifyEditProfile(EmailAdd)).isDisplayed();
+        element(verifyEditProfile(MobNo)).waitUntilVisible();
+        element(verifyEditProfile(MobNo)).isDisplayed();
+    }
     public void changeProfilePicture() throws IOException {
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
         getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(uploadimagebutton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(uploadimagebutton).click();
     }
-    public void userRemovesTheProfilePicture(){
+
+    public void userRemovesTheProfilePicture() {
         waitABit(2000);
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
         waitABit(2000);
-
-
-
     }
+
+    public void profileHeading() {
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
     }
+}
 
 
 

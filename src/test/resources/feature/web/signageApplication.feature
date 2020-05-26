@@ -156,7 +156,6 @@ Feature: Functionality of signage application
     And user clicks on the delete button
     Then Success message " Signage content has been deleted successfully. " should be displayed
 
-
   Scenario: To verify when user clicks on the cancel button of the delete popup
     Given user is on the manage kiosk page of workorder application
     And user selects the tag kiosk page
@@ -189,7 +188,6 @@ Feature: Functionality of signage application
     Then user enters the title and description again
     And user clicks  on the submit button
     Then Verify the error message
-
 
   Scenario: Presence of pagination of landing page plan list
     Given user is on the manage kiosk page of workorder application

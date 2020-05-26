@@ -1,7 +1,6 @@
 package steps.web;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,20 +8,19 @@ import cucumber.api.java.en.When;
 import net.serenitybdd.core.pages.PageObject;
 import org.apache.commons.configuration.ConfigurationException;
 import pages.CompanyModulePage;
+import pages.UserSigninPage;
 import utilities.LoadProperties;
 
 import java.io.IOException;
 
 
-
 public class CompanyModuleSteps extends PageObject {
     CompanyModulePage companysigninpage;
+    private UserSigninPage userSigninPage;
 
     @When("^User sign in with valid credential of administrator$")
     public void userSignInWithValidCredentialOfAdministrator() {
         companysigninpage.enterCredentialsForAdministrator("admin", "Password@123");
-
-
     }
 
     @When("^user clicks on the newcompany button$")
@@ -35,8 +33,8 @@ public class CompanyModuleSteps extends PageObject {
         companysigninpage.verifyRedirection();
     }
 
-    @And("^user fill the details for crating a new company$")
-    public void userFillTheDetailsForCratingANewCompany(DataTable dataTable) throws IOException, ConfigurationException {
+    @And("^user fill the details for creating a new company$")
+    public void userFillTheDetailsForCreatingANewCompany(DataTable dataTable) throws IOException, ConfigurationException {
         companysigninpage.addDetailsForCreatingNewCompany(dataTable);
     }
 
@@ -80,54 +78,26 @@ public class CompanyModuleSteps extends PageObject {
     @Then("^user Should redirects to the companypage$")
     public void userShouldRedirectsToTheCompanypage() {
         companysigninpage.verifyTheRedirection();
-
     }
 
     @And("^user edit the Company details details$")
     public void userEditTheCompanyDetailsDetails() {
         companysigninpage.userEditTheCompanyDetails();
-
     }
-
     @Then("^verify data on company table$")
     public void verifyDataOnCompanyTable() {
         companysigninpage.dataVerify();
     }
-
     @And("^user clicks on the edit button for account owner details$")
     public void userClicksOnTheEditButtonForAccountOwnerDetails() {
         companysigninpage.userCliksOnTheEditButtonForAccountOwnerDetails();
     }
-
     @And("^user edit  the details$")
     public void userEditTheDetails(DataTable editownerdetails) {
         companysigninpage.userEditTheOwnerDetails(editownerdetails);
     }
-
-    @Given("^User is on work order Login in page$")
-    public void userIsOnWorkOrderLoginInPage() {
-        companysigninpage.openLoginPage();
-    }
-
-    @And("^I login with '(.*)'$")
-    public void iLoginWithAdmin(String username) throws Throwable {
-        companysigninpage.loginAs(username);
-    }
-
-    @When("^user enter username and password$")
-    public void iEnterUsernameAndPassword(DataTable inputs) throws Throwable {
-        if (inputs.asMaps(String.class, String.class).get(0).get("userEmail").equalsIgnoreCase("admin")) {
-            companysigninpage.enterLogindetails(LoadProperties.getProp("admin", "testData"), inputs.asMaps(String.class, String.class).get(0).get("password"));
-        } else if (inputs.asMaps(String.class, String.class).get(0).get("userEmail").equalsIgnoreCase("clientpersonal")) {
-            companysigninpage.enterLogindetails(LoadProperties.getProp("clientpersonal", "testData"), inputs.asMaps(String.class, String.class).get(0).get("password"));
-
-        } else if (inputs.asMaps(String.class, String.class).get(0).get("userEmail").equalsIgnoreCase("accountowner")) {
-            companysigninpage.enterLogindetails(LoadProperties.getProp("accountowner", "testData"), inputs.asMaps(String.class, String.class).get(0).get("password"));
-        }
-    }
-
-    @And("^user clicks on the edit company$")
-    public void userClicksOnTheEditCompany() {
+    @And("^user clicks on the company$")
+    public void userClicksOnTheCompany() {
         companysigninpage.verifyTheDetailsOfTheEditCompany();
     }
 
@@ -145,14 +115,10 @@ public class CompanyModuleSteps extends PageObject {
     public void userClickOnTheDeactivateButtonForTheCompany() {
         companysigninpage.userCheckTheCompanyStatus();
     }
-
-
     @When("^search filter by company$")
     public void searchFilterByCompany() throws Throwable {
         companysigninpage.searchText().sendKeys(LoadProperties.getProp("name", "testData"));
-
     }
-
     @And("^Verify Company on list$")
     public void verifyCompanyOnList() throws Throwable {
         companysigninpage.verifyCompanyOnList();
@@ -167,17 +133,9 @@ public class CompanyModuleSteps extends PageObject {
     public void verifyDataOnList() throws Throwable {
         companysigninpage.noData();
     }
-
-
     @And("^user click on the activate button for the company$")
     public void userClickOnTheActivateButtonForTheCompany() {
         companysigninpage.verifyCompanyProfileStatusActive();
-    }
-
-
-    @When("^User click on company$")
-    public void userClickOnCompany() throws Throwable {
-        companysigninpage.clickOnCompany();
     }
 
     @When("^user select the status active from the dropdown$")
@@ -200,24 +158,51 @@ public class CompanyModuleSteps extends PageObject {
         companysigninpage.navigationPage();
     }
 
-    @Then("^All the staus inctive should be displayed to the user$")
-    public void allTheStausInctiveShouldBeDisplayedToTheUser() {
+    @Then("^All the staus inactive should be displayed to the user$")
+    public void allTheStausInactiveShouldBeDisplayedToTheUser() {
         companysigninpage.verifyAllTheInActiveStatusVisibleToTheuser();
 
     }
-
-
 
     @And("^cross verify the create details$")
     public void crossVerifyTheCreateDetails() {
         companysigninpage.userVerifyTheCompanyDetails();
     }
 
-    @And("^User Clicks On the Company$")
-    public void userClicksOnTheCompany() {
-        companysigninpage.UserClicksOnTheCompany();
+
+    @Then("^Notification for company creation is displayed$")
+    public void notificationForCompanyCreationIsDisplayed() {
+        companysigninpage.verifyAddCompanyNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Notification for Existing Company is  Deactivated is displayed$")
+    public void notificationForExistingCompanyIsDeactivatedIsDisplayed() {
+        companysigninpage.verifyDeactivatedCompanyNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Notification for Existing Company Deleted is displayed$")
+    public void notificationForExistingCompanyDeletedIsDisplayed() {
+        companysigninpage.verifyDeleteCompanyNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Edit button should not  visible to the  client personel$")
+    public void editButtonShouldVisibleToTheClientPersonel() {
+        companysigninpage.checkEditButtonForClientPersoneel();
+    }
+
+    @Then("^Edit button should visible to the  client admin$")
+    public void editButtonShouldVisibleToTheClientAdmin() {
+        companysigninpage.checkEditButtonForClientAdmin();
+
     }
 }
+
+
+
+
 
 
 

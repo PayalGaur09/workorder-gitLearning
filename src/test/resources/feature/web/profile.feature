@@ -1,42 +1,38 @@
-@Phase1
+@Phase3
 
 Feature: Functionality of profile
 
   Background:
     Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
-    Then User tap on the "Users" link from side navigation
+    Then User tap on the "My Profile" link from side navigation
 
   Scenario:Verify the details showings in my profile
-    Given user is on the dashboard page of workorder application
-    And User click on side menu of "My Profile" button
+    Given user is on the profile page
     Then verify the profile details
       | First Name: | Last Name: | Email: | Phone: | Role: | Status: | Created On: | Company Account ID: | Facility Assigned: |
 
-  Scenario:Edit the profile and verify that profile haas been updated
+  Scenario:Edit the profile and verify that profile haas been updated and cross verify the Edit profile details
     Given user is on the profile page
-    And User click on side menu of "My Profile" button
     And  user click on the action button
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
     And Edit the profile details
-      | First Name | Email                          | Phone       |
-      | Shashank   | shreya.sharma@successive.tech | 98475937456 |
+      | First Name | Email                  | Phone       |
+      | payal gaur | payalgaurche@gmail.com | 98475937456 |
     And  User clicks on submit button
     Then Success message " Your profile has been updated successfully. " should be displayed
+    Then user verify the Edit profile
 
   Scenario:User is on edit profile page and clicking on the cancel button
-    Given user is on the dashboard page of workorder application
-    And User click on side menu of "My Profile" button
+    Given user is on the profile page
     And  user click on the action button
     When I  clicking  on the "Edit" button
     And  User click on "Cancel" button
     Then user redirects to the profile page
 
   Scenario:To verify the validation on Edit profile page
-    Given user is on the dashboard page of workorder application
-    And User click on side menu of "My Profile" button
-    And  user click on the action button
+    Given  user click on the action button
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
     And   user erase all the data from all the input box
@@ -45,7 +41,7 @@ Feature: Functionality of profile
       | First name is required | Email is required | Phone is required |
 
   Scenario:To verify when user enters wrong password in old password and enters same password in new password and confirm password
-    And User click on side menu of "My Profile" button
+    Given user is on the profile page
     And  user click on the action button
     When I  clicking  on the " Change Password " button
     When  User user enter incorrect password in the old password and enter same password in the new password and confirm passwordfield
@@ -55,25 +51,21 @@ Feature: Functionality of profile
     Then Error message should come "Please enter correct old password"
 
   Scenario: To verify the functionality of cancel button of change password field
-    And User click on side menu of "My Profile" button
-    And  user click on the action button
+    Given  user click on the action button
     When I  clicking  on the " Change Password " button
     And user tap on the cancel button
     Then user should redirects to the profile page
 
   Scenario: To verify the validations on the change password field
-    And User click on side menu of "My Profile" button
-    And  user click on the action button
-    When I  clicking  on the " Change Password " button
+    When  user click on the action button
+    And I  clicking  on the " Change Password " button
     And user taps on the submit button
     Then Error message should be displayed
       | Please enter old password | Please enter new password | Please enter new password |
 
   Scenario Outline: Change Password with invalid credentials
-    Given user is on the dashboard page of workorder application
-    And User click on side menu of "My Profile" button
-    And  user click on the action button
-    When I  clicking  on the " Change Password " button
+    When  user click on the action button
+    And I  clicking  on the " Change Password " button
     When User enter change password details
       | currentPassword   | newPassword   | confirmPassword   |
       | <currentPassword> | <newPassword> | <confirmPassword> |
@@ -86,10 +78,9 @@ Feature: Functionality of profile
       | 12345678        | 98765432    | 12444444        | New password and confirm password does not match |
       | 1234            | 1456        | 2354            | Minimum 8 characters are required                |
 
-    Scenario: To verify the upload, remove and change functionality of profile picture
-      Given user is on the dashboard page of workorder application
-      And User click on side menu of "My Profile" button
-      Then User upload new profile picture
-      Then user change the profile picture
-      Then user  remove the profile picture
+  Scenario: To verify the upload, remove and change functionality of profile picture
+    Given user is on the profile page
+    Then User upload new profile picture
+    Then user change the profile picture
+    Then user  remove the profile picture
 

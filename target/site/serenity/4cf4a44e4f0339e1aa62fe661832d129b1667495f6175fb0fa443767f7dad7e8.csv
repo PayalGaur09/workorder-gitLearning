@@ -1,8 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"Functionality of  application","To verify redirection on detailed view of manage kiosk page","SUCCESS","2020-05-21T13:38:31.2762173+05:30[Asia/Calcutta]","0.0","19.44"
-"Functionality of  application","To verify the rediection of move in application after clicks on the manage and configure button","SUCCESS","2020-05-21T13:38:50.7244139+05:30[Asia/Calcutta]","0.0","17.4"
-"Functionality of  application","To verify when user upload the content in Move-InApplication","SUCCESS","2020-05-21T13:39:08.1299047+05:30[Asia/Calcutta]","0.0","34.71"
-"Functionality of  application","To check the functionality of pagination for amenties and icon page","SUCCESS","2020-05-21T13:39:42.8427699+05:30[Asia/Calcutta]","0.0","18.22"
-"Functionality of  application","To verify the functionality when user clicks on the chechbox of Driving license number","SUCCESS","2020-05-21T13:40:41.3161492+05:30[Asia/Calcutta]","0.0","20.02"
-"Functionality of  application","To verify the functionality checkbox of dropdown view","SUCCESS","2020-05-21T13:41:01.3338536+05:30[Asia/Calcutta]","0.0","19.77"
-"Functionality of  application","To verify the functionality of enablity of toggle button and apply changes button","SUCCESS","2020-05-21T13:41:21.109066+05:30[Asia/Calcutta]","0.0","14.54"

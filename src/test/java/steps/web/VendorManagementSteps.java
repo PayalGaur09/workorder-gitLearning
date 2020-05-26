@@ -1,11 +1,11 @@
 package steps.web;
 
 import com.typesafe.config.Config;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
 import pages.VendorManagementPage;
 import utilities.ConfigLoader;
@@ -26,14 +26,14 @@ public class VendorManagementSteps {
     }
 
     @When("^User enters all the field$")
-    public void userEntersAllTheField() throws IOException {
+    public void userEntersAllTheField() throws IOException, ConfigurationException {
         users.uploadProfilePicture();
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
     }
 
     @When("^User updates all the field of vendor form$")
-    public void userUpdatesAllTheFieldOfVendorForm() {
+    public void userUpdatesAllTheFieldOfVendorForm() throws IOException, ConfigurationException {
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
     }
@@ -189,10 +189,9 @@ public class VendorManagementSteps {
         vendor.clickOnDeleteButton();
     }
 
-
-    @Then("^Add, Edit and delete icon should not be visible to client personnel$")
-    public void addEditAndDeleteIconShouldNotBeVisibleToClientPersonnel() {
-        vendor.verifyEditDeleteForClientPersonnel();
+    @Then("^Add Vendor button should not be visible to client personnel$")
+    public void addVendorButtonShouldNotBeVisibleToClientPersonnel() {
+        vendor.verifyAddButtonForClientPersonnel();
     }
 
 //    @Then("^Pagination is working or not$")
