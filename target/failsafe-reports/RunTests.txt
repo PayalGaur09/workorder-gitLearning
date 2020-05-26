@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: RunTests
 -------------------------------------------------------------------------------
-Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 332.008 s - in RunTests
+Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 330.351 s - in RunTests
