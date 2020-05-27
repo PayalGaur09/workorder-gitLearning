@@ -8,7 +8,6 @@ import net.thucydides.core.pages.PageObject;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class UserSigninPage extends PageObject {
 
     @FindBy(xpath = "//input[@name='userName']")
@@ -26,22 +25,22 @@ public class UserSigninPage extends PageObject {
 
 
     private By validationOnLoginScreen(String errorMessage) {
-        return By.xpath("//div[contains(text(),'"+errorMessage+"')]");
+        return By.xpath("//div[contains(text(),'" + errorMessage + "')]");
     }
 
 
     public void enterCredentials(String userEmail, String pwd) {
         try {
-                userName.sendKeys(userEmail);
-                password.sendKeys(pwd);
-                withTimeoutOf(20,TimeUnit.SECONDS).waitFor(signinButton).click();
-        }
-        catch (Exception ignored){
+            userName.sendKeys(userEmail);
+            password.sendKeys(pwd);
+            waitABit(2000);
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(signinButton).click();
+            waitABit(1000);
+        } catch (Exception ignored) {
 
         }
 
     }
-
 
 
     public void verifyHomepage() {
@@ -49,15 +48,16 @@ public class UserSigninPage extends PageObject {
     }
 
     public void signout() {
-        withTimeoutOf(10,TimeUnit.SECONDS).waitFor(signoutLink).click();
+        waitABit(1000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(signoutLink).click();
     }
 
     public void errorForInvalidCredentials() {
-        waitFor(invalidCredentials).withTimeoutOf(20,TimeUnit.SECONDS).isDisplayed();
+        waitFor(invalidCredentials).withTimeoutOf(20, TimeUnit.SECONDS).isDisplayed();
     }
 
     public void validationMessage(String err) {
-        element(validationOnLoginScreen(err)).withTimeoutOf(20,TimeUnit.SECONDS).isDisplayed();
+        element(validationOnLoginScreen(err)).withTimeoutOf(20, TimeUnit.SECONDS).isDisplayed();
     }
 }
 

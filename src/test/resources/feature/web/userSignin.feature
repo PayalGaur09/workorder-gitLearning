@@ -12,12 +12,13 @@ Feature: Login functionality for Work Order Web
     And User logout from work order platform
 
     Examples:
-      | userEmail                  | password     |
-      | admin                      | Password@123 |
-      | abhishek@mailinator.com    | 1234567890   |
-      | personnel@mailinator.com   | 1234567890   |
-      | shashank.g@mailinator.com  | 1234567890   |
-      | payal.gaur@successive.tech | 1234567890   |
+      | userEmail                      | password     |
+      | admin                          | Password@123 |
+      | abhishek.tyagi@mailinator.com  | 1234567890   |
+      | shefali@mailinator.com         | 1234567890   |
+      | payalgaurche@gmail.com         | 1234567890   |
+      | arpittyagi@mailinator.com      | 1234567890   |
+      | anubhutipurohit@mailinator.com | 1234567890   |
 
 
   Scenario: Invalid User Login

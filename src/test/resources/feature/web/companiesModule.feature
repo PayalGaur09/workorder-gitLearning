@@ -1,4 +1,5 @@
-@Comp
+@Phase5
+
 Feature: Company module
 
   Background:
@@ -66,14 +67,8 @@ Feature: Company module
     And user delete the company
     And user clicks on the OK button for deleting the company
     Then Success message " Company has been deleted successfully. " should be displayed
-    Given User logout from work order platform
-    When User sign in with valid credential of Ten Fed Admin
-    When User tap on the "Companies" link from side navigation
-    When User tap on the bell icon
-    Then Notification for Existing Company Deleted is displayed
 
-  Scenario: To verify the functionality for edit the company in case when the user is login with admin
-    Given user is on the company page of work order application
+  Scenario: To verify the functionality for edit the company
     When user clicks on the newcompany button
     And user fill the details for creating a new company
       | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
@@ -86,6 +81,7 @@ Feature: Company module
     And user clicks on the submit
     Then Success message " Company has been updated successfully. " should be displayed
     Then verify data on company table
+
 
   Scenario Outline: To verify the validations for the fields on add company page in case when the user is login with admin
     Given user is on the company page of work order application

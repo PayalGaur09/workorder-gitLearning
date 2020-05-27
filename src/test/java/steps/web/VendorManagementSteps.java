@@ -1,12 +1,14 @@
 package steps.web;
 
 import com.typesafe.config.Config;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
+import pages.UserSigninPage;
 import pages.VendorManagementPage;
 import utilities.ConfigLoader;
 
@@ -16,8 +18,9 @@ import java.util.List;
 public class VendorManagementSteps {
 
     Config conf = ConfigLoader.load();
-    VendorManagementPage vendor;
-    UserManagementPage users;
+    private VendorManagementPage vendor;
+    private UserManagementPage users;
+    private UserSigninPage userSigninPage;
 
 
     @Given("^User is on add vendor screen$")
@@ -147,16 +150,11 @@ public class VendorManagementSteps {
         vendor.tapOnResetButton();
     }
 
-    @When("^User enters a keyword$")
-    public void userEntersAKeyword() {
-        vendor.enterKeywordInSearchField();
-    }
 
     @And("^User clicks on Filter button$")
     public void userClicksOnFilterButton() {
         vendor.tapOnFilterButton();
     }
-
 
     @Then("^Vendor list displayed is according to the entered keyword$")
     public void vendorListDisplayedIsAccordingToTheEnteredKeyword() {
@@ -168,10 +166,6 @@ public class VendorManagementSteps {
         vendor.pressEnterKey();
     }
 
-    @Then("^Vendor list displayed is according to the searched keyword and vendor type$")
-    public void vendorListDisplayedIsAccordingToTheSearchedKeywordAndVendorType() {
-        vendor.verifyIntergrationOfSearchFilter();
-    }
 
     @When("^User clicks on delete icon$")
     public void userClicksOnDeleteIcon() {
@@ -208,14 +202,40 @@ public class VendorManagementSteps {
     public void userVerifyPaginationWithPerPage(String option) throws Throwable {
         vendor.verifyPaginationFunction(option);
     }
-    @Given("^user is on the manage kiosk page of workorder application$")
-    public void userIsOnTheManageKioskPageOfWorkorderApplication() {
+
+    @Then("^Activity log for vendor creation is displayed$")
+    public void activityLogForVendorCreationIsDisplayed() {
+        vendor.verifyLogForAddVendor();
+    }
+
+    @Then("^Notification for vendor creation is displayed$")
+    public void notificationForVendorCreationIsDisplayed() {
+        vendor.verifyAddVendorNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Activity log for existing vendor edited is displayed$")
+    public void activityLogForExistingVendorEditedIsDisplayed() {
+        vendor.verifyLogForEditVendor();
 
     }
-//
-//    @Then("^pagination$")
-//    public void pagination() {
-//        vendor.verifyPaginationFunction(String option);
-//    }
+
+    @Then("^Notification for existing vendor edited is displayed$")
+    public void notificationForExistingVendorEditedIsDisplayed() {
+        vendor.verifyEditVendorNotification();
+        userSigninPage.signout();
+    }
+
+
+    @Then("^Activity log for existing vendor deleted is displayed$")
+    public void activityLogForExistingVendorDeletedIsDisplayed() {
+        vendor.verifyLogForDeleteVendor();
+    }
+
+    @Then("^Notification for existing vendor deleted is displayed$")
+    public void notificationForExistingVendorDeletedIsDisplayed() {
+        vendor.verifyDeleteVendorNotification();
+        userSigninPage.signout();
+    }
 }
 

@@ -10,6 +10,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
 import pages.UserManagementPage;
 import pages.UserSigninPage;
+import pages.VendorManagementPage;
 import utilities.ConfigLoader;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class UserManagementSteps {
     Config conf = ConfigLoader.load();
     private UserManagementPage users;
     private UserSigninPage userSigninPage;
+    private VendorManagementPage vendor;
 
 
     @Given("^User is on add user screen$")
@@ -176,5 +178,11 @@ public class UserManagementSteps {
     @Then("^Activity log for existing user deleted is displayed$")
     public void activityLogForExistingUserDeletedIsDisplayed() {
         users.verifyLogForDeletedUser();
+    }
+
+    @Then("^Client Admin is not able to edit other admin details$")
+    public void clientAdminIsNotAbleToEditOtherAdminDetails() {
+        vendor.verifyEditIconIsNotDisplayed();
+        userSigninPage.signout();
     }
 }

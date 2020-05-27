@@ -246,6 +246,11 @@ public class SignageApplicationSteps {
     public void verifyTheFunctionalityOfPagination() {
         managekioskpage.verifyPagination();
     }
+
+    @Given("^user is on the manage kiosk page of workorder application$")
+    public void userIsOnTheManageKioskPageOfWorkorderApplication() {
+
+    }
 }
 
 
