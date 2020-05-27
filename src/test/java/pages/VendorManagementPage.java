@@ -90,19 +90,32 @@ public class VendorManagementPage extends PageObject {
         return By.xpath("//option[text()='" + option + "']");
     }
 
+    private By storedName(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]");
+    }
+
+    private By editIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@class,'fa fa-edit')]");
+    }
+
+    private By deleteIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@title,'Delete')]");
+    }
+
 
     public void verifyValidationMessage(String text) {
         WebElementFacade a = element(validationMessage(text));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
-    private void enterValueInName() {
+    private void enterValueInName() throws IOException, ConfigurationException {
         WebElementFacade nameField = element(vendorFormField("Name"));
         waitABit(4000);
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
         nameField.clear();
         detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
         nameField.sendKeys(detailsModel.getName());
+        LoadProperties.saveValueInPropertiesFile("name", detailsModel.getName(), "testData");
     }
 
     private void enterValueInPhone() {
@@ -138,10 +151,10 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnAddVendorButton() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
-    public void addInputFieldsOfVendorForm() {
+    public void addInputFieldsOfVendorForm() throws IOException, ConfigurationException {
         enterValueInName();
         enterValueInPhone();
         enterValueInEmail();
@@ -173,27 +186,26 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
-        waitFor(2000);
     }
 
     public void tapOnCancelButton() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
     }
 
-//    public void tapOnEditIcon() {
-//        WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
-//    }
-//
-//    public void verifyEditIconIsNotDisplayed() {
-//        WebElementFacade editIconForAdmin = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
-//        Assert.assertFalse(editIconForAdmin.isVisible());
-//    }
-//
-//    public void tapOnNameLink() {
-//        WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
-//    }
+    public void tapOnEditIcon() {
+        WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
+    }
+
+    public void verifyEditIconIsNotDisplayed() {
+        WebElementFacade editIconForAdmin = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        Assert.assertFalse(editIconForAdmin.isVisible());
+    }
+
+    public void tapOnNameLink() {
+        WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
+    }
 
     public void tapOnActionButton() {
         waitABit(1000);
@@ -282,11 +294,11 @@ public class VendorManagementPage extends PageObject {
     }
 
 
-//    public void clickOnDeleteIcon() {
-//        WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteIcon).click();
-//
-//    }
+    public void clickOnDeleteIcon() {
+        WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteIcon).click();
+
+    }
 
     public void clickOnDeleteButton() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteButton).click();
@@ -359,25 +371,6 @@ public class VendorManagementPage extends PageObject {
         String notification = userNameStored + " details have been updated. Tap to view details.";
         Assert.assertTrue(notificationTable.containsText(notification));
 
-    }
-
-    public void verifyLogForEditVendor() {
-        waitABit(2000);
-        String nameEditLog = "Vendor " + userNameStored + " has been changed";
-        Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
-       // String contactEditLog = "Vendor " + userNameStored + " contact number changed";
-        //String emailEditLog = "Vendor " + userNameStored + " email changed";
-        //Assertion for the content of activity log
-       // Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
-       // Assert.assertTrue(activityLogWidget.containsText(contactEditLog));
-       // Assert.assertTrue(activityLogWidget.containsText(emailEditLog));
-       // String locationEditLog = "Vendor " + userNameStored + " location changed";
-        //String accNoEditLog = "Vendor " + userNameStored + " account number changed";
-//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-//        js.executeScript("arguments[0].scrollIntoView();", Element);
-
-//        Assert.assertTrue(activityLogWidget.containsText(locationEditLog));
-//        Assert.assertTrue(activityLogWidget.containsText(accNoEditLog));
     }
 
 
