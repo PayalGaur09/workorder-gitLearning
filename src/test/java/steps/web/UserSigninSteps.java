@@ -58,22 +58,23 @@ public class UserSigninSteps {
 
     @Given("^User sign in with valid credential of Account Owner$")
     public void userSignInWithValidCredentialOfAccountOwner() {
-        String id= LoadProperties.getValueFromPropertyFile("testData","accountOwnerId");
-        String pwd= LoadProperties.getValueFromPropertyFile("testData","accountOwnerPassword");
-        userSigninPage.enterCredentials(id,pwd);
+        String id = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerPassword");
+        userSigninPage.enterCredentials(id, pwd);
     }
 
     @And("^User sign in with valid credential of Client Personnel$")
     public void userSignInWithValidCredentialOfClientPersonnel() {
-        String id= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelId");
-        String pwd= LoadProperties.getValueFromPropertyFile("testData","clientPersonnelPassword");
-        userSigninPage.enterCredentials(id,pwd);
+        String id = LoadProperties.getValueFromPropertyFile("testData", "clientPersonnelId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "clientPersonnelPassword");
+        userSigninPage.enterCredentials(id, pwd);
     }
 
     @When("^User sign in with valid credential of Client Admin$")
     public void userSignInWithValidCredentialOfClientAdmin() {
-        String id= LoadProperties.getValueFromPropertyFile("testData","clientAdminId");
-        String pwd= LoadProperties.getValueFromPropertyFile("testData","clientAdminPassword");
-        userSigninPage.enterCredentials(id,pwd);
+        String id = LoadProperties.getValueFromPropertyFile("testData", "clientAdminId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "clientAdminPassword");
+        userSigninPage.enterCredentials(id, pwd);
     }
+
 }
