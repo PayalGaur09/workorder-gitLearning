@@ -1,4 +1,4 @@
-@func
+ @func
 Feature: Functionality of  application
 
   Background:

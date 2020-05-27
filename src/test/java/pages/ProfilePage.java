@@ -95,6 +95,7 @@ public class ProfilePage extends PageObject {
         return By.xpath("//span[text()='" + textbutton + "']");
     }
 
+
     private By chnagePasswordValidation(String option) {
         return By.xpath("//span[text()='" + option + "']");
     }
@@ -236,19 +237,8 @@ public class ProfilePage extends PageObject {
         Assert.assertTrue(element(invalidMessage(ErrorMessage)).waitUntilVisible().isDisplayed());
     }
 
-    public void editAllContentDetails(DataTable Credentials) {
-        FirstName = Credentials.asMaps(String.class, String.class).get(0).get("First Name");
-        EmailAdd = Credentials.asMaps(String.class, String.class).get(0).get("Email");
-        MobNo = Credentials.asMaps(String.class, String.class).get(0).get("Phone");
-        waitFor(firstName).waitUntilVisible().clear();
-        waitABit(1000);
-        waitFor(firstName).waitUntilVisible().clear();
-        waitFor(firstName).waitUntilVisible().sendKeys(FirstName);
-        waitFor(emailAdd).waitUntilVisible().clear();
-        waitFor(emailAdd).waitUntilVisible().sendKeys(EmailAdd);
-        waitFor(mobNo).waitUntilVisible().clear();
-        waitFor(mobNo).waitUntilVisible().sendKeys(MobNo);
-    }
+
+
     public void userVerifyTheProfileDetails() {
         element(verifyEditProfile(FirstName)).waitUntilVisible();
         element(verifyEditProfile(FirstName)).isDisplayed();
@@ -265,9 +255,9 @@ public class ProfilePage extends PageObject {
     }
 
     public void userRemovesTheProfilePicture() {
-        waitABit(2000);
+        waitABit(3000);
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(removeprofilepicture).click();
-        waitABit(2000);
+        waitABit(3000);
     }
 
     public void profileHeading() {
