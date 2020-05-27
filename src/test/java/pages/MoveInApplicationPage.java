@@ -54,10 +54,12 @@ public class MoveInApplicationPage extends PageObject {
 
     public void uploadAmentiesAndIcons() {
         if (configureButton.isVisible()) {
+            waitABit(2000);
 
             configureButton.click();
 
         } else if (managebutton.isVisible()) {
+            waitABit(2000);
             managebutton.click();
 
         }

@@ -200,10 +200,7 @@ public class SignageApplicationSteps {
         managekioskpage.registrationKeyAlreadyExist();
     }
 
-    @And("^user clicks on the show entries dropdown in list view of manage kiosk page$")
-    public void userClicksOnTheShowEntriesDropdownInListViewOfManageKioskPage() {
-        managekioskpage.userClicksOnFromShowEntriesDropdownOfListvieOfManageKiosk();
-    }
+
 
     @And("^user delete the tag from the list$")
     public void userDeleteTheTagFromTheList()
@@ -248,6 +245,11 @@ public class SignageApplicationSteps {
     @Then("^verify the functionality of pagination$")
     public void verifyTheFunctionalityOfPagination() {
         managekioskpage.verifyPagination();
+    }
+
+    @Given("^user is on the manage kiosk page of workorder application$")
+    public void userIsOnTheManageKioskPageOfWorkorderApplication() {
+
     }
 }
 

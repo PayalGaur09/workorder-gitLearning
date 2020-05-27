@@ -1,25 +1,22 @@
 package steps.web;
+
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import pages.ProfilePage;
 import pages.UserManagementPage;
 import utilities.ConfigLoader;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class ProfileSteps extends PageObject {
-   private ProfileModel profileModel=new ProfileModel();
+    private ProfileModel profileModel = new ProfileModel();
     ProfilePage profilePage;
     UserManagementPage users;
 
@@ -104,7 +101,6 @@ public class ProfileSteps extends PageObject {
     }
 
 
-
     @And("^user taps on the submit button$")
     public void userTapsOnTheSubmitbutton() {
         profilePage.submitButton1();
@@ -141,7 +137,6 @@ public class ProfileSteps extends PageObject {
     }
 
 
-
     @And("^User click on \"([^\"]*)\" button$")
     public void userClickOnButton(String button) throws Throwable {
         profilePage.cancelButton(button);
@@ -149,21 +144,20 @@ public class ProfileSteps extends PageObject {
 
     @And("^User click on side menu of \"([^\"]*)\" button$")
     public void userClickOnSideMenuOfButton(String SideMenu) throws Throwable {
-      profilePage.profileButton(SideMenu);
+        profilePage.profileButton(SideMenu);
     }
 
 
     @When("^User enter change password details$")
     public void userEnterChangePasswordDetails(DataTable InvalidCredentials) throws Throwable {
-       profilePage.changeInvalidPassword(InvalidCredentials);
+        profilePage.changeInvalidPassword(InvalidCredentials);
 
     }
 
 
-
     @Then("^The error message is displayed as \"([^\"]*)\"$")
     public void theErrorMessageIsDisplayedAs(String ErrorMesaage) throws Throwable {
-       profilePage.verifyMessage(ErrorMesaage);
+        profilePage.verifyMessage(ErrorMesaage);
     }
 
 
@@ -182,6 +176,11 @@ public class ProfileSteps extends PageObject {
     @Then("^user  remove the profile picture$")
     public void userRemoveTheProfilePicture() {
         profilePage.userRemovesTheProfilePicture();
+    }
+
+    @Then("^user verify the Edit profile$")
+    public void userVerifyTheEditProfile() {
+        profilePage.userVerifyTheProfileDetails();
     }
 }
 

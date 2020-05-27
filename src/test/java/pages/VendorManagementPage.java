@@ -373,25 +373,6 @@ public class VendorManagementPage extends PageObject {
 
     }
 
-    public void verifyLogForEditVendor() {
-        waitABit(2000);
-        String nameEditLog = "Vendor " + userNameStored + " has been changed";
-        Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
-       // String contactEditLog = "Vendor " + userNameStored + " contact number changed";
-        //String emailEditLog = "Vendor " + userNameStored + " email changed";
-        //Assertion for the content of activity log
-       // Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
-       // Assert.assertTrue(activityLogWidget.containsText(contactEditLog));
-       // Assert.assertTrue(activityLogWidget.containsText(emailEditLog));
-       // String locationEditLog = "Vendor " + userNameStored + " location changed";
-        //String accNoEditLog = "Vendor " + userNameStored + " account number changed";
-//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-//        js.executeScript("arguments[0].scrollIntoView();", Element);
-
-//        Assert.assertTrue(activityLogWidget.containsText(locationEditLog));
-//        Assert.assertTrue(activityLogWidget.containsText(accNoEditLog));
-    }
-
 
     public void verifyDeleteVendorNotification() {
         String notification = userNameStored + " has been deleted.";

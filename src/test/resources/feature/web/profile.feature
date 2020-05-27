@@ -1,3 +1,4 @@
+@Phase3
 
 Feature: Functionality of profile
 
@@ -11,16 +12,17 @@ Feature: Functionality of profile
     Then verify the profile details
       | First Name: | Last Name: | Email: | Phone: | Role: | Status: | Created On: | Company Account ID: | Facility Assigned: |
 
-  Scenario:Edit the profile and verify that profile haas been updated
+  Scenario:Edit the profile and verify that profile haas been updated and cross verify the Edit profile details
     Given user is on the profile page
     And  user click on the action button
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
     And Edit the profile details
-      | First Name | Email                         | Phone       |
-      | Sid        | shreya.sharma@successive.tech | 98475937456 |
+      | First Name | Email                  | Phone       |
+      | payal gaur | payalgaurche@gmail.com | 98475937456 |
     And  User clicks on submit button
     Then Success message " Your profile has been updated successfully. " should be displayed
+    Then user verify the Edit profile
 
   Scenario:User is on edit profile page and clicking on the cancel button
     Given user is on the profile page

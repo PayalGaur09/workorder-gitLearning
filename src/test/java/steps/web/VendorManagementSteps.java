@@ -188,10 +188,6 @@ public class VendorManagementSteps {
         vendor.verifyAddButtonForClientPersonnel();
     }
 
-//    @Then("^Pagination is working or not$")
-//    public void paginationIsWorkingOrNot() {
-//        vendor.verifyPagination();
-//    }
 
     @Given("^User gets the total count from the list$")
     public void userGetsTheTotalCountFromTheList() {
@@ -214,11 +210,11 @@ public class VendorManagementSteps {
         userSigninPage.signout();
     }
 
-    @Then("^Activity log for existing vendor edited is displayed$")
-    public void activityLogForExistingVendorEditedIsDisplayed() {
-        vendor.verifyLogForEditVendor();
-        
-    }
+//    @Then("^Activity log for existing vendor edited is displayed$")
+//    public void activityLogForExistingVendorEditedIsDisplayed() {
+//        vendor.verifyLogForEditVendor();
+//
+//    }
 
     @Then("^Notification for existing vendor edited is displayed$")
     public void notificationForExistingVendorEditedIsDisplayed() {
