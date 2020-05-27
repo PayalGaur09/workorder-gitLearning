@@ -77,4 +77,12 @@ public class UserSigninSteps {
         userSigninPage.enterCredentials(id, pwd);
     }
 
+    @When("^User sign in with valid credential of Ten Fed Admin$")
+    public void userSignInWithValidCredentialOfTenFedAdmin() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "superAdminId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "superAdminPassword");
+        userSigninPage.enterCredentials(id, pwd);
+
+    }
+
 }

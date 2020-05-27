@@ -204,7 +204,7 @@ public class VendorManagementPage extends PageObject {
 
     public void tapOnNameLink() {
         WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
     }
 
     public void tapOnActionButton() {
