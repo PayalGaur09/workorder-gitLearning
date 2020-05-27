@@ -210,6 +210,11 @@ public class VendorManagementSteps {
         userSigninPage.signout();
     }
 
+//    @Then("^Activity log for existing vendor edited is displayed$")
+//    public void activityLogForExistingVendorEditedIsDisplayed() {
+//        vendor.verifyLogForEditVendor();
+//
+//    }
 
     @Then("^Notification for existing vendor edited is displayed$")
     public void notificationForExistingVendorEditedIsDisplayed() {

@@ -1,3 +1,4 @@
+@Phase1
 Feature: User Management
   As a user I can land on Users page
   So that I can manage users of the Company
@@ -134,6 +135,22 @@ Feature: User Management
       | Active   |
       | Inactive |
 
+  Scenario: User should be able to search when he enters the keyword and clicks on 'Filter' button
+    When User enters a keyword "Madhvan" in the search field
+    And User clicks on Filter button
+    Then List displayed is according to the entered keyword
+    And User clicks on Reset button
+
+  Scenario: User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard
+    When User enters a keyword "Madhvan" in the search field
+    And User hits 'Enter' button on keyboard
+    Then List displayed is according to the entered keyword
+    And User clicks on Reset button
+
+  Scenario: The functionality of "Delete" icon on the user list screen
+    When User clicks on delete icon
+    And User clicks on 'OK' option in the confirmation popup
+    Then Success message "User has been deleted successfully." should be displayed
   Scenario:Verify the activity log and notification of User deactivation-activation for client admin
     Given User logout from work order platform
     When User sign in with valid credential of Client Admin
@@ -141,6 +158,15 @@ Feature: User Management
     And Upon tapping the entity user is redirected to the detail screen
     When User tap on the bell icon
     Then Notification for Existing User Deactivated is displayed
+
+  Scenario: To verify that client personnel is not able to access add, edit and delete feature
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    And User tap on the "Users" link from side navigation
+    Then Add User button should not be visible to client personnel
+    Then Action column should not be visible to client personnel
+
+
 
   Scenario: To verify that client personnel is not able to access add, edit and delete feature
     Given User logout from work order platform

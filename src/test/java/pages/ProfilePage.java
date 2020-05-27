@@ -247,6 +247,7 @@ public class ProfilePage extends PageObject {
         element(verifyEditProfile(MobNo)).waitUntilVisible();
         element(verifyEditProfile(MobNo)).isDisplayed();
     }
+
     public void changeProfilePicture() throws IOException {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(changeprofilepicture).shouldBeVisible();
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";

@@ -87,3 +87,4 @@ Feature: Functionality of  application
     And use clicks on the Add button
     Then Error message should be displayed
       | Amenity is required | Icon is required |
+
