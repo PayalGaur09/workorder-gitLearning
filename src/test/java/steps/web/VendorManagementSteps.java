@@ -72,21 +72,21 @@ public class VendorManagementSteps {
         vendor.enterInvalidContactNo();
     }
 
-    @Given("^User navigates to edit page from list screen$")
-    public void userNavigatesToEditPageFromListScreen() {
-        vendor.tapOnEditIcon();
-
-    }
+//    @Given("^User navigates to edit page from list screen$")
+//    public void userNavigatesToEditPageFromListScreen() {
+//        vendor.tapOnEditIcon();
+//
+//    }
 
     @Then("^Success message \"([^\"]*)\" should be displayed$")
     public void successMessageShouldBeDisplayed(String arg0) throws Throwable {
         vendor.verifyValidationMessage(arg0);
     }
 
-    @Given("^User is on detail screen$")
-    public void userIsOnDetailScreen() {
-        vendor.tapOnNameLink();
-    }
+//    @Given("^User is on detail screen$")
+//    public void userIsOnDetailScreen() {
+//        vendor.tapOnNameLink();
+//    }
 
     @When("^User clicks on the action button$")
     public void userClicksOnTheActionButton() {
@@ -166,11 +166,11 @@ public class VendorManagementSteps {
         vendor.pressEnterKey();
     }
 
-
-    @When("^User clicks on delete icon$")
-    public void userClicksOnDeleteIcon() {
-        vendor.clickOnDeleteIcon();
-    }
+//
+//    @When("^User clicks on delete icon$")
+//    public void userClicksOnDeleteIcon() {
+//        vendor.clickOnDeleteIcon();
+//    }
 
     @And("^User clicks on 'OK' option in the confirmation popup$")
     public void userClicksOnOKOptionInTheConfirmationPopup() {

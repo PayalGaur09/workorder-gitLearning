@@ -69,7 +69,6 @@ public class UserManagementSteps {
     public void userSelectRole(String userRoles)  {
         users.selectFilterDropdown(userRoles);
         users.tapOnFilterButton();
-       // users.verifyUserRole(userRoles);
     }
 
     @Then("^List displayed is according to the selected \"([^\"]*)\" role$")
@@ -180,9 +179,9 @@ public class UserManagementSteps {
         users.verifyLogForDeletedUser();
     }
 
-    @Then("^Client Admin is not able to edit other admin details$")
-    public void clientAdminIsNotAbleToEditOtherAdminDetails() {
-        vendor.verifyEditIconIsNotDisplayed();
-        userSigninPage.signout();
-    }
+//    @Then("^Client Admin is not able to edit other admin details$")
+//    public void clientAdminIsNotAbleToEditOtherAdminDetails() {
+//        vendor.verifyEditIconIsNotDisplayed();
+//        userSigninPage.signout();
+//    }
 }
