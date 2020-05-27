@@ -4,6 +4,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
@@ -56,7 +57,7 @@ public class DashboardPage extends PageObject {
     }
 
     public void tapOnMenuItems(String module) {
-        element(menuItems(module)).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
     }
 
     public void verifyWorkOrderTiles(String tile) {

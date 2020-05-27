@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.PendingException;
@@ -6,7 +6,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.UserManagementPage;
+import pages.UserSigninPage;
 import pages.VendorManagementPage;
 import utilities.ConfigLoader;
 
@@ -16,8 +18,9 @@ import java.util.List;
 public class VendorManagementSteps {
 
     Config conf = ConfigLoader.load();
-    VendorManagementPage vendor;
-    UserManagementPage users;
+    private VendorManagementPage vendor;
+    private UserManagementPage users;
+    private UserSigninPage userSigninPage;
 
 
     @Given("^User is on add vendor screen$")
@@ -26,14 +29,14 @@ public class VendorManagementSteps {
     }
 
     @When("^User enters all the field$")
-    public void userEntersAllTheField() throws IOException {
+    public void userEntersAllTheField() throws IOException, ConfigurationException {
         users.uploadProfilePicture();
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
     }
 
     @When("^User updates all the field of vendor form$")
-    public void userUpdatesAllTheFieldOfVendorForm() {
+    public void userUpdatesAllTheFieldOfVendorForm() throws IOException, ConfigurationException {
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
     }
@@ -147,10 +150,6 @@ public class VendorManagementSteps {
         vendor.tapOnResetButton();
     }
 
-    @When("^User enters a keyword$")
-    public void userEntersAKeyword() {
-        vendor.enterKeywordInSearchField();
-    }
 
     @And("^User clicks on Filter button$")
     public void userClicksOnFilterButton() {
@@ -167,10 +166,6 @@ public class VendorManagementSteps {
         vendor.pressEnterKey();
     }
 
-    @Then("^Vendor list displayed is according to the searched keyword and vendor type$")
-    public void vendorListDisplayedIsAccordingToTheSearchedKeywordAndVendorType() {
-        vendor.verifyIntergrationOfSearchFilter();
-    }
 
     @When("^User clicks on delete icon$")
     public void userClicksOnDeleteIcon() {
@@ -184,8 +179,63 @@ public class VendorManagementSteps {
 
     @When("^User clicks on delete button$")
     public void userClicksOnDeleteButton() {
+        vendor.tapOnActionButton();
         vendor.clickOnDeleteButton();
     }
 
+    @Then("^Add Vendor button should not be visible to client personnel$")
+    public void addVendorButtonShouldNotBeVisibleToClientPersonnel() {
+        vendor.verifyAddButtonForClientPersonnel();
+    }
+
+//    @Then("^Pagination is working or not$")
+//    public void paginationIsWorkingOrNot() {
+//        vendor.verifyPagination();
+//    }
+
+    @Given("^User gets the total count from the list$")
+    public void userGetsTheTotalCountFromTheList() {
+        vendor.totalRecordCount();
+    }
+
+    @Then("^User verify pagination with \"([^\"]*)\" per page$")
+    public void userVerifyPaginationWithPerPage(String option) throws Throwable {
+        vendor.verifyPaginationFunction(option);
+    }
+
+    @Then("^Activity log for vendor creation is displayed$")
+    public void activityLogForVendorCreationIsDisplayed() {
+        vendor.verifyLogForAddVendor();
+    }
+
+    @Then("^Notification for vendor creation is displayed$")
+    public void notificationForVendorCreationIsDisplayed() {
+        vendor.verifyAddVendorNotification();
+        userSigninPage.signout();
+    }
+
+    @Then("^Activity log for existing vendor edited is displayed$")
+    public void activityLogForExistingVendorEditedIsDisplayed() {
+        vendor.verifyLogForEditVendor();
+        
+    }
+
+    @Then("^Notification for existing vendor edited is displayed$")
+    public void notificationForExistingVendorEditedIsDisplayed() {
+        vendor.verifyEditVendorNotification();
+        userSigninPage.signout();
+    }
+
+
+    @Then("^Activity log for existing vendor deleted is displayed$")
+    public void activityLogForExistingVendorDeletedIsDisplayed() {
+        vendor.verifyLogForDeleteVendor();
+    }
+
+    @Then("^Notification for existing vendor deleted is displayed$")
+    public void notificationForExistingVendorDeletedIsDisplayed() {
+        vendor.verifyDeleteVendorNotification();
+        userSigninPage.signout();
+    }
 }
 

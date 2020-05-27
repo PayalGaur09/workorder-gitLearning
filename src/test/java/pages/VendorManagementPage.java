@@ -1,40 +1,43 @@
 package pages;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.pages.PageObject;
+import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.LoadProperties;
 import utilities.RandomGenerator;
 import models.DetailsModel;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class VendorManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
+    String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
 
+    @FindBy(xpath = "//h3[contains(text(),'Vendors')]")
+    private WebElementFacade vendorHeading;
     @FindBy(xpath = "//a[contains(text(),'New Vendor')]")
     private WebElementFacade addVendorButton;
-    @FindBy(xpath = "//select")
+    @FindBy(xpath = "//label[contains(text(),'Type')]/..//div")
     private WebElementFacade vendorTypeDropdown;
+    @FindBy(xpath = "//option[contains(text(),'Electricity Provider')]")
+    private WebElementFacade selectElectricityProvider;
 
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
     private WebElementFacade submitButton;
     @FindBy(xpath = "//a[text()='Cancel']")
     private WebElementFacade cancelButton;
-    @FindBy(xpath = "//span[@class='link']")
-    private WebElementFacade nameLink;
-
-
-    @FindBy(xpath = "//em[contains(@title,'Edit')]")
-    private WebElementFacade editIcon;
-    @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
-    private WebElementFacade deleteIcon;
-
-
     @FindBy(xpath = "//button[contains(text(),'Action')]")
     private WebElementFacade actionButton;
     @FindBy(xpath = "//span[contains(text(),'Delete')]")
@@ -47,7 +50,6 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade addNoteButton;
     @FindBy(xpath = "//i/../../button")
     private WebElementFacade editNoteIcon;
-
     @FindBy(xpath = "//label[contains(text(),'Note')]/..//textarea")
     private WebElementFacade noteTestArea;
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
@@ -62,6 +64,15 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade resetButton;
     @FindBy(xpath = "//input[contains(@placeholder,'Filter')]")
     private WebElementFacade searchVendor;
+    //pagination
+    @FindBy(xpath = "//select[contains(@class,'custom')]")
+    private WebElementFacade selectLimitDropdown;
+    @FindBy(xpath = "//div[@id='DataTables_Table_0_info']")
+    private WebElementFacade datatableInfo;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification')]")
+    private WebElementFacade notificationTable;
+    @FindBy(xpath = "//div[@class='kt-widget3']")
+    private WebElementFacade activityLogWidget;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
@@ -75,52 +86,75 @@ public class VendorManagementPage extends PageObject {
         return By.xpath("//label[contains(text(),'" + detail + "')]/..//p");
     }
 
+    private By pageRecord(String option) {
+        return By.xpath("//option[text()='" + option + "']");
+    }
+
+    private By storedName(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]");
+    }
+
+    private By editIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@class,'fa fa-edit')]");
+    }
+
+    private By deleteIconForAUser(String name) {
+        return By.xpath("//span[contains(text(),'" + name + "')]/../..//em[contains(@title,'Delete')]");
+    }
+
 
     public void verifyValidationMessage(String text) {
         WebElementFacade a = element(validationMessage(text));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
-    private void enterValueInName() {
+    private void enterValueInName() throws IOException, ConfigurationException {
         WebElementFacade nameField = element(vendorFormField("Name"));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(nameField).waitUntilVisible().clear();
+        waitABit(4000);
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
+        nameField.clear();
         detailsModel.setName("Vendor" + RandomGenerator.randomAlphabetic(3));
         nameField.sendKeys(detailsModel.getName());
+        LoadProperties.saveValueInPropertiesFile("name", detailsModel.getName(), "testData");
     }
 
     private void enterValueInPhone() {
         WebElementFacade contactField = element(vendorFormField("Contact"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(contactField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(contactField).waitUntilVisible().click();
+        contactField.clear();
         detailsModel.setContact(RandomGenerator.randomInteger(10));
         contactField.sendKeys(detailsModel.getContact());
     }
 
     private void enterValueInEmail() {
         WebElementFacade emailField = element(vendorFormField("Email"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(emailField).waitUntilVisible().click();
+        emailField.clear();
         detailsModel.setEmail("vendor" + RandomGenerator.randomInteger(4) + "@mailinator.com");
         emailField.sendKeys(detailsModel.getEmail());
     }
 
     private void enterValueInLocation() {
         WebElementFacade locationField = element(vendorFormField("Location"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(locationField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(locationField).waitUntilVisible().click();
+        locationField.clear();
         detailsModel.setLocation("Location" + RandomGenerator.randomAlphabetic(6));
         locationField.sendKeys(detailsModel.getLocation());
     }
 
     private void enterValueInAccountNo() {
         WebElementFacade accNoField = element(vendorFormField("Account"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(accNoField).waitUntilVisible().clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(accNoField).waitUntilVisible().click();
+        accNoField.clear();
         detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
         accNoField.sendKeys(detailsModel.getAccountNo().toString());
     }
 
     public void tapOnAddVendorButton() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
-    public void addInputFieldsOfVendorForm() {
+    public void addInputFieldsOfVendorForm() throws IOException, ConfigurationException {
         enterValueInName();
         enterValueInPhone();
         enterValueInEmail();
@@ -129,10 +163,9 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void selectTypeFromDropdown() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).click();
-        Select type = new Select(vendorTypeDropdown);
-        detailsModel.setType("Electricity Provider ");
-        type.selectByVisibleText(detailsModel.getType());
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(selectElectricityProvider).click();
+        detailsModel.setType(selectElectricityProvider.getText());
     }
 
     public void enterInvalidContactNo() {
@@ -153,7 +186,6 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
-        waitFor(2000);
     }
 
     public void tapOnCancelButton() {
@@ -161,14 +193,22 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnEditIcon() {
+        WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
     }
 
+    public void verifyEditIconIsNotDisplayed() {
+        WebElementFacade editIconForAdmin = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        Assert.assertFalse(editIconForAdmin.isVisible());
+    }
+
     public void tapOnNameLink() {
-        nameLink.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
     }
 
     public void tapOnActionButton() {
+        waitABit(1000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 
@@ -185,8 +225,9 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void enterNote() {
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notesCount).clear();
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notesCount).sendKeys("Automation note is added.");
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(noteTestArea).click();
+        noteTestArea.clear();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(noteTestArea).sendKeys("Automation note is added.");
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(submitNoteButton).click();
     }
 
@@ -196,7 +237,6 @@ public class VendorManagementPage extends PageObject {
 
     public void countNotesForVendor() {
         String value = notesCount.getText();
-        //String a=value.replace("Showing 1 to 10 of ","");
         int intValue = Integer.parseInt(value.replaceAll("[^0-9]", ""));
         System.out.println(intValue);
 
@@ -216,7 +256,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void verifyVendorType() {
-
+        waitABit(2000);
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         waitABit(2000);
         for (int i = 1; i <= num; i++) {
@@ -227,16 +267,13 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnResetButton() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(resetButton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(resetButton).click();
         waitABit(1000);
     }
 
-    public void enterKeywordInSearchField() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchVendor).sendKeys("Vendor");
-    }
 
     public void tapOnFilterButton() {
-        waitFor(filterButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(filterButton).withTimeoutOf(20, TimeUnit.SECONDS).click();
     }
 
     public void pressEnterKey() {
@@ -256,29 +293,116 @@ public class VendorManagementPage extends PageObject {
         }
     }
 
-    public void verifyIntergrationOfSearchFilter() {
-        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
-        waitABit(2000);
-        for (int i = 1; i <= num; i++) {
-            String vType = element(vendorTypeDynamic(i)).getText();
-            Assert.assertEquals("Electricity Provider", vType);
-            String vName = element(vendorNameSearch(i)).getText();
-            Assert.assertTrue(vName.contains("Vendor"));
-        }
-    }
 
     public void clickOnDeleteIcon() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deleteIcon).click();
+        WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteIcon).click();
+
     }
 
     public void clickOnDeleteButton() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(actionButton).click();
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deleteButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteButton).click();
     }
 
     public void acceptOptionInJSPopup() {
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(alertIsPresent());
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
     }
+
+    public void verifyAddButtonForClientPersonnel() {
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorHeading).isDisplayed();
+        Assert.assertFalse(addVendorButton.isVisible());
+
+    }
+
+    public int totalRecordCount() {
+        Scroll.to(datatableInfo);
+        String str = datatableInfo.getText();
+        String[] arrOfStr = str.split("of");
+        String value = arrOfStr[1];
+        return Integer.parseInt(value.replaceAll("[^0-9]", ""));
+    }
+
+    public int selectPageLimit(String option) {
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(selectLimitDropdown).click();
+        element(pageRecord(option)).click();
+        return Integer.parseInt(element(pageRecord(option)).getText());
+    }
+
+
+    public void verifyPaginationFunction(String option) {
+        int totalRecordCount = totalRecordCount();
+        int recordCountPerPage = selectPageLimit(option);
+        int noOfRecordInLastPage = totalRecordCount % recordCountPerPage;
+        int pageCount = (noOfRecordInLastPage > 0) ? totalRecordCount / recordCountPerPage + 1 : totalRecordCount / recordCountPerPage;
+
+        for (int noOfPage = 0; noOfPage < pageCount; noOfPage++) {
+            WebElement NextButton = getDriver().findElement(By.xpath("//a[text()='" + (noOfPage + 1) + "']/.."));
+            if (NextButton.isDisplayed()) {
+                NextButton.click();
+            }
+            waitABit(3000);
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor("//tbody/tr");
+            int rowCountInTable = getDriver().findElements(By.xpath("//tbody//tr")).size();
+            if ((noOfPage != pageCount - 1)) {
+                Assert.assertEquals(rowCountInTable, recordCountPerPage);
+            } else {
+                int lastPageRecordCount = noOfRecordInLastPage == 0 ? recordCountPerPage : noOfRecordInLastPage;
+                Assert.assertEquals(rowCountInTable, lastPageRecordCount);
+                break;
+            }
+        }
+
+
+    }
+
+    public void verifyAddVendorNotification() {
+        String notification = "New vendor " + userNameStored + " was created. Tap to view details.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+    }
+
+    public void verifyLogForAddVendor() {
+        String addUserLog = "New vendor " + userNameStored + " was created";
+        Assert.assertTrue(activityLogWidget.containsText(addUserLog));
+    }
+
+    public void verifyEditVendorNotification() {
+        String notification = userNameStored + " details have been updated. Tap to view details.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+
+    }
+
+    public void verifyLogForEditVendor() {
+        waitABit(2000);
+        String nameEditLog = "Vendor " + userNameStored + " has been changed";
+        Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
+       // String contactEditLog = "Vendor " + userNameStored + " contact number changed";
+        //String emailEditLog = "Vendor " + userNameStored + " email changed";
+        //Assertion for the content of activity log
+       // Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
+       // Assert.assertTrue(activityLogWidget.containsText(contactEditLog));
+       // Assert.assertTrue(activityLogWidget.containsText(emailEditLog));
+       // String locationEditLog = "Vendor " + userNameStored + " location changed";
+        //String accNoEditLog = "Vendor " + userNameStored + " account number changed";
+//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//        js.executeScript("arguments[0].scrollIntoView();", Element);
+
+//        Assert.assertTrue(activityLogWidget.containsText(locationEditLog));
+//        Assert.assertTrue(activityLogWidget.containsText(accNoEditLog));
+    }
+
+
+    public void verifyDeleteVendorNotification() {
+        String notification = userNameStored + " has been deleted.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+
+    }
+
+    public void verifyLogForDeleteVendor() {
+        String deleteUserLog = userNameStored + " has been deleted";
+        Assert.assertTrue(activityLogWidget.containsText(deleteUserLog));
+    }
+
 
 }
