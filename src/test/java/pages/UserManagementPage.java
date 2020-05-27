@@ -63,6 +63,9 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade notificationIcon;
     @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
     private WebElementFacade notificationContent;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification')]")
+    private WebElementFacade notificationTable;
+
     @FindBy(xpath = "//div[@class='kt-widget3']")
     private WebElementFacade activityLogWidget;
 
@@ -295,7 +298,8 @@ public class UserManagementPage extends PageObject {
 
     public void verifyAddUserNotification() {
         String notification = "New user " + userNameStored + " was created. Tap to view details.";
-        Assert.assertEquals(notification, notificationContent.getText());
+        //Assert.assertEquals(notification, notificationContent.getText());
+        Assert.assertTrue(notificationTable.containsText(notification));
     }
 
     public void verifyLogForAddUser() {
@@ -311,7 +315,8 @@ public class UserManagementPage extends PageObject {
 
     public void VerifyDeactivateNotification() {
         String notification = userNameStored + "'s account has been deactivated.";
-        Assert.assertEquals(notification, notificationContent.getText());
+       // Assert.assertEquals(notification, notificationContent.getText());
+        Assert.assertTrue(notificationTable.containsText(notification));
     }
 
     public void verifyLogForDeactivateActivateUser() {
@@ -319,12 +324,12 @@ public class UserManagementPage extends PageObject {
         String activateLog = userNameStored + " " + surnameStored + "'s account has been activated";
         Assert.assertTrue(activityLogWidget.containsText(deactivateLog));
         Assert.assertTrue(activityLogWidget.containsText(activateLog));
+
     }
 
     public void VerifyDeletedNotification() {
-        //String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
         String notification = userNameStored + "'s account has been deleted.";
-        Assert.assertEquals(notification, notificationContent.getText());
+        Assert.assertTrue(notificationTable.containsText(notification));
     }
 
     public void verifyLogForDeletedUser() {

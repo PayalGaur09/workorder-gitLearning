@@ -23,7 +23,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 public class VendorManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
-    String wait = LoadProperties.getValueFromPropertyFile("testData", "wait");
+    String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
 
     @FindBy(xpath = "//h3[contains(text(),'Vendors')]")
     private WebElementFacade vendorHeading;
@@ -38,16 +38,6 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade submitButton;
     @FindBy(xpath = "//a[text()='Cancel']")
     private WebElementFacade cancelButton;
-    @FindBy(xpath = "//span[@class='link']")
-    private WebElementFacade nameLink;
-
-
- //   @FindBy(xpath = "//em[contains(@title,'Edit')]")////////////////////////////////////////
- //   private WebElementFacade editIcon;
-   // @FindBy(xpath = "//em[contains(@class,'fa-trash')]")
-  //  private WebElementFacade deleteIcon;
-
-
     @FindBy(xpath = "//button[contains(text(),'Action')]")
     private WebElementFacade actionButton;
     @FindBy(xpath = "//span[contains(text(),'Delete')]")
@@ -60,9 +50,6 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade addNoteButton;
     @FindBy(xpath = "//i/../../button")
     private WebElementFacade editNoteIcon;
-    @FindBy(xpath = "//div[@class='loader']")
-    private WebElementFacade loader;
-
     @FindBy(xpath = "//label[contains(text(),'Note')]/..//textarea")
     private WebElementFacade noteTestArea;
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
@@ -82,6 +69,10 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade selectLimitDropdown;
     @FindBy(xpath = "//div[@id='DataTables_Table_0_info']")
     private WebElementFacade datatableInfo;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification')]")
+    private WebElementFacade notificationTable;
+    @FindBy(xpath = "//div[@class='kt-widget3']")
+    private WebElementFacade activityLogWidget;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
@@ -114,7 +105,7 @@ public class VendorManagementPage extends PageObject {
 
     public void verifyValidationMessage(String text) {
         WebElementFacade a = element(validationMessage(text));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
     private void enterValueInName() throws IOException, ConfigurationException {
@@ -203,8 +194,12 @@ public class VendorManagementPage extends PageObject {
 
     public void tapOnEditIcon() {
         WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
-       // System.out.println(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData","name")));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
+    }
+
+    public void verifyEditIconIsNotDisplayed() {
+        WebElementFacade editIconForAdmin = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        Assert.assertFalse(editIconForAdmin.isVisible());
     }
 
     public void tapOnNameLink() {
@@ -261,7 +256,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void verifyVendorType() {
-
+        waitABit(2000);
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
         waitABit(2000);
         for (int i = 1; i <= num; i++) {
@@ -276,12 +271,9 @@ public class VendorManagementPage extends PageObject {
         waitABit(1000);
     }
 
-    public void enterKeywordInSearchField() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(searchVendor).sendKeys("Vendor");
-    }
 
     public void tapOnFilterButton() {
-        waitFor(filterButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(filterButton).withTimeoutOf(20, TimeUnit.SECONDS).click();
     }
 
     public void pressEnterKey() {
@@ -301,22 +293,10 @@ public class VendorManagementPage extends PageObject {
         }
     }
 
-    public void verifyIntergrationOfSearchFilter() {
-        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
-        waitABit(2000);
-        for (int i = 1; i <= num; i++) {
-            WebElementFacade a = element(vendorTypeDynamic(i));
-            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).waitUntilPresent();
-            String vType = element(vendorTypeDynamic(i)).getText();
-            Assert.assertEquals("Electricity Provider", vType);
-            String vName = element(vendorNameSearch(i)).getText();
-            Assert.assertTrue(vName.contains("Vendor"));
-        }
-    }
 
     public void clickOnDeleteIcon() {
         WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
-       withTimeoutOf(20,TimeUnit.SECONDS).waitFor(deleteIcon).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteIcon).click();
 
     }
 
@@ -376,5 +356,53 @@ public class VendorManagementPage extends PageObject {
 
 
     }
+
+    public void verifyAddVendorNotification() {
+        String notification = "New vendor " + userNameStored + " was created. Tap to view details.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+    }
+
+    public void verifyLogForAddVendor() {
+        String addUserLog = "New vendor " + userNameStored + " was created";
+        Assert.assertTrue(activityLogWidget.containsText(addUserLog));
+    }
+
+    public void verifyEditVendorNotification() {
+        String notification = userNameStored + " details have been updated. Tap to view details.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+
+    }
+
+    public void verifyLogForEditVendor() {
+        waitABit(2000);
+        String nameEditLog = "Vendor " + userNameStored + " has been changed";
+        Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
+       // String contactEditLog = "Vendor " + userNameStored + " contact number changed";
+        //String emailEditLog = "Vendor " + userNameStored + " email changed";
+        //Assertion for the content of activity log
+       // Assert.assertTrue(activityLogWidget.containsText(nameEditLog));
+       // Assert.assertTrue(activityLogWidget.containsText(contactEditLog));
+       // Assert.assertTrue(activityLogWidget.containsText(emailEditLog));
+       // String locationEditLog = "Vendor " + userNameStored + " location changed";
+        //String accNoEditLog = "Vendor " + userNameStored + " account number changed";
+//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//        js.executeScript("arguments[0].scrollIntoView();", Element);
+
+//        Assert.assertTrue(activityLogWidget.containsText(locationEditLog));
+//        Assert.assertTrue(activityLogWidget.containsText(accNoEditLog));
+    }
+
+
+    public void verifyDeleteVendorNotification() {
+        String notification = userNameStored + " has been deleted.";
+        Assert.assertTrue(notificationTable.containsText(notification));
+
+    }
+
+    public void verifyLogForDeleteVendor() {
+        String deleteUserLog = userNameStored + " has been deleted";
+        Assert.assertTrue(activityLogWidget.containsText(deleteUserLog));
+    }
+
 
 }
