@@ -1,4 +1,4 @@
-@Phase1
+@User
 Feature: User Management
   As a user I can land on Users page
   So that I can manage users of the Company
@@ -24,13 +24,16 @@ Feature: User Management
     Then User is added notification is displayed
 
   Scenario: To verify validations on add user screen
+    Given User logout from work order platform
+    When User sign in with valid credential of Account Owner
+    And User tap on the "Users" link from side navigation
     Given User is on add user screen
     When User taps on the Submit button
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
 
   Scenario: Edit an existing user from user detail screen and cross verify the modification
-    Given User is on detail screen
+    Given User has created a new user and reaches to the detail screen
     When User clicks on edit option from action dropdown
     And User updates all the field of user form
     And User taps on the Submit button
@@ -43,15 +46,17 @@ Feature: User Management
     When User sign in with valid credential of Client Admin
     Then Activity log for existing user edited is displayed
 
-  Scenario: Deactivate user from user detail screen and cross verify the status
-    Given User is on detail screen
+  Scenario: Deactivate-activate user from user detail screen and cross verify the status
+#    Given User logout from work order platform
+#    When User sign in with valid credential of Account Owner
+#    And User tap on the "Users" link from side navigation
+    Given User has created a new user and reaches to the detail screen
     When User clicks on the action button
     And User verify status and takes necessary actions to change the status
     Then User verified the changed status
     And User clicks on the action button
     And User verify status and takes necessary actions to change the status
     Then User verified the changed status
-
 
   Scenario: Verify the activity log and notification for User deactivation-activation
     Given User logout from work order platform
@@ -61,9 +66,8 @@ Feature: User Management
     When User tap on the bell icon
     Then Notification for Existing User Deactivated is displayed
 
-
   Scenario: The functionality of "Delete" button on the user detail screen
-    Given User is on detail screen
+    Given User has created a new user and reaches to the detail screen
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "User has been deleted successfully." should be displayed
@@ -151,13 +155,6 @@ Feature: User Management
     When User clicks on delete icon
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "User has been deleted successfully." should be displayed
-  Scenario:Verify the activity log and notification of User deactivation-activation for client admin
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
-    Then Activity log for existing user deactivated or activated is displayed
-    And Upon tapping the entity user is redirected to the detail screen
-    When User tap on the bell icon
-    Then Notification for Existing User Deactivated is displayed
 
   Scenario: To verify that client personnel is not able to access add, edit and delete feature
     Given User logout from work order platform
@@ -165,8 +162,6 @@ Feature: User Management
     And User tap on the "Users" link from side navigation
     Then Add User button should not be visible to client personnel
     Then Action column should not be visible to client personnel
-
-
 
   Scenario: To verify that client personnel is not able to access add, edit and delete feature
     Given User logout from work order platform

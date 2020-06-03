@@ -8,6 +8,7 @@ Feature: Facility Management
     When User sign in with valid credential of Account Owner
     Then User tap on the "Facilities" link from side navigation
 
+
   Scenario: Create a facility and cross verify the detail entered
     Given User is on add facility screen
     When User enters all the field in Facility screen
@@ -90,3 +91,14 @@ Feature: Facility Management
     And User hits 'Enter' button on keyboard
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
+
+  Scenario: Create a facility by 10Fed user
+    Given User logout from work order platform
+    When User is on work order sign in page
+    And User sign in with valid credential of Super Admin
+    And User tap on the "Companies" link from side navigation
+    And User tap on the newlane company and taps on the facility tab
+    Given User is on add facility screen
+    When User enters all the field in Facility screen
+    And User taps on the Submit button
+    Then Success message "Facility has been added successfully" should be displayed
