@@ -41,6 +41,15 @@ public class UserManagementSteps {
         users.selectRole("Personnel");
     }
 
+    @Given("^User has created a new user and reaches to the detail screen$")
+    public void userHasCreatedANewUserAndReachesToTheDetailScreen() throws IOException, ConfigurationException {
+        users.tapOnAddUserButton();
+        users.uploadProfilePicture();
+        users.addInputFieldsOfUserForm();
+        users.selectRole("Administrator");
+        vendor.tapOnSubmitButton();
+    }
+
 
     @And("^User select Client Admin as the user role$")
     public void userSelectClientAdminAsTheUserRole() {
@@ -184,4 +193,5 @@ public class UserManagementSteps {
         vendor.verifyEditIconIsNotDisplayed();
         userSigninPage.signout();
     }
+
 }

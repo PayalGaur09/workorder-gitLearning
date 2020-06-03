@@ -1,5 +1,4 @@
 @Phase1
-
 Feature: Company module
 
   Background:
@@ -78,7 +77,7 @@ Feature: Company module
     And User click on side menu of "Companies" button
     And user clicks on the edit button of the company
     And user edit the Company details details
-    And user clicks on the submit
+    And User taps on the Submit button
     Then Success message " Company has been updated successfully. " should be displayed
     Then verify data on company table
 

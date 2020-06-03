@@ -92,7 +92,7 @@ public class UserManagementPage extends PageObject {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(chooseFile).shouldBeVisible();
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "profileIcon.png";
         getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(uploadImageButton).click();
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(uploadImageButton).click();
     }
 
     private void enterValueInFirstName() throws IOException, ConfigurationException {
@@ -196,7 +196,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void verifyUserName() {
-        waitABit(3000);
+        waitABit(5000);
         WebElementFacade firstName = element(userNameSearch(1));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstName).shouldBeVisible();
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
@@ -290,19 +290,21 @@ public class UserManagementPage extends PageObject {
     }
 
     public void tapOnBellIcon() {
-        getDriver().navigate().refresh();
-        waitABit(2000);
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(notificationIcon).click();
+       // waitABit(1000);
+       // getDriver().navigate().refresh();
+        //waitABit(2000);
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(notificationIcon).click();
         waitABit(1000);
     }
 
     public void verifyAddUserNotification() {
         String notification = "New user " + userNameStored + " was created. Tap to view details.";
-        //Assert.assertEquals(notification, notificationContent.getText());
-        Assert.assertTrue(notificationTable.containsText(notification));
+        Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void verifyLogForAddUser() {
+        WebElementFacade entity = element(entityName(userNameStored));
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
         String addUserLog = "New user " + userNameStored + " " + surnameStored + " was created";
         Assert.assertTrue(activityLogWidget.containsText(addUserLog));
     }
@@ -315,11 +317,13 @@ public class UserManagementPage extends PageObject {
 
     public void VerifyDeactivateNotification() {
         String notification = userNameStored + "'s account has been deactivated.";
-       // Assert.assertEquals(notification, notificationContent.getText());
-        Assert.assertTrue(notificationTable.containsText(notification));
+       Assert.assertEquals(notification, notificationContent.getText());
+       // Assert.assertTrue(notificationTable.containsText(notification));
     }
 
     public void verifyLogForDeactivateActivateUser() {
+        WebElementFacade entity = element(entityName(userNameStored));
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
         String deactivateLog = userNameStored + " " + surnameStored + "'s account has been deactivated";
         String activateLog = userNameStored + " " + surnameStored + "'s account has been activated";
         Assert.assertTrue(activityLogWidget.containsText(deactivateLog));
@@ -328,16 +332,22 @@ public class UserManagementPage extends PageObject {
     }
 
     public void VerifyDeletedNotification() {
+        waitABit(1000);
         String notification = userNameStored + "'s account has been deleted.";
-        Assert.assertTrue(notificationTable.containsText(notification));
+        Assert.assertEquals(notification, notificationContent.getText());
+       // Assert.assertTrue(notificationTable.containsText(notification));
     }
 
     public void verifyLogForDeletedUser() {
+        WebElementFacade entity = element(entityName(userNameStored));
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
         String deletedLog = userNameStored + " " + surnameStored + "'s account has been deleted";
         Assert.assertTrue(activityLogWidget.containsText(deletedLog));
     }
 
     public void verifyLogForEditUser() {
+        WebElementFacade entity = element(entityName(userNameStored));
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
         String nameEditLog = userNameStored + " " + surnameStored + "'s name has been changed";
         String roleEditLog = userNameStored + " " + surnameStored + "'s role has been changed";
         String contactEditLog = userNameStored + " " + surnameStored + "'s contact number has been changed";

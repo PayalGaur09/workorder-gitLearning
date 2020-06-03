@@ -48,6 +48,11 @@ public class FacilityManagementPage extends PageObject {
     @FindBy(xpath = "//a[text()=' New Unit ']")
     private WebElementFacade addUnitButton;
 
+    @FindBy(xpath = "//span[text()='Townlane']")
+    private WebElementFacade companyLink;
+    @FindBy(xpath = "//a[text()='Facility']")
+    private WebElementFacade facilityTab;
+
 
     private By facilityField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -225,5 +230,10 @@ public class FacilityManagementPage extends PageObject {
 
     public void verifyUnitField() {
         Assert.assertEquals(facilityModel.getUnitName(), element(unitDetail("Unit Name")).getText());
+    }
+
+    public void tapOnNewLaneCompany() {
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(companyLink).click();
+        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(facilityTab).click();
     }
 }

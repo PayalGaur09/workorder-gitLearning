@@ -35,6 +35,15 @@ public class VendorManagementSteps {
         vendor.selectTypeFromDropdown();
     }
 
+    @Given("^User has created a new vendor and reaches to the detail screen$")
+    public void userHasCreatedANewVendorAndReachesToTheDetailScreen() throws IOException, ConfigurationException {
+        vendor.tapOnAddVendorButton();
+        users.uploadProfilePicture();
+        vendor.addInputFieldsOfVendorForm();
+        vendor.selectTypeFromDropdown();
+        vendor.tapOnSubmitButton();
+    }
+
     @When("^User updates all the field of vendor form$")
     public void userUpdatesAllTheFieldOfVendorForm() throws IOException, ConfigurationException {
         vendor.addInputFieldsOfVendorForm();
@@ -129,7 +138,8 @@ public class VendorManagementSteps {
     }
 
     @Then("^Notes count is same as the number of notes listed below$")
-    public void notesCountIsSameAsTheNumberOfNotesListedBelow() {vendor.countNotesForVendor();
+    public void notesCountIsSameAsTheNumberOfNotesListedBelow() {
+        vendor.countNotesForVendor();
     }
 
 
@@ -178,7 +188,8 @@ public class VendorManagementSteps {
     }
 
     @When("^User clicks on delete button$")
-    public void userClicksOnDeleteButton() {
+    public void userClicksOnDeleteButton() throws IOException, ConfigurationException {
+        vendor.saveUserName();
         vendor.tapOnActionButton();
         vendor.clickOnDeleteButton();
     }
@@ -210,11 +221,6 @@ public class VendorManagementSteps {
         userSigninPage.signout();
     }
 
-//    @Then("^Activity log for existing vendor edited is displayed$")
-//    public void activityLogForExistingVendorEditedIsDisplayed() {
-//        vendor.verifyLogForEditVendor();
-//
-//    }
 
     @Then("^Notification for existing vendor edited is displayed$")
     public void notificationForExistingVendorEditedIsDisplayed() {
@@ -233,5 +239,11 @@ public class VendorManagementSteps {
         vendor.verifyDeleteVendorNotification();
         userSigninPage.signout();
     }
+
+    @Then("^Activity log for existing vendor update creation is displayed$")
+    public void activityLogForExistingVendorUpdateCreationIsDisplayed() {
+        vendor.verifyLogForEditVendor();
+    }
+
 }
 

@@ -91,5 +91,9 @@ public class FacilityManagementSteps {
         facility.verifyUnitField();
     }
 
+    @And("^User tap on the newlane company and taps on the facility tab$")
+    public void userTapOnTheNewlaneCompanyAndTapsOnTheFacilityTab() {
+        facility.tapOnNewLaneCompany();
     }
+}
 

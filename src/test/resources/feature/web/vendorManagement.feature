@@ -1,4 +1,4 @@
-@Phase1
+@Phase12
 Feature: Vendor Management
   As a client user I can land on Vendor page
   So that I can manage Vendors of the Company
@@ -8,19 +8,20 @@ Feature: Vendor Management
     When User sign in with valid credential of Account Owner
     Then User tap on the "Vendors" link from side navigation
 
-
   Scenario: Create a vendor and cross verify the detail entered, notification and activity log
     Given User is on add vendor screen
     When User enters all the field
     And User taps on the Submit button
     Then Success message "Vendor has been added successfully" should be displayed
     And User verify vendor detail screen
-    When  User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User tap on the "Dashboard" link from side navigation
     Then Activity log for vendor creation is displayed
     Then Upon tapping the entity user is redirected to the detail screen
+    When User logout from work order platform
+    When User sign in with valid credential of Client Admin
     When User tap on the bell icon
     Then Notification for vendor creation is displayed
+
 
   Scenario: To verify validations on add vendor screen
     Given User logout from work order platform
@@ -32,14 +33,15 @@ Feature: Vendor Management
       | Vendor name is required | Vendor type is required | Contact number is required | Location is required | Account Number is required |
     And User clicks on Cancel button
 
-
   Scenario: Edit an existing vendor from vendor detail screen and cross verify the modification
-    Given User is on detail screen
+    Given User has created a new vendor and reaches to the detail screen
     When User clicks on edit option from action dropdown
     And User updates all the field of vendor form
     And User taps on the Submit button
     Then Success message "Vendor has been updated successfully" should be displayed
     And User verify vendor detail screen
+    When User tap on the "Dashboard" link from side navigation
+    Then Activity log for existing vendor update creation is displayed
 
   Scenario: Adding and editing a note to the Vendor
     Given User is on detail screen
@@ -56,14 +58,15 @@ Feature: Vendor Management
     Then Notes count is same as the number of notes listed below
 
   Scenario: To verify the functionality of "Delete" button on the detailed view page and verify notification and activity log
-    Given User is on detail screen
+    Given User has created a new vendor and reaches to the detail screen
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing vendor deleted is displayed
-    When User tap on the bell icon
+    When User logout from work order platform
+    And User sign in with valid credential of Client Admin
+    And User tap on the bell icon
     Then Notification for existing vendor deleted is displayed
 
   Scenario: To verify the change and remove functionality of vendor profile picture
@@ -92,6 +95,11 @@ Feature: Vendor Management
       | 50           |
       | 100          |
 
+  Scenario: To verify the functionality of "Delete" icon on the list view page
+    When User clicks on delete icon
+    And User clicks on 'OK' option in the confirmation popup
+    Then Success message "Vendor has been deleted successfully" should be displayed
+
   Scenario: Filter the vendor list upon selecting vendor type
     When User clicks on Select dropdown and select a vendor type
     Then Vendor list is filtered out
@@ -108,11 +116,6 @@ Feature: Vendor Management
     And User hits 'Enter' button on keyboard
     Then Vendor list displayed is according to the entered keyword
     And User clicks on Reset button
-
-  Scenario: To verify the functionality of "Delete" icon on the list view page
-    When User clicks on delete icon
-    And User clicks on 'OK' option in the confirmation popup
-    Then Success message "Vendor has been deleted successfully" should be displayed
 
   Scenario: To verify that client personnel is not able to access add, edit and delete feature
     Given User logout from work order platform
