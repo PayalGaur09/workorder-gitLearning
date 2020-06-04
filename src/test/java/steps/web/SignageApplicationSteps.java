@@ -1,5 +1,6 @@
 package steps.web;
 
+import com.jayway.restassured.response.Response;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
@@ -9,12 +10,16 @@ import models.ContentModel;
 import models.ImageModel;
 import org.apache.commons.configuration.ConfigurationException;
 import pages.SignageApplicationPage;
+import services.RegisterKioskService;
 
 import java.io.IOException;
 import java.util.List;
 
+import static utilities.LoadProperties.saveValueInPropertiesFile;
+
 public class SignageApplicationSteps {
     SignageApplicationPage managekioskpage;
+    public static Response fetchResponse;
 
     @Then("^user should redirects to the kiosk page$")
     public void userShouldRedirectsToTheKioskPage() {
@@ -249,6 +254,18 @@ public class SignageApplicationSteps {
 
     @Given("^user is on the manage kiosk page of workorder application$")
     public void userIsOnTheManageKioskPageOfWorkorderApplication() {
+
+    }
+
+    @Given("^User get the registration key list$")
+    public void userGetTheRegistrationKeyList() {
+        fetchResponse = RegisterKioskService.getRegistrationNo();
+    }
+
+    @Then("^User verifies the registration key$")
+    public void userVerifiesTheRegistrationKey() throws IOException, ConfigurationException {
+        String registrationKey = fetchResponse.prettyPrint().replaceAll("\"", "");
+        saveValueInPropertiesFile("RegistrationKey", registrationKey, "testData");
 
     }
 }

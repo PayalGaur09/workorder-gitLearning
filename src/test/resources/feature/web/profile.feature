@@ -17,11 +17,11 @@ Feature: Functionality of profile
     When I  clicking  on the "Edit" button
     Then user should to redirects to the edit page
     And Edit the profile details
-      | First Name | Email                  | Phone       |
-      | payal      | payalgaurche@gmail.com | 98475937456 |
+      | First Name | Email                      | Phone       |
+      | payal      | payal.gaur@successive.tech | 98475937456 |
     And  User taps on the Submit button
-  #  Then Success message " Your profile has been updated successfully. " should be displayed
-   # Then user verify the Edit profile
+    Then Success message " Your profile has been updated successfully. " should be displayed
+    Then user verify the Edit profile
 
   Scenario:User is on edit profile page and clicking on the cancel button
     Given user is on the profile page

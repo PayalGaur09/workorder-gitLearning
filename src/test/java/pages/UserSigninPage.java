@@ -33,9 +33,7 @@ public class UserSigninPage extends PageObject {
         try {
             userName.sendKeys(userEmail);
             password.sendKeys(pwd);
-            waitABit(2000);
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(signinButton).click();
-            waitABit(1000);
         } catch (Exception ignored) {
 
         }

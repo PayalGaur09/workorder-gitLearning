@@ -33,6 +33,13 @@ public class ApiHelper {
                 .header("Authorization", token);
     }
 
+    protected static RequestSpecification fetchBaseUrlKiosk() {
+        RestAssured.baseURI = URI.create(testApiUrl).toString();
+        return given()
+                .header("Content-Type", "application/json")
+                .header("x-api-key", "B8514F94E9E6C39B77C933EB529A1");
+    }
+
     //Specify all one time default Gson config
     public static Gson gson() {
         GsonBuilder gsonBuilder = new GsonBuilder();

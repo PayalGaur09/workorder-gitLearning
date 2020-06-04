@@ -1,4 +1,4 @@
-@Phase12
+@Phase1
 Feature: Vendor Management
   As a client user I can land on Vendor page
   So that I can manage Vendors of the Company
@@ -16,12 +16,10 @@ Feature: Vendor Management
     And User verify vendor detail screen
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for vendor creation is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
     When User logout from work order platform
     When User sign in with valid credential of Client Admin
     When User tap on the bell icon
     Then Notification for vendor creation is displayed
-
 
   Scenario: To verify validations on add vendor screen
     Given User logout from work order platform
@@ -42,6 +40,9 @@ Feature: Vendor Management
     And User verify vendor detail screen
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing vendor update creation is displayed
+    When User sign in with valid credential of Client Admin
+    And User tap on the bell icon
+    Then Notification for existing vendor edited is displayed
 
   Scenario: Adding and editing a note to the Vendor
     Given User is on detail screen
@@ -64,8 +65,7 @@ Feature: Vendor Management
     Then Success message "Vendor has been deleted successfully" should be displayed
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing vendor deleted is displayed
-    When User logout from work order platform
-    And User sign in with valid credential of Client Admin
+    When User sign in with valid credential of Client Admin
     And User tap on the bell icon
     Then Notification for existing vendor deleted is displayed
 

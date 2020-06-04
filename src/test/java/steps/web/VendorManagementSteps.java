@@ -232,6 +232,7 @@ public class VendorManagementSteps {
     @Then("^Activity log for existing vendor deleted is displayed$")
     public void activityLogForExistingVendorDeletedIsDisplayed() {
         vendor.verifyLogForDeleteVendor();
+        userSigninPage.signout();
     }
 
     @Then("^Notification for existing vendor deleted is displayed$")
@@ -243,6 +244,7 @@ public class VendorManagementSteps {
     @Then("^Activity log for existing vendor update creation is displayed$")
     public void activityLogForExistingVendorUpdateCreationIsDisplayed() {
         vendor.verifyLogForEditVendor();
+        userSigninPage.signout();
     }
 
 }
