@@ -75,7 +75,7 @@ Feature: Unit Management
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
-  Scenario: Create a facility by 10Fed user
+  Scenario: Create a unit by 10Fed user
     Given User logout from work order platform
     When User is on work order sign in page
     And User sign in with valid credential of Super Admin

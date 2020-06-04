@@ -1,4 +1,4 @@
-@User
+@Phas
 Feature: User Management
   As a user I can land on Users page
   So that I can manage users of the Company
@@ -8,31 +8,26 @@ Feature: User Management
     When User sign in with valid credential of Account Owner
     Then User tap on the "Users" link from side navigation
 
-  Scenario: Create a user and cross verify the detail entered
+  Scenario: Create a user and cross verify the detail entered, activity log and notification
     Given User is on add user screen
     When User enters all the field in user screen
     And User taps on the Submit button
     Then Success message "User has been added successfully." should be displayed
     And Verify user detail screen
-
-  Scenario: Verify the activity log and notification of User creation for client admin
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User tap on the "Dashboard" link from side navigation
     Then Activity log for user creation is displayed
-    Then Upon tapping the entity user is redirected to the detail screen
-    When User tap on the bell icon
+    And Upon tapping the entity user is redirected to the detail screen
+    When User sign in with valid credential of Client Admin
+    And User tap on the bell icon
     Then User is added notification is displayed
 
   Scenario: To verify validations on add user screen
-    Given User logout from work order platform
-    When User sign in with valid credential of Account Owner
-    And User tap on the "Users" link from side navigation
     Given User is on add user screen
     When User taps on the Submit button
     Then Error message should be displayed
       | First name is required | Email is required | Phone is required | Role is required |
 
-  Scenario: Edit an existing user from user detail screen and cross verify the modification
+  Scenario: Edit an existing user from user detail screen and cross verify the modification and activity logs
     Given User has created a new user and reaches to the detail screen
     When User clicks on edit option from action dropdown
     And User updates all the field of user form
@@ -40,16 +35,11 @@ Feature: User Management
     Then Success message "User has been updated successfully." should be displayed
     When User is on detail screen
     Then Verify user detail screen
-
-  Scenario: Verify the activity log of User edit and the redirection of the entities
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User logout from work order platform
+    And User sign in with valid credential of Client Admin
     Then Activity log for existing user edited is displayed
 
-  Scenario: Deactivate-activate user from user detail screen and cross verify the status
-#    Given User logout from work order platform
-#    When User sign in with valid credential of Account Owner
-#    And User tap on the "Users" link from side navigation
+  Scenario: Deactivate-activate user from user detail screen and cross verify the status, activity log and notification
     Given User has created a new user and reaches to the detail screen
     When User clicks on the action button
     And User verify status and takes necessary actions to change the status
@@ -57,25 +47,21 @@ Feature: User Management
     And User clicks on the action button
     And User verify status and takes necessary actions to change the status
     Then User verified the changed status
-
-  Scenario: Verify the activity log and notification for User deactivation-activation
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing user deactivated or activated is displayed
     And Upon tapping the entity user is redirected to the detail screen
+    When User sign in with valid credential of Client Admin
     When User tap on the bell icon
     Then Notification for Existing User Deactivated is displayed
 
-  Scenario: The functionality of "Delete" button on the user detail screen
+  Scenario: The functionality of "Delete" button on the user detail screen and verify the activity log and notification
     Given User has created a new user and reaches to the detail screen
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "User has been deleted successfully." should be displayed
-
-  Scenario: Verify the activity log for Existing user User deleted and the redirection of the entities
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Admin
+    When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing user deleted is displayed
+    When User sign in with valid credential of Client Admin
     When User tap on the bell icon
     Then Notification for Existing User Deleted is displayed
 

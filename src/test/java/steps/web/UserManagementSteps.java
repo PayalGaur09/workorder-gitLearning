@@ -170,6 +170,7 @@ public class UserManagementSteps {
     @Then("^Upon tapping the entity user is redirected to the detail screen$")
     public void uponTappingTheEntityUserIsRedirectedToTheDetailScreen() {
         users.redirectionOfEntity();
+        userSigninPage.signout();
     }
 
     @Then("^Activity log for existing user edited is displayed$")
@@ -186,6 +187,7 @@ public class UserManagementSteps {
     @Then("^Activity log for existing user deleted is displayed$")
     public void activityLogForExistingUserDeletedIsDisplayed() {
         users.verifyLogForDeletedUser();
+        userSigninPage.signout();
     }
 
     @Then("^Client Admin is not able to edit other admin details$")

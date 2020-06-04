@@ -118,7 +118,7 @@ public class VendorManagementPage extends PageObject {
     private void enterValueInName() throws IOException, ConfigurationException {
         WebElementFacade nameField = element(vendorFormField("Name"));
         waitABit(10000);
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
         nameField.clear();
         detailsModel.setName("Ram" + RandomGenerator.randomAlphabetic(3));
         nameField.sendKeys(detailsModel.getName());
@@ -145,7 +145,7 @@ public class VendorManagementPage extends PageObject {
         WebElementFacade locationField = element(vendorFormField("Location"));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(locationField).waitUntilVisible().click();
         locationField.clear();
-        detailsModel.setLocation("Location" + RandomGenerator.randomAlphabetic(6));
+        detailsModel.setLocation("Noida Sector 11");
         locationField.sendKeys(detailsModel.getLocation());
     }
 
@@ -374,63 +374,13 @@ public class VendorManagementPage extends PageObject {
 
     }
 
-    public void verifyAddVendorNotification() {
-        String notification = "New vendor " + detailsModel.getName() + " was created. Tap to view details.";
-        Assert.assertEquals(notification, notificationContent.getText());
-        // Assert.assertTrue(notificationTable.containsText(notification));
-    }
-
-
-    public void verifyLogForAddVendor() {
-//        WebElementFacade entity = element(entityName(userNameStored));
-        //String addUserLog = "New vendor " + userNameStored + " was created";
-        String addUserLog = "New vendor " + detailsModel.getName() + " was created";
-
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(0)).waitUntilVisible();
-        for (int i = 0; i < activityList.size(); i++) {
-            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(i));
-            if (activityList.get(i).isDisplayed()) {
-                String actual = activityList.get(i).getText();
-                if (actual.equals(addUserLog)) {
-                    break;
-                }
-            }
-            if (i == activityList.size() - 1) {
-                Assert.fail();
-            }
-        }
-        Assert.assertTrue(true);
-//        WebElementFacade entity = element(entityName(userNameStored));
-//        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
-//        String addUserLog = "New vendor " + userNameStored + " was created";
-//        Assert.assertTrue(activityLogWidget.containsText(addUserLog));
-    }
-
-    public void verifyEditVendorNotification() {
-        String notification = detailsModel.getName() + " details have been updated. Tap to view details.";
-        Assert.assertEquals(notification, notificationContent.getText());
-        // Assert.assertTrue(notificationTable.containsText(notification));
-
-    }
-
-
-    public void verifyDeleteVendorNotification() {
-        //String storedName = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "nameInDetail")));
-        String notification = detailsModel.getName() + " has been deleted.";
-        Assert.assertEquals(notification, notificationContent.getText());
-
-    }
-
-    public void verifyLogForDeleteVendor() {
-        WebElementFacade entity = element(entityName(detailsModel.getName()));
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
-        String deleteUserLog = detailsModel.getName() + " has been deleted";
-        Assert.assertTrue(activityLogWidget.containsText(deleteUserLog));
-    }
+    //.......Activity Log...........
 
     public void searchContentForActivity(String contentType) {
+        waitABit(1000);
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(0));
         for (int i = 0; i < activityList.size(); i++) {
-            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(i));
+            //   withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(i)).waitUntilPresent();
             if (activityList.get(i).isDisplayed()) {
                 String actual = activityList.get(i).getText();
                 if (actual.contains(contentType)) {
@@ -444,17 +394,48 @@ public class VendorManagementPage extends PageObject {
         Assert.assertTrue(true);
     }
 
+    public void verifyLogForAddVendor() {
+        String addUserLog = "New vendor " + detailsModel.getName() + " was created";
+        searchContentForActivity(addUserLog);
+    }
+
 
     public void verifyLogForEditVendor() {
         String editNameLog = "Vendor " + detailsModel.getName() + " has been changed";
         searchContentForActivity(editNameLog);
         String editAccNoLog = "Vendor " + detailsModel.getName() + " account number changed";
         searchContentForActivity(editAccNoLog);
-        String emailNameLog = "Vendor " + detailsModel.getName() + " email  changed";
+        String emailNameLog = "Vendor " + detailsModel.getName() + " email changed";
         searchContentForActivity(emailNameLog);
-//        String editNameLog = "Vendor " + detailsModel.getName() + " has been changed";
-//        searchContentForActivity(editNameLog);
-
+        String editContactLog = "Vendor " + detailsModel.getName() + " contact number changed";
+        searchContentForActivity(editContactLog);
     }
+
+    public void verifyLogForDeleteVendor() {
+        WebElementFacade entity = element(entityName(detailsModel.getName()));
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(entity).shouldBePresent();
+        String deleteUserLog = detailsModel.getName() + " has been deleted";
+        Assert.assertTrue(activityLogWidget.containsText(deleteUserLog));
+    }
+
+    //........Notification................
+
+    public void verifyAddVendorNotification() {
+        String notification = "New vendor " + detailsModel.getName() + " was created. Tap to view details.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+
+    public void verifyEditVendorNotification() {
+        String notification = detailsModel.getName() + " details have been updated. Tap to view details.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+
+    public void verifyDeleteVendorNotification() {
+        String notification = detailsModel.getName() + " has been deleted.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
 
 }
