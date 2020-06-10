@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
@@ -20,12 +20,12 @@ public class UserSigninSteps {
 
     @Given("^User is on work order sign in page$")
     public void userIsOnWorkOrderSignInPage() {
-        userSigninPage.getDriver().get(conf.getString("test_url"));
+        userSigninPage.getDriver().get(conf.getString("base_url"));
     }
 
 
-    @When("^User enter credentials and tap on the signin button$")
-    public void userEnterCredentialsAndTapOnTheSigninButton(DataTable dataTable) {
+    @When("^User enter credentials and tap on the sign in button$")
+    public void userEnterCredentialsAndTapOnTheSignInButton(DataTable dataTable) {
         List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
         String userEmail = list.get(0).get("userEmail");
         String pwd = list.get(0).get("password");
@@ -39,8 +39,8 @@ public class UserSigninSteps {
         userSigninPage.verifyHomepage();
     }
 
-    @And("^User logout from workorder platform$")
-    public void userLogoutFromWorkorderPlatform() {
+    @And("^User logout from work order platform$")
+    public void userLogoutFromWorkOrderPlatform() {
         userSigninPage.signout();
     }
 
@@ -58,8 +58,38 @@ public class UserSigninSteps {
 
     @Given("^User sign in with valid credential of Account Owner$")
     public void userSignInWithValidCredentialOfAccountOwner() {
-        String id= LoadProperties.getValueFromPropertyFile("testData","AccountOwnerId");
-        String pwd= LoadProperties.getValueFromPropertyFile("testData","AccountOwnerPassword");
-        userSigninPage.enterCredentials(id,pwd);
+        String id = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerPassword");
+        userSigninPage.enterCredentials(id, pwd);
     }
+
+    @And("^User sign in with valid credential of Client Personnel$")
+    public void userSignInWithValidCredentialOfClientPersonnel() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "clientPersonnelId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "clientPersonnelPassword");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
+    @When("^User sign in with valid credential of Client Admin$")
+    public void userSignInWithValidCredentialOfClientAdmin() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "clientAdminId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "clientAdminPassword");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
+    @When("^User sign in with valid credential of Ten Fed Admin$")
+    public void userSignInWithValidCredentialOfTenFedAdmin() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "tenFedAdminId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "tenFedAdminPassword");
+        userSigninPage.enterCredentials(id, pwd);
+
+    }
+
+    @When("^User sign in with valid credential of Super Admin$")
+    public void userSignInWithValidCredentialOfSuperAdmin() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "superAdminId");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "superAdminPassword");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
 }

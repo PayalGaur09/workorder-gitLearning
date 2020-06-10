@@ -74,3 +74,15 @@ Feature: Unit Management
     And User hits 'Enter' button on keyboard
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
+
+  Scenario: Create a unit by 10Fed user
+    Given User logout from work order platform
+    When User is on work order sign in page
+    And User sign in with valid credential of Super Admin
+    And User tap on the "Companies" link from side navigation
+    And User tap on the newlane company and taps on the facility tab
+    Then User is on detail screen
+    Given User is on add unit screen
+    When User enters all the field in unit screen
+    And User taps on the Submit button
+    Then Success message "Unit has been added successfully" should be displayed

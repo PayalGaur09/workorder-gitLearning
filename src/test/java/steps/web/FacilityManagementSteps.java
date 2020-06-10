@@ -1,4 +1,4 @@
-package steps;
+package steps.web;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -90,4 +90,10 @@ public class FacilityManagementSteps {
     public void userVerifyUnitDetailScreen() {
         facility.verifyUnitField();
     }
+
+    @And("^User tap on the newlane company and taps on the facility tab$")
+    public void userTapOnTheNewlaneCompanyAndTapsOnTheFacilityTab() {
+        facility.tapOnNewLaneCompany();
+    }
 }
+
