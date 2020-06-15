@@ -5,6 +5,7 @@ import models.DetailsModel;
 import models.FacilityModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,8 +13,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.yecht.Data;
+import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,8 +24,10 @@ import java.util.concurrent.TimeUnit;
 public class FacilityManagementPage extends PageObject {
 
     private FacilityModel facilityModel = new FacilityModel();
+    private VendorManagementPage vendor;
     List<String> selectedItems;
     String facilityName;
+    //String companyIDWeb;
     @FindBy(xpath = "//a[contains(text(),'New Facility')]")
     private WebElementFacade addFacilityButton;
     @FindBy(xpath = "//label[contains(text(),'ID')]/..//div")
@@ -44,14 +49,18 @@ public class FacilityManagementPage extends PageObject {
     private WebElementFacade editSecondFacility;
     @FindBy(xpath = "//em[@title='Member Assigned']/..//span")
     private WebElementFacade assignedMemberList;
-    //unit management locators
     @FindBy(xpath = "//a[text()=' New Unit ']")
     private WebElementFacade addUnitButton;
-
-    @FindBy(xpath = "//span[text()='Townlane']")
+    @FindBy(xpath = "//span[@class='link']")
     private WebElementFacade companyLink;
     @FindBy(xpath = "//a[text()='Facility']")
     private WebElementFacade facilityTab;
+    @FindBy(xpath = "//div[@class='col-md-12 text-right']//button[text()='Delete']")
+    private WebElementFacade deleteBox;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
+    private List<WebElementFacade> notificationList;
+    @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
+    private WebElementFacade notificationContent;
 
 
     private By facilityField(String text) {
@@ -70,12 +79,17 @@ public class FacilityManagementPage extends PageObject {
         return By.xpath("//label[contains(text(),'" + detail + "')]/..//p");
     }
 
+    private By companyIdElement(String id) {
+        return By.xpath("//td[text()='" + id + "']/..//span[@class='link']");
+    }
+
     public void clickAddFacility() {
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(addFacilityButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addFacilityButton).click();
     }
 
     private void enterValueInFacility() {
-        element(facilityField("Facility")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
+        waitABit(5000);
+        element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilClickable().click();
         element(facilityField("Facility")).clear();
         facilityModel.setName(RandomGenerator.randomAlphabetic(5) + "Pvt Ltd");
         element(facilityField("Facility")).sendKeys(facilityModel.getName());
@@ -112,7 +126,7 @@ public class FacilityManagementPage extends PageObject {
     private void enterValueInManagerPhone() {
         element(facilityField("Phone")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Phone")).clear();
-        facilityModel.setPmPhone("9879879879");
+        facilityModel.setPmPhone(RandomGenerator.randomInteger(10));
         element(facilityField("Phone")).sendKeys(facilityModel.getPmPhone());
     }
 
@@ -140,8 +154,9 @@ public class FacilityManagementPage extends PageObject {
         complaint.selectByIndex(1);
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(moveOutAssignee);
         Select moveOut = new Select(moveOutAssignee);
-        moveOut.selectByIndex(2);
+        moveOut.selectByIndex(1);
     }
+
 
     public void verifyDetails() {
         WebElementFacade a = element(facilityDetail("Name"));
@@ -178,10 +193,11 @@ public class FacilityManagementPage extends PageObject {
         facilityModel.setCompanyId(withTimeoutOf(10, TimeUnit.SECONDS).waitFor(companyID).getText());
     }
 
-    public void verifyIdFromCompanyScreen() {
+    public void verifyIdFromCompanyScreen() throws IOException, ConfigurationException {
         // String xyz = idOnCompanyScreen.getText();
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(idOnCompanyScreen);
         Assert.assertTrue(idOnCompanyScreen.getText().contains(facilityModel.getCompanyId()));
+        LoadProperties.saveValueInPropertiesFile("companyIdWeb", idOnCompanyScreen.getText(), "testData");
     }
 
     public void firstFacilityName() {
@@ -232,8 +248,156 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals(facilityModel.getUnitName(), element(unitDetail("Unit Name")).getText());
     }
 
-    public void tapOnNewLaneCompany() {
-        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(companyLink).click();
-        withTimeoutOf(40,TimeUnit.SECONDS).waitFor(facilityTab).click();
+    public void fetchFacilityAndUnitName() {
+        WebElementFacade unitName=element(unitDetail("Unit Name"));
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(unitName).waitUntilPresent();
+        facilityModel.setUnitName(unitName.getText());
+        //facilityModel.setUnitName(element(unitDetail("Unit Name")).getText());
+        facilityModel.setName(element(unitDetail("Facility Name")).getText());
     }
+
+    public void tapOnTheCompanyFacilityOfAccountOwner() {
+        String companyIdWeb = LoadProperties.getValueFromPropertyFile("testData", "companyIdWeb");
+        WebElementFacade companyLink = element(companyIdElement(companyIdWeb));
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(companyLink).click();
+        waitABit(1000);
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
+    }
+
+    //......Activity Log..........
+
+    public void verifyLogForAddFacility() {
+        String addFacilityLog = facilityModel.getName() + " was created";
+        vendor.searchContentForActivity(addFacilityLog);
+    }
+
+    public void verifyLogForAddFacilityByAdmin() {
+        String addFacilityLog = facilityModel.getName() + " was created by an admin";
+        vendor.searchContentForActivity(addFacilityLog);
+    }
+
+
+    public void verifyLogForEditFacility() {
+        String nameEditLog = facilityModel.getName() + " name was updated";
+        vendor.searchContentForActivity(nameEditLog);
+        String pmNameEditLog = facilityModel.getName() + " property manager was updated";
+        vendor.searchContentForActivity(pmNameEditLog);
+        String pmContactEditLog = facilityModel.getName() + " property manager's contact number was updated";
+        vendor.searchContentForActivity(pmContactEditLog);
+        String pmNameEmailLog = facilityModel.getName() + " property manager's email was updated";
+        vendor.searchContentForActivity(pmNameEmailLog);
+    }
+
+//    New members assigned:
+//    <User_Name > has been assigned to<Facility_Name>.
+//
+//    Member removed:
+//    <User_Name > has been removed from<Facility_Name>."
+
+    public void verifyLogForDeactivateActivateFacility() {
+        String deactivateLog = " has been deactivated";
+        vendor.searchContentForActivity(deactivateLog);
+        String activateLog = " has been activated";
+        vendor.searchContentForActivity(activateLog);
+    }
+
+    public void verifyLogForDeletedFacilityByAdmin() {
+        String deletedLog = facilityModel.getName() + "'s account has been deleted";
+        vendor.searchContentForActivity(deletedLog);
+    }
+
+    public void deleteBox() {
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).click();
+
+    }
+
+    public void verifyLogForAddUnit() {
+        String addUnitLog = "Unit " + facilityModel.getUnitName() + " has been added to facility";
+        vendor.searchContentForActivity(addUnitLog);
+    }
+
+    public void verifyLogForEditUnit() {
+        String editUnitLog = "Unit " + facilityModel.getUnitName() + " details have been updated";
+        vendor.searchContentForActivity(editUnitLog);
+    }
+
+    public void verifyLogForDeactivateActivateUnit() {
+        String deactivateUnitLog = "Unit " + facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deactivated";
+        vendor.searchContentForActivity(deactivateUnitLog);
+        String activateUnitLog = "Unit " + facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been activated";
+        vendor.searchContentForActivity(activateUnitLog);
+    }
+
+
+    ///............Notification..............
+
+    public void searchNotificationContent(String contentType) {
+        waitABit(500);
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(notificationList.get(0));
+        for (int i = 0; i < notificationList.size(); i++) {
+            //   withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(i)).waitUntilPresent();
+            if (notificationList.get(i).isDisplayed()) {
+                String actual = notificationList.get(i).getText();
+                if (actual.contains(contentType)) {
+                    break;
+                }
+            }
+            if (i == notificationList.size() - 1) {
+                Assert.fail();
+            }
+        }
+        Assert.assertTrue(true);
+    }
+
+
+    public void addFacilityNotification() {
+        String notification = facilityModel.getName() + " was created by an admin. Tap to view details.";
+        searchNotificationContent(notification);
+       // Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void facilityAssignedNotification() {
+        String notification = "You have been assigned to " + facilityModel.getName() + ". Tap to view details.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void facilityRemovedNotification() {
+        String notification = "You have been removed from the facility " + facilityModel.getName() + ". Tap to view details.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void editFacilityNotification() {
+        String notification = facilityModel.getName() + " details have been updated. Tap to view the details.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void deactivateFacilityNotification() {
+        String notification = facilityModel.getName() + " has been deactivated.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void deleteFacilityNotification() {
+        String notification = facilityModel.getName() + " has been deleted.";
+        Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void editUnitNotification() {
+        String notification = facilityModel.getUnitName() + " details have been updated. Tap to view details.";
+        searchNotificationContent(notification);
+        //Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void deactivateUnitNotification() {
+        String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deactivated.";
+        searchNotificationContent(notification);
+        //Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void deleteUnitNotification() {
+        //UnitfTNw from facility First Floor has been deleted.
+        String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deleted.";
+        searchNotificationContent(notification);
+       // Assert.assertEquals(notification, notificationContent.getText());
+    }
+
 }

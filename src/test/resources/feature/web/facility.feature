@@ -15,6 +15,12 @@ Feature: Facility Management
     And User taps on the Submit button
     Then Success message "Facility has been added successfully" should be displayed
     And User verify facility detail screen
+    When User tap on the "Dashboard" link from side navigation
+    Then Activity log for facility creation is displayed
+    When User logout from work order platform
+    And User sign in with valid credential of Client Admin
+    And User tap on the bell icon
+    Then Notification for facility creation is displayed
 
   Scenario: To verify validations on add facility screen
     Given User is on add facility screen
@@ -34,6 +40,18 @@ Feature: Facility Management
     Then User verify default assignee members
     And User clicks on Cancel button
 
+  Scenario: Verify that user is able to select and remove user group
+    Given User created a new facility and reaches to the detail screen
+    When User clicks on edit option from action dropdown
+    And User Selects group to that facility
+
+  Scenario: Verify the activity log and notifications of add/remove user group
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Admin
+    Then Activity log for add/remove user group is displayed
+    When User tap on the bell icon
+    Then Notification for add/remove user group is displayed
+
   Scenario: Edit an existing facility from facility list screen and cross verify the modification
     Given User navigates to edit page from list screen
     When User enters all the field in Facility screen
@@ -42,18 +60,24 @@ Feature: Facility Management
     And User verify facility detail screen
 
   Scenario: Edit an existing facility from facility detail screen and cross verify the modification
-    Given User is on detail screen
+    Given User created a new facility and reaches to the detail screen
+    #Given User is on detail screen
     When User clicks on edit option from action dropdown
     And User enters all the field in Facility screen
     And User taps on the Submit button
     Then Success message "Facility has been updated successfully" should be displayed
     And User verify facility detail screen
+    When User tap on the "Dashboard" link from side navigation
+    Then Activity log for existing facility edited is displayed
 
   Scenario: Deactivate and Activate facility from facility list screen
+    Given User created a new facility and reaches to the detail screen
     When User clicks on "Deactivate" icon on list page
     Then Success message "Facility has been deactivated successfully." should be displayed
     When User clicks on "Activate" icon on list page
     Then Success message "Facility has been activated successfully." should be displayed
+    When User tap on the "Dashboard" link from side navigation
+    Then Activity log for existing facility activated and deactivated is displayed
 
   Scenario: Verify that the user is able to select multiple users in ‘Members Assigned’ dropdown
     Given User is on add facility screen
@@ -92,13 +116,16 @@ Feature: Facility Management
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
-  Scenario: Create a facility by 10Fed user
-    Given User logout from work order platform
-    When User is on work order sign in page
-    And User sign in with valid credential of Super Admin
+  Scenario: Verify that 10Fed users are able to create and delete facility for any company
+    #Given User logout from work order platform
+    When User sign in with valid credential of Super Admin
     And User tap on the "Companies" link from side navigation
-    And User tap on the newlane company and taps on the facility tab
-    Given User is on add facility screen
-    When User enters all the field in Facility screen
-    And User taps on the Submit button
-    Then Success message "Facility has been added successfully" should be displayed
+    And User tap on a company and taps on the facility tab
+    Then User created a new facility and reaches to the detail screen
+    When User clicks on delete option
+    Then Success message "Facility has been deleted successfully." should be displayed
+    When User logout from work order platform
+    And User sign in with valid credential of Account Owner
+    Then Activity log for create and delete facility by admin is displayed
+
+

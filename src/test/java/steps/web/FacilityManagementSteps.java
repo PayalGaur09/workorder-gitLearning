@@ -4,11 +4,18 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.FacilityManagementPage;
+import pages.UserSigninPage;
+import pages.VendorManagementPage;
+
+import java.io.IOException;
 
 public class FacilityManagementSteps {
 
-    FacilityManagementPage facility;
+    private FacilityManagementPage facility;
+    private VendorManagementPage vendor;
+    private UserSigninPage userSigninPage;
 
     @Given("^User is on add facility screen$")
     public void userIsOnAddFacilityScreen() {
@@ -19,6 +26,14 @@ public class FacilityManagementSteps {
     public void userEntersAllTheFieldInFacilityScreen() {
         facility.enterAllFields();
         facility.selectDropdown();
+    }
+
+    @Given("^User created a new facility and reaches to the detail screen$")
+    public void userCreatedANewFacilityAndReachesToTheDetailScreen() {
+        facility.clickAddFacility();
+        facility.enterAllFields();
+        facility.selectDropdown();
+        vendor.tapOnSubmitButton();
     }
 
     @And("^User verify facility detail screen$")
@@ -47,7 +62,7 @@ public class FacilityManagementSteps {
     }
 
     @Then("^User verified the Company ID$")
-    public void userVerifiedTheCompanyID() {
+    public void userVerifiedTheCompanyID() throws IOException, ConfigurationException {
         facility.verifyIdFromCompanyScreen();
     }
 
@@ -91,9 +106,93 @@ public class FacilityManagementSteps {
         facility.verifyUnitField();
     }
 
-    @And("^User tap on the newlane company and taps on the facility tab$")
-    public void userTapOnTheNewlaneCompanyAndTapsOnTheFacilityTab() {
-        facility.tapOnNewLaneCompany();
+    @And("^User tap on a company and taps on the facility tab$")
+    public void userTapOnACompanyAndTapsOnTheFacilityTab() {
+        facility.tapOnTheCompanyFacilityOfAccountOwner();
+    }
+
+    @Then("^Activity log for facility creation is displayed$")
+    public void activityLogForFacilityCreationIsDisplayed() {
+        facility.verifyLogForAddFacility();
+    }
+
+    @Then("^Activity log for existing facility edited is displayed$")
+    public void activityLogForExistingFacilityEditedIsDisplayed() {
+        facility.verifyLogForEditFacility();
+    }
+
+    @Then("^Activity log for existing facility activated and deactivated is displayed$")
+    public void activityLogForExistingFacilityActivatedAndDeactivatedIsDisplayed() {
+        facility.verifyLogForDeactivateActivateFacility();
+    }
+
+    @When("^User clicks on delete option$")
+    public void userClicksOnDeleteOption() {
+        vendor.tapOnActionButton();
+        vendor.clickOnDeleteButton();
+        facility.deleteBox();
+    }
+
+    @Then("^Activity log for create and delete facility by admin is displayed$")
+    public void activityLogForCreateAndDeleteFacilityByAdminIsDisplayed() {
+        facility.verifyLogForAddFacilityByAdmin();
+        facility.verifyLogForDeletedFacilityByAdmin();
+    }
+
+    @Then("^Activity log for unit creation is displayed$")
+    public void activityLogForUnitCreationIsDisplayed() {
+        facility.verifyLogForAddUnit();
+    }
+
+    @Then("^Activity log for existing unit edited is displayed$")
+    public void activityLogForExistingUnitEditedIsDisplayed() {
+        facility.verifyLogForEditUnit();
+        userSigninPage.signout();
+    }
+
+    @Then("^Activity log for existing unit activated and deactivated is displayed$")
+    public void activityLogForExistingUnitActivatedAndDeactivatedIsDisplayed() {
+        facility.verifyLogForDeactivateActivateUnit();
+    }
+
+    @Then("^Notification for facility creation is displayed$")
+    public void notificationForFacilityCreationIsDisplayed() {
+        facility.addFacilityNotification();
+    }
+
+    @Then("^Notification for Existing Unit Edited is displayed$")
+    public void notificationForExistingUnitEditedIsDisplayed() {
+        facility.editUnitNotification();
+    }
+
+    @When("^User fetches facility and unit name$")
+    public void userFetchesFacilityAndUnitName() {
+        vendor.tapOnNameLink(); //Reaches to detail screen
+        facility.fetchFacilityAndUnitName();
+    }
+
+    @Then("^Notification for Existing Unit deactivated is displayed$")
+    public void notificationForExistingUnitDeactivatedIsDisplayed() {
+        facility.deactivateUnitNotification();
+        userSigninPage.signout();
+    }
+
+    @When("^User add a new unit$")
+    public void userAddANewUnit() {
+        vendor.tapOnNameLink();
+        facility.tapOnUnitAddButton();
+        facility.enterUnitField();
+        vendor.tapOnSubmitButton();
+    }
+
+    @Then("^Notification for Existing unit Deleted is displayed$")
+    public void notificationForExistingUnitDeletedIsDisplayed() {
+        facility.deleteUnitNotification();
+    }
+
+    @Given("^User navigates to edit page from list screen for unit$")
+    public void userNavigatesToEditPageFromListScreenForUnit() {
+        vendor.tapOnEditUnitIcon();
     }
 }
 
