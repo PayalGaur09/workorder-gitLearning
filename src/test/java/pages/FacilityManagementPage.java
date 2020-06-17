@@ -332,7 +332,7 @@ public class FacilityManagementPage extends PageObject {
     ///............Notification..............
 
     public void searchNotificationContent(String contentType) {
-        waitABit(500);
+        waitABit(1000);
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(notificationList.get(0));
         for (int i = 0; i < notificationList.size(); i++) {
             //   withTimeoutOf(20, TimeUnit.SECONDS).waitFor(activityList.get(i)).waitUntilPresent();
@@ -358,11 +358,13 @@ public class FacilityManagementPage extends PageObject {
 
     public void facilityAssignedNotification() {
         String notification = "You have been assigned to " + facilityModel.getName() + ". Tap to view details.";
-        Assert.assertEquals(notification, notificationContent.getText());
+        searchNotificationContent(notification);
+       // Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void facilityRemovedNotification() {
         String notification = "You have been removed from the facility " + facilityModel.getName() + ". Tap to view details.";
+        searchNotificationContent(notification);
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
@@ -383,21 +385,23 @@ public class FacilityManagementPage extends PageObject {
 
     public void editUnitNotification() {
         String notification = facilityModel.getUnitName() + " details have been updated. Tap to view details.";
-        searchNotificationContent(notification);
         //Assert.assertEquals(notification, notificationContent.getText());
+        searchNotificationContent(notification);
     }
 
     public void deactivateUnitNotification() {
         String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deactivated.";
-        searchNotificationContent(notification);
         //Assert.assertEquals(notification, notificationContent.getText());
+        searchNotificationContent(notification);
     }
 
     public void deleteUnitNotification() {
-        //UnitfTNw from facility First Floor has been deleted.
         String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deleted.";
         searchNotificationContent(notification);
-       // Assert.assertEquals(notification, notificationContent.getText());
     }
 
+    public void facilityStatic() {
+        WebElementFacade a = element("//span[text()='Facilities']");
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).click();
+    }
 }

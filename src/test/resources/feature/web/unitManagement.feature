@@ -1,6 +1,5 @@
 Feature: Unit Management
-  As an Account Owner and a client Admin
-  I can land on facility detail page
+  As a user I can land on the unit list page
   So that I can manage units of the facility
 
   Background:

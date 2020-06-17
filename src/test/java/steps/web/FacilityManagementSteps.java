@@ -194,5 +194,10 @@ public class FacilityManagementSteps {
     public void userNavigatesToEditPageFromListScreenForUnit() {
         vendor.tapOnEditUnitIcon();
     }
+
+    @Then("^User tap on facility static xpath$")
+    public void userTapOnFacilityStaticXpath() {
+        facility.facilityStatic();
+    }
 }
 
