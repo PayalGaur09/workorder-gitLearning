@@ -4,13 +4,17 @@ import com.gargoylesoftware.htmlunit.javascript.host.Window;
 import models.DetailsModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.scheduling.ThucydidesFluentWait;
 import net.thucydides.core.webdriver.WebDriverFacade;
 import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
@@ -291,6 +295,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void tapOnBellIcon() {
+        waitABit(2000);
         withTimeoutOf(50, TimeUnit.SECONDS).waitFor(notificationIcon).click();
         waitABit(1000);
     }

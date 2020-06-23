@@ -37,7 +37,8 @@ public class VendorManagementPage extends PageObject {
 
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
     private WebElementFacade submitButton;
-    @FindBy(xpath = "//span[text()=' payal Gaur ']/../../..//p")
+    //@FindBy(xpath = "//span[text()=' payal Gaur ']/../../..//p")
+    @FindBy(xpath = "//div[@class='kt-widget3__item ng-star-inserted']//p")
     private List<WebElementFacade> activityList;
     @FindBy(xpath = "//a[text()='Cancel']")
     private WebElementFacade cancelButton;
@@ -196,11 +197,11 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
     }
 
-    public void saveUserName() throws IOException, ConfigurationException {
-        WebElementFacade nameInDetail = element(vendorDetail("Name"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameInDetail);
-        LoadProperties.saveValueInPropertiesFile("nameInDetail", nameInDetail.getText(), "testData");
-    }
+//    public void saveUserName() throws IOException, ConfigurationException {
+//        WebElementFacade nameInDetail = element(vendorDetail("Name"));
+//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameInDetail);
+//        LoadProperties.saveValueInPropertiesFile("nameInDetail", nameInDetail.getText(), "testData");
+//    }
 
     public void tapOnCancelButton() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
@@ -210,6 +211,12 @@ public class VendorManagementPage extends PageObject {
         WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
     }
+
+    public void tapOnEditUnitIcon() {
+        WebElementFacade editIcon = element("//em[@title='Edit']");
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
+    }
+
 
     public void verifyEditIconIsNotDisplayed() {
         WebElementFacade editIconForAdmin = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
@@ -224,7 +231,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnActionButton() {
-        waitABit(1000);
+        waitABit(6000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 
