@@ -51,8 +51,8 @@ public class MoveInApplicationSteps extends PageObject {
         moveinapplication.clicksOnAddButton();
     }
 
-    @And("^I select '(.*)' Aminities$")
-    public void iSelectClimateControlledAminities(String Amenities) {
+    @And("^user select '(.*)' Aminities$")
+    public void userSelectClimateControlledAminities(String Amenities) {
         moveinapplication.iSelectAmenetiesType(Amenities);
     }
 

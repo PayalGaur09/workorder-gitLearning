@@ -22,7 +22,7 @@ Feature: Functionality of  application
     And user selects the tag kiosk page
     When user clicks on configure and manage button
     Then user should redirects to the  Manage Kiosk  page
-    And I select 'Air Cooled' Aminities
+    And user select 'Climate Controlled' Aminities
     And user uploads the icons in the upload icon fields
       | icon                    |
       | drive up access_red.png |

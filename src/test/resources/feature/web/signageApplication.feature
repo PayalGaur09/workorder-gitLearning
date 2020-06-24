@@ -1,26 +1,26 @@
 @smoke
 Feature: Functionality of signage application
 
-#  Background:
-#    Given User is on work order sign in page
-#    When User sign in with valid credential of Account Owner
-#    And User click on side menu of "Manage Kiosk" button
+  Background:
+    Given User is on work order sign in page
+    When User sign in with valid credential of Account Owner
+    And User click on side menu of "Manage Kiosk" button
 
   Scenario: To verify user redirects to the kiosk page
     Given user is on the manage kiosk page of workorder application
     Then  user should redirects to the kiosk page
 
-  Scenario: To verify the registration of new kiosk application
+  Scenario: To verify the registration of new kiosk application for already used key
     Given user is on the manage kiosk page of workorder application
     And user clicks on register new kiosk button
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
       | registrationKey | tag          |
-      | 485907          | 415485907215 |
+      | 132587          | 415485907215 |
     And user clicks on the configure  button
     Then error message should be come " Registration key already used "
 
-  Scenario: To verify the registration of new kiosk application for already used key
+  Scenario: To verify the registration of new kiosk application
     Given user is on the manage kiosk page of workorder application
     And user clicks on register new kiosk button
     And User clicks on Select dropdown and select a facility
@@ -189,14 +189,10 @@ Feature: Functionality of signage application
     And user clicks  on the submit button
     Then Verify the error message
 
-  Scenario: Presence of pagination of landing page plan list
-    Given user is on the manage kiosk page of workorder application
-    Given there are at least 10 existing tags on landing page
-    Then I will check for presence of pagination on landing page
 
-    Scenario: Registration key
-      When User get the registration key list
-      Then User verifies the registration key
+  Scenario: Registration key
+    When User get the registration key list
+    Then User verifies the registration key
 
 
 

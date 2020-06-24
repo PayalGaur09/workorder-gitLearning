@@ -237,15 +237,6 @@ public class SignageApplicationSteps {
       managekioskpage.errorMessagePopup();
     }
 
-    @Given("^there are at least 10 existing tags on landing page$")
-    public void thereAreAtLeastExistingTagsOnLandingPage() throws Throwable {
-        managekioskpage.countOfPlansOnlistPage();
-    }
-
-    @Then("^I will check for presence of pagination on landing page$")
-    public void iWillCheckForPresenceOfPaginationOnLandingPage() throws Throwable {
-        managekioskpage.verifyPaginationExists();
-    }
 
     @Then("^verify the functionality of pagination$")
     public void verifyTheFunctionalityOfPagination() {

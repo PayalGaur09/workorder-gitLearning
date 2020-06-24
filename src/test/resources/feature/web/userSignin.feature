@@ -38,6 +38,20 @@ Feature: Login functionality for Work Order Web
       | payal.gaur@successive.tech |            | Password is required |
       |                            | 1234567890 | Username is required |
 
+  Scenario: Forgot Password to userEmail
+    When user clicks on the forgot password link
+    And I enter Email Address as "UserEmail"
+    And user clicks on the submitbutton
+    And log into yopmail with "userEmail" email id
+    And user clicks on the mail tab and clicks on the link reset password
+    Then user should redirects to the resetpassword page
+    And I enter new password and confirm new password same
+    And user clicks on the submitbutton
+    Given User is on work order sign in page
+    And I enter username and password
+    Then User successfully logged in and Dashboard page displayed
+    And User logout from work order platform
+
 
 
 

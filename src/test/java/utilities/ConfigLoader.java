@@ -14,7 +14,6 @@ public class ConfigLoader {
     private static final Logger log = LoggerFactory.getLogger(ConfigLoader.class);
 
     public static Config load() {
-//        environment = System.getProperty("env") == null ? "test" : System.getProperty("env");
         if (config.hasPath(environment)) {
             log.info("Running the tests against:" + environment);
             return config.getConfig(environment).withFallback(config);
