@@ -1,3 +1,4 @@
+@Phase1
 Feature: Facility Management
   As an Account Owner and a client Admin
   I can land on facility page
@@ -8,7 +9,7 @@ Feature: Facility Management
     When User sign in with valid credential of Account Owner
     Then User tap on the "Facilities" link from side navigation
 
-  Scenario: Create a facility and cross verify the detail entered
+  Scenario: Create a facility and cross verify the detail entered, activity log and notification
     Given User is on add facility screen
     When User enters all the field in Facility screen
     And User selects the default assignee dropdown
@@ -39,7 +40,7 @@ Feature: Facility Management
     Then User verify default assignee user group
     And User clicks on Cancel button
 
-  Scenario: Verify that user is able to add and remove user group
+  Scenario: Verify that user is able to add and remove user group and verify the activity log
     Given User created a new facility and reaches to the detail screen
     And User clicks on edit option from action dropdown
     And User removes a user group
@@ -122,6 +123,3 @@ Feature: Facility Management
     When User logout from work order platform
     And User sign in with valid credential of Account Owner
     Then Activity log for create and delete facility by admin is displayed
-
-
-

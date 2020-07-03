@@ -1,4 +1,3 @@
-@Phase1
 Feature: Vendor Management
   As a client user I can land on Vendor page
   So that I can manage Vendors of the Company

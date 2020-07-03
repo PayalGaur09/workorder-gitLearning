@@ -178,6 +178,7 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals("All", selectedUserGroup.getText());
     }
 
+    //User Group Field
     public void tapOnUserGroupsAssignedDropdown() {
         waitABit(5000);
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
@@ -201,23 +202,11 @@ public class FacilityManagementPage extends PageObject {
     String addUserGroupLog;
 
     public void removeUserGroup() {
-//        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
-//        selectedItems = new ArrayList<>();
-//        for (int i = 0; i < elements.size(); i++) {
-//            if (elements.get(i).isSelected()) {
-//                String a = elements.get(i).getText();
-//                elements.get(i).click();
-//                System.out.println("============================="+a);
-//                removeUserGroupLog = facilityModel.getName() + " user group " + a + " was removed";
-//                break;
-//            }
-//        }
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
         selectedItems = new ArrayList<>();
         selectedItems.add(elements.get(0).getText());
         elements.get(0).click();
         String a = elements.get(0).getText();
-        System.out.println("=============================" + a);
         removeUserGroupLog = facilityModel.getName() + " user group " + a + " was removed";
     }
 
@@ -241,6 +230,7 @@ public class FacilityManagementPage extends PageObject {
         LoadProperties.saveValueInPropertiesFile("companyIdWeb", idOnCompanyScreen.getText(), "testData");
     }
 
+    //Duplicate facility
     public void firstFacilityName() {
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(firstFacility);
         facilityName = firstFacility.getText();
@@ -270,6 +260,7 @@ public class FacilityManagementPage extends PageObject {
 
     }
 
+    //Unit Management
     public void tapOnUnitAddButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUnitButton).click();
     }
@@ -289,12 +280,12 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals(facilityModel.getUnitName(), element(unitDetail("Unit Name")).getText());
     }
 
-    public void fectchFacilityName() {
-        WebElementFacade facilityName = element(unitDetail("Facility Name"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(facilityName).waitUntilPresent();
-        facilityModel.setUnitName(facilityName.getText());
-
-    }
+//    public void fectchFacilityName() {
+//        WebElementFacade facilityName = element(unitDetail("Facility Name"));
+//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(facilityName).waitUntilPresent();
+//        facilityModel.setUnitName(facilityName.getText());
+//
+//    }
 
     public void fetchFacilityAndUnitName() {
         WebElementFacade unitName = element(unitDetail("Unit Name"));
@@ -305,7 +296,7 @@ public class FacilityManagementPage extends PageObject {
 
     public void tapOnTheCompanyOfAccountOwner() {
         String companyIdWeb = LoadProperties.getValueFromPropertyFile("testData", "companyIdWeb");
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(searchUser).sendKeys(companyIdWeb,Keys.ENTER);
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(searchUser).sendKeys(companyIdWeb, Keys.ENTER);
 //        //WebElementFacade companyLink = element(companyIdElement(companyIdWeb));
 //        WebElementFacade companyLink = element(companyIdElement("ID12280"));
 //        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(companyLink).click();
@@ -313,7 +304,7 @@ public class FacilityManagementPage extends PageObject {
 //        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
 
-    public void tapOnFacilityTile(){
+    public void tapOnFacilityTile() {
         waitABit(1000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
