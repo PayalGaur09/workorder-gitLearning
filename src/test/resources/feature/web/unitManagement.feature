@@ -8,7 +8,7 @@ Feature: Unit Management
     And User tap on the "Facilities" link from side navigation
     Then User is on detail screen
 
-  Scenario: Create a unit and cross verify the detail entered, activity log
+  Scenario: Create a unit and cross verify the detail entered and activity log
     Given User is on add unit screen
     When User enters all the field in unit screen
     And User taps on the Submit button
@@ -41,7 +41,7 @@ Feature: Unit Management
     And User verify unit detail screen
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing unit edited is displayed
-    When User sign in with valid credential of Client Admin
+    And User sign in with valid credential of Client Admin
     And User tap on the bell icon
     Then Notification for Existing Unit Edited is displayed
 

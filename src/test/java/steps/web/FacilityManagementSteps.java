@@ -22,16 +22,23 @@ public class FacilityManagementSteps {
         facility.clickAddFacility();
     }
 
+
     @When("^User enters all the field in Facility screen$")
     public void userEntersAllTheFieldInFacilityScreen() {
         facility.enterAllFields();
+    }
+
+    @And("^User selects the default assignee dropdown$")
+    public void userSelectsTheDefaultAssigneeDropdown() {
         facility.selectDropdown();
+        vendor.tapOnSubmitButton();
     }
 
     @Given("^User created a new facility and reaches to the detail screen$")
     public void userCreatedANewFacilityAndReachesToTheDetailScreen() {
         facility.clickAddFacility();
         facility.enterAllFields();
+        facility.selectAllGroup();
         facility.selectDropdown();
         vendor.tapOnSubmitButton();
     }
@@ -41,19 +48,28 @@ public class FacilityManagementSteps {
         facility.verifyDetails();
     }
 
-    @Then("^User verify default assignee members$")
-    public void userVerifyDefaultAssigneeMembers() {
-        facility.verifyDefaultSelectedAssignee();
+    @Then("^User verify default assignee user group$")
+    public void userVerifyDefaultAssigneeUserGroup() {
+        facility.verifyDefaultSelectedUserGroup();
     }
 
-    @When("^User taps on the Member Assigned Dropdown$")
-    public void userTapsOnTheMemberAssignedDropdown() {
-        facility.tapOnAssigneeDropdown();
+
+    @And("^User selects multiple groups$")
+    public void userSelectsMultipleGroups() {
+        facility.tapOnUserGroupsAssignedDropdown();
+        facility.selectUserGroupCheckbox();
     }
 
-    @And("^User selects multiple assignees$")
-    public void userSelectsMultipleAssignees() {
-        facility.selectAssigneeCheckbox();
+    @And("^User removes a user group$")
+    public void userRemovesAUserGroup() {
+        facility.tapOnUserGroupsAssignedDropdown();
+        facility.removeUserGroup();
+    }
+
+    @And("^User adds a user group$")
+    public void userAddsAUserGroup() {
+        facility.tapOnUserGroupsAssignedDropdown();
+        facility.addUserGroup();
     }
 
     @When("^User observes prefilled value of Company ID$")
@@ -108,7 +124,9 @@ public class FacilityManagementSteps {
 
     @And("^User tap on a company and taps on the facility tab$")
     public void userTapOnACompanyAndTapsOnTheFacilityTab() {
-        facility.tapOnTheCompanyFacilityOfAccountOwner();
+        facility.tapOnTheCompanyOfAccountOwner();
+        vendor.tapOnNameLink();
+        facility.tapOnFacilityTile();
     }
 
     @Then("^Activity log for facility creation is displayed$")
@@ -126,12 +144,6 @@ public class FacilityManagementSteps {
         facility.verifyLogForDeactivateActivateFacility();
     }
 
-    @When("^User clicks on delete option$")
-    public void userClicksOnDeleteOption() {
-        vendor.tapOnActionButton();
-        vendor.clickOnDeleteButton();
-        facility.deleteBox();
-    }
 
     @Then("^Activity log for create and delete facility by admin is displayed$")
     public void activityLogForCreateAndDeleteFacilityByAdminIsDisplayed() {
@@ -195,9 +207,17 @@ public class FacilityManagementSteps {
         vendor.tapOnEditUnitIcon();
     }
 
-    @Then("^User tap on facility static xpath$")
-    public void userTapOnFacilityStaticXpath() {
-        facility.facilityStatic();
+    @Then("^Activity log for add/remove user group is displayed$")
+    public void activityLogForAddRemoveUserGroupIsDisplayed() {
+        facility.verifyLogForRemoveUserGroup();
+        facility.verifyLogForAddUserGroup();
+    }
+
+    @When("^User clicks on delete option to delete parent/child entity$")
+    public void userClicksOnDeleteOptionToDeleteParentChildEntity() {
+        vendor.tapOnActionButton();
+        vendor.clickOnDeleteButton();
+        facility.deleteBox();
     }
 }
 

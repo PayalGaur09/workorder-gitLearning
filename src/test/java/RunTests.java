@@ -4,7 +4,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 //@CucumberOptions(features="src/test/resources/feature/web/", tags="@Phase1")
-@CucumberOptions(features="src/test/resources/feature/web/unitManagement.feature")
+@CucumberOptions(features="src/test/resources/feature/web/facility.feature")
 public class RunTests {
-
 }
