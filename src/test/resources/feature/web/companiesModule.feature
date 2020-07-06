@@ -1,4 +1,4 @@
-@Phase1
+@Phase6
 Feature: Company module
 
   Background:
@@ -11,30 +11,21 @@ Feature: Company module
     When user clicks on the newcompany button
     Then user should redirects to the add company page
 
-  Scenario: To verify the functionality of creating the company and cross verify the details and verify the redirection of each tab that is
-  showing on Company deatil page in case when the user is login with admin
+  Scenario:verify functionality of  creating  company and cross verify the details and verify  redirection of each tab
+  showing on Company deatail page  and verify a notification of Company creation for 10Fed admin
     Given user is on the company page of work order application
     When user clicks on the newcompany button
     And user fill the details for creating a new company
       | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
-      | tester | abcdhgg | 76872    | 87868786       | teste45 | test          | accountowner77      | 2874923                      |
+      | tester | abcdhgg | 76872    | 87868786       | teste45 | test               | accountowner77      | 2874923                      |
     And user clicks on the submit
     Then Success message " Company has been added successfully. " should be displayed
     And cross verify the create details
     And User Clicks on the each tab showing on company detail page
-
-  Scenario: Verify the a notification of Company creation for 10Fed admin
-    Given user is on the company page of work order application
-    When user clicks on the newcompany button
-    And user fill the details for creating a new company
-      | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
-      | tester | abcdhgg | 76872    | 878687868876   | teste45 | test7678           | accountowner77      | 2874923                      |
-    And user clicks on the submit
-    Then Success message " Company has been added successfully. " should be displayed
     Given User logout from work order platform
     When User sign in with valid credential of Ten Fed Admin
     When User tap on the "Companies" link from side navigation
-    And User tap on the bell icon
+     And User tap on the bell icon
     Then Notification for company creation is displayed
 
   Scenario:Verify the notification of User deactivation-activation for client admin
@@ -54,7 +45,7 @@ Feature: Company module
     When User tap on the bell icon
     Then Notification for Existing Company is  Deactivated is displayed
 
-  Scenario: To verify the functionality of deleting the company in case when the user is login with admin
+  Scenario: verify functionality of deleting company when user login with admin and Verify notification of User delete for client admin
     Given user is on the company page of work order application
     When user clicks on the newcompany button
     And user fill the details for creating a new company
@@ -66,6 +57,12 @@ Feature: Company module
     And user delete the company
     And user clicks on the OK button for deleting the company
     Then Success message " Company has been deleted successfully. " should be displayed
+    Given User logout from work order platform
+    When User sign in with valid credential of Ten Fed Admin
+    When User tap on the "Companies" link from side navigation
+    When User tap on the bell icon
+    Then Notification for Existing Company is deleted is displayed
+
 
   Scenario: To verify the functionality for edit the company
     When user clicks on the newcompany button
@@ -184,6 +181,7 @@ Feature: Company module
     When User sign in with valid credential of Client Admin
     And User tap on the "Company" link from side navigation
     Then Edit button should visible to the  client admin
+
 
 
 

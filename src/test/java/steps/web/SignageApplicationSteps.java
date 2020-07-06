@@ -11,6 +11,7 @@ import models.ImageModel;
 import org.apache.commons.configuration.ConfigurationException;
 import pages.SignageApplicationPage;
 import services.RegisterKioskService;
+import utilities.LoadProperties;
 
 import java.io.IOException;
 import java.util.List;
@@ -59,27 +60,12 @@ public class SignageApplicationSteps {
     }
 
 
-
-
-
-
-//    @And("^user selects pagination  from show entries dropdown$")
-//    public void userClicksSelectsPageEntriesFromShowEntriesDropdown() {
-//        managekioskpage.selectPageFromShowEntriesDropdown();
-//
-//    }
-
-
     @And("^user selects the tag kiosk page$")
     public void userSelectsTheTagKioskPage() {
         managekioskpage.selectTagFromKiosk();
 
     }
 
-//    @And("^user clicks on the upload content button$")
-//    public void userClicksOnTheUploadContentButton() {
-//        managekioskpage.uploadContent();
-//    }
 
     @And("^user fills all the details$")
     public void userFillsAllTheDetails(DataTable text) {
@@ -98,10 +84,6 @@ public class SignageApplicationSteps {
 
     }
 
-//    @And("^user clicks on the manage button$")
-//    public void userClicksNTheManageButton() {
-//        managekioskpage.clicksOnManageButton();
-//    }
 
     @And("^user clicks on the addcontent button$")
     public void userClicksOnTheAddcontentButton() {
@@ -159,20 +141,6 @@ public class SignageApplicationSteps {
     @And("^user clicks on Choose file in thumbnail field$")
     public void userClicksOnChooseFileInThumbnailField() {
         managekioskpage.uploadContentInThumbnail();
-    }
-
-//    @And("^user upload the image type content in thumbnail field$")
-//    public void userUploadTheImageTypeContentInThumbnailField(List<ThumbnailModel> thumbnailModelList) {
-//        managekioskpage.uploadContentInThumbnailField(thumbnailModelList);
-//
-//    }
-
-//    @And("^user clicks on the \"([^\"]*)\"  button$")
-//    public void userClicksOnTheButton(String action) throws Throwable {
-//        managekioskpage.uploadContent(action);
-//    }
-    public void userClicksOnUploadContentOrManageContentButton(){
-
     }
 
     @And("^user clicks on the upload content or manage content button$")
@@ -259,6 +227,21 @@ public class SignageApplicationSteps {
         saveValueInPropertiesFile("RegistrationKey", registrationKey, "testData");
 
     }
+
+    @And("^user enters the registration key$")
+    public void userEntersTheRegistrationKey() {
+        String regkey = LoadProperties.getValueFromPropertyFile("testData", "RegistrationKey");
+        managekioskpage.enterReistrationKey(regkey);
+
+
+    }
+
+    @And("^user enters the value in tag field$")
+    public void userEntersTheValueInTagField(DataTable data) {
+        managekioskpage.enterValueInTagField(data);
+    }
+
+
 }
 
 

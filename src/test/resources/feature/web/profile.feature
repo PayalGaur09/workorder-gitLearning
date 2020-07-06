@@ -1,4 +1,4 @@
-@Phase1
+@Phase5
 Feature: Functionality of profile
 
   Background:

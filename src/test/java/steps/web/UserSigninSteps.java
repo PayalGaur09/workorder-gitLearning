@@ -20,7 +20,7 @@ public class UserSigninSteps {
 
     @Given("^User is on work order sign in page$")
     public void userIsOnWorkOrderSignInPage() {
-        userSigninPage.getDriver().get(conf.getString("test_url"));
+        userSigninPage.getDriver().get(conf.getString("base_url"));
     }
 
 

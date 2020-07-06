@@ -182,6 +182,7 @@ public class ProfilePage extends PageObject {
 
     public void submitButton1() {
         submitbutton1.click();
+        waitABit(1000);
     }
 
     public void oldpasswordIncorrect(DataTable data) {

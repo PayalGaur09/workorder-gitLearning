@@ -51,7 +51,7 @@ public class DashboardSteps {
     }
 
     @And("^User tap on the \"([^\"]*)\" link from side navigation$")
-    public void userTapOnTheLinkFromSideNavigation(String arg0)  {
+    public void userTapOnTheLinkFromSideNavigation(String arg0) {
         dashboard.tapOnMenuItems(arg0);
     }
 
@@ -97,10 +97,5 @@ public class DashboardSteps {
         for (String option : options) {
             dashboard.observeModuleCountOnDashboard(option);
         }
-    }
-
-    @Then("^User verifies the number displayed in the list$")
-    public void userVerifiesTheNumberDisplayedInTheList() {
-        dashboard.verifyItemCountOfModule();
     }
 }

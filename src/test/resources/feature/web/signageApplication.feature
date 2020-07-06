@@ -4,7 +4,7 @@ Feature: Functionality of signage application
   Background:
     Given User is on work order sign in page
     When User sign in with valid credential of Account Owner
-    And User click on side menu of "Manage Kiosk" button
+    And User tap on the "Manage Kiosk" link from side navigation
 
   Scenario: To verify user redirects to the kiosk page
     Given user is on the manage kiosk page of workorder application
@@ -22,11 +22,14 @@ Feature: Functionality of signage application
 
   Scenario: To verify the registration of new kiosk application
     Given user is on the manage kiosk page of workorder application
+    When User get the registration key list
+    Then User verifies the registration key
     And user clicks on register new kiosk button
     And User clicks on Select dropdown and select a facility
-    And user enters the registration key and tag field
-      | registrationKey | tag    |
-      | 415215          | 415215 |
+    And user enters the registration key
+    And user enters the value in tag field
+      | tag    |
+      | 415215 |
     And user clicks on the configure  button
     Then Success message " Kiosk has been registered successfully. " should be displayed
     And user redirects to the managekioskpage
@@ -113,10 +116,9 @@ Feature: Functionality of signage application
     Given user is on the manage kiosk page of workorder application
     And user selects the tag kiosk page
     And user clicks on the upload content or manage content button
-    And user clicks on the addcontent button
     And  user upload the image type content in the upload content field
-      | image    |
-      | JEEG.jpg |
+      | image   |
+      | png.png |
     And User clicks on the delete fileicon
 
   Scenario: To verify when user clicks on the cancel button on add content field

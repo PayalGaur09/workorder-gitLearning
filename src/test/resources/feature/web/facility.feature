@@ -9,7 +9,6 @@ Feature: Facility Management
     Then User tap on facility static xpath
    # Then User tap on the "Facilities" link from side navigation
 
-
   Scenario: Create a facility and cross verify the detail entered
     Given User is on add facility screen
     When User enters all the field in Facility screen

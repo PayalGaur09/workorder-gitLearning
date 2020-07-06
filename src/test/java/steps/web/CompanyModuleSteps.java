@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.core.pages.PageObject;
 import org.apache.commons.configuration.ConfigurationException;
+import org.junit.Assert;
 import pages.CompanyModulePage;
 import pages.UserSigninPage;
 import utilities.LoadProperties;
@@ -196,6 +197,13 @@ public class CompanyModuleSteps extends PageObject {
     @Then("^Edit button should visible to the  client admin$")
     public void editButtonShouldVisibleToTheClientAdmin() {
         companysigninpage.checkEditButtonForClientAdmin();
+
+    }
+
+    @Then("^Notification for Existing Company is deleted is displayed$")
+    public void notificationForExistingCompanyIsDeletedIsDisplayed() {
+       companysigninpage.verifyDeleteNotification();
+        userSigninPage.signout();
 
     }
 }

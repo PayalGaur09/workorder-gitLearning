@@ -104,6 +104,8 @@ public class SignageApplicationPage extends PageObject {
     private WebElement deleteteconfirm;
     @FindBy(xpath = "//div[text()=' One other content exist with same title. ']")
     private WebElement sametitleexist;
+    @FindBy(xpath = "//input[@name='registrationKey']")
+    private WebElement regkey;
 
     private By manageKioskValidation(String options) {
         return By.xpath("//*[contains(text(),'" + options + "')]");
@@ -390,4 +392,16 @@ public class SignageApplicationPage extends PageObject {
             }
         }
     }
+    public void enterReistrationKey(String Regkey) {
+        regkey.sendKeys(Regkey);
+
+        }
+        public void enterValueInTagField(DataTable data){
+            tag = data.asMaps(String.class, String.class).get(0).get("tag");
+            waitFor(entertagvalue).waitUntilVisible().sendKeys(tag + RandomGenerator.randomAlphanumeric(2));
+
+
+        }
+
+
 }

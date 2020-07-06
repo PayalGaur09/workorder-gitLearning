@@ -4,7 +4,11 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.concurrent.TimeUnit;
@@ -57,8 +61,14 @@ public class DashboardPage extends PageObject {
     }
 
     public void tapOnMenuItems(String module) {
-        waitABit(3000);
-        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
+//        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
+        waitABit(1000);
+        JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(false);", find(menuItems(module)));
+        Actions act = new Actions(getDriver());
+        act.moveToElement(find(menuItems(module))).click().build().perform();
+        waitABit(1000);
+
     }
 
     public void verifyWorkOrderTiles(String tile) {

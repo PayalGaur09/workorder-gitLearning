@@ -88,3 +88,14 @@ Feature: Functionality of  application
     Then Error message should be displayed
       | Amenity is required | Icon is required |
 
+  Scenario: To verify the functionality of selecting the checkbox in keyword preferences
+    Given user is on the manage kiosk page of workorder application
+    And user selects the tag kiosk page
+    When user clicks on configure and manage button
+    Then user should redirects to the  Manage Kiosk  page
+    And user clicks on filed and criteria tab
+    Then User Select " Hardware Keyboard " Type
+    Then Success message "  Keyboard has been changed successfully.  " should be displayed
+
+
+
