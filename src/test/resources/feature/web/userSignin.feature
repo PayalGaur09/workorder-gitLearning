@@ -1,4 +1,3 @@
-@Phase1
 Feature: Login functionality for Work Order Web
 
   Background:

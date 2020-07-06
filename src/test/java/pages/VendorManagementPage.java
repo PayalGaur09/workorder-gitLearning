@@ -208,7 +208,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnEditIcon() {
-        WebElementFacade editIcon = element(editIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
+        WebElementFacade editIcon = element("//em[@title='Edit']");
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(editIcon).click();
     }
 
@@ -224,14 +224,12 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnNameLink() {
-        //waitABit(1000);
-        // WebElementFacade nameLink = element(storedName(LoadProperties.getValueFromPropertyFile("testData", "name")));
-        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
         waitABit(1000);
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameLink).waitUntilVisible().click();
     }
 
     public void tapOnActionButton() {
-        waitABit(6000);
+        waitABit(5000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 

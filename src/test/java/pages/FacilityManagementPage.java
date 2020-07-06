@@ -1,7 +1,5 @@
 package pages;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-import models.DetailsModel;
 import models.FacilityModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -12,7 +10,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.yecht.Data;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
@@ -36,7 +33,7 @@ public class FacilityManagementPage extends PageObject {
     private WebElementFacade idOnCompanyScreen;
 
     @FindBy(xpath = "//div[@class='multiselect-dropdown']")
-    private WebElementFacade selectedAssignee;
+    private WebElementFacade selectedUserGroup;
     @FindBy(xpath = "//select[@name='complaintsAssigneeId']")
     private WebElementFacade complaintsAssignee;
     @FindBy(xpath = "//select[@name='moveOutAssigneeId']")
@@ -57,10 +54,16 @@ public class FacilityManagementPage extends PageObject {
     private WebElementFacade facilityTab;
     @FindBy(xpath = "//div[@class='col-md-12 text-right']//button[text()='Delete']")
     private WebElementFacade deleteBox;
+    @FindBy(xpath = "//div[@class='modal-body']//input")
+    private WebElementFacade typeDELETE;
     @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
     private List<WebElementFacade> notificationList;
     @FindBy(xpath = "//div[contains(@class,'kt-notification__item-content')]")
     private WebElementFacade notificationContent;
+    @FindBy(xpath = "//div[text()='Select All']")
+    private WebElementFacade selectAllCheckbox;
+    @FindBy(xpath = "//input[contains(@placeholder,'Filter')]")
+    private WebElementFacade searchUser;
 
 
     private By facilityField(String text) {
@@ -149,6 +152,7 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void selectDropdown() {
+        waitABit(3000);
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(complaintsAssignee);
         Select complaint = new Select(complaintsAssignee);
         complaint.selectByIndex(1);
@@ -170,23 +174,49 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals(facilityModel.getTypeOfConstruction(), element(facilityDetail("Type")).getText());
     }
 
-    public void verifyDefaultSelectedAssignee() {
-        Assert.assertEquals("All", selectedAssignee.getText());
+    public void verifyDefaultSelectedUserGroup() {
+        Assert.assertEquals("All", selectedUserGroup.getText());
     }
 
-    public void tapOnAssigneeDropdown() {
+    //User Group Field
+    public void tapOnUserGroupsAssignedDropdown() {
         waitABit(5000);
-        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedAssignee).click();
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
     }
 
-    public void selectAssigneeCheckbox() {
+    public void selectUserGroupCheckbox() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        facilityModel.getGroupA(selectedItems.add(elements.get(0).getText()));
+        facilityModel.getGroupB(selectedItems.add(elements.get(1).getText()));
+        elements.get(0).click();
+        elements.get(1).click();
+    }
+
+    public void selectAllGroup() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(selectAllCheckbox).click();
+    }
+
+    String removeUserGroupLog;
+    String addUserGroupLog;
+
+    public void removeUserGroup() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
         selectedItems = new ArrayList<>();
         selectedItems.add(elements.get(0).getText());
-        selectedItems.add(elements.get(1).getText());
         elements.get(0).click();
-        elements.get(1).click();
-//        }
+        String a = elements.get(0).getText();
+        removeUserGroupLog = facilityModel.getName() + " user group " + a + " was removed";
+    }
+
+    public void addUserGroup() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        String a = elements.get(0).getText();
+        addUserGroupLog = a + " was added to " + facilityModel.getName();
     }
 
     public void companyIdValue() {
@@ -200,6 +230,7 @@ public class FacilityManagementPage extends PageObject {
         LoadProperties.saveValueInPropertiesFile("companyIdWeb", idOnCompanyScreen.getText(), "testData");
     }
 
+    //Duplicate facility
     public void firstFacilityName() {
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(firstFacility);
         facilityName = firstFacility.getText();
@@ -229,6 +260,7 @@ public class FacilityManagementPage extends PageObject {
 
     }
 
+    //Unit Management
     public void tapOnUnitAddButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUnitButton).click();
     }
@@ -248,18 +280,31 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals(facilityModel.getUnitName(), element(unitDetail("Unit Name")).getText());
     }
 
+//    public void fectchFacilityName() {
+//        WebElementFacade facilityName = element(unitDetail("Facility Name"));
+//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(facilityName).waitUntilPresent();
+//        facilityModel.setUnitName(facilityName.getText());
+//
+//    }
+
     public void fetchFacilityAndUnitName() {
-        WebElementFacade unitName=element(unitDetail("Unit Name"));
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(unitName).waitUntilPresent();
+        WebElementFacade unitName = element(unitDetail("Unit Name"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(unitName).waitUntilPresent();
         facilityModel.setUnitName(unitName.getText());
-        //facilityModel.setUnitName(element(unitDetail("Unit Name")).getText());
         facilityModel.setName(element(unitDetail("Facility Name")).getText());
     }
 
-    public void tapOnTheCompanyFacilityOfAccountOwner() {
+    public void tapOnTheCompanyOfAccountOwner() {
         String companyIdWeb = LoadProperties.getValueFromPropertyFile("testData", "companyIdWeb");
-        WebElementFacade companyLink = element(companyIdElement(companyIdWeb));
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(companyLink).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(searchUser).sendKeys(companyIdWeb, Keys.ENTER);
+//        //WebElementFacade companyLink = element(companyIdElement(companyIdWeb));
+//        WebElementFacade companyLink = element(companyIdElement("ID12280"));
+//        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(companyLink).click();
+//        waitABit(1000);
+//        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
+    }
+
+    public void tapOnFacilityTile() {
         waitABit(1000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
@@ -288,12 +333,6 @@ public class FacilityManagementPage extends PageObject {
         vendor.searchContentForActivity(pmNameEmailLog);
     }
 
-//    New members assigned:
-//    <User_Name > has been assigned to<Facility_Name>.
-//
-//    Member removed:
-//    <User_Name > has been removed from<Facility_Name>."
-
     public void verifyLogForDeactivateActivateFacility() {
         String deactivateLog = " has been deactivated";
         vendor.searchContentForActivity(deactivateLog);
@@ -302,12 +341,25 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void verifyLogForDeletedFacilityByAdmin() {
-        String deletedLog = facilityModel.getName() + "'s account has been deleted";
+        String deletedLog = facilityModel.getName() + " has been deleted by an admin";
         vendor.searchContentForActivity(deletedLog);
     }
 
+    public void verifyLogForRemoveUserGroup() {
+        vendor.searchContentForActivity(removeUserGroupLog);
+    }
+
+    public void verifyLogForAddUserGroup() {
+        vendor.searchContentForActivity(addUserGroupLog);
+    }
+
     public void deleteBox() {
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).click();
+        if (deleteBox.isEnabled()) {
+            withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).click();
+        } else {
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(typeDELETE).sendKeys("DELETE");
+            withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).waitUntilEnabled().click();
+        }
 
     }
 
@@ -353,13 +405,13 @@ public class FacilityManagementPage extends PageObject {
     public void addFacilityNotification() {
         String notification = facilityModel.getName() + " was created by an admin. Tap to view details.";
         searchNotificationContent(notification);
-       // Assert.assertEquals(notification, notificationContent.getText());
+        // Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void facilityAssignedNotification() {
         String notification = "You have been assigned to " + facilityModel.getName() + ". Tap to view details.";
         searchNotificationContent(notification);
-       // Assert.assertEquals(notification, notificationContent.getText());
+        // Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void facilityRemovedNotification() {
@@ -398,10 +450,5 @@ public class FacilityManagementPage extends PageObject {
     public void deleteUnitNotification() {
         String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deleted.";
         searchNotificationContent(notification);
-    }
-
-    public void facilityStatic() {
-        WebElementFacade a = element("//span[text()='Facilities']");
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(a).click();
     }
 }
