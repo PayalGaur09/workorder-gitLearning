@@ -91,8 +91,8 @@ public class FacilityManagementPage extends PageObject {
     }
 
     private void enterValueInFacility() {
-        waitABit(5000);
-        element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilClickable().click();
+       // waitABit(5000);
+        element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Facility")).clear();
         facilityModel.setName(RandomGenerator.randomAlphabetic(5) + "Pvt Ltd");
         element(facilityField("Facility")).sendKeys(facilityModel.getName());

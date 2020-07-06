@@ -123,3 +123,8 @@ Feature: Facility Management
     When User logout from work order platform
     And User sign in with valid credential of Account Owner
     Then Activity log for create and delete facility by admin is displayed
+
+    Scenario: Verify that client personnel can only view assigned facility
+      Given User logout from work order platform
+      When User sign in with valid credential of Super Admin
+      And User tap on the "Profile" link from side navigation

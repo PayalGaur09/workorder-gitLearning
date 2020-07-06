@@ -183,7 +183,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnSubmitButton() {
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(submitButton).click();
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(submitButton).waitUntilVisible().click();
     }
 
     public void vendorDetailsVerify() {
