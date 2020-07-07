@@ -18,58 +18,74 @@ Feature: UserGroup Module
     And user enters the value in the group name field
       | userGroupName |
       | Group         |
-    And user taps on the submit button
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
     And cross verify the details
 
-  Scenario: Verify user is able to create the usergroup and cross verify the entered details and verify user is able to delete the
-  group
+  Scenario: Verify user is able to create the usergroup  with multiple user and  cross verify the entered details
+    Then User tap on the "User Group" link from side navigation
+    And user clicks on create new usergroup button
+    And user enters the value in the group name field
+      | userGroupName |
+      | Group         |
+    And User adds a multiple user to usergroup
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
+    And cross verify the details
+    And user verify the member assigned
+    And compare the details
+
+  Scenario: Verify user is able to create the group with single user is assigned to the group and check the delete functionality
+  of user group
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
     And user clicks on create new usergroup button
     And user enters the value in the group name field
       | userGroupName |
       | AGroup        |
-#    And user clicks on the member assigned dropdown
-    And user taps on the submit button
-    Then Success message " User Group created successfully. " should be displayed
+    And User adds a user to the usergroup
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
     And user delete the  usergroup
-    Then Success message " User Group deleted successfully. " should be displayed
+    Then Success message " User Group has been deleted successfully. " should be displayed
 
-  Scenario: user verify the activate and deactivate functionality of usergroup
+  Scenario: Verify user is able to create the group with select all user and checks the activate and deactivate functionality
+    for usergroup
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
     And user clicks on create new usergroup button
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
-    And user clicks on the member assigned dropdown
-    And user taps on the submit button
-    Then Success message " User Group created successfully. " should be displayed
+    And Select all user to the usergroup
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
     And user clicks on the  pagination  from show entries dropdown
     And user clicks on the deativating button for usergroup
-    Then Success message " Group been deactivated successfully. " should be displayed
+    Then Success message " User Group been has been deactivated successfully. " should be displayed
     And user clicks on the activating for usergroup
-    Then  Success message " Group been activated successfully. " should be displayed
+    Then Success message " User Group been has been activated successfully. " should be displayed
 
   Scenario: Verify user is able to edit the usergroup
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
     And user clicks on create new usergroup button
+    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
-    And user taps on the submit button
-    Then Success message " User Group created successfully. " should be displayed
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
     And user clicks on the  pagination  from show entries dropdown
     Then user clicks on the edit button for edit the usergroup details
     And user edit the usergroup details
       | userGroupName |
       | Aaa1          |
-    And user taps on the submit button
-    Then Success message " User Group Updated successfully. " should be displayed
+    When User taps on the Submit button
+    Then Success message " User Group has been updated successfully. " should be displayed
     And cross verify the details
 
   Scenario Outline: : Verify the validation message on usegroup field
@@ -79,7 +95,7 @@ Feature: UserGroup Module
     And user check the validation on create usergroup page
       | userGroupName   |
       | <userGroupName> |
-    And user taps on the submit button
+    When User taps on the Submit button
     Then The error message is displayed as "<errorMessage>"
     Examples:
       | userGroupName | errorMessage                                   |
@@ -91,89 +107,93 @@ Feature: UserGroup Module
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
     And user clicks on create new usergroup button
+    And User adds a user to the usergroup
     And user enters  the details
       | userGroupName |
       | Aaa1          |
-    And user taps on the submit button
-    Then Success message " User Group created successfully. " should be displayed
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
     And user clicks on create new usergroup button
     And user enter the value in usergroup again
-    And user taps on the submit button
+    When User taps on the Submit button
     Then Error message should be displayed
       | User Group already exists |
 
-    Scenario: To verify the user is able to edit the usergroup from detail view
-      Then User tap on the "User Group" link from side navigation
-      And user redirects to the usergroup page
-      And user clicks on create new usergroup button
-      And user enters the value in the group name field
-        | userGroupName |
-        | Aaa1          |
-      And user taps on the submit button
-      Then Success message " User Group created successfully. " should be displayed
-      And cross verify the details
-      And  user click on the action button
-      When I  clicking  on the "Edit" button
-      And user edit the usergroup details
-        | userGroupName |
-        | Aaa1          |
-      And user taps on the submit button
-      Then Success message " User Group Updated successfully. " should be displayed
-      And cross verify the details
+  Scenario: To verify the user is able to edit the usergroup from detail view
+    Then User tap on the "User Group" link from side navigation
+    And user redirects to the usergroup page
+    And user clicks on create new usergroup button
+    And User adds a user to the usergroup
+    And user enters the value in the group name field
+      | userGroupName |
+      | Aaa1          |
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
+    And cross verify the details
+    And  user click on the action button
+    When I  clicking  on the "Edit" button
+    And user edit the usergroup details
+      | userGroupName |
+      | Aaa1          |
+    When User taps on the Submit button
+    Then Success message " User Group has been updated successfully. " should be displayed
+    And cross verify the details
 
   Scenario: To verify the user is able to delete the usergroup from detail view
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
     And user clicks on create new usergroup button
+    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
-    And user taps on the submit button
+    When User taps on the Submit button
     And  user click on the action button
-    Then Success message " User Group created successfully. " should be displayed
+    Then Success message " User Group has been created successfully. " should be displayed
     When I  clicking  on the " Delete " button
     And user clicks on the confirm buttom for delete the usergroup
-    Then Success message " User Group deleted successfully. " should be displayed
+    Then Success message " User Group has been deleted successfully. " should be displayed
 
 
-    Scenario: Verify the activating and deactivating functionality of usergroup from Detailview
-      Then User tap on the "User Group" link from side navigation
-      And user redirects to the usergroup page
-      And user clicks on create new usergroup button
-      And user enters the value in the group name field
-        | userGroupName |
-        | Aaa1          |
-      And user taps on the submit button
-      Then Success message " User Group created successfully. " should be displayed
-      And  user click on the action button
-      When I  clicking  on the " Deactivate " button
-      Then Success message " Group been deactivated successfully. " should be displayed
-      And  user click on the action button
-      When I  clicking  on the " Activate " button
-      Then Success message " Group been activated successfully. " should be displayed
+  Scenario: Verify the activating and deactivating functionality of usergroup from Detail view
+    Then User tap on the "User Group" link from side navigation
+    And user redirects to the usergroup page
+    And user clicks on create new usergroup button
+    And User adds a user to the usergroup
+    And user enters the value in the group name field
+      | userGroupName |
+      | Aaa1          |
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
+    And  user click on the action button
+    When I  clicking  on the " Deactivate " button
+    Then Success message " Group been deactivated successfully. " should be displayed
+    And  user click on the action button
+    When I  clicking  on the " Activate " button
+    Then Success message " Group been activated successfully. " should be displayed
 
-      Scenario: To verify account owner is able to create the group
-        Then User tap on the "Settings" link from side navigation
-        Given User logout from work order platform
-        When User sign in with valid credential of Client Personnel
-        Then User tap on the "Settings" link from side navigation
-        Then User tap on the "User Group" link from side navigation
-        And user clicks on create new usergroup button
-        And user enters the value in the group name field
-          | userGroupName |
-          | Aaa1          |
-        And user taps on the submit button
-        Then Success message " User Group created successfully. " should be displayed
+  Scenario: To verify account owner is able to create the group
+    Then User tap on the "Settings" link from side navigation
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    Then User tap on the "Settings" link from side navigation
+    Then User tap on the "User Group" link from side navigation
+    And user clicks on create new usergroup button
+    And user enters the value in the group name field
+      | userGroupName |
+      | Aaa1          |
+    And User adds a user to the usergroup
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
 
-
-        Scenario: To verify 10 Fed admin is able to create the group
-          Then User tap on the "Settings" link from side navigation
-          Given User logout from work order platform
-          When User sign in with valid credential of Ten Fed Admin
-          And User tap on the "Companies" link from side navigation
-          And User clicks on any company
-          And user Clicks on usergroup tab
+  Scenario: To verify 10 Fed admin is able to create the group
+    Then User tap on the "Settings" link from side navigation
+    Given User logout from work order platform
+    When User sign in with valid credential of Ten Fed Admin
+    And User tap on the "Companies" link from side navigation
+    And User clicks on any company
+    And user Clicks on usergroup tab
 
 
 

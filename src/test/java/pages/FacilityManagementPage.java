@@ -66,6 +66,7 @@ public class FacilityManagementPage extends PageObject {
     private WebElementFacade searchUser;
 
 
+
     private By facilityField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
     }

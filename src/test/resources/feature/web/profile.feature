@@ -46,7 +46,7 @@ Feature: Functionality of profile
     When  User user enter incorrect password in the old password and enter same password in the new password and confirm passwordfield
       | currentPassword | newPassword | confirmPassword |
       | 123456789       | 12345678    | 12345678        |
-    And user taps on the submit button
+    And User taps on the Submit button
     Then Error message should come "Please enter correct old password"
 
   Scenario: To verify the functionality of cancel button of change password field

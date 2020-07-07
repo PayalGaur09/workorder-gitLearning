@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
@@ -43,6 +42,12 @@ public class UsergroupModulePage extends PageObject {
     private WebElementFacade clicksOnCompany;
     @FindBy(xpath = "href=")
     private WebElementFacade userGroupcompany;
+    @FindBy(xpath = "//div[@class='multiselect-dropdown']")
+    private WebElementFacade selectedUserGroup;
+    @FindBy(xpath = "//ul[@class='item1']//div")
+    private WebElementFacade selectAlluser;
+    @FindBy(xpath = "//span[contains(@class,'kt-badge kt-badge--primary')]")
+    private WebElementFacade verifymemberassigned;
 
 
     private By deleteUserGroup(String companyname) {
@@ -66,6 +71,7 @@ public class UsergroupModulePage extends PageObject {
     }
 
 
+
     public void verifyRedirection() {
         Assert.assertTrue(verifyUsergroupRedirection.waitUntilVisible().isDisplayed());
 
@@ -83,20 +89,49 @@ public class UsergroupModulePage extends PageObject {
         entervalueingroupname.sendKeys(groupname);
 
 
-
     }
 
     public void selectMemberDropdown() {
 
-        }
+    }
+    public List<String> selectMultipleUserGroupCheckbox() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        ArrayList arr = new ArrayList();
+        for (int i = 0; i <elements.size(); i++) {
+            elements.get(i).getText();
+            arr.add(elements.get(i).getText());
+            elements.get(i).click();
 
+        }
+        return null;
+    }
 
 
     public void verifyUserGroupDetails() {
         element(verifyCreateUserGroupDetails(groupname)).waitUntilVisible();
-
-
     }
+
+//    public List<String> verifyMemberAssigneddetails() {
+//        List<WebElement> element = getDriver().findElements(By.xpath("//span[contains(@class,'kt-badge kt-badge--primary')]"));
+//        ArrayList arr1 = new ArrayList();
+//        for (int i = 0; i<element.size(); i++) {
+//            arr1.add(element.get(i).getText());
+//
+//        }
+//        return null;
+//    }
+//    public void compareValues(){
+//        List<String> beforesubmit=selectMultipleUserGroupCheckbox();
+//        List<String> aftersubmit=verifyMemberAssigneddetails();
+//        boolean bool = beforesubmit.equals(aftersubmit);
+//        if (!bool) {
+//            Assert.fail("before submit selection of dropdown list is mismatch with actual result");
+//
+//
+//        }
+//
+//
+//    }
 
     public void userDeleteUsergroup() {
         String usergroup = getValueFromPropertyFile("testData", "groupname");
@@ -147,6 +182,7 @@ public class UsergroupModulePage extends PageObject {
         entervalueingroupname.sendKeys(groupname);
 
     }
+
     public void userEntersTheDetails(DataTable value) throws IOException, ConfigurationException {
         List<Map<String, String>> data = value.asMaps(String.class, String.class);
         groupname = data.get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
@@ -154,27 +190,50 @@ public class UsergroupModulePage extends PageObject {
         LoadProperties.saveValueInPropertiesFile("userGroupName", groupname, "testData");
 
 
-
     }
-    public void userCheckSameNameUsergroupIsNotExist(){
+
+    public void userCheckSameNameUsergroupIsNotExist() {
         String usergroupname = LoadProperties.getValueFromPropertyFile("testData", "groupname");
         waitFor(entervalueingroupname).waitUntilVisible().sendKeys(usergroupname);
         waitABit(1000);
     }
-    public void userClicksOnDeleteButton(){
+
+    public void userClicksOnDeleteButton() {
         deleteButton.click();
 
 
     }
-    public void userClicksOnAnyCompany(){
+
+    public void userClicksOnAnyCompany() {
         clicksOnCompany.click();
     }
-    public void userClicksOnUserGroupTab(){
+
+    public void userClicksOnUserGroupTab() {
         usergroup.click();
 
     }
 
+    public void userTapOnUserAssignedDropdown() {
+        waitABit(5000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
+    }
+
+    public void selectUserGroupCheckbox() {
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        elements.get(0).click();
+    }
+
+
+
+    public void selectAllUserGroupCheckbox() {
+        selectAlluser.click();
+
+    }
 }
+
+
+
 
 
 

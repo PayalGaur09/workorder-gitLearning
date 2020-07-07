@@ -188,11 +188,6 @@ Feature: Functionality of signage application
     And user clicks  on the submit button
     Then Verify the error message
 
-  Scenario: Presence of pagination of landing page plan list
-    Given user is on the manage kiosk page of workorder application
-    Given there are at least 10 existing tags on landing page
-    Then I will check for presence of pagination on landing page
-
     Scenario: Registration key
       When User get the registration key list
       Then User verifies the registration key

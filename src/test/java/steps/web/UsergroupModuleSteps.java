@@ -96,5 +96,36 @@ public class UsergroupModuleSteps extends PageObject {
     public void userClicksOnUsergroupTab() {
         usergroup.userClicksOnUserGroupTab();
     }
+
+    @And("^User adds a user to the usergroup$")
+    public void userAddsAUserToTheUsergroup() {
+        usergroup.userTapOnUserAssignedDropdown();
+        usergroup.selectUserGroupCheckbox();
+    }
+
+    @And("^User adds a multiple user to usergroup$")
+    public void userAddsAMultipleUserToUsergroup() {
+        usergroup.userTapOnUserAssignedDropdown();
+        usergroup.selectMultipleUserGroupCheckbox();
+
+
+    }
+
+    @And("^Select all user to the usergroup$")
+    public void selectAllUserToTheUsergroup() {
+        usergroup.userTapOnUserAssignedDropdown();
+        usergroup.selectAllUserGroupCheckbox();
+
+    }
+
+//    @And("^user verify the member assigned$")
+//    public void userVerifyTheMemberAssigned() {
+//        usergroup.verifyMemberAssigneddetails();
+//    }
+//
+//    @And("^compare the details$")
+//    public void compareTheDetails() {
+//        usergroup.compareValues();
+//    }
 }
 

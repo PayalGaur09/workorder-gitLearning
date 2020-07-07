@@ -107,7 +107,7 @@ Feature: Company module
   Scenario: To verify the mendatory fields on add company page in case when the user is login with admin
     Given user is on the company page of work order application
     When user clicks on the newcompany button
-    And user taps on the submit button
+    When User taps on the Submit button
     Then Error message should be displayed
       | Company name is required | Company address is required | Zip code is required | Contact number is required | Email is required | Account owner name is required | Account owner email is required | Account owner contact number is required |
 

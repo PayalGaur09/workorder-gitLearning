@@ -101,10 +101,10 @@ public class ProfileSteps extends PageObject {
     }
 
 
-    @And("^user taps on the submit button$")
-    public void userTapsOnTheSubmitbutton() {
-        profilePage.submitButton1();
-    }
+//    @And("^user taps on the submit button$")
+//    public void userTapsOnTheSubmitbutton() {
+//        profilePage.submitButton1();
+//    }
 
     @When("^User user enter incorrect password in the old password and enter same password in the new password and confirm passwordfield$")
     public void userUserEnterIncorrectPasswordInTheOldPasswordAndEnterSamePasswordInTheNewPasswordAndConfirmPasswordfield(DataTable data) {
