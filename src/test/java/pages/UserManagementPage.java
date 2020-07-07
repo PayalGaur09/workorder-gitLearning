@@ -29,9 +29,6 @@ public class UserManagementPage extends PageObject {
     String userStatus;
     private VendorManagementPage vendor;
 
-    //String userNameStored = LoadProperties.getValueFromPropertyFile("testData", "name");
-    // String surnameStored = LoadProperties.getValueFromPropertyFile("testData", "surname");
-
     @FindBy(xpath = "//span[text()='Users']")
     private WebElementFacade userLink;
     @FindBy(xpath = "//a[contains(text(),'New User')]")
@@ -141,7 +138,6 @@ public class UserManagementPage extends PageObject {
         enterValueInSurname();
         enterValueInEmail();
         enterValueInPhone();
-
     }
 
     public void selectRole(String roles) {
@@ -201,7 +197,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void verifyUserName() {
-        waitABit(5000);
+        waitABit(6000);
         WebElementFacade firstName = element(userNameSearch(1));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstName).shouldBeVisible();
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
@@ -230,7 +226,6 @@ public class UserManagementPage extends PageObject {
                 Assert.assertEquals("Personnel", vType);
             }
         }
-
     }
 
     private By statusInTable(int count) {

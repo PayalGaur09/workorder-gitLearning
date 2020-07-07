@@ -94,16 +94,13 @@ public class UsergroupModulePage extends PageObject {
     public void selectMemberDropdown() {
 
     }
-    public List<String> selectMultipleUserGroupCheckbox() {
+    public void selectMultipleUserGroupCheckbox() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
-        ArrayList arr = new ArrayList();
-        for (int i = 0; i <elements.size(); i++) {
-            elements.get(i).getText();
-            arr.add(elements.get(i).getText());
+        int size=5;
+        for (int i = 0; i <5; i++) {
             elements.get(i).click();
 
         }
-        return null;
     }
 
 
@@ -230,7 +227,14 @@ public class UsergroupModulePage extends PageObject {
         selectAlluser.click();
 
     }
-}
+    public void userRemovesTheUseGroup(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        elements.get(0).click();
+    }
+
+    }
+
 
 
 

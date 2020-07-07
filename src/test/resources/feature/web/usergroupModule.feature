@@ -32,8 +32,8 @@ Feature: UserGroup Module
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
     And cross verify the details
-    And user verify the member assigned
-    And compare the details
+#    And user verify the member assigned
+#    And compare the details
 
   Scenario: Verify user is able to create the group with single user is assigned to the group and check the delete functionality
   of user group
@@ -76,6 +76,7 @@ Feature: UserGroup Module
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
+    And User adds a user to the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
@@ -84,6 +85,7 @@ Feature: UserGroup Module
     And user edit the usergroup details
       | userGroupName |
       | Aaa1          |
+    And user removes the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been updated successfully. " should be displayed
     And cross verify the details

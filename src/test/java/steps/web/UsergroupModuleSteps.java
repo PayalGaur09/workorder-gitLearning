@@ -118,6 +118,12 @@ public class UsergroupModuleSteps extends PageObject {
 
     }
 
+    @And("^user removes the usergroup$")
+    public void userRemovesTheUsergroup() {
+        usergroup.userTapOnUserAssignedDropdown();
+        usergroup.userRemovesTheUseGroup();
+    }
+
 //    @And("^user verify the member assigned$")
 //    public void userVerifyTheMemberAssigned() {
 //        usergroup.verifyMemberAssigneddetails();
