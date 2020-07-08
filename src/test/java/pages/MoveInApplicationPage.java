@@ -81,7 +81,7 @@ public class MoveInApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(iconModel.getIcon())) {
                 try {
                     waitABit(2300);
-                    String value = getResourceDire() + File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
+                    String value = getResourceDire() + File.separator + "testData"+ File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
                     getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(value);
                     waitABit(5000);
 //                    signageInputImage.sendKeys(value);
@@ -101,7 +101,7 @@ public class MoveInApplicationPage extends PageObject {
     }
 
     public void clicksOnAddButton() {
-        addbutton.isEnabled();
+        waitABit(50);
         addbutton.click();
     }
 

@@ -219,5 +219,10 @@ public class FacilityManagementSteps {
         vendor.clickOnDeleteButton();
         facility.deleteBox();
     }
+
+    @And("^User fetches the assigned facility list$")
+    public void userFetchesTheAssignedFacilityList() {
+
+    }
 }
 

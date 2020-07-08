@@ -128,3 +128,4 @@ Feature: Facility Management
       Given User logout from work order platform
       When User sign in with valid credential of Super Admin
       And User tap on the "Profile" link from side navigation
+      And User fetches the assigned facility list

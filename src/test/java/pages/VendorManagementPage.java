@@ -113,7 +113,7 @@ public class VendorManagementPage extends PageObject {
 
     public void verifyValidationMessage(String text) {
         WebElementFacade a = element(validationMessage(text));
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(a).shouldBeVisible();
     }
 
     private void enterValueInName() throws IOException, ConfigurationException {

@@ -22,7 +22,7 @@ Feature: Functionality of  application
     And user selects the tag kiosk page
     When user clicks on configure and manage button
     Then user should redirects to the  Manage Kiosk  page
-    And I select 'Air Cooled' Aminities
+    And user select 'Climate Controlled' Aminities
     And user uploads the icons in the upload icon fields
       | icon                    |
       | drive up access_red.png |
@@ -87,4 +87,15 @@ Feature: Functionality of  application
     And use clicks on the Add button
     Then Error message should be displayed
       | Amenity is required | Icon is required |
+
+  Scenario: To verify the functionality of selecting the checkbox in keyword preferences
+    Given user is on the manage kiosk page of workorder application
+    And user selects the tag kiosk page
+    When user clicks on configure and manage button
+    Then user should redirects to the  Manage Kiosk  page
+    And user clicks on filed and criteria tab
+    Then User Select " Hardware Keyboard " Type
+    Then Success message "  Keyboard has been changed successfully.  " should be displayed
+
+
 

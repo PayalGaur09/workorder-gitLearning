@@ -86,7 +86,7 @@ public class CompanyModulePage extends PageObject {
     private WebElementFacade submitbtnofcompany;
     @FindBy(xpath = "//input[@placeholder='Type DELETE to confirm']")
     private WebElementFacade writevalueintextbox;
-    private @FindBy(xpath = "//button[text()='OK']")
+    private @FindBy(xpath = "//button[@class='btn btn-primary']")
     WebElementFacade confirmbutton;
     private @FindBy(xpath = "//a[text()='Cancel']")
     WebElementFacade cancelbutton;
@@ -189,9 +189,8 @@ public class CompanyModulePage extends PageObject {
     }
 
     public void userCliksOnOkButtonForDeletingTheCompany() {
-        writevalueintextbox.sendKeys("DELETE");
-        confirmbutton.click();
-        waitABit(3000);
+        waitFor(confirmbutton).click();
+//        waitABit(1000);
     }
 
     public void userclicksOnTheEditButton() {
@@ -276,12 +275,11 @@ public class CompanyModulePage extends PageObject {
     }
 
     public void userCheckTheCompanyStatus() {
-        if (comanyprofilenactive.isVisible()) {
             String companystatus = getValueFromPropertyFile("testData", "name");
             element(getActivateOrDeactivateTheCompany(companystatus)).waitUntilVisible().click();
         }
 
-    }
+
 
     public WebElement searchText() {
         return waitFor(searchCompany);
@@ -378,6 +376,9 @@ public class CompanyModulePage extends PageObject {
         Assert.assertEquals(deactivateCompanyNotification, notificationContent.getText());
     }
 
+
+
+
     public void verifyDeleteCompanyNotification() {
         String deleteCompanyNotification = name + " has been deleted.";
         Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
@@ -392,7 +393,13 @@ public class CompanyModulePage extends PageObject {
     public void checkEditButtonForClientAdmin() {
             editbuttonforclientpersonel.click();
         }
-    }
+        public void verifyDeleteNotification(){
+            String deleteCompanyNotification = name + " has been deleted.";
+            Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
+        }
+
+        }
+
 
 
 

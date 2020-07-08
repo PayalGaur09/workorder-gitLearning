@@ -17,7 +17,6 @@ Feature: Unit Management
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for unit creation is displayed
 
-
   Scenario: To verify validations on add unit screen
     Given User is on add unit screen
     When User taps on the Submit button
