@@ -140,6 +140,10 @@ public class CompanyModulePage extends PageObject {
         return By.xpath("//*[text()='" + clicksoncompany + "']");
     }
 
+    private By menuButton(String module) {
+        return By.xpath("//span[text()='" + module + "']");
+    }
+
     public void enterCredentialsForAdministrator(String username, String password) {
         try {
             enterusername.sendKeys(username);
@@ -397,6 +401,8 @@ public class CompanyModulePage extends PageObject {
             String deleteCompanyNotification = name + " has been deleted.";
             Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
         }
+
+
 
         }
 

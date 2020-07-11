@@ -1,3 +1,5 @@
+@Phase25
+
 Feature: Functionality of signage application
 
   Background:
@@ -9,15 +11,15 @@ Feature: Functionality of signage application
     Given user is on the manage kiosk page of workorder application
     Then  user should redirects to the kiosk page
 
-  Scenario: To verify the registration of new kiosk application
-    Given user is on the manage kiosk page of workorder application
-    And user clicks on register new kiosk button
-    And User clicks on Select dropdown and select a facility
-    And user enters the registration key and tag field
-      | registrationKey | tag          |
-      | 485907          | 415485907215 |
-    And user clicks on the configure  button
-    Then error message should be come " Registration key already used "
+#  Scenario: To verify the registration of new kiosk application
+#    Given user is on the manage kiosk page of workorder application
+#    And user clicks on register new kiosk button
+#    And User clicks on Select dropdown and select a facility
+#    And user enters the registration key and tag field
+#      | registrationKey | tag          |
+#      | 485907          | 415485907215 |
+#    And user clicks on the configure  button
+#    Then error message should be come " Registration key already used "
 
   Scenario: To verify the registration of new kiosk application for already used key
     Given user is on the manage kiosk page of workorder application
@@ -25,10 +27,9 @@ Feature: Functionality of signage application
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
       | registrationKey | tag    |
-      | 415215          | 415215 |
+      | 167441          | 415215 |
     And user clicks on the configure  button
-    Then Success message " Kiosk has been registered successfully. " should be displayed
-    And user redirects to the managekioskpage
+    Then Success message " Registration key already used " should be displayed
 
   Scenario: To verify the validations on the Register kiosk page
     Given user is on the manage kiosk page of workorder application
@@ -92,7 +93,7 @@ Feature: Functionality of signage application
     And user fills all the details
       | title   | description | internalDescription |
       | shefali | testing1234 | testing12345        |
-    And user clicks  on the submit button
+    And user clicks  on submit button
     Then Success message " Signage content has been added successfully. " should be displayed
 
   Scenario: To verify user is able to upload the  pdf type  content from signage application
@@ -188,9 +189,9 @@ Feature: Functionality of signage application
     And user clicks  on the submit button
     Then Verify the error message
 
-    Scenario: Registration key
-      When User get the registration key list
-      Then User verifies the registration key
+#    Scenario: Registration key
+#      When User get the registration key list
+#      Then User verifies the registration key
 
 
 

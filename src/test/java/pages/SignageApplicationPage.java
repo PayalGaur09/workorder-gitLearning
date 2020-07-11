@@ -169,7 +169,7 @@ public class SignageApplicationPage extends PageObject {
 
     public void submitButton() {
         submitbtn.click();
-        waitABit(700);
+        waitABit(900);
 
     }
 
@@ -403,5 +403,11 @@ public class SignageApplicationPage extends PageObject {
 
         }
 
+        public void UserTapsOnVideoOrPdfSubmitbutton(){
+            submitbtn.click();
+            waitABit(50000);
+
+
+        }
 
 }

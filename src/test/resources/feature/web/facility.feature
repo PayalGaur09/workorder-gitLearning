@@ -1,4 +1,4 @@
-@Phase1
+@Phase10
 Feature: Facility Management
   As an Account Owner and a client Admin
   I can land on facility page

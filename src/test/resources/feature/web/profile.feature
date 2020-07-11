@@ -1,4 +1,4 @@
-@Phase1
+@Phase13
 Feature: Functionality of profile
 
   Background:
@@ -47,7 +47,8 @@ Feature: Functionality of profile
       | currentPassword | newPassword | confirmPassword |
       | 123456789       | 12345678    | 12345678        |
     And User taps on the Submit button
-    Then Error message should come "Please enter correct old password"
+    Then Error message should be displayed
+    | Please enter correct old password|
 
   Scenario: To verify the functionality of cancel button of change password field
     Given  user click on the action button
@@ -58,7 +59,7 @@ Feature: Functionality of profile
   Scenario: To verify the validations on the change password field
     When  user click on the action button
     And I  clicking  on the " Change Password " button
-    And user taps on the submit button
+    When User taps on the Submit button
     Then Error message should be displayed
       | Please enter old password | Please enter new password | Please enter new password |
 
@@ -68,6 +69,7 @@ Feature: Functionality of profile
     When User enter change password details
       | currentPassword   | newPassword   | confirmPassword   |
       | <currentPassword> | <newPassword> | <confirmPassword> |
+    And User taps on the Submit button
     Then The error message is displayed as "<errorMessage>"
     Examples:
       | currentPassword | newPassword | confirmPassword | errorMessage                                     |

@@ -63,8 +63,8 @@ public class UsergroupModuleSteps extends PageObject {
     }
 
     @And("^user edit the usergroup details$")
-    public void userEditTheUsergroupDetails(DataTable data) {
-        usergroup.UserEditUserGroupDetails(data);
+    public void userEditTheUsergroupDetails(DataTable editusergroupname) {
+        usergroup.UserEditUserGroupDetails(editusergroupname);
     }
 
     @And("^user check the validation on create usergroup page$")
@@ -124,14 +124,10 @@ public class UsergroupModuleSteps extends PageObject {
         usergroup.userRemovesTheUseGroup();
     }
 
-//    @And("^user verify the member assigned$")
-//    public void userVerifyTheMemberAssigned() {
-//        usergroup.verifyMemberAssigneddetails();
-//    }
-//
-//    @And("^compare the details$")
-//    public void compareTheDetails() {
-//        usergroup.compareValues();
-//    }
+
+    @And("^cross verify the edit  details$")
+    public void crossVerifyTheEditDetails() {
+        usergroup.userCrossVerifyTheEditDetails();
+    }
 }
 

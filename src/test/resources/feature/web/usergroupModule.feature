@@ -1,3 +1,5 @@
+@Phase21
+
 Feature: UserGroup Module
 
   Background:
@@ -10,6 +12,8 @@ Feature: UserGroup Module
     Then User tap on the "Categories" link from side navigation
     Then User tap on the "Configurations" link from side navigation
     Then User tap on the "User Group" link from side navigation
+    And user redirects to the usergroup page
+
 
   Scenario: Verify user is able to create the usergroup  without assign the member and cross verify the entered details
     Then User tap on the "User Group" link from side navigation
@@ -32,13 +36,10 @@ Feature: UserGroup Module
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
     And cross verify the details
-#    And user verify the member assigned
-#    And compare the details
 
   Scenario: Verify user is able to create the group with single user is assigned to the group and check the delete functionality
   of user group
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
     And user enters the value in the group name field
       | userGroupName |
@@ -47,13 +48,13 @@ Feature: UserGroup Module
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
+    And user clicks on the  pagination  from show entries dropdown
     And user delete the  usergroup
     Then Success message " User Group has been deleted successfully. " should be displayed
 
   Scenario: Verify user is able to create the group with select all user and checks the activate and deactivate functionality
     for usergroup
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
     And user enters the value in the group name field
       | userGroupName |
@@ -70,12 +71,10 @@ Feature: UserGroup Module
 
   Scenario: Verify user is able to edit the usergroup
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
-    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
-      | Aaa1          |
+      | AGroup        |
     And User adds a user to the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
@@ -88,11 +87,10 @@ Feature: UserGroup Module
     And user removes the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been updated successfully. " should be displayed
-    And cross verify the details
+    And cross verify the edit  details
 
   Scenario Outline: : Verify the validation message on usegroup field
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
     And user check the validation on create usergroup page
       | userGroupName   |
@@ -104,15 +102,14 @@ Feature: UserGroup Module
       |               | User Group name is required                    |
       | a             | User Group name should be minimum 2 characters |
 
-  Scenario: To verify the functionality user crate a user with the same username than it gives the validation message
+  Scenario: To verify the functionality user create a user with the same username than it gives the validation message
   usergroup with same name is already exist
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
-    And User adds a user to the usergroup
     And user enters  the details
       | userGroupName |
       | Aaa1          |
+    And User adds a user to the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
     Then User tap on the "User Group" link from side navigation
@@ -124,9 +121,7 @@ Feature: UserGroup Module
 
   Scenario: To verify the user is able to edit the usergroup from detail view
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
-    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
@@ -138,31 +133,28 @@ Feature: UserGroup Module
     And user edit the usergroup details
       | userGroupName |
       | Aaa1          |
+    And User adds a user to the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been updated successfully. " should be displayed
-    And cross verify the details
+    And cross verify the edit  details
 
   Scenario: To verify the user is able to delete the usergroup from detail view
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
-    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
     When User taps on the Submit button
-    And  user click on the action button
     Then Success message " User Group has been created successfully. " should be displayed
+    And  user click on the action button
     When I  clicking  on the " Delete " button
     And user clicks on the confirm buttom for delete the usergroup
     Then Success message " User Group has been deleted successfully. " should be displayed
 
 
-  Scenario: Verify the activating and deactivating functionality of usergroup from Detail view
+  Scenario: Verify  deactivating functionality of usergroup from Detail view   user group
     Then User tap on the "User Group" link from side navigation
-    And user redirects to the usergroup page
     And user clicks on create new usergroup button
-    And User adds a user to the usergroup
     And user enters the value in the group name field
       | userGroupName |
       | Aaa1          |
@@ -170,12 +162,12 @@ Feature: UserGroup Module
     Then Success message " User Group has been created successfully. " should be displayed
     And  user click on the action button
     When I  clicking  on the " Deactivate " button
-    Then Success message " Group been deactivated successfully. " should be displayed
-    And  user click on the action button
-    When I  clicking  on the " Activate " button
-    Then Success message " Group been activated successfully. " should be displayed
+    Then Success message " User Group has been deactivated successfully. " should be displayed
+#    When I  clicking  on the " Activate " button
+#    Then Success message " User Group has been activated successfully. " should be displayed
 
-  Scenario: To verify account owner is able to create the group
+
+  Scenario: To verify client  personal  is able to create the group
     Then User tap on the "Settings" link from side navigation
     Given User logout from work order platform
     When User sign in with valid credential of Client Personnel
@@ -196,6 +188,30 @@ Feature: UserGroup Module
     And User tap on the "Companies" link from side navigation
     And User clicks on any company
     And user Clicks on usergroup tab
+    And user clicks on create new usergroup button
+    And user enters the value in the group name field
+      | userGroupName |
+      | Aaa1          |
+    And User adds a user to the usergroup
+    When User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
+
+
+    Scenario: To verify superadmin  is able to create the the user group
+      Then User tap on the "Settings" link from side navigation
+      Given User logout from work order platform
+      When User sign in with valid credential of Super Admin
+      And User tap on the "Companies" link from side navigation
+      And User clicks on any company
+      And user Clicks on usergroup tab
+      And user clicks on create new usergroup button
+      And user enters the value in the group name field
+        | userGroupName |
+        | Aaa1          |
+      And User adds a user to the usergroup
+      When User taps on the Submit button
+      Then Success message " User Group has been created successfully. " should be displayed
+
 
 
 

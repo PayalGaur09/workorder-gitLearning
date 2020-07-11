@@ -242,6 +242,10 @@ public class SignageApplicationSteps {
     }
 
 
+    @And("^user clicks  on submit button$")
+    public void userClicksOnSubmitButton() {
+        managekioskpage.UserTapsOnVideoOrPdfSubmitbutton();
+    }
 }
 
 

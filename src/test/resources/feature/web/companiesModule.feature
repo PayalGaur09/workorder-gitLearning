@@ -1,10 +1,10 @@
-@Phase1
+@Phase15
 Feature: Company module
 
   Background:
     Given User is on work order sign in page
     When User sign in with valid credential of Super Admin
-    And User tap on the "Companies" link from side navigation
+    When User tap on the "Companies" link from side navigation
 
   Scenario: To verify the redirection after clicks on the new company button
     Given user is on the company page of work order application
@@ -12,7 +12,7 @@ Feature: Company module
     Then user should redirects to the add company page
 
   Scenario:verify functionality of  creating  company and cross verify the details and verify  redirection of each tab
-  showing on Company deatail page  and verify a notification of Company creation for 10Fed admin
+  showing on Company detail page  and verify a notification of Company creation for 10Fed admin
     Given user is on the company page of work order application
     When user clicks on the newcompany button
     And user fill the details for creating a new company
@@ -85,7 +85,7 @@ Feature: Company module
     And user check the validation on  add company page
       | name   | address   | zipCode   | contactNumber   | email   | accountOwnerName   | accountOwnerEmail   | accountOwnerContactNumber   |
       | <name> | <address> | <zipCode> | <contactNumber> | <email> | <accountOwnerName> | <accountOwnerEmail> | <accountOwnerContactNumber> |
-    And user clicks on the submit
+    Then User taps on the Submit button
     Then The error message is displayed as "<errorMessage>"
     Examples:
       | name      | address | zipCode | contactNumber | email              | accountOwnerName | accountOwnerEmail | accountOwnerContactNumber | errorMessage                                          |
@@ -171,6 +171,7 @@ Feature: Company module
 
   Scenario: To verify when user select the status inactive than only active status should be displayed in the list  in case when the
   user is login with admin
+    Given user is on the company page of work order application
     When user select the status inactive from the dropdown
     And user clicks on the  pagination  from show entries dropdown
     Then All the staus inactive should be displayed to the user

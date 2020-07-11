@@ -22,13 +22,13 @@ import static utilities.LoadProperties.getValueFromPropertyFile;
 
 public class UsergroupModulePage extends PageObject {
     List<String> selectedItems;
-
     public static String groupname;
-    public static String editusergroup;
+    public static String Editusergroup;
+    String[] memberAssigned;
 
     @FindBy(xpath = "//h3[text()=' User Groups ']")
     private WebElementFacade verifyUsergroupRedirection;
-    @FindBy(xpath = "//span[text()='User Group']")
+    @FindBy(xpath = "//h4[@class='kt-widget24__title text-center fs-20']/a[text()='User Group']")
     private WebElementFacade usergroup;
     @FindBy(xpath = "//a[@class='btn btn-brand btn-elevate btn-icon-sm']")
     private WebElementFacade newusergroup;
@@ -71,7 +71,6 @@ public class UsergroupModulePage extends PageObject {
     }
 
 
-
     public void verifyRedirection() {
         Assert.assertTrue(verifyUsergroupRedirection.waitUntilVisible().isDisplayed());
 
@@ -85,7 +84,7 @@ public class UsergroupModulePage extends PageObject {
     public void userEntersTheValueInGroupNameField(DataTable dataTable) throws IOException, ConfigurationException {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         groupname = data.get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
-        LoadProperties.saveValueInPropertiesFile("groupname", groupname, "testData");
+        LoadProperties.saveValueInPropertiesFile("userGroupName", groupname, "testData");
         entervalueingroupname.sendKeys(groupname);
 
 
@@ -94,41 +93,19 @@ public class UsergroupModulePage extends PageObject {
     public void selectMemberDropdown() {
 
     }
+
     public void selectMultipleUserGroupCheckbox() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
-        int size=5;
-        for (int i = 0; i <5; i++) {
-            elements.get(i).click();
-
-        }
+        elements.get(0).click();
+        elements.get(1).click();
     }
-
 
     public void verifyUserGroupDetails() {
         element(verifyCreateUserGroupDetails(groupname)).waitUntilVisible();
+        element(verifyCreateUserGroupDetails(groupname)).isDisplayed();
     }
 
-//    public List<String> verifyMemberAssigneddetails() {
-//        List<WebElement> element = getDriver().findElements(By.xpath("//span[contains(@class,'kt-badge kt-badge--primary')]"));
-//        ArrayList arr1 = new ArrayList();
-//        for (int i = 0; i<element.size(); i++) {
-//            arr1.add(element.get(i).getText());
-//
-//        }
-//        return null;
-//    }
-//    public void compareValues(){
-//        List<String> beforesubmit=selectMultipleUserGroupCheckbox();
-//        List<String> aftersubmit=verifyMemberAssigneddetails();
-//        boolean bool = beforesubmit.equals(aftersubmit);
-//        if (!bool) {
-//            Assert.fail("before submit selection of dropdown list is mismatch with actual result");
-//
-//
-//        }
-//
-//
-//    }
+
 
     public void userDeleteUsergroup() {
         String usergroup = getValueFromPropertyFile("testData", "groupname");
@@ -159,10 +136,12 @@ public class UsergroupModulePage extends PageObject {
 
     }
 
-    public void UserEditUserGroupDetails(DataTable data) {
-        editusergroup = data.asMaps(String.class, String.class).get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
+    public void UserEditUserGroupDetails(DataTable editusergroupname) {
+        Editusergroup = editusergroupname.asMaps(String.class, String.class).get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
+        waitABit(2000);
         waitFor(entervalueingroupname).waitUntilVisible().clear();
-        waitFor(entervalueingroupname).waitUntilVisible().sendKeys(editusergroup);
+        waitABit(2000);
+        waitFor(entervalueingroupname).waitUntilVisible().sendKeys(Editusergroup);
         waitABit(2000);
 
     }
@@ -181,8 +160,7 @@ public class UsergroupModulePage extends PageObject {
     }
 
     public void userEntersTheDetails(DataTable value) throws IOException, ConfigurationException {
-        List<Map<String, String>> data = value.asMaps(String.class, String.class);
-        groupname = data.get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
+        groupname = value.asMaps(String.class, String.class).get(0).get("userGroupName") + RandomGenerator.randomAlphanumeric(2);
         waitFor(entervalueingroupname).waitUntilVisible().sendKeys(groupname);
         LoadProperties.saveValueInPropertiesFile("userGroupName", groupname, "testData");
 
@@ -190,10 +168,12 @@ public class UsergroupModulePage extends PageObject {
     }
 
     public void userCheckSameNameUsergroupIsNotExist() {
-        String usergroupname = LoadProperties.getValueFromPropertyFile("testData", "groupname");
-        waitFor(entervalueingroupname).waitUntilVisible().sendKeys(usergroupname);
-        waitABit(1000);
+        String usergroup = LoadProperties.getValueFromPropertyFile("testData", "userGroupName");
+        waitFor(entervalueingroupname).waitUntilVisible().clear();
+        waitFor(entervalueingroupname).waitUntilVisible().sendKeys(usergroup);
     }
+
+
 
     public void userClicksOnDeleteButton() {
         deleteButton.click();
@@ -217,23 +197,29 @@ public class UsergroupModulePage extends PageObject {
 
     public void selectUserGroupCheckbox() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
-        selectedItems = new ArrayList<>();
         elements.get(0).click();
-    }
+        waitABit(2000);
 
+    }
 
 
     public void selectAllUserGroupCheckbox() {
         selectAlluser.click();
 
     }
-    public void userRemovesTheUseGroup(){
+
+    public void userRemovesTheUseGroup() {
         List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
         selectedItems = new ArrayList<>();
         elements.get(0).click();
     }
+    public void userCrossVerifyTheEditDetails(){
+        element(verifyCreateUserGroupDetails(Editusergroup)).waitUntilVisible();
+        element(verifyCreateUserGroupDetails(Editusergroup)).isDisplayed();
 
     }
+
+}
 
 
 
