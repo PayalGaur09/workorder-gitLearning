@@ -118,7 +118,8 @@ public class VendorManagementPage extends PageObject {
 
     private void enterValueInName() throws IOException, ConfigurationException {
         WebElementFacade nameField = element(vendorFormField("Name"));
-        waitABit(10000);
+        waitABit(5000);
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameField).waitUntilVisible();
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
         nameField.clear();
         detailsModel.setName("Ram" + RandomGenerator.randomAlphabetic(3));
@@ -183,7 +184,9 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnSubmitButton() {
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(submitButton).waitUntilVisible().click();
+        waitABit(1000);
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(submitButton).waitUntilClickable().click();
+        waitABit(3000);
     }
 
     public void vendorDetailsVerify() {
@@ -229,7 +232,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnActionButton() {
-        waitABit(5000);
+        waitABit(6000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 

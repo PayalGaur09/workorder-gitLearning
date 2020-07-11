@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
 
+import javax.swing.text.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,8 @@ public class FacilityManagementPage extends PageObject {
     private WebElementFacade selectAllCheckbox;
     @FindBy(xpath = "//input[contains(@placeholder,'Filter')]")
     private WebElementFacade searchUser;
+    @FindBy(xpath = "//label[contains(text(),'Facility Assigned:')]/..//span")
+    private List<WebElementFacade> facilityAssignedToUsers;
 
 
 
@@ -83,19 +86,21 @@ public class FacilityManagementPage extends PageObject {
         return By.xpath("//label[contains(text(),'" + detail + "')]/..//p");
     }
 
-    private By companyIdElement(String id) {
-        return By.xpath("//td[text()='" + id + "']/..//span[@class='link']");
+    private By facilityOnListView(String facility) {
+        return By.xpath("//span[text()='" + facility + "']");
     }
+
 
     public void clickAddFacility() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addFacilityButton).click();
+        waitABit(2000);
     }
 
     private void enterValueInFacility() {
-       // waitABit(5000);
+        // waitABit(5000);
         element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Facility")).clear();
-        facilityModel.setName(RandomGenerator.randomAlphabetic(5) + "Pvt Ltd");
+        facilityModel.setName("Auto " + RandomGenerator.randomAlphabetic(4) + " Pvt Ltd");
         element(facilityField("Facility")).sendKeys(facilityModel.getName());
     }
 
@@ -220,6 +225,12 @@ public class FacilityManagementPage extends PageObject {
         addUserGroupLog = a + " was added to " + facilityModel.getName();
     }
 
+    public void groupQA() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
+        WebElementFacade qa = (WebElementFacade) getDriver().findElement(By.xpath("//ul[@class='item2']//div[text()='QA']"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(qa).click();
+    }
+
     public void companyIdValue() {
         facilityModel.setCompanyId(withTimeoutOf(10, TimeUnit.SECONDS).waitFor(companyID).getText());
     }
@@ -242,8 +253,10 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void updateDuplicateName() {
-        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityField("Facility"));
-        element(facilityField("Facility")).clear();
+        waitABit(1000);
+        WebElementFacade nameField = element(facilityField("Facility"));
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(nameField).click();
+        nameField.clear();
         element(facilityField("Facility")).sendKeys(facilityName);
     }
 
@@ -261,12 +274,33 @@ public class FacilityManagementPage extends PageObject {
 
     }
 
+    //........Impacted area of user group.......
+
+    List<String> facilityList;
+
+    public void facilityAssigned() {
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityAssignedToUsers.get(0)).waitUntilVisible();
+        facilityList = new ArrayList<>();
+        for (WebElementFacade facilityAssignedToUser : facilityAssignedToUsers) {
+            facilityList.add(facilityAssignedToUser.getText());
+        }
+    }
+
+
+    public void verifyFacilityList() {
+        for (String s : facilityList) {
+            WebElementFacade facility = element(facilityOnListView(s));
+            withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).shouldBeVisible();
+        }
+    }
+
     //Unit Management
     public void tapOnUnitAddButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUnitButton).click();
     }
 
     private void enterValueInUnitName() {
+        waitABit(5000);
         element(facilityField("Unit")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Unit")).clear();
         facilityModel.setUnitName("Unit" + RandomGenerator.randomAlphabetic(4));
@@ -281,12 +315,6 @@ public class FacilityManagementPage extends PageObject {
         Assert.assertEquals(facilityModel.getUnitName(), element(unitDetail("Unit Name")).getText());
     }
 
-//    public void fectchFacilityName() {
-//        WebElementFacade facilityName = element(unitDetail("Facility Name"));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(facilityName).waitUntilPresent();
-//        facilityModel.setUnitName(facilityName.getText());
-//
-//    }
 
     public void fetchFacilityAndUnitName() {
         WebElementFacade unitName = element(unitDetail("Unit Name"));
@@ -298,17 +326,13 @@ public class FacilityManagementPage extends PageObject {
     public void tapOnTheCompanyOfAccountOwner() {
         String companyIdWeb = LoadProperties.getValueFromPropertyFile("testData", "companyIdWeb");
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(searchUser).sendKeys(companyIdWeb, Keys.ENTER);
-//        //WebElementFacade companyLink = element(companyIdElement(companyIdWeb));
-//        WebElementFacade companyLink = element(companyIdElement("ID12280"));
-//        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(companyLink).click();
-//        waitABit(1000);
-//        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
 
     public void tapOnFacilityTile() {
         waitABit(1000);
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
+
 
     //......Activity Log..........
 
@@ -355,6 +379,7 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void deleteBox() {
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteBox);
         if (deleteBox.isEnabled()) {
             withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).click();
         } else {

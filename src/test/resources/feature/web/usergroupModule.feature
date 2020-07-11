@@ -1,5 +1,4 @@
-@Phase21
-
+@Automation @UserGroup
 Feature: UserGroup Module
 
   Background:
@@ -211,39 +210,3 @@ Feature: UserGroup Module
       And User adds a user to the usergroup
       When User taps on the Submit button
       Then Success message " User Group has been created successfully. " should be displayed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

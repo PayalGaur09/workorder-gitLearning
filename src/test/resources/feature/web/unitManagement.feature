@@ -1,3 +1,4 @@
+@Automation @Unit
 Feature: Unit Management
   As a user I can land on the unit list page
   So that I can manage units of the facility
@@ -14,7 +15,8 @@ Feature: Unit Management
     And User taps on the Submit button
     Then Success message "Unit has been added successfully" should be displayed
     And User verify unit detail screen
-    When User tap on the "Dashboard" link from side navigation
+    And User logout from work order platform
+    When User sign in with valid credential of Client Personnel
     Then Activity log for unit creation is displayed
 
   Scenario: To verify validations on add unit screen
@@ -32,15 +34,15 @@ Feature: Unit Management
     And User verify unit detail screen
 
   Scenario: Edit an existing unit from unit detail screen and cross verify the modification, activity log and notification
-    Given User is on detail screen
+    Given User creates a new unit and reaches to its detail screen
     When User clicks on edit option from action dropdown
     And User enters all the field in unit screen
     And User taps on the Submit button
     Then Success message "Unit has been updated successfully" should be displayed
     And User verify unit detail screen
-    When User tap on the "Dashboard" link from side navigation
+    When User logout from work order platform
+    And User sign in with valid credential of Client Personnel
     Then Activity log for existing unit edited is displayed
-    And User sign in with valid credential of Client Admin
     And User tap on the bell icon
     Then Notification for Existing Unit Edited is displayed
 
@@ -56,7 +58,8 @@ Feature: Unit Management
     Then User verified the changed status
     When User verify status and takes necessary actions to change the status
     Then User verified the changed status
-    When User tap on the "Dashboard" link from side navigation
+    When User logout from work order platform
+    And User sign in with valid credential of Client Personnel
     Then Activity log for existing unit activated and deactivated is displayed
     And User tap on the bell icon
     Then Notification for Existing Unit deactivated is displayed
@@ -83,6 +86,7 @@ Feature: Unit Management
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
 
+
   Scenario: Create a unit by 10Fed user
     Given User logout from work order platform
     And User sign in with valid credential of Super Admin
@@ -99,8 +103,7 @@ Feature: Unit Management
     And User tap on a company and taps on the facility tab
     When User is on detail screen
     And User fetches facility and unit name
-    And User clicks on delete button
-    And User clicks on 'OK' option in the confirmation popup
+    When User clicks on delete option to delete parent/child entity
     Then Success message "Unit has been deleted successfully." should be displayed
     And User logout from work order platform
     When User sign in with valid credential of Account Owner

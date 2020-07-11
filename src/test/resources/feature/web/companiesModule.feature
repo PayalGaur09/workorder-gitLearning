@@ -1,4 +1,4 @@
-@Phase15
+@Automation @Company
 Feature: Company module
 
   Background:
@@ -123,7 +123,7 @@ Feature: Company module
     And user fill the details for creating a new company
       | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
       | tester | abcdhgg | 76872    | 878687868876   | teste45 | test               | accountowner77      | 2874923                      |
-    When User taps on the Submit button
+    And user taps on the submit button
     Then Success message " Company has been added successfully. " should be displayed
     And user clicks on the edit button for account owner details
     And user edit  the details

@@ -1,4 +1,4 @@
-@Phase1
+@Automation @User
 Feature: User Management
   As a user I can land on Users page
   So that I can manage users of the Company

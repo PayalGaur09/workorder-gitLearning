@@ -6,12 +6,14 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriverService;
 import org.openqa.selenium.support.FindBy;
 import utilities.RandomGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -262,12 +264,5 @@ public class ProfilePage extends PageObject {
     public void profileHeading() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
     }
+
 }
-
-
-
-
-
-
-
-

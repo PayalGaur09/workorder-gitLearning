@@ -56,12 +56,11 @@ public class UserSigninPage extends PageObject {
         try {
             userName.sendKeys(userEmail);
             password.sendKeys(pwd);
-            withTimeoutOf(100, TimeUnit.SECONDS).waitFor(signinButton).click();
-            waitABit(1000);
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(signinButton).click();
+            waitABit(2000);
         } catch (Exception ignored) {
 
         }
-
     }
 
 
@@ -75,7 +74,7 @@ public class UserSigninPage extends PageObject {
     }
 
     public void errorForInvalidCredentials() {
-        waitFor(invalidCredentials).withTimeoutOf(50, TimeUnit.SECONDS).isDisplayed();
+        waitFor(invalidCredentials).withTimeoutOf(20, TimeUnit.SECONDS).isDisplayed();
     }
 
     public void validationMessage(String err) {

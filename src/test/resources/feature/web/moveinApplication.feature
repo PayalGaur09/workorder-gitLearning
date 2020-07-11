@@ -1,4 +1,4 @@
-@Phase25
+@Automation @MoveIn
 Feature: Functionality of  application
 
   Background:
@@ -71,7 +71,7 @@ Feature: Functionality of  application
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     Then User Select " Pop Up View " Type
-#    Then Success message " State view has been changed successfully. " should be displayed
+    Then Success message " State view has been changed successfully. " should be displayed
 
   Scenario: To verify the functionality of enablity of toggle button and apply changes button
     Given user is on the manage kiosk page of workorder application
@@ -95,7 +95,7 @@ Feature: Functionality of  application
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     Then User Select " Hardware Keyboard " Type
-#    Then Success message "  Keyboard has been changed successfully.  " should be displayed
+    Then Success message "  Keyboard has been changed successfully.  " should be displayed
 
 
 
