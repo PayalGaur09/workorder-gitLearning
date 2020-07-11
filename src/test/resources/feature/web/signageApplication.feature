@@ -1,3 +1,4 @@
+@Automation @Signage
 Feature: Functionality of signage application
 
   Background:

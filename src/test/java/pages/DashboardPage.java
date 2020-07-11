@@ -31,6 +31,8 @@ public class DashboardPage extends PageObject {
     private WebElementFacade pieChart;
     @FindBy(xpath = "//h3[contains(text(),'Log')]/../../..//*[name()='g']")
     private WebElementFacade offlineLogGraph;
+    @FindBy(xpath = "//span[text()='Dashboard']")
+    private WebElementFacade dashboardSideMenu;
 
 
     private By pageTitle(String heading) {
@@ -61,8 +63,9 @@ public class DashboardPage extends PageObject {
     }
 
     public void tapOnMenuItems(String module) {
+        waitABit(2000);
+        withTimeoutOf(30,TimeUnit.SECONDS).waitFor(dashboardSideMenu).waitUntilVisible();
 //        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
-        waitABit(1000);
         JavascriptExecutor jse = (JavascriptExecutor) getDriver();
         jse.executeScript("arguments[0].scrollIntoView(false);", find(menuItems(module)));
         Actions act = new Actions(getDriver());

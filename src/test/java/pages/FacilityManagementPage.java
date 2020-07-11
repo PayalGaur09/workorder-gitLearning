@@ -92,13 +92,14 @@ public class FacilityManagementPage extends PageObject {
 
     public void clickAddFacility() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addFacilityButton).click();
+        waitABit(2000);
     }
 
     private void enterValueInFacility() {
         // waitABit(5000);
         element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Facility")).clear();
-        facilityModel.setName(RandomGenerator.randomAlphabetic(5) + "Pvt Ltd");
+        facilityModel.setName("Auto " + RandomGenerator.randomAlphabetic(4) + " Pvt Ltd");
         element(facilityField("Facility")).sendKeys(facilityModel.getName());
     }
 
@@ -223,6 +224,12 @@ public class FacilityManagementPage extends PageObject {
         addUserGroupLog = a + " was added to " + facilityModel.getName();
     }
 
+    public void groupQA() {
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
+        WebElementFacade qa = (WebElementFacade) getDriver().findElement(By.xpath("//ul[@class='item2']//div[text()='QA']"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(qa).click();
+    }
+
     public void companyIdValue() {
         facilityModel.setCompanyId(withTimeoutOf(10, TimeUnit.SECONDS).waitFor(companyID).getText());
     }
@@ -245,8 +252,10 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void updateDuplicateName() {
-        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityField("Facility"));
-        element(facilityField("Facility")).clear();
+        waitABit(1000);
+        WebElementFacade nameField = element(facilityField("Facility"));
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(nameField).click();
+        nameField.clear();
         element(facilityField("Facility")).sendKeys(facilityName);
     }
 
@@ -264,12 +273,33 @@ public class FacilityManagementPage extends PageObject {
 
     }
 
+    //........Impacted area of user group.......
+
+    List<String> facilityList;
+
+    public void facilityAssigned() {
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityAssignedToUsers.get(0)).waitUntilVisible();
+        facilityList = new ArrayList<>();
+        for (WebElementFacade facilityAssignedToUser : facilityAssignedToUsers) {
+            facilityList.add(facilityAssignedToUser.getText());
+        }
+    }
+
+
+    public void verifyFacilityList() {
+        for (String s : facilityList) {
+            WebElementFacade facility = element(facilityOnListView(s));
+            withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).shouldBeVisible();
+        }
+    }
+
     //Unit Management
     public void tapOnUnitAddButton() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addUnitButton).click();
     }
 
     private void enterValueInUnitName() {
+        waitABit(5000);
         element(facilityField("Unit")).withTimeoutOf(20, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Unit")).clear();
         facilityModel.setUnitName("Unit" + RandomGenerator.randomAlphabetic(4));
@@ -302,24 +332,6 @@ public class FacilityManagementPage extends PageObject {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facilityTab).waitUntilClickable().click();
     }
 
-
-    List<String> facilityList;
-
-    public void facilityAssigned() {
-        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityAssignedToUsers.get(0)).waitUntilVisible();
-        facilityList = new ArrayList<>();
-        for (WebElementFacade facilityAssignedToUser : facilityAssignedToUsers) {
-            facilityList.add(facilityAssignedToUser.getText());
-        }
-    }
-
-
-    public void verifyFaciltyList() {
-        for (String s : facilityList) {
-            WebElementFacade facility = element(facilityOnListView(s));
-            withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).shouldBeVisible();
-        }
-    }
 
     //......Activity Log..........
 
@@ -366,6 +378,7 @@ public class FacilityManagementPage extends PageObject {
     }
 
     public void deleteBox() {
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteBox);
         if (deleteBox.isEnabled()) {
             withTimeoutOf(40, TimeUnit.SECONDS).waitFor(deleteBox).click();
         } else {

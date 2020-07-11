@@ -1,4 +1,4 @@
-@Phase6
+@Automation @Company
 Feature: Company module
 
   Background:

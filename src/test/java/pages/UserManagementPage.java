@@ -70,6 +70,8 @@ public class UserManagementPage extends PageObject {
 
     @FindBy(xpath = "//div[@class='kt-widget3']")
     private WebElementFacade activityLogWidget;
+    @FindBy(xpath = "//td[text()='No matching records found']")
+    private WebElementFacade noRecords;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -197,7 +199,7 @@ public class UserManagementPage extends PageObject {
     }
 
     public void verifyUserName() {
-        waitABit(6000);
+        waitABit(10000);
         WebElementFacade firstName = element(userNameSearch(1));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstName).shouldBeVisible();
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
@@ -234,18 +236,21 @@ public class UserManagementPage extends PageObject {
 
 
     public void verifyStatus(String userStatus) {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(statusInList).shouldBeVisible();
-        int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
-        for (int i = 1; i <= num; i++) {
-            WebElementFacade s = element(statusInTable(i));
-            String vType = withTimeoutOf(20, TimeUnit.SECONDS).waitFor(s).getText();
-            if (userStatus.equals("Active")) {
-                Assert.assertEquals("Active", vType);
+        try {
+            withTimeoutOf(10, TimeUnit.SECONDS).waitFor(statusInList).shouldBeVisible();
+            int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
+            for (int i = 1; i <= num; i++) {
+                WebElementFacade s = element(statusInTable(i));
+                String vType = withTimeoutOf(20, TimeUnit.SECONDS).waitFor(s).getText();
+                if (userStatus.equals("Active")) {
+                    Assert.assertEquals("Active", vType);
 
-            } else if (userStatus.equals("Inactive")) {
-
-                Assert.assertEquals("Inactive", vType);
+                } else if (userStatus.equals("Inactive")) {
+                    Assert.assertEquals("Inactive", vType);
+                }
             }
+        } catch (Exception e) {
+            noRecords.isPresent();
         }
 
     }

@@ -30,6 +30,7 @@ public class FacilityManagementSteps {
 
     @And("^User selects the default assignee dropdown$")
     public void userSelectsTheDefaultAssigneeDropdown() {
+        facility.selectAllGroup();
         facility.selectDropdown();
         vendor.tapOnSubmitButton();
     }
@@ -39,7 +40,6 @@ public class FacilityManagementSteps {
         facility.clickAddFacility();
         facility.enterAllFields();
         facility.selectAllGroup();
-        facility.selectDropdown();
         vendor.tapOnSubmitButton();
     }
 
@@ -122,6 +122,13 @@ public class FacilityManagementSteps {
         facility.verifyUnitField();
     }
 
+    @Given("^User creates a new unit and reaches to its detail screen$")
+    public void userCreatesANewUnitAndReachesToItsDetailScreen() {
+        facility.tapOnUnitAddButton();
+        facility.enterUnitField();
+        vendor.tapOnSubmitButton();
+    }
+
     @And("^User tap on a company and taps on the facility tab$")
     public void userTapOnACompanyAndTapsOnTheFacilityTab() {
         facility.tapOnTheCompanyOfAccountOwner();
@@ -154,12 +161,13 @@ public class FacilityManagementSteps {
     @Then("^Activity log for unit creation is displayed$")
     public void activityLogForUnitCreationIsDisplayed() {
         facility.verifyLogForAddUnit();
+        userSigninPage.signout();
     }
 
     @Then("^Activity log for existing unit edited is displayed$")
     public void activityLogForExistingUnitEditedIsDisplayed() {
         facility.verifyLogForEditUnit();
-        userSigninPage.signout();
+        //userSigninPage.signout();
     }
 
     @Then("^Activity log for existing unit activated and deactivated is displayed$")
@@ -175,6 +183,7 @@ public class FacilityManagementSteps {
     @Then("^Notification for Existing Unit Edited is displayed$")
     public void notificationForExistingUnitEditedIsDisplayed() {
         facility.editUnitNotification();
+        userSigninPage.signout();
     }
 
     @When("^User fetches facility and unit name$")
@@ -222,7 +231,14 @@ public class FacilityManagementSteps {
 
     @And("^User fetches the assigned facility list$")
     public void userFetchesTheAssignedFacilityList() {
-
+        facility.facilityAssigned();
     }
+
+    @Then("^Client Personnel should only access the assigned facility$")
+    public void clientPersonnelShouldOnlyAccessTheAssignedFacility() {
+        facility.verifyFacilityList();
+    }
+
+
 }
 

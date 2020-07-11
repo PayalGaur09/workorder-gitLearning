@@ -57,10 +57,10 @@ public class UserSigninPage extends PageObject {
             userName.sendKeys(userEmail);
             password.sendKeys(pwd);
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(signinButton).click();
+            waitABit(2000);
         } catch (Exception ignored) {
 
         }
-
     }
 
 

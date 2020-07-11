@@ -1,4 +1,4 @@
- @func
+@Automation @MoveIn
 Feature: Functionality of  application
 
   Background:
