@@ -36,7 +36,6 @@ public class SignageApplicationSteps {
 
     @And("^User clicks on Select dropdown and select a facility$")
     public void userClicksOnSelectDropdownAndSelectAFacility() {
-
         managekioskpage.selectFacilityFromDropdown();
 
 

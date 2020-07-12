@@ -69,7 +69,6 @@ Feature: Functionality of profile
     When User enter change password details
       | currentPassword   | newPassword   | confirmPassword   |
       | <currentPassword> | <newPassword> | <confirmPassword> |
-    And User taps on the Submit button
     Then The error message is displayed as "<errorMessage>"
     Examples:
       | currentPassword | newPassword | confirmPassword | errorMessage                                     |

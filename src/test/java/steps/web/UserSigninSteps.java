@@ -141,6 +141,15 @@ public class UserSigninSteps {
         String pwd = LoadProperties.getValueFromPropertyFile("testData", "forpwd");
         userSigninPage.enterCredentials(id, pwd);
     }
+
+
+    @Given("^User sign in with valid credential of Account Owner1$")
+    public void userSignInWithValidCredentialOfAccountOwner1() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerId1");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerPassword1");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
 }
 
 

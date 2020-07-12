@@ -122,9 +122,9 @@ public class SignageApplicationPage extends PageObject {
     }
 
     public void selectFacilityFromDropdown() {
-        waitFor(selectFacility).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        waitFor(selectFacility).withTimeoutOf(90, TimeUnit.SECONDS).click();
         Select facilityFilter = new Select(selectFacility);
-        facilityFilter.selectByVisibleText(" Simonis LLC");
+        facilityFilter.selectByIndex(1);
 
     }
 

@@ -1,4 +1,5 @@
-@Automation @UserGroup
+@Phase1
+#@Automation @UserGroup
 Feature: UserGroup Module
 
   Background:

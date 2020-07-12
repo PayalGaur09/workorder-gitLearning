@@ -1,9 +1,10 @@
-@Automation @MoveIn
+@Phase1
+#@Automation @MoveIn
 Feature: Functionality of  application
 
   Background:
     Given User is on work order sign in page
-    When User sign in with valid credential of Account Owner
+    When User sign in with valid credential of Account Owner1
     And User click on side menu of "Manage Kiosk" button
 
   Scenario: To verify redirection on detailed view of manage kiosk page
@@ -58,7 +59,6 @@ Feature: Functionality of  application
   Scenario: To verify the functionality when user clicks on the chechbox of Driving license number
     Given user is on the manage kiosk page of workorder application
     And user selects the tag kiosk page
-    When user clicks on configure and manage button
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     When user cliks on the checkbox od driving license number
@@ -71,7 +71,6 @@ Feature: Functionality of  application
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     Then User Select " Pop Up View " Type
-    Then Success message " State view has been changed successfully. " should be displayed
 
   Scenario: To verify the functionality of enablity of toggle button and apply changes button
     Given user is on the manage kiosk page of workorder application
@@ -95,7 +94,6 @@ Feature: Functionality of  application
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     Then User Select " Hardware Keyboard " Type
-    Then Success message "  Keyboard has been changed successfully.  " should be displayed
 
 
 
