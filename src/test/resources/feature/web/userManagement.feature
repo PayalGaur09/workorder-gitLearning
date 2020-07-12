@@ -28,7 +28,7 @@ Feature: User Management
       | First name is required | Email is required | Phone is required | Role is required |
 
   Scenario: Edit an existing user from user detail screen and cross verify the modification and activity logs
-    Given User has created a new user and reaches to the detail screen
+    Given User reaches to detail screen and fetches user name
     When User clicks on edit option from action dropdown
     And User updates all the field of user form
     And User taps on the Submit button
@@ -40,18 +40,16 @@ Feature: User Management
     Then Activity log for existing user edited is displayed
 
   Scenario: Deactivate-activate user from user detail screen and cross verify the status, activity log and notification
-    Given User has created a new user and reaches to the detail screen
-    When User clicks on the action button
-    And User verify status and takes necessary actions to change the status
-    Then User verified the changed status
-    And User clicks on the action button
+    Given User reaches to detail screen and fetches user name
+    When User verify status and takes necessary actions to change the status
+    And User verified the changed status
     And User verify status and takes necessary actions to change the status
     Then User verified the changed status
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for existing user deactivated or activated is displayed
     And Upon tapping the entity user is redirected to the detail screen
     When User sign in with valid credential of Client Admin
-    When User tap on the bell icon
+    And User tap on the bell icon
     Then Notification for Existing User Deactivated is displayed
 
   Scenario: The functionality of "Delete" button on the user detail screen and verify the activity log and notification

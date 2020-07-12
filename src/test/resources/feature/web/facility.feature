@@ -48,6 +48,7 @@ Feature: Facility Management
     When User clicks on edit option from action dropdown
     And User adds a user group
     And User taps on the Submit button
+    Then Success message "Facility has been updated successfully" should be displayed
     When User tap on the "Dashboard" link from side navigation
     Then Activity log for add/remove user group is displayed
 
@@ -55,7 +56,7 @@ Feature: Facility Management
     Given User is on add facility screen
     When User enters all the field in Facility screen
     And User selects multiple groups
-    And User selects the default assignee dropdown
+    Then Success message "Facility has been updated successfully" should be displayed
     Then User verifies the selected assignee list
 
   Scenario: Edit an existing facility from facility list screen and cross verify the modification
@@ -66,7 +67,7 @@ Feature: Facility Management
     And User verify facility detail screen
 
   Scenario: Edit an existing facility from facility detail screen and cross verify the modification
-    Given User is on detail screen
+    Given User is on facility detail screen
     When User clicks on edit option from action dropdown
     And User enters all the field in Facility screen
     And User taps on the Submit button

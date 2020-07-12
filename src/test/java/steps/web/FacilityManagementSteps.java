@@ -58,6 +58,7 @@ public class FacilityManagementSteps {
     public void userSelectsMultipleGroups() {
         facility.tapOnUserGroupsAssignedDropdown();
         facility.selectUserGroupCheckbox();
+        vendor.tapOnSubmitButton();
     }
 
     @And("^User removes a user group$")
@@ -178,6 +179,7 @@ public class FacilityManagementSteps {
     @Then("^Notification for facility creation is displayed$")
     public void notificationForFacilityCreationIsDisplayed() {
         facility.addFacilityNotification();
+        userSigninPage.signout();
     }
 
     @Then("^Notification for Existing Unit Edited is displayed$")
@@ -240,5 +242,9 @@ public class FacilityManagementSteps {
     }
 
 
+    @Given("^User is on facility detail screen$")
+    public void userIsOnFacilityDetailScreen() {
+        facility.autoFacilityLink();
+    }
 }
 
