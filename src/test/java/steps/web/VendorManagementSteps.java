@@ -246,5 +246,10 @@ public class VendorManagementSteps {
         userSigninPage.signout();
     }
 
+    @Given("^User fetches vendor name$")
+    public void userFetchesVendorName() {
+        vendor.tapOnNameLink(); //Reaches to detail screen
+        vendor.fetchVendorName();
+    }
 }
 

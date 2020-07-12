@@ -97,7 +97,7 @@ public class FacilityManagementPage extends PageObject {
     }
 
     private void enterValueInFacility() {
-        // waitABit(5000);
+         waitABit(5000);
         element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Facility")).clear();
         facilityModel.setName("Auto " + RandomGenerator.randomAlphabetic(4) + " Pvt Ltd");
@@ -267,7 +267,7 @@ public class FacilityManagementPage extends PageObject {
 
 
     public void verifyAssignee() {
-        waitABit(5000);
+        waitABit(10000);
         for (int i = 0; i < selectedItems.size(); i++) {
             element(assigneeOnDetailPage(selectedItems.get(i))).shouldBeVisible();
         }
@@ -476,5 +476,10 @@ public class FacilityManagementPage extends PageObject {
     public void deleteUnitNotification() {
         String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deleted.";
         searchNotificationContent(notification);
+    }
+
+    public void autoFacilityLink() {
+        WebElement autoFacility = element("//span[contains(text(),'Auto')]");
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(autoFacility).click();
     }
 }

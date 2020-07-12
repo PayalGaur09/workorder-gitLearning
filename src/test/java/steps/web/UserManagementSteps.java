@@ -197,4 +197,10 @@ public class UserManagementSteps {
         userSigninPage.signout();
     }
 
+    @Given("^User reaches to detail screen and fetches user name$")
+    public void userReachesToDetailScreenAndFetchesUserName() {
+        users.tapOnUserName();
+        users.fetchUserName();
+
+    }
 }

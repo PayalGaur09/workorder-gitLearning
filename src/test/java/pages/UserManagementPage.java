@@ -72,6 +72,8 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade activityLogWidget;
     @FindBy(xpath = "//td[text()='No matching records found']")
     private WebElementFacade noRecords;
+    @FindBy(xpath = "//span[contains(text(),'Madhvan')]")
+    private WebElementFacade madhvanLink;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -215,6 +217,7 @@ public class UserManagementPage extends PageObject {
 
 
     public void verifyUserRole(String userRoles) {
+        waitABit(2000);
         WebElementFacade firstRole = element(roleInTable(1));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(firstRole).shouldBeVisible();
         int num = getDriver().findElements(By.xpath("//tbody/tr")).size();
@@ -270,7 +273,7 @@ public class UserManagementPage extends PageObject {
         } else if (userStatus.equals("Active")) {
             withTimeoutOf(10, TimeUnit.SECONDS).waitFor(deactivateFromAction).click();
         }
-        waitFor(2000);
+        waitFor(4000);
     }
 
     public void verifyChangedStatus() {
@@ -352,5 +355,16 @@ public class UserManagementPage extends PageObject {
         waitABit(1000);
         String notification = detailsModel.getName() + "'s account has been deleted.";
         Assert.assertEquals(notification, notificationContent.getText());
+    }
+
+    public void tapOnUserName() {
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(madhvanLink).click();
+    }
+
+    public void fetchUserName() {
+        WebElementFacade userName = element(userDetail("First"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(userName);
+        detailsModel.setName(userName.getText());
+        detailsModel.setSurname(element(userDetail("Last")).getText());
     }
 }
