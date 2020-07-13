@@ -1,5 +1,3 @@
-@Phase1
-
 @Automation @Signage
 Feature: Functionality of signage application
 
@@ -123,18 +121,8 @@ Feature: Functionality of signage application
     And user fills all the details
       | title   | description | internalDescription |
       | shefali | testing1234 | testing12345        |
-    And user clicks  on the submit button
+    And user clicks  on the submit button for uploading the the pdf
     Then Success message " Signage content has been added successfully. " should be displayed
-
-  Scenario: Verify the functionality of delete file
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
-    And user clicks on the addcontent button
-    And  user upload the image type content in the upload content field
-      | image    |
-      | JEEG.jpg |
-    And User clicks on the delete fileicon
 
   Scenario: To verify when user clicks on the cancel button on add content field
     Given user is on the manage kiosk page of workorder application
@@ -147,7 +135,7 @@ Feature: Functionality of signage application
     Given user is on the manage kiosk page of workorder application
     And user selects the tag kiosk page
     And user clicks on the upload content or manage content button
-    And user clicks  on the submit button
+    Then User taps on the Submit button
     Then Error message should be displayed
       | Content is required | Title is required | Description is required |
 
@@ -206,9 +194,9 @@ Feature: Functionality of signage application
     And user clicks  on the submit button
     Then Verify the error message
 
-    Scenario: Registration key
-      When User get the registration key list
-      Then User verifies the registration key
+  Scenario: Registration key
+    When User get the registration key list
+    Then User verifies the registration key
 
 
 

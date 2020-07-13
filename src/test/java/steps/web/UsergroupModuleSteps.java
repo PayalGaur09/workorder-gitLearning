@@ -129,5 +129,11 @@ public class UsergroupModuleSteps extends PageObject {
     public void crossVerifyTheEditDetails() {
         usergroup.userCrossVerifyTheEditDetails();
     }
+
+
+    @And("^User clicks on the deactivate button$")
+    public void userClicksOnTheDeactivateButton() {
+        usergroup.UserClicksOnDeactivateButton();
+    }
 }
 

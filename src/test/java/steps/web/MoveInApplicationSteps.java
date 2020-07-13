@@ -51,9 +51,10 @@ public class MoveInApplicationSteps extends PageObject {
         moveinapplication.clicksOnAddButton();
     }
 
-    @And("^user select '(.*)' Aminities$")
-    public void userSelectClimateControlledAminities(String Amenities) {
-        moveinapplication.iSelectAmenetiesType(Amenities);
+
+    @And("^user Select Amenities$")
+    public void userSelectAmenities() {
+        moveinapplication.SelectAmenetiesType();
     }
 
     @And("^user clicks on the  pagination  from show entries dropdown$")
@@ -102,9 +103,12 @@ public class MoveInApplicationSteps extends PageObject {
     @And("^user clicks on apply changes button$")
     public void userClicksOnApplyChangesButton() {
         moveinapplication.userClicksOnApplyChangesButton();
+
     }
 
 
-}
+    }
+
+
 
 

@@ -48,6 +48,8 @@ public class UsergroupModulePage extends PageObject {
     private WebElementFacade selectAlluser;
     @FindBy(xpath = "//span[contains(@class,'kt-badge kt-badge--primary')]")
     private WebElementFacade verifymemberassigned;
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
+    private WebElementFacade deactivateButton;
 
 
     private By deleteUserGroup(String companyname) {
@@ -108,29 +110,29 @@ public class UsergroupModulePage extends PageObject {
 
 
     public void userDeleteUsergroup() {
-        String usergroup = getValueFromPropertyFile("testData", "groupname");
+        String usergroup = getValueFromPropertyFile("testData", "userGroupName");
         element(deleteUserGroup(usergroup)).waitUntilVisible().click();
         deleteButton.click();
 
     }
 
     public void userClicksOnDeactivatiingButton() {
-        String usergroup = getValueFromPropertyFile("testData", "groupname");
+        String usergroup = getValueFromPropertyFile("testData", "userGroupName");
         element(getDeactivateUsergroup(usergroup)).waitUntilVisible().click();
-        waitABit(1000);
+        deactivateButton.click();
 
 
     }
 
     public void userClicksOnActivatingButton() {
-        String usergroup = getValueFromPropertyFile("testData", "groupname");
+        String usergroup = getValueFromPropertyFile("testData", "userGroupName");
         element(geActivateUsergroup(usergroup)).waitUntilVisible().click();
 
 
     }
 
     public void userCkicksOnEditButton() {
-        String usergroup = getValueFromPropertyFile("testData", "groupname");
+        String usergroup = getValueFromPropertyFile("testData", "userGroupName");
         element(userEditDetails(usergroup)).waitUntilVisible().click();
 
 
@@ -217,6 +219,9 @@ public class UsergroupModulePage extends PageObject {
         element(verifyCreateUserGroupDetails(Editusergroup)).waitUntilVisible();
         element(verifyCreateUserGroupDetails(Editusergroup)).isDisplayed();
 
+    }
+    public void UserClicksOnDeactivateButton(){
+        deactivateButton.click();
     }
 
 }

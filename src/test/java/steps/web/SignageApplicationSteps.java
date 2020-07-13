@@ -245,6 +245,11 @@ public class SignageApplicationSteps {
     public void userClicksOnSubmitButton() {
         managekioskpage.UserTapsOnVideoOrPdfSubmitbutton();
     }
+
+    @And("^user clicks  on the submit button for uploading the the pdf$")
+    public void userClicksOnTheSubmitButtonForUploadingTheThePdf() {
+        managekioskpage.userClicksOnSubmitButtonForUplaodingThePdfTypefile();
+    }
 }
 
 
