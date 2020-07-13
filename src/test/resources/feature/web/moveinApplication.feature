@@ -1,5 +1,4 @@
-@Phase1
-#@Automation @MoveIn
+@Automation @MoveIn
 Feature: Functionality of  application
 
   Background:

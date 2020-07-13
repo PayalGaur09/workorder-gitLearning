@@ -1,5 +1,3 @@
-@Phase1
-
 @Automation @Signage
 Feature: Functionality of signage application
 

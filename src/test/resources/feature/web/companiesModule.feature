@@ -1,4 +1,4 @@
-@Automation @Company
+@Company
 Feature: Company module
 
   Background:
