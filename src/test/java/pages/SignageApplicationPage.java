@@ -276,7 +276,7 @@ public class SignageApplicationPage extends PageObject {
 //                    signageInputImage.sendKeys(value);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    waitABit(1000);
+                    waitABit(2000);
 
 
                 }
@@ -407,6 +407,11 @@ public class SignageApplicationPage extends PageObject {
             submitbtn.click();
             waitABit(50000);
 
+
+        }
+        public  void userClicksOnSubmitButtonForUplaodingThePdfTypefile(){
+        submitbtn.click();
+            waitABit(30000);
 
         }
 

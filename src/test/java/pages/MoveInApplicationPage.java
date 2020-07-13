@@ -103,22 +103,24 @@ public class MoveInApplicationPage extends PageObject {
     public void clicksOnAddButton() {
         waitABit(50);
         addbutton.click();
+        waitABit(30);
+
     }
 
     private By clickOnSelectAminities(String Amenities) {
         return By.xpath("//*[text()='" + Amenities + "']");
     }
 
-    public void iSelectAmenetiesType(String Amenities) {
-        selectamenity.click();
-        waitABit(3000);
-        element(this.clickOnSelectAminities(Amenities)).click();
+    public void SelectAmenetiesType() {
+        waitFor(selectamenity).withTimeoutOf(90, TimeUnit.SECONDS).click();
+        Select Select = new Select(selectamenity);
+        Select.selectByIndex(1);
     }
 
     public void userClicksOnFromShowEntriesDropdown() {
-        waitFor(showeentriesDrpdown).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        waitFor(showeentriesDrpdown).withTimeoutOf(70, TimeUnit.SECONDS).click();
         Select drpdown = new Select(showeentriesDrpdown);
-        drpdown.selectByVisibleText("100");
+        drpdown.selectByValue("100");
     }
 
     public void clicksOnDeleteAmityicon() {

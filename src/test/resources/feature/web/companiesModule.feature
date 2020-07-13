@@ -1,4 +1,4 @@
-@Company
+#@Automation @Company
 Feature: Company module
 
   Background:
@@ -25,7 +25,7 @@ Feature: Company module
     Given User logout from work order platform
     When User sign in with valid credential of Ten Fed Admin
     When User tap on the "Companies" link from side navigation
-     And User tap on the bell icon
+    And User tap on the bell icon
     Then Notification for company creation is displayed
 
   Scenario:Verify the notification of User deactivation-activation for client admin
@@ -123,7 +123,7 @@ Feature: Company module
     And user fill the details for creating a new company
       | Name   | Address | Zip Code | Contact Number | Email   | Account Owner Name | Account Owner Email | Account Owner Contact Number |
       | tester | abcdhgg | 76872    | 878687868876   | teste45 | test               | accountowner77      | 2874923                      |
-    And user taps on the submit button
+    And User taps on the Submit button
     Then Success message " Company has been added successfully. " should be displayed
     And user clicks on the edit button for account owner details
     And user edit  the details

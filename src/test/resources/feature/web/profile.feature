@@ -1,4 +1,4 @@
-@Profile
+#@Automation @Profile
 Feature: Functionality of profile
 
   Background:

@@ -161,6 +161,7 @@ Feature: UserGroup Module
     Then Success message " User Group has been created successfully. " should be displayed
     And  user click on the action button
     When I  clicking  on the " Deactivate " button
+    And User clicks on the deactivate button
     Then Success message " User Group has been deactivated successfully. " should be displayed
 #    When I  clicking  on the " Activate " button
 #    Then Success message " User Group has been activated successfully. " should be displayed
