@@ -6,12 +6,14 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.safari.SafariDriverService;
 import org.openqa.selenium.support.FindBy;
 import utilities.RandomGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -129,12 +131,13 @@ public class ProfilePage extends PageObject {
     }
 
     public void actionButton() {
-        waitABit(2000);
         actionbutton.click();
+
     }
 
     public void editbutton(String textbutton) {
-        element(selectButton(textbutton)).waitUntilVisible().withTimeoutOf(40, TimeUnit.SECONDS).click();
+        waitABit(2000);
+        element(selectButton(textbutton)).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
     }
 
     public void verifyHeader() {
@@ -180,9 +183,6 @@ public class ProfilePage extends PageObject {
 
     }
 
-    public void submitButton1() {
-        submitbutton1.click();
-    }
 
     public void oldpasswordIncorrect(DataTable data) {
         CurrentPassword = data.asMaps(String.class, String.class).get(0).get("currentPassword");
@@ -229,7 +229,7 @@ public class ProfilePage extends PageObject {
         currentpassword.sendKeys(CurrentPassword);
         newpassword.sendKeys(NewPassword);
         confirmpassword.sendKeys(ConfirmPassword);
-        submitbutton.click();
+//        submitbutton.click();
     }
 
     public void verifyMessage(String ErrorMessage) {
@@ -264,12 +264,5 @@ public class ProfilePage extends PageObject {
     public void profileHeading() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
     }
+
 }
-
-
-
-
-
-
-
-

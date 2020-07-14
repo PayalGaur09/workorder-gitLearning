@@ -20,7 +20,6 @@ Feature: Dashboard Management
     Then User should be able to see the components of Kiosk Heath Status
     Then User should be able to see the components of Offline Kiosk Log
 
-
   Scenario Outline: To verify that upon tapping the management tile user should be redirected to the respective list
     When User taps on company "<module>" tile
     Then User should be redirected to the "<List>" list screen
@@ -43,7 +42,6 @@ Feature: Dashboard Management
       | Not Started       |
       | In Progress       |
       | On Hold           |
-      | Closed            |
       | Complaints        |
 
   Scenario Outline: To verify that correct count is displayed in the company tiles

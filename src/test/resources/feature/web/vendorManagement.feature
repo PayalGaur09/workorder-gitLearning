@@ -1,6 +1,6 @@
-@Phase1
+@Automation @Vendor
 Feature: Vendor Management
-  As a client user I can land on Vendor page
+  As a user I can land on Vendor page
   So that I can manage Vendors of the Company
 
   Background:
@@ -32,7 +32,7 @@ Feature: Vendor Management
     And User clicks on Cancel button
 
   Scenario: Edit an existing vendor from vendor detail screen and cross verify the modification
-    Given User has created a new vendor and reaches to the detail screen
+    Given User fetches vendor name
     When User clicks on edit option from action dropdown
     And User updates all the field of vendor form
     And User taps on the Submit button
@@ -59,7 +59,7 @@ Feature: Vendor Management
     Then Notes count is same as the number of notes listed below
 
   Scenario: To verify the functionality of "Delete" button on the detailed view page and verify notification and activity log
-    Given User has created a new vendor and reaches to the detail screen
+    Given User fetches vendor name
     When User clicks on delete button
     And User clicks on 'OK' option in the confirmation popup
     Then Success message "Vendor has been deleted successfully" should be displayed

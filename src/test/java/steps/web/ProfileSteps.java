@@ -2,6 +2,7 @@ package steps.web;
 
 import com.typesafe.config.Config;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -49,9 +50,9 @@ public class ProfileSteps extends PageObject {
 
     }
 
-    @And("^user click on the action button$")
-    public void userClickOnTheActionbutton() {
-        profilePage.actionButton();
+    @When("^user click on the \"([^\"]*)\" button$")
+    public void userClickOnTheButton(String textbutton) throws Throwable {
+        profilePage.editbutton(textbutton);
     }
 
     @When("^I  clicking  on the \"([^\"]*)\" button$")
@@ -101,10 +102,10 @@ public class ProfileSteps extends PageObject {
     }
 
 
-    @And("^user taps on the submit button$")
-    public void userTapsOnTheSubmitbutton() {
-        profilePage.submitButton1();
-    }
+//    @And("^user taps on the submit button$")
+//    public void userTapsOnTheSubmitbutton() {
+//        profilePage.submitButton1();
+//    }
 
     @When("^User user enter incorrect password in the old password and enter same password in the new password and confirm passwordfield$")
     public void userUserEnterIncorrectPasswordInTheOldPasswordAndEnterSamePasswordInTheNewPasswordAndConfirmPasswordfield(DataTable data) {
@@ -181,6 +182,11 @@ public class ProfileSteps extends PageObject {
     @Then("^user verify the Edit profile$")
     public void userVerifyTheEditProfile() {
         profilePage.userVerifyTheProfileDetails();
+    }
+
+    @When("^user click on the action button$")
+    public void userClickOnTheActionButton() {
+        profilePage.actionButton();
     }
 }
 

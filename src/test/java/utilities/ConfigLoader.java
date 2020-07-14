@@ -10,11 +10,10 @@ import java.util.List;
 
 public class ConfigLoader {
     public static Config config = ConfigFactory.load("env");
-    public static String environment = System.getProperty("env") == null ? "test" : System.getProperty("env");
+    public static String environment = System.getProperty("dev") == null ? "dev" : System.getProperty("env");
     private static final Logger log = LoggerFactory.getLogger(ConfigLoader.class);
 
     public static Config load() {
-//        environment = System.getProperty("env") == null ? "test" : System.getProperty("env");
         if (config.hasPath(environment)) {
             log.info("Running the tests against:" + environment);
             return config.getConfig(environment).withFallback(config);

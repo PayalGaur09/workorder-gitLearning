@@ -120,6 +120,7 @@ public class UserManagementSteps {
 
     @And("^User verify status and takes necessary actions to change the status$")
     public void userVerifyStatusAndTakesNecessaryActionsToChangeTheStatus() {
+        vendor.tapOnActionButton();
         users.changeUserStatus();
     }
 
@@ -196,4 +197,10 @@ public class UserManagementSteps {
         userSigninPage.signout();
     }
 
+    @Given("^User reaches to detail screen and fetches user name$")
+    public void userReachesToDetailScreenAndFetchesUserName() {
+        users.tapOnUserName();
+        users.fetchUserName();
+
+    }
 }

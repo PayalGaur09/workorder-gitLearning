@@ -188,8 +188,7 @@ public class VendorManagementSteps {
     }
 
     @When("^User clicks on delete button$")
-    public void userClicksOnDeleteButton() throws IOException, ConfigurationException {
-        vendor.saveUserName();
+    public void userClicksOnDeleteButton() {
         vendor.tapOnActionButton();
         vendor.clickOnDeleteButton();
     }
@@ -247,5 +246,9 @@ public class VendorManagementSteps {
         userSigninPage.signout();
     }
 
+    @Given("^User fetches vendor name$")
+    public void userFetchesVendorName() {
+        vendor.tapOnNameLink(); //Reaches to detail screen
+        vendor.fetchVendorName();
+    }
 }
-
