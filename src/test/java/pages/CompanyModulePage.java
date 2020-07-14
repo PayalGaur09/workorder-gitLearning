@@ -17,11 +17,13 @@ import org.slf4j.LoggerFactory;
 import utilities.ConfigLoader;
 import utilities.LoadProperties;
 import utilities.RandomGenerator;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.*;
 import static utilities.LoadProperties.getValueFromPropertyFile;
 
@@ -33,7 +35,7 @@ public class CompanyModulePage extends PageObject {
     public static String name;
     public static String Name;
     public static String Address;
-    public static String Zipcode;
+    public static String ZipCode;
     public static String contactnumber;
     public static String email;
     public static String contactNumber;
@@ -170,13 +172,13 @@ public class CompanyModulePage extends PageObject {
         contactNumber = data.get(0).get("Contact Number") + RandomGenerator.randomInteger(2);
         accContactNumber = data.get(0).get("Account Owner Contact Number") + RandomGenerator.randomInteger(2);
         accEmail = data.get(0).get("Account Owner Email") + RandomGenerator.randomEmailAddress(2) + "@mailinator.com";
-        Zipcode = data.get(0).get("Zip Code") + RandomGenerator.randomEmailAddress(2);
+        ZipCode = data.get(0).get("Zip Code") + RandomGenerator.randomEmailAddress(2);
         Accountownername = data.get(0).get("Account Owner Name") + RandomGenerator.randomAlphabetic(2);
         entername.sendKeys(name);
         enteraddress.sendKeys(data.get(0).get("Address"));
         entercontactnumber.sendKeys(contactNumber);
         enteremail.sendKeys(email);
-        enterzipcode.sendKeys(Zipcode);
+        enterzipcode.sendKeys(ZipCode);
         accountownername.sendKeys(Accountownername);
         accountownernemail.sendKeys(accEmail);
         enterownercontactnumber.sendKeys(accContactNumber);
@@ -222,13 +224,13 @@ public class CompanyModulePage extends PageObject {
         List<Map<String, String>> data = validation.asMaps(String.class, String.class);
         Name = data.get(0).get("name");
         Address = data.get(0).get("address");
-        Zipcode = data.get(0).get("zipCode");
+        ZipCode = data.get(0).get("zipCode");
         contactnumber = data.get(0).get("contactNumber");
         email = data.get(0).get("email");
         Accountownername = data.get(0).get("accountOwnerName");
         Accountowneremail = data.get(0).get("accountOwnerEmail");
         Accountownercontactnumber = data.get(0).get("accountOwnerContactNumber");
-        enterInvalidValueInTheFields(Name, Address, Zipcode, contactnumber, email, Accountownername, Accountowneremail, Accountownercontactnumber);
+        enterInvalidValueInTheFields(Name, Address, ZipCode, contactnumber, email, Accountownername, Accountowneremail, Accountownercontactnumber);
     }
 
     public void userCliksOnCancelButtonOfAddCompanyPage() {
@@ -279,10 +281,9 @@ public class CompanyModulePage extends PageObject {
     }
 
     public void userCheckTheCompanyStatus() {
-            String companystatus = getValueFromPropertyFile("testData", "name");
-            element(getActivateOrDeactivateTheCompany(companystatus)).waitUntilVisible().click();
-        }
-
+        String companystatus = getValueFromPropertyFile("testData", "name");
+        element(getActivateOrDeactivateTheCompany(companystatus)).waitUntilVisible().click();
+    }
 
 
     public WebElement searchText() {
@@ -348,6 +349,7 @@ public class CompanyModulePage extends PageObject {
             getDriver().navigate().back();
         }
     }
+
     public void userVerifyTheCompanyDetails() {
         element(verifyCompany(name)).waitUntilVisible();
         element(verifyCompany(name)).isDisplayed();
@@ -359,8 +361,8 @@ public class CompanyModulePage extends PageObject {
         element(verifyCompany(accContactNumber)).isDisplayed();
         element(verifyCompany(accEmail)).waitUntilVisible();
         element(verifyCompany(accEmail)).isDisplayed();
-        element(verifyCompany(Zipcode)).waitUntilVisible();
-        element(verifyCompany(Zipcode)).isDisplayed();
+        element(verifyCompany(ZipCode)).waitUntilVisible();
+        element(verifyCompany(ZipCode)).isDisplayed();
         element(verifyCompany(Accountownername)).waitUntilVisible();
         element(verifyCompany(Accountownername)).isDisplayed();
 
@@ -381,8 +383,6 @@ public class CompanyModulePage extends PageObject {
     }
 
 
-
-
     public void verifyDeleteCompanyNotification() {
         String deleteCompanyNotification = name + " has been deleted.";
         Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
@@ -395,50 +395,12 @@ public class CompanyModulePage extends PageObject {
     }
 
     public void checkEditButtonForClientAdmin() {
-            editbuttonforclientpersonel.click();
-        }
-        public void verifyDeleteNotification(){
-            String deleteCompanyNotification = name + " has been deleted.";
-            Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
-        }
+        editbuttonforclientpersonel.click();
+    }
 
+    public void verifyDeleteNotification() {
+        String deleteCompanyNotification = name + " has been deleted.";
+        Assert.assertEquals(deleteCompanyNotification, notificationContent.getText());
+    }
 
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

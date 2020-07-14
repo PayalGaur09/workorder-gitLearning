@@ -111,7 +111,7 @@ public class MoveInApplicationPage extends PageObject {
         return By.xpath("//*[text()='" + Amenities + "']");
     }
 
-    public void SelectAmenetiesType() {
+    public void SelectAmenityType() {
         waitFor(selectamenity).withTimeoutOf(90, TimeUnit.SECONDS).click();
         Select Select = new Select(selectamenity);
         Select.selectByIndex(1);
@@ -123,7 +123,7 @@ public class MoveInApplicationPage extends PageObject {
         drpdown.selectByValue("100");
     }
 
-    public void clicksOnDeleteAmityicon() {
+    public void clicksOnDeleteAmenityIcon() {
         deleteamenity.click();
         Alert alert = getDriver().switchTo().alert();
         alert.accept();

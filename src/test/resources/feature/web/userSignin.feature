@@ -1,4 +1,4 @@
-#@Automation @SignIn
+@Automation @SignIn
 Feature: Login functionality for Work Order Web
 
   Background:
