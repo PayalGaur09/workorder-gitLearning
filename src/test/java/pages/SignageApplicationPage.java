@@ -34,7 +34,7 @@ public class SignageApplicationPage extends PageObject {
     public static String internalDescription;
     @FindBy(xpath = "//span[text()='Kiosks']")
     private WebElementFacade Verifykioskpage;
-    @FindBy(xpath = "//a[@href='/kiosk/add/1']")
+    @FindBy(xpath = "//a[@class='btn btn-brand btn-elevate btn-icon-sm']")
     private WebElementFacade registerkioskbutton;
     @FindBy(xpath = "//select[@name='facilityId']")
     WebElementFacade selectFacility;
@@ -104,6 +104,8 @@ public class SignageApplicationPage extends PageObject {
     private WebElement deleteteconfirm;
     @FindBy(xpath = "//div[text()=' One other content exist with same title. ']")
     private WebElement sametitleexist;
+    @FindBy(xpath = "//input[@name='registrationKey']")
+    private WebElement regkey;
 
     private By manageKioskValidation(String options) {
         return By.xpath("//*[contains(text(),'" + options + "')]");
@@ -120,9 +122,9 @@ public class SignageApplicationPage extends PageObject {
     }
 
     public void selectFacilityFromDropdown() {
-        waitFor(selectFacility).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        waitFor(selectFacility).withTimeoutOf(90, TimeUnit.SECONDS).click();
         Select facilityFilter = new Select(selectFacility);
-        facilityFilter.selectByVisibleText(" Simonis LLC");
+        facilityFilter.selectByIndex(1);
 
     }
 
@@ -167,7 +169,7 @@ public class SignageApplicationPage extends PageObject {
 
     public void submitButton() {
         submitbtn.click();
-        waitABit(700);
+        waitABit(900);
 
     }
 
@@ -180,7 +182,7 @@ public class SignageApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(imageModel.getImage())) {
                 try {
                     waitABit(2000);
-                    String value = getResourceDir() + File.separator + "signImage" + File.separator + imageModel.getImage();
+                    String value = getResourceDir() + File.separator + "testData" +File.separator + "signImage" + File.separator + imageModel.getImage();
                     getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(value);
 //                    signageInputImage.sendKeys(value);
                 } catch (Exception e) {
@@ -269,12 +271,12 @@ public class SignageApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(contentModel.getContent())) {
                 try {
                     waitABit(2000);
-                    String value = getResourceDirctory() + File.separator + "contentUpload" + File.separator + contentModel.getContent();
+                    String value = getResourceDirctory() + File.separator + "testData" +File.separator + "contentUpload" + File.separator + contentModel.getContent();
                     getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(value);
 //                    signageInputImage.sendKeys(value);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    waitABit(1000);
+                    waitABit(2000);
 
 
                 }
@@ -317,7 +319,7 @@ public class SignageApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(imageModel.getImage())) {
                 try {
                     waitABit(2000);
-                    String value = getResourceDir() + File.separator + "signImage" + File.separator + imageModel.getImage();
+                    String value = getResourceDir() + File.separator + "testData" +File.separator + "signImage" + File.separator + imageModel.getImage();
                     getDriver().findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(value);
 //                    signageInputImage.sendKeys(value);
                 } catch (Exception e) {
@@ -373,19 +375,6 @@ public class SignageApplicationPage extends PageObject {
         element(errorPopup).waitUntilVisible().isDisplayed();
     }
 
-    public void countOfPlansOnlistPage() {
-        element("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").withTimeoutOf(200, TimeUnit.SECONDS).waitUntilVisible();
-        assertThat(findAll("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").size() >= 10);
-    }
-
-    public void verifyPaginationExists() {
-        if (findAll("//*[@class='dataTables_paginate paging_full_numbers']/*//a[@tabindex=0]").size() >= 10) {
-            pagination.isDisplayed();
-        } else {
-            pagination.shouldNotBePresent();
-        }
-    }
-
     public void verifyPagination() {
         Scroll.to(By.xpath("//li[@class='paginate_button page-item ']//a"));
         List<WebElement> pagination = getDriver().findElements(By.xpath("//li[@class='paginate_button page-item ']//a"));
@@ -403,4 +392,27 @@ public class SignageApplicationPage extends PageObject {
             }
         }
     }
+    public void enterReistrationKey(String Regkey) {
+        regkey.sendKeys(Regkey);
+
+        }
+        public void enterValueInTagField(DataTable data){
+            tag = data.asMaps(String.class, String.class).get(0).get("tag");
+            waitFor(entertagvalue).waitUntilVisible().sendKeys(tag + RandomGenerator.randomAlphanumeric(2));
+
+
+        }
+
+        public void UserTapsOnVideoOrPdfSubmitbutton(){
+            submitbtn.click();
+            waitABit(50000);
+
+
+        }
+        public  void userClicksOnSubmitButtonForUplaodingThePdfTypefile(){
+        submitbtn.click();
+            waitABit(30000);
+
+        }
+
 }

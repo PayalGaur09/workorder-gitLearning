@@ -4,9 +4,14 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.server.handler.interactions.touch.Scroll;
 import org.openqa.selenium.support.FindBy;
 
+import java.security.PublicKey;
 import java.util.concurrent.TimeUnit;
 
 public class DashboardPage extends PageObject {
@@ -27,6 +32,8 @@ public class DashboardPage extends PageObject {
     private WebElementFacade pieChart;
     @FindBy(xpath = "//h3[contains(text(),'Log')]/../../..//*[name()='g']")
     private WebElementFacade offlineLogGraph;
+    @FindBy(xpath = "//span[text()='Dashboard']")
+    private WebElementFacade dashboardSideMenu;
 
 
     private By pageTitle(String heading) {
@@ -57,8 +64,15 @@ public class DashboardPage extends PageObject {
     }
 
     public void tapOnMenuItems(String module) {
+        waitABit(2000);
+        withTimeoutOf(30,TimeUnit.SECONDS).waitFor(dashboardSideMenu).waitUntilVisible();
+//        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
+        JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+        jse.executeScript("arguments[0].scrollIntoView(false);", find(menuItems(module)));
+        Actions act = new Actions(getDriver());
+        act.moveToElement(find(menuItems(module))).click().build().perform();
         waitABit(1000);
-        element(menuItems(module)).withTimeoutOf(20, TimeUnit.SECONDS).click();
+
     }
 
     public void verifyWorkOrderTiles(String tile) {

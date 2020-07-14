@@ -92,4 +92,64 @@ public class UserSigninSteps {
         userSigninPage.enterCredentials(id, pwd);
     }
 
+    @When("^user clicks on the forgot password link$")
+    public void userClicksOnTheForgotPasswordLink() {
+        userSigninPage.userClicksOnForgotPasswordLink();
+
+    }
+
+    @Then("^user should redirects to the resetpassword page$")
+    public void userShouldRedirectsToTheResetpasswordPage() {
+        userSigninPage.switchToNextTab();
+        userSigninPage.redirectsOnResetPasswordPage();
+    }
+
+    @Then("^Reset Password page is displayed$")
+    public void resetPasswordPageIsDisplayed() {
+    }
+
+    @And("^I enter Email Address as \"([^\"]*)\"$")
+    public void iEnterEmailAddressAs(String arg0) throws Throwable {
+        userSigninPage.enterEmailForForgotPaasword();
+    }
+
+    @And("^user clicks on the submitbutton$")
+    public void userClicksOnTheSubmitbutton() {
+        userSigninPage.userClicksOnSubmitBtn();
+    }
+
+    @And("^log into yopmail with \"([^\"]*)\" email id$")
+    public void logIntoYopmailWithEmailId(String arg0) throws Throwable {
+        userSigninPage.getDriver().get(conf.getString("mail_url"));
+        userSigninPage.userEnttersEmailInMailnator();
+    }
+
+    @And("^user clicks on the mail tab and clicks on the link reset password$")
+    public void userClicksOnTheMailTabAndClicksOnTheLinkResetPassword() {
+        userSigninPage.userCliksOnTheLinkResetPassword();
+    }
+
+    @And("^I enter new password and confirm new password same$")
+    public void iEnterNewPasswordAndConfirmNewPasswordSame() {
+        userSigninPage.userEnterNewAndConfirmPwd();
+
+    }
+
+    @And("^I enter username and password$")
+    public void iEnterUsernameAndPassword() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "UserEmailForgotPwd");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "forpwd");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
+
+    @Given("^User sign in with valid credential of Account Owner1$")
+    public void userSignInWithValidCredentialOfAccountOwner1() {
+        String id = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerId1");
+        String pwd = LoadProperties.getValueFromPropertyFile("testData", "accountOwnerPassword1");
+        userSigninPage.enterCredentials(id, pwd);
+    }
+
 }
+
+

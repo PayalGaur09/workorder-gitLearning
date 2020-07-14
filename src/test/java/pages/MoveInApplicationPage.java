@@ -81,7 +81,7 @@ public class MoveInApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(iconModel.getIcon())) {
                 try {
                     waitABit(2300);
-                    String value = getResourceDire() + File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
+                    String value = getResourceDire() + File.separator + "testData"+ File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
                     getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(value);
                     waitABit(5000);
 //                    signageInputImage.sendKeys(value);
@@ -101,27 +101,29 @@ public class MoveInApplicationPage extends PageObject {
     }
 
     public void clicksOnAddButton() {
-        addbutton.isEnabled();
+        waitABit(50);
         addbutton.click();
+        waitABit(30);
+
     }
 
     private By clickOnSelectAminities(String Amenities) {
         return By.xpath("//*[text()='" + Amenities + "']");
     }
 
-    public void iSelectAmenetiesType(String Amenities) {
-        selectamenity.click();
-        waitABit(3000);
-        element(this.clickOnSelectAminities(Amenities)).click();
+    public void SelectAmenityType() {
+        waitFor(selectamenity).withTimeoutOf(90, TimeUnit.SECONDS).click();
+        Select Select = new Select(selectamenity);
+        Select.selectByIndex(1);
     }
 
     public void userClicksOnFromShowEntriesDropdown() {
-        waitFor(showeentriesDrpdown).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        waitFor(showeentriesDrpdown).withTimeoutOf(70, TimeUnit.SECONDS).click();
         Select drpdown = new Select(showeentriesDrpdown);
-        drpdown.selectByVisibleText("100");
+        drpdown.selectByValue("100");
     }
 
-    public void clicksOnDeleteAmityicon() {
+    public void clicksOnDeleteAmenityIcon() {
         deleteamenity.click();
         Alert alert = getDriver().switchTo().alert();
         alert.accept();
