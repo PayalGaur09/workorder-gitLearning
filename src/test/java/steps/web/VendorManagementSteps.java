@@ -113,7 +113,6 @@ public class VendorManagementSteps {
         vendor.tapOnActionButton();
         vendor.noteOptionFromActionButton();
         vendor.tapOnAddButton();
-
     }
 
     @And("^User enter a note$")

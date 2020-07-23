@@ -239,6 +239,11 @@ public class VendorManagementPage extends PageObject {
         waitFor(editButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
     }
 
+    public void editOptionIsNotPresent() {
+       // Assert.assertFalse(editButton.isDisplayed());
+        editButton.shouldNotBePresent();
+    }
+
     public void noteOptionFromActionButton() {
         waitFor(notesButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
     }
