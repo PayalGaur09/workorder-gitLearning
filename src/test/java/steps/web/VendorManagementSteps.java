@@ -252,4 +252,3 @@ public class VendorManagementSteps {
         vendor.fetchVendorName();
     }
 }
-

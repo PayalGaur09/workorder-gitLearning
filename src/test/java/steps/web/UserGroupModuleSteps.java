@@ -1,139 +1,138 @@
 package steps.web;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import net.serenitybdd.core.pages.PageObject;
 import org.apache.commons.configuration.ConfigurationException;
-import pages.UsergroupModulePage;
+import pages.UserGroupModulePage;
 
 import java.io.IOException;
 
-public class UsergroupModuleSteps extends PageObject {
-    UsergroupModulePage usergroup;
+public class UserGroupModuleSteps extends PageObject {
+    UserGroupModulePage userGroup;
 
     @And("^user redirects to the usergroup page$")
     public void userRedirectsToTheUsergroupPage() {
-        usergroup.verifyRedirection();
+        userGroup.verifyRedirection();
     }
 
 
     @And("^user clicks on create new usergroup button$")
     public void userClicksOnCreateNewUsergroupButton() {
-        usergroup.userClicksOnNewUserGroupButton();
+        userGroup.userClicksOnNewUserGroupButton();
     }
 
     @And("^user enters the value in the group name field$")
     public void userEntersTheValueInTheGroupNameField(DataTable table) throws IOException, ConfigurationException {
-        usergroup.userEntersTheValueInGroupNameField(table);
+        userGroup.userEntersTheValueInGroupNameField(table);
 
     }
 
     @And("^user clicks on the member assigned dropdown$")
     public void userClicksOnTheMemberAssignedDropdown() {
-        usergroup.selectMemberDropdown();
+        userGroup.selectMemberDropdown();
     }
 
     @And("^cross verify the details$")
     public void crossVerifyUsergroupEnteredDetails() {
-        usergroup.verifyUserGroupDetails();
+        userGroup.verifyUserGroupDetails();
     }
 
 
     @And("^user delete the  usergroup$")
     public void userDeleteTheUsergroup() {
-        usergroup.userDeleteUsergroup();
+        userGroup.userDeleteUsergroup();
     }
 
 
     @And("^user clicks on the deativating button for usergroup$")
     public void userClicksOnTheDeativatingButtonForUsergroup() {
-        usergroup.userClicksOnDeactivatiingButton();
+        userGroup.userClicksOnDeactivatiingButton();
     }
 
     @And("^user clicks on the activating for usergroup$")
     public void userClicksOnTheActivatingForUsergroup() {
-        usergroup.userClicksOnActivatingButton();
+        userGroup.userClicksOnActivatingButton();
     }
 
     @Then("^user clicks on the edit button for edit the usergroup details$")
     public void userClicksOnTheEditButtonForEditTheUsergroupDetails() {
-        usergroup.userCkicksOnEditButton();
+        userGroup.userCkicksOnEditButton();
     }
 
     @And("^user edit the usergroup details$")
     public void userEditTheUsergroupDetails(DataTable editusergroupname) {
-        usergroup.UserEditUserGroupDetails(editusergroupname);
+        userGroup.UserEditUserGroupDetails(editusergroupname);
     }
 
     @And("^user check the validation on create usergroup page$")
     public void userCheckTheValidationOnCreateUsergroupPage(DataTable value) {
-        usergroup.userCheckValidationMessage(value);
+        userGroup.userCheckValidationMessage(value);
     }
 
     @And("^user enters  the details$")
     public void userEntersTheDetails(DataTable value) throws IOException, ConfigurationException {
-        usergroup.userEntersTheDetails(value);
+        userGroup.userEntersTheDetails(value);
     }
 
     @And("^user enter the value in usergroup again$")
     public void userEnterTheValueInUsergroupAgain() {
-        usergroup.userCheckSameNameUsergroupIsNotExist();
+        userGroup.userCheckSameNameUsergroupIsNotExist();
     }
 
     @And("^user clicks on the confirm buttom for delete the usergroup$")
     public void userClicksOnTheConfirmButtomForDeleteTheUsergroup() {
-        usergroup.userClicksOnDeleteButton();
+        userGroup.userClicksOnDeleteButton();
     }
 
     @And("^User clicks on any company$")
     public void userClicksOnAnyCompany() {
-        usergroup.userClicksOnAnyCompany();
+        userGroup.userClicksOnAnyCompany();
     }
 
     @And("^user Clicks on usergroup tab$")
     public void userClicksOnUsergroupTab() {
-        usergroup.userClicksOnUserGroupTab();
+        userGroup.userClicksOnUserGroupTab();
     }
 
     @And("^User adds a user to the usergroup$")
     public void userAddsAUserToTheUsergroup() {
-        usergroup.userTapOnUserAssignedDropdown();
-        usergroup.selectUserGroupCheckbox();
+        userGroup.userTapOnUserAssignedDropdown();
+        userGroup.selectUserGroupCheckbox();
     }
 
     @And("^User adds a multiple user to usergroup$")
     public void userAddsAMultipleUserToUsergroup() {
-        usergroup.userTapOnUserAssignedDropdown();
-        usergroup.selectMultipleUserGroupCheckbox();
+        userGroup.userTapOnUserAssignedDropdown();
+        userGroup.selectMultipleUserGroupCheckbox();
 
 
     }
 
     @And("^Select all user to the usergroup$")
     public void selectAllUserToTheUsergroup() {
-        usergroup.userTapOnUserAssignedDropdown();
-        usergroup.selectAllUserGroupCheckbox();
+        userGroup.userTapOnUserAssignedDropdown();
+        userGroup.selectAllUserGroupCheckbox();
 
     }
 
     @And("^user removes the usergroup$")
     public void userRemovesTheUsergroup() {
-        usergroup.userTapOnUserAssignedDropdown();
-        usergroup.userRemovesTheUseGroup();
+        userGroup.userTapOnUserAssignedDropdown();
+        userGroup.userRemovesTheUseGroup();
     }
 
 
     @And("^cross verify the edit  details$")
     public void crossVerifyTheEditDetails() {
-        usergroup.userCrossVerifyTheEditDetails();
+        userGroup.userCrossVerifyTheEditDetails();
     }
 
 
     @And("^User clicks on the deactivate button$")
     public void userClicksOnTheDeactivateButton() {
-        usergroup.UserClicksOnDeactivateButton();
+        userGroup.UserClicksOnDeactivateButton();
     }
 }
 

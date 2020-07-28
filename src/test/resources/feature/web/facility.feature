@@ -1,7 +1,6 @@
 @Automation @Facility
 Feature: Facility Management
-  As an Account Owner and a client Admin
-  I can land on facility page
+  As a user I can land on facility page
   So that I can manage facilities of the Company
 
   Background:

@@ -6,12 +6,11 @@ Feature: Functionality of signage application
     When User sign in with valid credential of Account Owner1
     And User click on side menu of "Manage Kiosk" button
 
-  Scenario: To verify user redirects to the kiosk page
-    Given user is on the manage kiosk page of workorder application
-    Then  user should redirects to the kiosk page
+#  Scenario: To verify user redirects to the kiosk page
+#    Given user is on the manage kiosk page of workorder application
+#    Then  user should redirects to the kiosk page
 
   Scenario: To verify the registration of new kiosk application
-    Given user is on the manage kiosk page of workorder application
     When User get the registration key list
     Then User verifies the registration key
     And user clicks on register new kiosk button
@@ -24,7 +23,6 @@ Feature: Functionality of signage application
     Then Success message " Kiosk has been registered successfully. " should be displayed
 
   Scenario: To verify the registration of new kiosk application for already used key
-    Given user is on the manage kiosk page of workorder application
     And user clicks on register new kiosk button
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
@@ -35,7 +33,6 @@ Feature: Functionality of signage application
       | Registration key already used |
 
   Scenario: To verify the validations on the Register kiosk page
-    Given user is on the manage kiosk page of workorder application
     And user clicks on register new kiosk button
     And user clicks on the configure  button
     Then Error message should be displayed
@@ -43,7 +40,6 @@ Feature: Functionality of signage application
 
 
   Scenario: To verify when user enters invalid registration key
-    Given user is on the manage kiosk page of workorder application
     And user clicks on register new kiosk button
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
@@ -53,24 +49,18 @@ Feature: Functionality of signage application
     Then Error message should be displayed
       | Invalid registration key |
 
-  Scenario: To verify the functionality of show entries dropdown in list view of manage kiosk
-    Given user is on the manage kiosk page of workorder application
-    And user clicks on the  pagination  from show entries dropdown
-
 
   Scenario: To verify the functionality of delete tag
-    Given user is on the manage kiosk page of workorder application
-    And user delete the tag from the list
+    When user delete the tag from the list
+    Then Success message "Kiosk has been deleted successfully." should be displayed
 
   Scenario: To verify the Functionality of each pages
-    Given user is on the dashboard page of workorder application
     And User click on side menu of "Manage Kiosk" button
     Then verify the functionality of pagination
 
   Scenario: To verify user is able to upload the  png type content from signage application
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And  user upload the image type content in the upload content field
       | image    |
       | JEEG.jpg |
@@ -82,9 +72,8 @@ Feature: Functionality of signage application
 
 
   Scenario: To verify user is able to upload the  jpeg type content from signage application
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And  user upload the image type content in the upload content field
       | image   |
       | png.png |
@@ -96,9 +85,8 @@ Feature: Functionality of signage application
 
 
   Scenario: To verify user is able to upload the  video type content from signage application and upload Jpg file in thumbnail
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And  user upload the content in choose file
       | content   |
       | video.mp4 |
@@ -112,9 +100,8 @@ Feature: Functionality of signage application
     Then Success message " Signage content has been added successfully. " should be displayed
 
   Scenario: To verify user is able to upload the  pdf type  content from signage application
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And  user upload the content in choose file
       | content |
       | pdf.pdf |
@@ -125,24 +112,21 @@ Feature: Functionality of signage application
     Then Success message " Signage content has been added successfully. " should be displayed
 
   Scenario: To verify when user clicks on the cancel button on add content field
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And user clicks on the  Cancel button
     Then user should redirects to the  Manage Signage page
 
   Scenario: To verify the Validations  on the Add content page
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     Then User taps on the Submit button
     Then Error message should be displayed
       | Content is required | Title is required | Description is required |
 
   Scenario: To verify user is able to edit the content
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on manage button
+    Given User is on Kiosk Detail page
+    When user clicks on manage button
     And user clicks on the Edit button
     And user clicks on the Change file  button
     And  user upload the image type content in the upload content field
@@ -155,34 +139,30 @@ Feature: Functionality of signage application
     Then Success message " Signage content has been updated successfully. " should be displayed
 
   Scenario: To verify user is able to delete the content
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on manage button
+    Given User is on Kiosk Detail page
+    When user clicks on manage button
     And user clicks on the delete button
     Then Success message " Signage content has been deleted successfully. " should be displayed
 
   Scenario: To verify when user clicks on the cancel button of the delete popup
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on manage button
+    Given User is on Kiosk Detail page
+    When user clicks on manage button
     And user clicks on the cancel button of delete popup
     Then user should redirects to the  Manage Signage page
 
-  Scenario: To verify the functionality of enablity of  toggle button and apply changes button of signage application
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user check the functionality of toggle button
+  Scenario: To verify the functionality of toggle button and apply changes button of signage application
+    Given User is on Kiosk Detail page
+    When user check the functionality of toggle button
     And user clicks on apply changes button
     Then Success message " Changes has been applied successfully " should be displayed
 
   Scenario: To verify the that we are able to create a content for the same title in same tag
-    Given user is on the manage kiosk page of workorder application
-    And user selects the tag kiosk page
-    And user clicks on the upload content or manage content button
+    Given User is on Kiosk Detail page
+    When user clicks on the upload content or manage content button
     And  user upload the image type content in the upload content field
       | image   |
       | png.png |
-    Then user enters the title and description
+    And user enters the title and description
       | title   | description |
       | testing | testing     |
     And user clicks  on the submit button
@@ -194,37 +174,17 @@ Feature: Functionality of signage application
     And user clicks  on the submit button
     Then Verify the error message
 
+  Scenario Outline: To verify pagination on vendor list screen
+    Given User gets the total count from the list
+    Then  User verify pagination with "<countPerPage>" per page
+    Examples:
+      | countPerPage |
+      | 10           |
+      | 15           |
+      | 25           |
+      | 50           |
+      | 100          |
+
   Scenario: Registration key
     When User get the registration key list
     Then User verifies the registration key
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

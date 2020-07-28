@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static utilities.LoadProperties.getValueFromPropertyFile;
 
 
-public class UsergroupModulePage extends PageObject {
+public class UserGroupModulePage extends PageObject {
     List<String> selectedItems;
     public static String groupname;
     public static String Editusergroup;

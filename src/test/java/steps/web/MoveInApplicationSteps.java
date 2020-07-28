@@ -54,7 +54,7 @@ public class MoveInApplicationSteps extends PageObject {
 
     @And("^user Select Amenities$")
     public void userSelectAmenities() {
-        moveinapplication.SelectAmenetiesType();
+        moveinapplication.SelectAmenityType();
     }
 
     @And("^user clicks on the  pagination  from show entries dropdown$")
@@ -64,7 +64,7 @@ public class MoveInApplicationSteps extends PageObject {
 
     @And("^user clicks on the delete button  of amenity$")
     public void userClicksOnTheDeleteButtonOfAmenity() {
-        moveinapplication.clicksOnDeleteAmityicon();
+        moveinapplication.clicksOnDeleteAmenityIcon();
     }
 
     @Then("^user click on the cancel button of delete amenity popup$")
@@ -107,7 +107,7 @@ public class MoveInApplicationSteps extends PageObject {
     }
 
 
-    }
+}
 
 
 

@@ -42,7 +42,6 @@ Feature: Dashboard Management
       | Not Started       |
       | In Progress       |
       | On Hold           |
-      | Closed            |
       | Complaints        |
 
   Scenario Outline: To verify that correct count is displayed in the company tiles

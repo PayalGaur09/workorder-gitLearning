@@ -17,193 +17,189 @@ import java.io.IOException;
 
 
 public class CompanyModuleSteps extends PageObject {
-    CompanyModulePage companysigninpage;
+    CompanyModulePage companySigninPage;
     private UserSigninPage userSigninPage;
 
     @When("^User sign in with valid credential of administrator$")
     public void userSignInWithValidCredentialOfAdministrator() {
-        companysigninpage.enterCredentialsForAdministrator("admin", "Password@123");
+        companySigninPage.enterCredentialsForAdministrator("admin", "Password@123");
     }
 
     @When("^user clicks on the newcompany button$")
     public void userClicksOnTheNewcompanyButton() {
-        companysigninpage.crateNewCompany();
+        companySigninPage.crateNewCompany();
     }
 
     @Then("^user should redirects to the add company page$")
     public void userShouldRedirectsToTheAddCompanyPage() {
-        companysigninpage.verifyRedirection();
+        companySigninPage.verifyRedirection();
     }
 
     @And("^user fill the details for creating a new company$")
     public void userFillTheDetailsForCreatingANewCompany(DataTable dataTable) throws IOException, ConfigurationException {
-        companysigninpage.addDetailsForCreatingNewCompany(dataTable);
+        companySigninPage.addDetailsForCreatingNewCompany(dataTable);
     }
 
     @And("^user clicks on the submit$")
     public void userClicksOnTheSubmit() {
-        companysigninpage.userClicksOnSubmitButton();
+        companySigninPage.userClicksOnSubmitButton();
 
     }
 
     @And("^user delete the company$")
     public void userDeleteTheCompany() {
-        companysigninpage.userDeleteTheCompany();
+        companySigninPage.userDeleteTheCompany();
     }
 
 
     @And("^user clicks on the OK button for deleting the company$")
     public void userClicksOnTheOKButtonForDeletingTheCompany() {
-        companysigninpage.userCliksOnOkButtonForDeletingTheCompany();
+        companySigninPage.userCliksOnOkButtonForDeletingTheCompany();
 
     }
 
 
     @And("^user clicks on the edit button of the company$")
     public void userClicksOnTheEditButtonOfTheCompany() {
-        companysigninpage.userclicksOnTheEditButton();
+        companySigninPage.userclicksOnTheEditButton();
     }
 
     @And("^user check the validation on  add company page$")
     public void userCheckTheValidationOnAddCompanyPage(DataTable validation) {
-        companysigninpage.checkValidationsOnAddCompany(validation);
+        companySigninPage.checkValidationsOnAddCompany(validation);
 
     }
 
 
     @And("^user clicks on the cancel button$")
     public void userClicksOnTheCancelButton() {
-        companysigninpage.userCliksOnCancelButtonOfAddCompanyPage();
+        companySigninPage.userCliksOnCancelButtonOfAddCompanyPage();
 
     }
 
     @Then("^user Should redirects to the companypage$")
     public void userShouldRedirectsToTheCompanypage() {
-        companysigninpage.verifyTheRedirection();
+        companySigninPage.verifyTheRedirection();
     }
 
     @And("^user edit the Company details details$")
     public void userEditTheCompanyDetailsDetails() {
-        companysigninpage.userEditTheCompanyDetails();
+        companySigninPage.userEditTheCompanyDetails();
     }
     @Then("^verify data on company table$")
     public void verifyDataOnCompanyTable() {
-        companysigninpage.dataVerify();
+        companySigninPage.dataVerify();
     }
     @And("^user clicks on the edit button for account owner details$")
     public void userClicksOnTheEditButtonForAccountOwnerDetails() {
-        companysigninpage.userCliksOnTheEditButtonForAccountOwnerDetails();
+        companySigninPage.userCliksOnTheEditButtonForAccountOwnerDetails();
     }
     @And("^user edit  the details$")
     public void userEditTheDetails(DataTable editownerdetails) {
-        companysigninpage.userEditTheOwnerDetails(editownerdetails);
+        companySigninPage.userEditTheOwnerDetails(editownerdetails);
     }
     @And("^user clicks on the company$")
     public void userClicksOnTheCompany() {
-        companysigninpage.verifyTheDetailsOfTheEditCompany();
+        companySigninPage.verifyTheDetailsOfTheEditCompany();
     }
 
     @Then("^user cross verify the Account owner details$")
     public void userCrossVerifyTheAccountOwnerDetails() {
-        companysigninpage.crossVeriyTheOwnerDetails();
-    }
-
-    @Given("^user is on the company page of work order application$")
-    public void userIsOnTheCompanyPageOfWorkOrderApplication() {
+        companySigninPage.crossVeriyTheOwnerDetails();
     }
 
 
     @And("^user click on the deactivate button for the company$")
     public void userClickOnTheDeactivateButtonForTheCompany() {
-        companysigninpage.userCheckTheCompanyStatus();
+        companySigninPage.userCheckTheCompanyStatus();
     }
     @When("^search filter by company$")
     public void searchFilterByCompany() throws Throwable {
-        companysigninpage.searchText().sendKeys(LoadProperties.getProp("name", "testData"));
+        companySigninPage.searchText().sendKeys(LoadProperties.getProp("name", "testData"));
     }
     @And("^Verify Company on list$")
     public void verifyCompanyOnList() throws Throwable {
-        companysigninpage.verifyCompanyOnList();
+        companySigninPage.verifyCompanyOnList();
     }
 
     @When("^search filter by inValid companyName$")
     public void searchFilterByInValidCompanyName() throws Throwable {
-        companysigninpage.searchText().sendKeys(LoadProperties.getProp("inValidCompany", "testData"));
+        companySigninPage.searchText().sendKeys(LoadProperties.getProp("inValidCompany", "testData"));
     }
 
     @Then("^Verify data on list$")
     public void verifyDataOnList() throws Throwable {
-        companysigninpage.noData();
+        companySigninPage.noData();
     }
     @And("^user click on the activate button for the company$")
     public void userClickOnTheActivateButtonForTheCompany() {
-        companysigninpage.verifyCompanyProfileStatusActive();
+        companySigninPage.verifyCompanyProfileStatusActive();
     }
 
     @When("^user select the status active from the dropdown$")
     public void userSelectTheStatusActiveFromTheDropdown() {
-        companysigninpage.VerifyTheActiveStatus();
+        companySigninPage.VerifyTheActiveStatus();
     }
 
-    @Then("^All the staus active should be displayed to the user$")
-    public void allTheStausActiveShouldBeDisplayedToTheUser() {
-        companysigninpage.verifyAllTheActiveStatusVisibleToTheuser();
+    @Then("^All the status active should be displayed to the user$")
+    public void allTheStatusActiveShouldBeDisplayedToTheUser() {
+        companySigninPage.verifyAllTheActiveStatusVisibleToTheuser();
     }
 
     @When("^user select the status inactive from the dropdown$")
     public void userSelectTheStatusInactiveFromTheDropdown() {
-        companysigninpage.VerifyTheInActiveStatus();
+        companySigninPage.VerifyTheInActiveStatus();
     }
 
     @And("^User Clicks on the each tab showing on company detail page$")
     public void userClicksOnTheEachTabShowingOnCompanyDetailPage() {
-        companysigninpage.navigationPage();
+        companySigninPage.navigationPage();
     }
 
-    @Then("^All the staus inactive should be displayed to the user$")
-    public void allTheStausInactiveShouldBeDisplayedToTheUser() {
-        companysigninpage.verifyAllTheInActiveStatusVisibleToTheuser();
+    @Then("^All the status inactive should be displayed to the user$")
+    public void allTheStatusInactiveShouldBeDisplayedToTheUser() {
+        companySigninPage.verifyAllTheInActiveStatusVisibleToTheuser();
 
     }
 
     @And("^cross verify the create details$")
     public void crossVerifyTheCreateDetails() {
-        companysigninpage.userVerifyTheCompanyDetails();
+        companySigninPage.userVerifyTheCompanyDetails();
     }
 
 
     @Then("^Notification for company creation is displayed$")
     public void notificationForCompanyCreationIsDisplayed() {
-        companysigninpage.verifyAddCompanyNotification();
+        companySigninPage.verifyAddCompanyNotification();
         userSigninPage.signout();
     }
 
     @Then("^Notification for Existing Company is  Deactivated is displayed$")
     public void notificationForExistingCompanyIsDeactivatedIsDisplayed() {
-        companysigninpage.verifyDeactivatedCompanyNotification();
+        companySigninPage.verifyDeactivatedCompanyNotification();
         userSigninPage.signout();
     }
 
     @Then("^Notification for Existing Company Deleted is displayed$")
     public void notificationForExistingCompanyDeletedIsDisplayed() {
-        companysigninpage.verifyDeleteCompanyNotification();
+        companySigninPage.verifyDeleteCompanyNotification();
         userSigninPage.signout();
     }
 
     @Then("^Edit button should not  visible to the  client personel$")
     public void editButtonShouldVisibleToTheClientPersonel() {
-        companysigninpage.checkEditButtonForClientPersoneel();
+        companySigninPage.checkEditButtonForClientPersoneel();
     }
 
     @Then("^Edit button should visible to the  client admin$")
     public void editButtonShouldVisibleToTheClientAdmin() {
-        companysigninpage.checkEditButtonForClientAdmin();
+        companySigninPage.checkEditButtonForClientAdmin();
 
     }
 
     @Then("^Notification for Existing Company is deleted is displayed$")
     public void notificationForExistingCompanyIsDeletedIsDisplayed() {
-       companysigninpage.verifyDeleteNotification();
+       companySigninPage.verifyDeleteNotification();
         userSigninPage.signout();
 
     }
