@@ -238,7 +238,8 @@ public class FacilityManagementSteps {
 
     @Then("^Client Personnel should only access the assigned facility$")
     public void clientPersonnelShouldOnlyAccessTheAssignedFacility() {
-        facility.verifyFacilityList();
+        facility.selectPageLimit100();
+        facility.verifyFacilityList(FacilityManagementPage.facilityList);
         userSigninPage.signout();
     }
 

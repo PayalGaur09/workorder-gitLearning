@@ -365,7 +365,6 @@ public class CompanyModulePage extends PageObject {
         element(verifyCompany(ZipCode)).isDisplayed();
         element(verifyCompany(Accountownername)).waitUntilVisible();
         element(verifyCompany(Accountownername)).isDisplayed();
-
     }
 
     private By verifyCompany(String nameCompany) {
