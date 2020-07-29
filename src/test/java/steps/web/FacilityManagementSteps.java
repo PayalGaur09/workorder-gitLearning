@@ -242,11 +242,8 @@ public class FacilityManagementSteps {
         facility.verifyFacilityList(FacilityManagementPage.facilityList);
         userSigninPage.signout();
     }
-
-
-    @Given("^User is on facility detail screen$")
-    public void userIsOnFacilityDetailScreen() {
-        facility.autoFacilityLink();
-    }
 }
+
+
+
 

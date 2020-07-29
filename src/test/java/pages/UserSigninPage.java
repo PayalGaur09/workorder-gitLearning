@@ -69,7 +69,6 @@ public class UserSigninPage extends PageObject {
     }
 
     public void signout() {
-        waitABit(1000);
         withTimeoutOf(10, TimeUnit.SECONDS).waitFor(signoutLink).click();
     }
 

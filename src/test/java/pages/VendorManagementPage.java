@@ -14,7 +14,9 @@ import utilities.LoadProperties;
 import utilities.RandomGenerator;
 import models.DetailsModel;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +25,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 public class VendorManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
+    List<String> selectedItems;
 
     @FindBy(xpath = "//h3[contains(text(),'Vendors')]")
     private WebElementFacade vendorHeading;
@@ -77,6 +80,10 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade notificationContent;
     @FindBy(xpath = "//div[@class='kt-widget3']")
     private WebElementFacade activityLogWidget;
+    @FindBy(xpath = "//span[text()='Add Attachments ']")
+    private WebElementFacade addAttachments;
+    @FindBy(xpath = "//div[@class='multiselect-dropdown']")
+    private WebElementFacade facilityAssignedDropdown;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
@@ -108,6 +115,10 @@ public class VendorManagementPage extends PageObject {
 
     private By entityName(String entity) {
         return By.xpath(" //a[contains(text(),'" + entity + "')]");
+    }
+
+    private By assigneeFacilityOnDetailPage(String detail) {
+        return By.xpath("//span[contains(text(),'" + detail + "')]");
     }
 
 
@@ -157,6 +168,27 @@ public class VendorManagementPage extends PageObject {
         detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
         accNoField.sendKeys(detailsModel.getAccountNo().toString());
     }
+    private void enterValueInW9Number() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("W-9 Number"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setW9number(RandomGenerator.randomAlphanumeric(6));
+        w9NumberField.sendKeys(detailsModel.getW9number());
+    }
+    private void enterValueInInsurancePolicyName() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Name"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setInsurancePolicyName("LICPolicy" + RandomGenerator.randomAlphanumeric(3));
+        w9NumberField.sendKeys(detailsModel.getInsurancePolicyName());
+    }
+    private void enterValueInInsurancePolicyNumber() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Number"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setInsurancePolicyNumber(RandomGenerator.randomAlphanumeric(10));
+        w9NumberField.sendKeys(detailsModel.getInsurancePolicyNumber());
+    }
 
     public void tapOnAddVendorButton() {
         waitABit(1000);
@@ -169,12 +201,19 @@ public class VendorManagementPage extends PageObject {
         enterValueInEmail();
         enterValueInLocation();
         enterValueInAccountNo();
+
     }
 
     public void selectTypeFromDropdown() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(selectElectricityProvider).click();
         detailsModel.setType(selectElectricityProvider.getText());
+    }
+
+    public void uploadAttachments() throws IOException {
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(addAttachments).shouldBeVisible();
+        String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "vendorAttachment.png";
+        getDriver().findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(path);
     }
 
     public void enterInvalidContactNo() {
@@ -197,6 +236,12 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
+        Assert.assertTrue(detailsModel.getW9number().contains(element(vendorDetail("W-9 Number")).getText()));
+        Assert.assertTrue(detailsModel.getInsurancePolicyName().contains(element(vendorDetail("Insurance Policy Name")).getText()));
+        Assert.assertTrue(detailsModel.getInsurancePolicyNumber().contains(element(vendorDetail("Insurance Policy Number")).getText()));
+
+
+
     }
 
 //    public void saveUserName() throws IOException, ConfigurationException {
@@ -456,4 +501,61 @@ public class VendorManagementPage extends PageObject {
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorName).waitUntilPresent();
             detailsModel.setName(vendorName.getText());
     }
-}
+    public void verifyDefaultSelectedFacility(){
+        Assert.assertEquals("[All]", facilityAssignedDropdown.getText());
+
+
+    }
+    public void tapOnUserFacilityAssignedDropdown(){
+        waitABit(5000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(facilityAssignedDropdown).click();
+
+    }
+    public void addFacility(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+    }
+    public void userRemovesFacilityFromFacilityAssignedDropdown(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+
+
+    }
+    public void addMultipleFacility(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        elements.get(1).click();
+        elements.get(2).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+    }
+    public void verifySelectedAssigneeFacility(){
+        waitABit(10000);
+        for (int i = 0; i < selectedItems.size(); i++) {
+            element(assigneeFacilityOnDetailPage(selectedItems.get(i))).shouldBeVisible();
+        }
+
+        }
+    public void verifySelectedFacilityRemovedFromFacilityAssigneeDropdown(){
+        waitABit(10000);
+        for (int i = 0; i < selectedItems.size(); i++) {
+            element(assigneeFacilityOnDetailPage(selectedItems.get(i))).shouldNotBeVisible();
+        }
+
+    }
+
+    }
+

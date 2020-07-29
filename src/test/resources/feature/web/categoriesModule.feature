@@ -139,6 +139,7 @@ Feature: Categories module
       | name  |
       | test1 |
     And user clicks on the add button
+    Then Success message " Category has been added successfully. " should be displayed
     When user create the existing groupname again
     And user clicks on the add button
     Then Error message should be displayed
@@ -165,8 +166,6 @@ Feature: Categories module
   or Local Categories tab
     Given User logout from work order platform
     When User sign in with valid credential of Account Owner
-
-
     Then User tap on the "Settings" link from side navigation
     Then User tap on the "Categories" link from side navigation
     And user clicks on Add All button
