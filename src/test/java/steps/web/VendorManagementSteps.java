@@ -35,6 +35,7 @@ public class VendorManagementSteps {
         vendor.selectTypeFromDropdown();
         vendor.uploadAttachments();
 
+
     }
 
     @Given("^User has created a new vendor and reaches to the detail screen$")

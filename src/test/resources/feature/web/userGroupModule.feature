@@ -3,9 +3,8 @@ Feature: UserGroup Module
 
   Background:
     Given User is on work order sign in page
-    When User sign in with valid credential of Account Owner
+    When User sign in with valid credential of Account Owner1
     Then User tap on the "Settings" link from side navigation
-
 
   Scenario:Verify all the tabs 3 Tabs Categories,configuration and usergroup are clickable after under Setting
     Then User tap on the "Categories" link from side navigation
@@ -13,7 +12,6 @@ Feature: UserGroup Module
     Then User tap on the "User Group" link from side navigation
     And user redirects to the usergroup page
 
-  @DemoTest
   Scenario: Verify user is able to create the usergroup  with multiple user and  cross verify the entered details
 
   Scenario: Verify user is able to create the user group  without assign the member and cross verify the entered details

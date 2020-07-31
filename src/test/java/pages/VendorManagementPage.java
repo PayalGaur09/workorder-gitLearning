@@ -168,21 +168,21 @@ public class VendorManagementPage extends PageObject {
         detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
         accNoField.sendKeys(detailsModel.getAccountNo().toString());
     }
-    private void enterValueInW9Number() throws IOException, ConfigurationException {
+    public void enterValueInW9Number() throws IOException, ConfigurationException {
         WebElementFacade w9NumberField = element(vendorFormField("W-9 Number"));
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
         w9NumberField.clear();
         detailsModel.setW9number(RandomGenerator.randomAlphanumeric(6));
         w9NumberField.sendKeys(detailsModel.getW9number());
     }
-    private void enterValueInInsurancePolicyName() throws IOException, ConfigurationException {
+    public void enterValueInInsurancePolicyName() throws IOException, ConfigurationException {
         WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Name"));
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
         w9NumberField.clear();
         detailsModel.setInsurancePolicyName("LICPolicy" + RandomGenerator.randomAlphanumeric(3));
         w9NumberField.sendKeys(detailsModel.getInsurancePolicyName());
     }
-    private void enterValueInInsurancePolicyNumber() throws IOException, ConfigurationException {
+    public void enterValueInInsurancePolicyNumber() throws IOException, ConfigurationException {
         WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Number"));
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
         w9NumberField.clear();
@@ -192,7 +192,7 @@ public class VendorManagementPage extends PageObject {
 
     public void tapOnAddVendorButton() {
         waitABit(1000);
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
     public void addInputFieldsOfVendorForm() throws IOException, ConfigurationException {
@@ -201,6 +201,9 @@ public class VendorManagementPage extends PageObject {
         enterValueInEmail();
         enterValueInLocation();
         enterValueInAccountNo();
+        enterValueInW9Number();
+        enterValueInInsurancePolicyName();
+        enterValueInInsurancePolicyNumber();
 
     }
 
