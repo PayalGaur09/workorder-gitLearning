@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -20,14 +21,19 @@ import utilities.RandomGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static utilities.LoadProperties.getValueFromPropertyFile;
 
 public class UserManagementPage extends PageObject {
 
     private DetailsModel detailsModel = new DetailsModel();
     String userStatus;
     private VendorManagementPage vendor;
+    List<String> selectedItems;
+
 
     @FindBy(xpath = "//span[text()='Users']")
     private WebElementFacade userLink;
@@ -74,6 +80,10 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade noRecords;
     @FindBy(xpath = "//span[contains(text(),'Madhvan')]")
     private WebElementFacade madhvanLink;
+    @FindBy(xpath = "//div[@class='multiselect-dropdown']")
+    private WebElementFacade selectedUserGroup;
+ @FindBy(xpath = "//input[@class='ng-untouched ng-pristine ng-valid']")
+    private WebElementFacade searchUserGroup;
 
     private By userFormField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
@@ -85,6 +95,13 @@ public class UserManagementPage extends PageObject {
 
     private By entityName(String entity) {
         return By.xpath(" //a[contains(text(),'" + entity + "')]");
+    }
+
+    private By userGroupName(String groupName) {
+        return By.xpath("//label[contains(text(),'" + groupName + "')]/..//input");
+    }
+    private By userDetailPage(String userDetail) {
+        return By.xpath("//*[contains(text(),'" + userDetail + "')]");
     }
 
 
@@ -367,4 +384,41 @@ public class UserManagementPage extends PageObject {
         detailsModel.setName(userName.getText());
         detailsModel.setSurname(element(userDetail("Last")).getText());
     }
+    public void useEntersTheUserGroupName() throws IOException, ConfigurationException {
+        WebElementFacade nameField = element(userGroupName("Group Name:"));
+        waitABit(8000);
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(nameField).waitUntilClickable().click();
+        nameField.clear();
+        detailsModel.setUserGroupName("Ram" + RandomGenerator.randomAlphabetic(3));
+        nameField.sendKeys(detailsModel.getUserGroupName());
+        LoadProperties.saveValueInPropertiesFile("Group Name", detailsModel.getUserRole(), "testData");
+    }
+
+    public void userTapsOnMemberAssignedDropdown(){
+        waitABit(5000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(selectedUserGroup).click();
+    }
+    public WebElement searchText() {
+        return waitFor(searchUserGroup);
+
+
+    }
+    public void userSelectTheCheckbox(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+    }
+    public void userClicksOnUserName(){
+        String userdetail = getValueFromPropertyFile("testData", "name");
+        element(userDetailPage(userdetail)).waitUntilVisible().click();
+
+    }
+    public void userVerifyUsergroupIsDisplayOnUserDetailPage(){
+        Assert.assertEquals(detailsModel.getSurname(), element(userDetail("User Groups Assigned:")).getText());
+
+
+
+    }
+
 }

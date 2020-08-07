@@ -12,6 +12,7 @@ import pages.UserManagementPage;
 import pages.UserSigninPage;
 import pages.VendorManagementPage;
 import utilities.ConfigLoader;
+import utilities.LoadProperties;
 
 import java.io.IOException;
 
@@ -201,6 +202,26 @@ public class UserManagementSteps {
     public void userReachesToDetailScreenAndFetchesUserName() {
         users.tapOnUserName();
         users.fetchUserName();
+    }
+
+    @Then("^user enters all the fields of usergroup$")
+    public void userEntersAllTheFieldsOfUsergroup() throws IOException, ConfigurationException {
+        users.useEntersTheUserGroupName();
+        users.userTapsOnMemberAssignedDropdown();
+        users.searchText().sendKeys(LoadProperties.getValueFromPropertyFile("testData", "name"));
+        users.userSelectTheCheckbox();
+    }
+    @And("^user clicks on any username$")
+    public void userClicksOnAnyUsername() {
+        users.userClicksOnUserName();
 
     }
+
+
+    @And("^Cross Verify that selected usergroup is display on user detailpage in usergroup Assigned field$")
+    public void crossVerifyThatSelectedUsergroupIsDisplayOnUserDetailpageInUsergroupAssignedField() {
+        users.userVerifyUsergroupIsDisplayOnUserDetailPage();
+    }
+
+
 }

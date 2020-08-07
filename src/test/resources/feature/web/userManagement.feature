@@ -153,3 +153,25 @@ Feature: User Management
     And User tap on the "Users" link from side navigation
     Then Add User button should not be visible to client personnel
     Then Action column should not be visible to client personnel
+
+  Scenario: Verify that Group assigned field is display on user detail page if that user assigned to some group
+    Given User is on add user screen
+    When User enters all the field in user screen
+    And User taps on the Submit button
+    Then Success message "User has been added successfully." should be displayed
+    Then User tap on the "Settings" link from side navigation
+    Then User tap on the "User Group" link from side navigation
+    And user clicks on create new usergroup button
+    Then user enters all the fields of usergroup
+    And User taps on the Submit button
+    Then Success message " User Group has been created successfully. " should be displayed
+    And user cross verify the create usergroup details
+    Then User tap on the "Users" link from side navigation
+    And  user clicks on any username
+    And  Cross Verify that selected usergroup is display on user detailpage in usergroup Assigned field
+
+
+
+
+
+

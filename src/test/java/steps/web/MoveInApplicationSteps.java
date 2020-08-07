@@ -13,6 +13,7 @@ import net.serenitybdd.core.pages.PageObject;
 import pages.ProfilePage;
 import utilities.ConfigLoader;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -103,10 +104,12 @@ public class MoveInApplicationSteps extends PageObject {
     @And("^user clicks on apply changes button$")
     public void userClicksOnApplyChangesButton() {
         moveinapplication.userClicksOnApplyChangesButton();
-
     }
 
-
+    @And("^user upload the Document file$")
+    public void userUploadTheDocumentFile() throws IOException {
+        moveinapplication.userUploadTheDoculentFile();
+    }
 }
 
 

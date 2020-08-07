@@ -68,3 +68,11 @@ Feature: Move-in feature of Manage kiosk
     Then user should redirects to the  Manage Kiosk  page
     And user clicks on filed and criteria tab
     Then User Select " Hardware Keyboard " Type
+
+    Scenario: To verify that user is able to upload the document file in move-in application
+      When user clicks on configure and manage button
+      Then user should redirects to the  Manage Kiosk  page
+      And user clicks on filed and criteria tab
+      And user upload the Document file
+      Then Success message " Document file uploaded successfully " should be displayed
+

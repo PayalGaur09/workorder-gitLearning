@@ -55,7 +55,6 @@ Feature: UserGroup Module
 
   Scenario: Verify user is able to create the group with select all user and checks the activate and deactivate functionality
   for usergroup
-    for user group
     Then User tap on the "User Group" link from side navigation
     And user clicks on create new usergroup button
     And user enters the value in the group name field
@@ -214,6 +213,7 @@ Feature: UserGroup Module
     And User adds a user to the usergroup
     When User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
+
     Scenario: To verify super admin  is able to create the the user group
       Then User tap on the "Settings" link from side navigation
       Given User logout from work order platform

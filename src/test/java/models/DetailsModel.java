@@ -14,6 +14,7 @@ public class DetailsModel {
     private String W9number;
     private String insurancePolicyName;
     private String insurancePolicyNumber;
+    private String userGroupNamae;
 
 
 
@@ -109,6 +110,13 @@ public class DetailsModel {
 
     public void setInsurancePolicyNumber(String insurancePolicyNumber) {
         this.insurancePolicyNumber = insurancePolicyNumber;
+    }
+    public String getUserGroupName() {
+        return userGroupNamae;
+    }
+
+    public void setUserGroupName(String userGroupName) {
+        this.userGroupNamae =userGroupName;
     }
 
 }

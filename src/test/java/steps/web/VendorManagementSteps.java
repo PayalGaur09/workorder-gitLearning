@@ -34,7 +34,7 @@ public class VendorManagementSteps {
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
         vendor.uploadAttachments();
-
+        vendor.userSelectsTheInsurancePolicyExpiryDate();
 
     }
 

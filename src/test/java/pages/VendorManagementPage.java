@@ -218,6 +218,16 @@ public class VendorManagementPage extends PageObject {
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "vendorAttachment.png";
         getDriver().findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(path);
     }
+    public void userSelectsTheInsurancePolicyExpiryDate() {
+//        $("//span[@class='input-group-text cursor-pointer']").click();
+//
+//        List<> months= getDriver().findElements(By.xpath("//div[@class='form-group row']//select[1]/option")).get(0).getText();
+//        for(Object month:months){
+//       if(month.equalsIgnoreCase("Aug")){
+//
+//       }}
+    }
+
 
     public void enterInvalidContactNo() {
         waitFor(submitButton).withTimeoutOf(10, TimeUnit.SECONDS).sendKeys("1234");

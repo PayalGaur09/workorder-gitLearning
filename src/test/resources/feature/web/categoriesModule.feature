@@ -2,7 +2,7 @@
 
 Feature: Categories module
 
-  Background: :
+  Background:
     Given User is on work order sign in page
     When User sign in with valid credential of Super Admin
     Then User tap on the "Settings" link from side navigation
