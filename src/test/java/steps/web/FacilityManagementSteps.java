@@ -1,5 +1,6 @@
 package steps.web;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -247,6 +248,11 @@ public class FacilityManagementSteps {
     @Given("^User is on facility detail screen$")
     public void userIsOnFacilityDetailScreen() {
         facility.autoFacilityLink();
+    }
+
+    @And("^User click on \"([^\"]*)\" facility$")
+    public void userClickOnFacility(String facilityName) throws Throwable {
+        facility.tapOnAFacility(facilityName);
     }
 }
 

@@ -292,6 +292,11 @@ public class FacilityManagementPage extends PageObject {
         record100.click();
     }
 
+    public void tapOnAFacility(String name){
+        WebElement facility = element(facilityOnListView(name));
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).click();
+    }
+
     public void verifyFacilityList(List<String> listOfFacility) {
         for (String s : listOfFacility) {
             WebElement facility = element(facilityOnListView(s.trim()));

@@ -250,4 +250,5 @@ public class VendorManagementSteps {
         vendor.tapOnNameLink(); //Reaches to detail screen
         vendor.fetchVendorName();
     }
+
 }
