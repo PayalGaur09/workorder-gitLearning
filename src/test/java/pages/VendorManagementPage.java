@@ -311,6 +311,7 @@ public class VendorManagementPage extends PageObject {
 
     public void editOptionIsNotPresent() {
        // Assert.assertFalse(editButton.isDisplayed());
+        // Assert.assertFalse(editButton.isDisplayed());
         editButton.shouldNotBePresent();
     }
 
@@ -366,7 +367,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnResetButton() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(resetButton).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(resetButton).waitUntilClickable().click();
         waitABit(1000);
     }
 
@@ -397,7 +398,6 @@ public class VendorManagementPage extends PageObject {
     public void clickOnDeleteIcon() {
         WebElementFacade deleteIcon = element(deleteIconForAUser(LoadProperties.getValueFromPropertyFile("testData", "name")));
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(deleteIcon).click();
-
     }
 
     public void clickOnDeleteButton() {
@@ -413,7 +413,6 @@ public class VendorManagementPage extends PageObject {
     public void verifyAddButtonForClientPersonnel() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorHeading).isDisplayed();
         Assert.assertFalse(addVendorButton.isVisible());
-
     }
 
     public int totalRecordCount() {
@@ -453,8 +452,6 @@ public class VendorManagementPage extends PageObject {
                 break;
             }
         }
-
-
     }
 
     //.......Activity Log...........
@@ -508,23 +505,20 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
-
     public void verifyEditVendorNotification() {
         String notification = detailsModel.getName() + " details have been updated. Tap to view details.";
         Assert.assertEquals(notification, notificationContent.getText());
     }
-
 
     public void verifyDeleteVendorNotification() {
         String notification = detailsModel.getName() + " has been deleted.";
         Assert.assertEquals(notification, notificationContent.getText());
     }
 
-
     public void fetchVendorName() {
-            WebElementFacade vendorName = element(vendorDetail("Name"));
-            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorName).waitUntilPresent();
-            detailsModel.setName(vendorName.getText());
+        WebElementFacade vendorName = element(vendorDetail("Name"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorName).waitUntilPresent();
+        detailsModel.setName(vendorName.getText());
     }
     public void verifyDefaultSelectedFacility(){
         Assert.assertEquals("[All]", facilityAssignedDropdown.getText());

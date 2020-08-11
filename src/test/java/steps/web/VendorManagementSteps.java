@@ -57,6 +57,8 @@ public class VendorManagementSteps {
     public void userTapsOnTheSubmitButton() {
         vendor.tapOnSubmitButton();
     }
+
+
     @And("^User verify vendor detail screen$")
     public void userVerifyVendorDetailPage() {
         vendor.vendorDetailsVerify();

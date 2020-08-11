@@ -275,7 +275,7 @@ public class FacilityManagementPage extends PageObject {
 
     //........Impacted area of user group.......
 
-   public static List<String> facilityList;
+    List<String> facilityList;
 
     public void facilityAssigned() {
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityAssignedToUsers.get(0)).waitUntilVisible();
@@ -285,16 +285,10 @@ public class FacilityManagementPage extends PageObject {
         }
     }
 
-    public void selectPageLimit100() {
-        WebElement pageLimit = element("//select[contains(@class,'custom')]");
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(pageLimit).click();
-        WebElement record100 = element("//option[text()='100']");
-        record100.click();
-    }
 
-    public void verifyFacilityList(List<String> listOfFacility) {
-        for (String s : listOfFacility) {
-            WebElement facility = element(facilityOnListView(s.trim()));
+    public void verifyFacilityList() {
+        for (String s : facilityList) {
+            WebElementFacade facility = element(facilityOnListView(s));
             withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).shouldBeVisible();
         }
     }
