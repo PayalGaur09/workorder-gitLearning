@@ -6,6 +6,7 @@ import net.thucydides.core.pages.PageObject;
 import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class VendorManagementPage extends PageObject {
+    WebDriver driver;
 
     private DetailsModel detailsModel = new DetailsModel();
     List<String> selectedItems;
@@ -84,6 +86,14 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade addAttachments;
     @FindBy(xpath = "//div[@class='multiselect-dropdown']")
     private WebElementFacade facilityAssignedDropdown;
+    @FindBy(xpath = "//input[@name='InsurancePolicyExpiryDate']")
+    private WebElementFacade selectExpiryDate;
+    @FindBy(xpath = "//div[@class='input-group-append']//..")
+    private WebElementFacade calenderPopup;
+    @FindBy(xpath = "//select[@title='Select year']")
+    private WebElementFacade selectYear;
+    @FindBy(xpath = "//select[@title='Select month']")
+    private WebElementFacade selectmonth ;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
@@ -208,7 +218,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void selectTypeFromDropdown() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(selectElectricityProvider).click();
         detailsModel.setType(selectElectricityProvider.getText());
     }
@@ -218,17 +228,27 @@ public class VendorManagementPage extends PageObject {
         String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "vendorAttachment.png";
         getDriver().findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(path);
     }
-    public void userSelectsTheInsurancePolicyExpiryDate() {
-//        $("//span[@class='input-group-text cursor-pointer']").click();
-//
-//        List<> months= getDriver().findElements(By.xpath("//div[@class='form-group row']//select[1]/option")).get(0).getText();
-//        for(Object month:months){
-//       if(month.equalsIgnoreCase("Aug")){
-//
-//       }}
+    public void userSelectsTheInsurancePolicyExpiryDate() throws InterruptedException {
+        getDriver().findElement(By.xpath("//input[@name='InsurancePolicyExpiryDate']")).click();
+        waitFor(selectYear).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select year = new Select(selectYear);
+        year.selectByVisibleText("2023");
+        waitFor(selectmonth).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select month = new Select(selectmonth);
+        Thread.sleep(2000);
+        month.selectByValue("8");
+        List<WebElement> dates = getDriver().findElements(By.xpath("//div[contains(@class,'btn-light')]"));
+        int total_node = dates.size();
+        for (int i = 0; i < total_node; i++) {
+            String date = dates.get(i).getText();
+            if (date.equals("31")) {
+                Boolean value = dates.get(i).isEnabled();
+                System.out.println("SELECT DATE " + value);
+                $("(//div[text()='31'])[2]").click();
+                break;
+            }
+        }
     }
-
-
     public void enterInvalidContactNo() {
         waitFor(submitButton).withTimeoutOf(10, TimeUnit.SECONDS).sendKeys("1234");
         waitFor(2000);
@@ -253,15 +273,7 @@ public class VendorManagementPage extends PageObject {
         Assert.assertTrue(detailsModel.getInsurancePolicyName().contains(element(vendorDetail("Insurance Policy Name")).getText()));
         Assert.assertTrue(detailsModel.getInsurancePolicyNumber().contains(element(vendorDetail("Insurance Policy Number")).getText()));
 
-
-
     }
-
-//    public void saveUserName() throws IOException, ConfigurationException {
-//        WebElementFacade nameInDetail = element(vendorDetail("Name"));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameInDetail);
-//        LoadProperties.saveValueInPropertiesFile("nameInDetail", nameInDetail.getText(), "testData");
-//    }
 
     public void tapOnCancelButton() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();

@@ -38,7 +38,6 @@ Feature: Move-in feature of Manage kiosk
     And  user clicks on the delete button  of amenity
     Then Success message " Amenity has been deleted successfully. " should be displayed
 
-
   Scenario: To verify the functionality when user clicks on the checkbox of Driving license number
     When user clicks on configure and manage button
     Then user should redirects to the  Manage Kiosk  page

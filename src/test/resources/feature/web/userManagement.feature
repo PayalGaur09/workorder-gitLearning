@@ -165,10 +165,9 @@ Feature: User Management
     Then user enters all the fields of usergroup
     And User taps on the Submit button
     Then Success message " User Group has been created successfully. " should be displayed
-    And user cross verify the create usergroup details
     Then User tap on the "Users" link from side navigation
     And  user clicks on any username
-    And  Cross Verify that selected usergroup is display on user detailpage in usergroup Assigned field
+    And  Cross Verify the User Groups Assigned field on user detail page
 
 
 

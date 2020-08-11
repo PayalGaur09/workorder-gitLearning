@@ -82,7 +82,7 @@ public class UserManagementPage extends PageObject {
     private WebElementFacade madhvanLink;
     @FindBy(xpath = "//div[@class='multiselect-dropdown']")
     private WebElementFacade selectedUserGroup;
- @FindBy(xpath = "//input[@class='ng-untouched ng-pristine ng-valid']")
+    @FindBy(xpath = "//input[@class='ng-untouched ng-pristine ng-valid']")
     private WebElementFacade searchUserGroup;
 
     private By userFormField(String text) {
@@ -102,6 +102,10 @@ public class UserManagementPage extends PageObject {
     }
     private By userDetailPage(String userDetail) {
         return By.xpath("//*[contains(text(),'" + userDetail + "')]");
+    }
+
+    private By verifyUserGroupAssigned(String usergroupname) {
+        return By.xpath("//span[contains(text(),'" + usergroupname + "')]");
     }
 
 
@@ -391,7 +395,7 @@ public class UserManagementPage extends PageObject {
         nameField.clear();
         detailsModel.setUserGroupName("Ram" + RandomGenerator.randomAlphabetic(3));
         nameField.sendKeys(detailsModel.getUserGroupName());
-        LoadProperties.saveValueInPropertiesFile("Group Name", detailsModel.getUserRole(), "testData");
+        LoadProperties.saveValueInPropertiesFile("Group Name", detailsModel.getUserGroupName(), "testData");
     }
 
     public void userTapsOnMemberAssignedDropdown(){
@@ -414,11 +418,17 @@ public class UserManagementPage extends PageObject {
         element(userDetailPage(userdetail)).waitUntilVisible().click();
 
     }
-    public void userVerifyUsergroupIsDisplayOnUserDetailPage(){
-        Assert.assertEquals(detailsModel.getSurname(), element(userDetail("User Groups Assigned:")).getText());
-
+    public void userVerfyTheUseGroupAssignedOnUserDetailPage() {
+        Assert.assertEquals(detailsModel.getUserGroupName(), element(userDetail("User Groups Assigned:")).getText());
 
 
     }
 
-}
+
+    }
+
+
+
+
+
+

@@ -29,12 +29,12 @@ public class VendorManagementSteps {
     }
 
     @When("^User enters all the field$")
-    public void userEntersAllTheField() throws IOException, ConfigurationException {
+    public void userEntersAllTheField() throws IOException, ConfigurationException, InterruptedException {
         users.uploadProfilePicture();
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
-        vendor.uploadAttachments();
         vendor.userSelectsTheInsurancePolicyExpiryDate();
+        vendor.uploadAttachments();
 
     }
 
@@ -57,8 +57,6 @@ public class VendorManagementSteps {
     public void userTapsOnTheSubmitButton() {
         vendor.tapOnSubmitButton();
     }
-
-
     @And("^User verify vendor detail screen$")
     public void userVerifyVendorDetailPage() {
         vendor.vendorDetailsVerify();

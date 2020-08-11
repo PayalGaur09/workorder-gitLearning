@@ -45,10 +45,10 @@ Feature: Functionality of profile
     When I  clicking  on the " Change Password " button
     When  User user enter incorrect password in the old password and enter same password in the new password and confirm passwordfield
       | currentPassword | newPassword | confirmPassword |
-      | 123456789       | 12345678    | 12345678        |
+      | 123456789       | 1234567890  | 1234567890      |
     And User taps on the Submit button
     Then Error message should be displayed
-    | Please enter correct old password|
+      | Please enter correct old password |
 
   Scenario: To verify the functionality of cancel button of change password field
     Given  user click on the action button
@@ -70,7 +70,6 @@ Feature: Functionality of profile
       | currentPassword   | newPassword   | confirmPassword   |
       | <currentPassword> | <newPassword> | <confirmPassword> |
     Then User taps on the Submit button
-
     Then The error message is displayed as "<errorMessage>"
     Examples:
       | currentPassword | newPassword | confirmPassword | errorMessage                                     |
@@ -85,4 +84,15 @@ Feature: Functionality of profile
     Then User upload new profile picture
     Then user change the profile picture
     Then user  remove the profile picture
+
+    Scenario: To verify that if login user is assigned to any group than usergroup assigned name is diaplay on profile page
+      Then User tap on the "Settings" link from side navigation
+      Then User tap on the "User Group" link from side navigation
+      And user clicks on create new usergroup button
+      Then user enter all the fields of usergroup
+      And User taps on the Submit button
+      Then Success message " User Group has been created successfully. " should be displayed
+      Then User tap on the "My Profile" link from side navigation
+      And Cross verify the assigned usergroup name should display on profile detail page
+
 

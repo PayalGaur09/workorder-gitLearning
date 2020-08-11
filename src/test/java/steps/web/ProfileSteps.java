@@ -9,9 +9,12 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
+import org.apache.commons.configuration.ConfigurationException;
 import pages.ProfilePage;
 import pages.UserManagementPage;
 import utilities.ConfigLoader;
+import utilities.LoadProperties;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -187,6 +190,19 @@ public class ProfileSteps extends PageObject {
     @When("^user click on the action button$")
     public void userClickOnTheActionButton() {
         profilePage.actionButton();
+    }
+
+    @Then("^user enter all the fields of usergroup$")
+    public void userEnterAllTheFieldsOfUsergroup() throws IOException, ConfigurationException {
+        users.useEntersTheUserGroupName();
+        users.userTapsOnMemberAssignedDropdown();
+        profilePage.searchLoginUser();
+        users.userSelectTheCheckbox();
+    }
+
+    @And("^Cross verify the assigned usergroup name should display on profile detail page$")
+    public void crossVerifyTheAssignedUsergroupNameShouldDisplayOnProfileDetailPage() {
+        profilePage.crossVerifyUsergroupAssignedNameOnProfileDetailPage();
     }
 }
 
