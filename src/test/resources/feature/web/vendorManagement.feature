@@ -21,6 +21,14 @@ Feature: Vendor Management
     When User tap on the bell icon
     Then Notification for vendor creation is displayed
 
+  Scenario: To verify that client personnel is not able to access add, edit and delete feature
+    Given User logout from work order platform
+    When User sign in with valid credential of Client Personnel
+    And User tap on the "Vendors" link from side navigation
+    Then Add Vendor button should not be visible to client personnel
+    Then Action column should not be visible to client personnel
+
+
   Scenario: To verify validations on add vendor screen
     Given User logout from work order platform
     When User sign in with valid credential of Account Owner
@@ -117,9 +125,36 @@ Feature: Vendor Management
     Then Vendor list displayed is according to the entered keyword
     And User clicks on Reset button
 
-  Scenario: To verify that client personnel is not able to access add, edit and delete feature
-    Given User logout from work order platform
-    When User sign in with valid credential of Client Personnel
-    And User tap on the "Vendors" link from side navigation
-    Then Add Vendor button should not be visible to client personnel
-    Then Action column should not be visible to client personnel
+  Scenario: Verify that by default 'All' is selected for Facility Assigned
+    Given User is on add vendor screen
+    Then User verify default assignee for Facility Assigned
+    And User clicks on Cancel button
+
+  Scenario: Verify that the user is able to select multiple Facility in ‘Facility Assigned’ dropdown
+    Given User is on add vendor screen
+    And User created a new vendor and reaches to the detail screen
+    And User clicks on edit option from action dropdown
+    And User selects multiple Facility from Facility Assigned dropdown
+    And User taps on the Submit button
+    Then Success message "Vendor has been updated successfully" should be displayed
+    Then User verifies the selected Facility assignee list
+
+  Scenario: Verify that user is able to add and remove Facility
+    Given User is on add vendor screen
+    And User created a new vendor and reaches to the detail screen
+    And User clicks on edit option from action dropdown
+    And User adds a facility to facility assigned dropdown
+    And User taps on the Submit button
+    Then User verifies the selected Facility assignee list
+    When User clicks on edit option from action dropdown
+    And User removes facility from facility Assigned dropdown
+    And User taps on the Submit button
+    Then Success message "Vendor has been updated successfully" should be displayed
+    And Verify selected facility has been removed from Facility assignee list
+
+
+
+
+
+
+

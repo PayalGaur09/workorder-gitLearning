@@ -29,10 +29,13 @@ public class VendorManagementSteps {
     }
 
     @When("^User enters all the field$")
-    public void userEntersAllTheField() throws IOException, ConfigurationException {
+    public void userEntersAllTheField() throws IOException, ConfigurationException, InterruptedException {
         users.uploadProfilePicture();
         vendor.addInputFieldsOfVendorForm();
         vendor.selectTypeFromDropdown();
+        vendor.userSelectsTheInsurancePolicyExpiryDate();
+        vendor.uploadAttachments();
+
     }
 
     @Given("^User has created a new vendor and reaches to the detail screen$")
@@ -251,4 +254,44 @@ public class VendorManagementSteps {
         vendor.fetchVendorName();
     }
 
+    @Then("^User verify default assignee for Facility Assigned$")
+    public void userVerifyDefaultAssigneeForFacilityAssigned() {
+        vendor.verifyDefaultSelectedFacility();
+    }
+
+    @And("^User created a new vendor and reaches to the detail screen$")
+    public void userCreatedANewVendorAndReachesToTheDetailScreen() throws IOException, ConfigurationException {
+        users.uploadProfilePicture();
+        vendor.addInputFieldsOfVendorForm();
+        vendor.selectTypeFromDropdown();
+        vendor.tapOnSubmitButton();
+    }
+
+    @And("^User adds a facility to facility assigned dropdown$")
+    public void userAddsAFacilityToFacilityAssignedDropdown() {
+        vendor.tapOnUserFacilityAssignedDropdown();
+        vendor.addFacility();    }
+
+    @And("^User removes facility from facility Assigned dropdown$")
+    public void userRemovesFacilityFromFacilityAssignedDropdown() {
+        vendor.tapOnUserFacilityAssignedDropdown();
+        vendor.userRemovesFacilityFromFacilityAssignedDropdown();
+
+    }
+
+    @And("^User selects multiple Facility from Facility Assigned dropdown$")
+    public void userSelectsMultipleFacilityFromFacilityAssignedDropdown() {
+        vendor.tapOnUserFacilityAssignedDropdown();
+        vendor.addMultipleFacility();
+    }
+
+    @Then("^User verifies the selected Facility assignee list$")
+    public void userVerifiesTheSelectedFacilityAssigneeList() {
+        vendor.verifySelectedAssigneeFacility();
+    }
+
+    @Then("^Verify selected facility has been removed from Facility assignee list$")
+    public void verifySelectedFacilityHasBeenRemovedFromFacilityAssigneeList() {
+        vendor. verifySelectedFacilityRemovedFromFacilityAssigneeDropdown();
+    }
 }

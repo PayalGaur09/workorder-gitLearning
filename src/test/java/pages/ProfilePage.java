@@ -1,6 +1,7 @@
 package pages;
 
 import cucumber.api.DataTable;
+import models.DetailsModel;
 import models.ProfileModel;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -17,8 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static utilities.LoadProperties.getValueFromPropertyFile;
+
 public class ProfilePage extends PageObject {
-    ProfileModel profileModel = new ProfileModel();
+    private DetailsModel detailsModel = new DetailsModel();
+    UserGroupModulePage userGroup;
+
 
     public static String CurrentPassword;
     public static String NewPassword;
@@ -27,6 +32,8 @@ public class ProfilePage extends PageObject {
     public static String EmailAdd;
     public static String MobNo;
 
+    @FindBy(xpath = "//input[@class='ng-untouched ng-pristine ng-valid']")
+    private WebElementFacade searchUser;
     @FindBy(xpath = "//span[text()='personnel ']")
      private WebElementFacade ownername;
     @FindBy(xpath = "//h3[contains(text(),'My Profile')] ")
@@ -112,6 +119,10 @@ public class ProfilePage extends PageObject {
 
     private By verifyEditProfile(String editprofile) {
         return By.xpath("//*[text()='" + editprofile + "']");
+    }
+
+    private By verifyUserGroupNameOnProfileDetailPage(String usergroupname) {
+        return By.xpath("//label[contains(text(),'" + usergroupname + "')]/..//p");
     }
 
     public void setOwnername() {
@@ -263,6 +274,23 @@ public class ProfilePage extends PageObject {
 
     public void profileHeading() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(profileHeading).shouldBePresent();
+    }
+    public void searchLoginUser(){
+        searchUser.sendKeys("payal gaur");
+
+    }
+    public void crossVerifyUsergroupAssignedNameOnProfileDetailPage(){
+        String usergroup = getValueFromPropertyFile("testData", "Group Name");
+        Assert.assertEquals(usergroup, element(verifyUserGroupNameOnProfileDetailPage("User Groups Assigned:")).getText());
+
+
+
+
+
+
+
+
+
     }
 
 }

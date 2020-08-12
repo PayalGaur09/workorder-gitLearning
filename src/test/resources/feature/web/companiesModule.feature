@@ -72,7 +72,6 @@ Feature: Company module
     Then Success message " Company has been updated successfully. " should be displayed
     Then verify data on company table
 
-
   Scenario Outline: To verify the validations for the fields on add company page in case when the user is login with admin
     Given user clicks on the newcompany button
     When user check the validation on  add company page
@@ -159,7 +158,6 @@ Feature: Company module
     Given user select the status inactive from the dropdown
     When user clicks on the  pagination  from show entries dropdown
     Then All the status inactive should be displayed to the user
-
 
   Scenario: To verify that when when user login with client personal than edit button is  visible to the user
     Given User logout from work order platform

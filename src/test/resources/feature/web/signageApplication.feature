@@ -27,7 +27,7 @@ Feature: Functionality of signage application
     And User clicks on Select dropdown and select a facility
     And user enters the registration key and tag field
       | registrationKey | tag    |
-      | 167441          | 415215 |
+      | 836660          | 415215 |
     And user clicks on the configure  button
     Then Error message should be displayed
       | Registration key already used |

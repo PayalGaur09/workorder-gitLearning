@@ -6,6 +6,7 @@ import net.thucydides.core.pages.PageObject;
 import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,15 +15,19 @@ import utilities.LoadProperties;
 import utilities.RandomGenerator;
 import models.DetailsModel;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class VendorManagementPage extends PageObject {
+    WebDriver driver;
 
     private DetailsModel detailsModel = new DetailsModel();
+    List<String> selectedItems;
 
     @FindBy(xpath = "//h3[contains(text(),'Vendors')]")
     private WebElementFacade vendorHeading;
@@ -77,6 +82,18 @@ public class VendorManagementPage extends PageObject {
     private WebElementFacade notificationContent;
     @FindBy(xpath = "//div[@class='kt-widget3']")
     private WebElementFacade activityLogWidget;
+    @FindBy(xpath = "//span[text()='Add Attachments ']")
+    private WebElementFacade addAttachments;
+    @FindBy(xpath = "//div[@class='multiselect-dropdown']")
+    private WebElementFacade facilityAssignedDropdown;
+    @FindBy(xpath = "//input[@name='InsurancePolicyExpiryDate']")
+    private WebElementFacade selectExpiryDate;
+    @FindBy(xpath = "//div[@class='input-group-append']//..")
+    private WebElementFacade calenderPopup;
+    @FindBy(xpath = "//select[@title='Select year']")
+    private WebElementFacade selectYear;
+    @FindBy(xpath = "//select[@title='Select month']")
+    private WebElementFacade selectmonth ;
 
     private By validationMessage(String text) {
         return By.xpath("//*[contains(text(),'" + text + "')]");
@@ -108,6 +125,10 @@ public class VendorManagementPage extends PageObject {
 
     private By entityName(String entity) {
         return By.xpath(" //a[contains(text(),'" + entity + "')]");
+    }
+
+    private By assigneeFacilityOnDetailPage(String detail) {
+        return By.xpath("//span[contains(text(),'" + detail + "')]");
     }
 
 
@@ -157,10 +178,31 @@ public class VendorManagementPage extends PageObject {
         detailsModel.setAccountNo(Integer.parseInt(RandomGenerator.randomInteger(5)));
         accNoField.sendKeys(detailsModel.getAccountNo().toString());
     }
+    public void enterValueInW9Number() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("W-9 Number"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setW9number(RandomGenerator.randomAlphanumeric(6));
+        w9NumberField.sendKeys(detailsModel.getW9number());
+    }
+    public void enterValueInInsurancePolicyName() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Name"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setInsurancePolicyName("LICPolicy" + RandomGenerator.randomAlphanumeric(3));
+        w9NumberField.sendKeys(detailsModel.getInsurancePolicyName());
+    }
+    public void enterValueInInsurancePolicyNumber() throws IOException, ConfigurationException {
+        WebElementFacade w9NumberField = element(vendorFormField("Insurance Policy Number"));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(w9NumberField).waitUntilClickable().click();
+        w9NumberField.clear();
+        detailsModel.setInsurancePolicyNumber(RandomGenerator.randomAlphanumeric(10));
+        w9NumberField.sendKeys(detailsModel.getInsurancePolicyNumber());
+    }
 
     public void tapOnAddVendorButton() {
         waitABit(1000);
-        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(addVendorButton).click();
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(addVendorButton).click();
     }
 
     public void addInputFieldsOfVendorForm() throws IOException, ConfigurationException {
@@ -169,14 +211,44 @@ public class VendorManagementPage extends PageObject {
         enterValueInEmail();
         enterValueInLocation();
         enterValueInAccountNo();
+        enterValueInW9Number();
+        enterValueInInsurancePolicyName();
+        enterValueInInsurancePolicyNumber();
+
     }
 
     public void selectTypeFromDropdown() {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(vendorTypeDropdown).waitUntilClickable().click();
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(selectElectricityProvider).click();
         detailsModel.setType(selectElectricityProvider.getText());
     }
 
+    public void uploadAttachments() throws IOException {
+        withTimeoutOf(50, TimeUnit.SECONDS).waitFor(addAttachments).shouldBeVisible();
+        String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "vendorAttachment.png";
+        getDriver().findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(path);
+    }
+    public void userSelectsTheInsurancePolicyExpiryDate() throws InterruptedException {
+        getDriver().findElement(By.xpath("//input[@name='InsurancePolicyExpiryDate']")).click();
+        waitFor(selectYear).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select year = new Select(selectYear);
+        year.selectByVisibleText("2023");
+        waitFor(selectmonth).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select month = new Select(selectmonth);
+        Thread.sleep(2000);
+        month.selectByValue("8");
+        List<WebElement> dates = getDriver().findElements(By.xpath("//div[contains(@class,'btn-light')]"));
+        int total_node = dates.size();
+        for (int i = 0; i < total_node; i++) {
+            String date = dates.get(i).getText();
+            if (date.equals("31")) {
+                Boolean value = dates.get(i).isEnabled();
+                System.out.println("SELECT DATE " + value);
+                $("(//div[text()='31'])[2]").click();
+                break;
+            }
+        }
+    }
     public void enterInvalidContactNo() {
         waitFor(submitButton).withTimeoutOf(10, TimeUnit.SECONDS).sendKeys("1234");
         waitFor(2000);
@@ -197,13 +269,11 @@ public class VendorManagementPage extends PageObject {
         Assert.assertEquals(detailsModel.getEmail(), element(vendorDetail("Email")).getText());
         Assert.assertEquals(detailsModel.getLocation(), element(vendorDetail("Location")).getText());
         Assert.assertEquals(detailsModel.getAccountNo().toString(), element(vendorDetail("Account Number")).getText());
-    }
+        Assert.assertTrue(detailsModel.getW9number().contains(element(vendorDetail("W-9 Number")).getText()));
+        Assert.assertTrue(detailsModel.getInsurancePolicyName().contains(element(vendorDetail("Insurance Policy Name")).getText()));
+        Assert.assertTrue(detailsModel.getInsurancePolicyNumber().contains(element(vendorDetail("Insurance Policy Number")).getText()));
 
-//    public void saveUserName() throws IOException, ConfigurationException {
-//        WebElementFacade nameInDetail = element(vendorDetail("Name"));
-//        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(nameInDetail);
-//        LoadProperties.saveValueInPropertiesFile("nameInDetail", nameInDetail.getText(), "testData");
-//    }
+    }
 
     public void tapOnCancelButton() {
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(cancelButton).waitUntilClickable().click();
@@ -240,6 +310,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void editOptionIsNotPresent() {
+       // Assert.assertFalse(editButton.isDisplayed());
         // Assert.assertFalse(editButton.isDisplayed());
         editButton.shouldNotBePresent();
     }
@@ -449,4 +520,61 @@ public class VendorManagementPage extends PageObject {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(vendorName).waitUntilPresent();
         detailsModel.setName(vendorName.getText());
     }
-}
+    public void verifyDefaultSelectedFacility(){
+        Assert.assertEquals("[All]", facilityAssignedDropdown.getText());
+
+
+    }
+    public void tapOnUserFacilityAssignedDropdown(){
+        waitABit(5000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(facilityAssignedDropdown).click();
+
+    }
+    public void addFacility(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+    }
+    public void userRemovesFacilityFromFacilityAssignedDropdown(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+
+
+    }
+    public void addMultipleFacility(){
+        List<WebElement> elements = getDriver().findElements(By.xpath("//ul[@class='item2']//li"));
+        selectedItems = new ArrayList<>();
+        selectedItems.add(elements.get(0).getText());
+        elements.get(0).click();
+        elements.get(1).click();
+        elements.get(2).click();
+        String a = elements.get(0).getText();
+        facilityAssignedDropdown.click();
+
+    }
+    public void verifySelectedAssigneeFacility(){
+        waitABit(10000);
+        for (int i = 0; i < selectedItems.size(); i++) {
+            element(assigneeFacilityOnDetailPage(selectedItems.get(i))).shouldBeVisible();
+        }
+
+        }
+    public void verifySelectedFacilityRemovedFromFacilityAssigneeDropdown(){
+        waitABit(10000);
+        for (int i = 0; i < selectedItems.size(); i++) {
+            element(assigneeFacilityOnDetailPage(selectedItems.get(i))).shouldNotBeVisible();
+        }
+
+    }
+
+    }
+

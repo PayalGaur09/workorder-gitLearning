@@ -207,11 +207,12 @@ public class WorkOrderSteps {
 
     @When("^User clicks on the dropdown \"([^\"]*)\"$")
     public void userClicksOnTheDropdown(String dropdown, DataTable value) throws Throwable {
-        if (dropdown.equals("unitId")) {
-            workOrder.selectFacilityFilter();
-        } else if (dropdown.equals("assigneeId")) {
+        if (dropdown.equals("unitId")||dropdown.equals("assigneeId")) {
             workOrder.selectFacilityFilter();
         }
+//        else if (dropdown.equals("assigneeId")) {
+//            workOrder.selectFacilityFilter();
+//        }
         workOrder.selectFilterOption(dropdown, value);
         users.tapOnFilterButton();
     }

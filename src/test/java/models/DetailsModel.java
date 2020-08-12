@@ -11,6 +11,12 @@ public class DetailsModel {
     private Integer accountNo;
     private String userRole;
     private String keyword;
+    private String W9number;
+    private String insurancePolicyName;
+    private String insurancePolicyNumber;
+    private String userGroupNamae;
+
+
 
     public String getName() {
         return name;
@@ -83,4 +89,34 @@ public class DetailsModel {
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
+
+    public String getW9number() {
+        return W9number;
+    }
+
+    public void setW9number(String W9number) {
+        this.W9number = W9number;
+    }
+    public String getInsurancePolicyName() {
+        return insurancePolicyName;
+    }
+
+    public void setInsurancePolicyName(String insurancePolicyName) {
+        this.insurancePolicyName = insurancePolicyName;
+    }
+    public String getInsurancePolicyNumber() {
+        return insurancePolicyNumber;
+    }
+
+    public void setInsurancePolicyNumber(String insurancePolicyNumber) {
+        this.insurancePolicyNumber = insurancePolicyNumber;
+    }
+    public String getUserGroupName() {
+        return userGroupNamae;
+    }
+
+    public void setUserGroupName(String userGroupName) {
+        this.userGroupNamae =userGroupName;
+    }
+
 }

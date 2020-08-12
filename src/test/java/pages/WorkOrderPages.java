@@ -292,8 +292,11 @@ public class WorkOrderPages extends PageObject {
         if (reportIssueButton.isPresent()) {
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(reportIssueButton).click();
         } else {
+//            Actions actions = new Actions(getDriver());
+//            actions.moveToElement().click().build().perform();
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(actionButton).click();
             updateStatus();
-            waitABit(2000);
+            waitABit(5000);
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(actionButton).click();
             withTimeoutOf(20, TimeUnit.SECONDS).waitFor(reportIssueButton).click();
         }

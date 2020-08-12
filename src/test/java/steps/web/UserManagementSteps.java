@@ -12,6 +12,7 @@ import pages.UserManagementPage;
 import pages.UserSigninPage;
 import pages.VendorManagementPage;
 import utilities.ConfigLoader;
+import utilities.LoadProperties;
 
 import java.io.IOException;
 
@@ -75,7 +76,7 @@ public class UserManagementSteps {
     }
 
     @And("^User select \"([^\"]*)\" role$")
-    public void userSelectRole(String userRoles)  {
+    public void userSelectRole(String userRoles) {
         users.selectFilterDropdown(userRoles);
         users.tapOnFilterButton();
     }
@@ -91,7 +92,7 @@ public class UserManagementSteps {
     }
 
     @And("^User select \"([^\"]*)\" status$")
-    public void userSelectStatus(String status)  {
+    public void userSelectStatus(String status) {
         users.selectFilterDropdown(status);
         users.tapOnFilterButton();
         users.verifyStatus(status);
@@ -201,6 +202,26 @@ public class UserManagementSteps {
     public void userReachesToDetailScreenAndFetchesUserName() {
         users.tapOnUserName();
         users.fetchUserName();
+    }
+
+    @Then("^user enters all the fields of usergroup$")
+    public void userEntersAllTheFieldsOfUsergroup() throws IOException, ConfigurationException {
+        users.useEntersTheUserGroupName();
+        users.userTapsOnMemberAssignedDropdown();
+        users.searchText().sendKeys(LoadProperties.getValueFromPropertyFile("testData", "name"));
+        users.userSelectTheCheckbox();
+    }
+
+    @And("^user clicks on any username$")
+    public void userClicksOnAnyUsername() {
+        users.userClicksOnUserName();
+
+    }
+
+    @And("^Cross Verify the User Groups Assigned field on user detail page$")
+    public void crossVerifyTheUserGroupsAssignedFieldOnUserDetailPage() {
+        users.userVerfyTheUseGroupAssignedOnUserDetailPage();
 
     }
 }
+

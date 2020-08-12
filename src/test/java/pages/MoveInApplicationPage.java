@@ -46,6 +46,10 @@ public class MoveInApplicationPage extends PageObject {
     private WebElementFacade togglebtn;
     @FindBy(xpath = "//button[text()=' Apply Changes ']")
     private WebElementFacade applychangesbtn;
+    @FindBy(xpath = "//button[text()=' Choose file ']")
+    private WebElementFacade chooseFile;
+    @FindBy(xpath = "//button[text()=' Change ']")
+    private WebElementFacade changefile;
 
 
     public void verifyMangeKioskDetailViewPage() {
@@ -81,7 +85,7 @@ public class MoveInApplicationPage extends PageObject {
             if (StringUtils.isNotBlank(iconModel.getIcon())) {
                 try {
                     waitABit(2300);
-                    String value = getResourceDire() + File.separator + "testData"+ File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
+                    String value = getResourceDire() + File.separator + "testData" + File.separator + "uploadIcon" + File.separator + iconModel.getIcon();
                     getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(value);
                     waitABit(5000);
 //                    signageInputImage.sendKeys(value);
@@ -136,6 +140,7 @@ public class MoveInApplicationPage extends PageObject {
         alert.dismiss();
         waitABit(1000);
     }
+
     public void clicksOnFieldAndCriteriaTab() {
         tab.click();
     }
@@ -168,7 +173,20 @@ public class MoveInApplicationPage extends PageObject {
             togglebtn.click();
         }
     }
+
     public void userClicksOnApplyChangesButton() {
         applychangesbtn.click();
     }
-}
+
+    public void userUploadTheDoculentFile() throws IOException {
+        if (chooseFile.isVisible()) {
+
+        } else if (changefile.isVisible()) {
+            changefile.click();
+        }
+            withTimeoutOf(20, TimeUnit.SECONDS).waitFor(chooseFile).shouldBeVisible();
+            String path = new File(".").getCanonicalPath() + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "testData" + File.separator + "pdf.pdf";
+            getDriver().findElement(By.xpath("//input[@type='file']")).sendKeys(path);
+
+        }
+    }
