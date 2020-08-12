@@ -1,21 +1,17 @@
 package steps.web;
 
-import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import pages.*;
+import pages.VendorManagementPage;
+import pages.WorkOrderPages;
 
 import java.io.IOException;
 
 public class WorkOrderSteps {
     private WorkOrderPages workOrder;
     private VendorManagementPage vendor;
-    private UserSigninPage userSigninPage;
-    private FacilityManagementPage facility;
-    private UserManagementPage users;
 
     @Given("^User is on add work order screen$")
     public void userIsOnAddWorkOrderScreen() {
@@ -103,141 +99,11 @@ public class WorkOrderSteps {
     @Then("^Activity log for work order added is displayed$")
     public void activityLogForWorkOrderAddedIsDisplayed() {
         workOrder.verifyLogForAddWO();
-        userSigninPage.signout();
     }
 
-    @And("^User select checkbox \"([^\"]*)\"  in watchers dropdown$")
-    public void userSelectCheckboxInWatchersDropdown(String option) throws Throwable {
-        workOrder.selectWatchers(option);
-        vendor.tapOnSubmitButton();
-    }
-
-    @Then("^User verify watchers according to selected \"([^\"]*)\"$")
-    public void userVerifyWatchersAccordingToSelected(String option) throws Throwable {
-        workOrder.verifyWatcherOnDetailPage(option);
-    }
 
     @Then("^Notification for work order added is displayed$")
     public void notificationForWorkOrderAddedIsDisplayed() {
-        workOrder.verifyAddWONotification();
     }
 
-    @Then("^Activity log for assignee removed and added is displayed$")
-    public void activityLogForAssigneeRemovedAndAddedIsDisplayed() {
-
-    }
-
-    @Then("^Notification for assignee removed and added is displayed$")
-    public void notificationForAssigneeRemovedAndAddedIsDisplayed() {
-    }
-
-    @When("^User clicks on add note button$")
-    public void userClicksOnAddNoteButton() {
-        workOrder.clickOnAddNoteButton();
-    }
-
-    @When("^User reached to notes screen of the work order$")
-    public void userReachedToNotesScreenOfTheWorkOrder() {
-        workOrder.clickOnViewAllNotes();
-    }
-
-    @Given("^User is on the Closed work order list screen$")
-    public void userIsOnTheClosedWorkOrderListScreen() {
-        workOrder.tapOnClosedWOButtonFromGrid();
-    }
-
-    @Then("^User is not able to edit the work order$")
-    public void userIsNotAbleToEditTheWorkOrder() {
-        vendor.tapOnActionButton();
-        vendor.editOptionIsNotPresent();
-    }
-
-    @When("^User changes the work order status to closed$")
-    public void userChangesTheWorkOrderStatusToClosed() {
-        workOrder.updateStatusToClosed();
-    }
-
-    @And("^User clicks on re-open option from action dropdown$")
-    public void userClicksOnReOpenOptionFromActionDropdown() {
-        vendor.tapOnActionButton();
-        workOrder.reOpenFromActionButton();
-    }
-
-    @Then("^Work order status is in open state$")
-    public void workOrderStatusIsInOpenState() {
-        workOrder.closedWOShouldNotPresent();
-    }
-
-    @Given("^User taps on the list view icon$")
-    public void userTapsOnTheListViewIcon() {
-        workOrder.tapOnListViewIcon();
-    }
-
-    @Then("^User reaches to the work order list screen$")
-    public void userReachesToTheWorkOrderListScreen() {
-        workOrder.verifyListViewPage();
-    }
-
-    @When("^User clicks on the report option from action dropdown$")
-    public void userClicksOnTheReportOptionFromActionDropdown() {
-        workOrder.tapOnSendMailOption();
-    }
-
-    @When("^User enter the content to report an issue$")
-    public void userEnterTheContentToReportAnIssue() {
-        workOrder.enterContentToReport();
-    }
-
-    @When("^User click on facility dropdown and fetches the facility list$")
-    public void userClickOnFacilityDropdownAndFetchesTheFacilityList() {
-        // workOrder.fetchFacilityListFromDropdown();
-        workOrder.fetchFacilityDropdown();
-    }
-
-    @Then("^User verifies the facilities with the facility list page$")
-    public void userVerifiesTheFacilitiesWithTheFacilityListPage() {
-        facility.selectPageLimit100();
-        facility.verifyFacilityList(WorkOrderPages.facilityList);
-    }
-
-    @When("^User fetches the list from unit dropdown$")
-    public void userFetchesTheListFromUnitDropdown() {
-        workOrder.fetchUnitListFromDropdown();
-    }
-
-    @When("^User clicks on the dropdown \"([^\"]*)\"$")
-    public void userClicksOnTheDropdown(String dropdown, DataTable value) throws Throwable {
-        if (dropdown.equals("unitId")) {
-            workOrder.selectFacilityFilter();
-        } else if (dropdown.equals("assigneeId")) {
-            workOrder.selectFacilityFilter();
-        }
-        workOrder.selectFilterOption(dropdown, value);
-        users.tapOnFilterButton();
-    }
-
-    @Then("^User verifies the selected \"([^\"]*)\" filter for \"([^\"]*)\"$")
-    public void userVerifiesTheSelectedFilterFor(String dropdown, String value) throws Throwable {
-        if (dropdown.equals("status")) {
-            workOrder.verifyStatusOfWorkOrder(value);
-        } else if (dropdown.equals("priority")) {
-            workOrder.verifyPriorityOfWorkOrder(value);
-        }
-    }
-
-    @When("^User reaches back to the list view$")
-    public void userReachesBackToTheListView() {
-        workOrder.breadcrumbWorkOrder();
-    }
-
-    @When("^User selects facility dropdown filter$")
-    public void userSelectsFacilityDropdownFilter() throws Throwable {
-        workOrder.selectFacilityFilter();
-    }
-
-
-    @Then("^User verifies the selected \"([^\"]*)\" filter for \"([^\"]*)\" on the detail screen$")
-    public void userVerifiesTheSelectedFilterForOnTheDetailScreen(String dropdown, String value) throws Throwable {
-        workOrder.verifyFilterValueOnWODetail(dropdown, value);
-    }
 }

@@ -239,25 +239,14 @@ public class FacilityManagementSteps {
 
     @Then("^Client Personnel should only access the assigned facility$")
     public void clientPersonnelShouldOnlyAccessTheAssignedFacility() {
-        facility.selectPageLimit100();
-        facility.verifyFacilityList(FacilityManagementPage.facilityList);
+        facility.verifyFacilityList();
         userSigninPage.signout();
     }
-}
 
 
-
-<<<<<<< HEAD
-=======
     @Given("^User is on facility detail screen$")
     public void userIsOnFacilityDetailScreen() {
         facility.autoFacilityLink();
     }
-
-    @And("^User click on \"([^\"]*)\" facility$")
-    public void userClickOnFacility(String facilityName) throws Throwable {
-        facility.tapOnAFacility(facilityName);
-    }
 }
->>>>>>> 2db59e1f4fe3ce9c451e059a27e8c3871c3b341c
 
