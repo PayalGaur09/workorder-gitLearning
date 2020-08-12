@@ -31,6 +31,10 @@ Feature: Work Order
     And User taps on the Submit button
     Then Success message "Work Order has been updated successfully" should be displayed
     And User verify work order detail screen
+    Then Activity log for work order update is displayed
+    And User sign in with valid credential of Client Admin
+    And User tap on the bell icon
+    Then Notification for work order update is displayed
 
   Scenario: Verify that client user is receiving notification and activity log on updating a WO
 
@@ -106,6 +110,8 @@ Feature: Work Order
     Then Notes count is same as the number of notes listed below
 
   Scenario: Verify the drag and drop functionality on WO grid view screen
+    When User drag a work order to change the the priority
+    Then The priority of a work order should be changed
 
   Scenario: Verify that user is able to switch from grid to WO list screen
     Given User taps on the list view icon
@@ -133,7 +139,7 @@ Feature: Work Order
   Scenario: Verify that email id is pre-filled in send mail screen
     Given User is on the work order detail screen
     When User clicks on the report option from action dropdown
-    #And User is on
+    And User fetches the pre filled email address
 
   Scenario: Verify that facility dropdown should contain the facility listed in the facility page
     Given User is on add work order screen
@@ -177,9 +183,9 @@ Feature: Work Order
       | unitId              | Zbt Auto Unit       |
       | assigneeId          | Anubhuti            |
 
-  Scenario: User should be able to search  when he enters the keyword from work order list screen
+  Scenario: User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard
     Given User taps on the list view icon
     When User enters a keyword "Automated" in the search field
-    And User clicks on Filter button
+    And User hits 'Enter' button on keyboard
     Then List displayed is according to the entered keyword
     And User clicks on Reset button

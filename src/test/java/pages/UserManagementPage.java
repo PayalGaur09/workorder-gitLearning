@@ -197,7 +197,8 @@ public class UserManagementPage extends PageObject {
     }
 
     private By userNameSearch(int count) {
-        return By.xpath("((//tbody/tr)[" + count + "]/td)[1]");
+        //return By.xpath("((//tbody/tr)[" + count + "]/td)[1]");
+        return By.xpath("//span[@class='link'][" + count + "]");
     }
 
     public void verifyUserName() {

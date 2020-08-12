@@ -240,4 +240,29 @@ public class WorkOrderSteps {
     public void userVerifiesTheSelectedFilterForOnTheDetailScreen(String dropdown, String value) throws Throwable {
         workOrder.verifyFilterValueOnWODetail(dropdown, value);
     }
+
+    @When("^User drag a work order to change the the priority$")
+    public void userDragAWorkOrderToChangeTheThePriority() {
+        workOrder.dragAndDropWO();
+    }
+
+    @Then("^The priority of a work order should be changed$")
+    public void thePriorityOfAWorkOrderShouldBeChanged() {
+        workOrder.clickOnDraggedWorkOrder();
+    }
+
+    @And("^User fetches the pre filled email address$")
+    public void userFetchesThePreFilledEmailAddress() {
+        /////////////// not completed
+    }
+
+    @Then("^Activity log for work order update is displayed$")
+    public void activityLogForWorkOrderUpdateIsDisplayed() {
+        workOrder.verifyLogForEditTitleDescription();
+    }
+
+    @Then("^Notification for work order update is displayed$")
+    public void notificationForWorkOrderUpdateIsDisplayed() {
+        workOrder.verifyUpdatedTitleDescriptionNotification();
+    }
 }

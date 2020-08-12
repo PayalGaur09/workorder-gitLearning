@@ -6,7 +6,9 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import utilities.RandomGenerator;
@@ -105,6 +107,14 @@ public class WorkOrderPages extends PageObject {
         return By.xpath("//select[@name='" + filter + "']");
     }
 
+    private By priorityOnGrid(String priority) {
+        return By.xpath("//div[contains(@id,'container-" + priority + "')]");
+    }
+
+    private By titleOnGrid(String title) {
+        return By.xpath("//p[text()='" + title + "']");
+    }
+
 
     public void tapOnAddNewButtonFromGrid() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addNewFromGrid).click();
@@ -115,7 +125,7 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void enterTitleAndDescription() {
-        waitABit(2000);
+        waitABit(5000);
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(titleInputbox).waitUntilClickable().click();
         titleInputbox.clear();
         workOrderModel.setTitle("Automated Title " + RandomGenerator.randomAlphabetic(7));
@@ -148,10 +158,10 @@ public class WorkOrderPages extends PageObject {
 
     public void selectUnit() {
         waitABit(7000);
-        WebElementFacade unit = element(selectDropdownField("Zbt Auto Unit"));
-        waitFor(unit).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        WebElementFacade unit = element(selectDropdownField("Unit"));
+      //  waitFor(unit).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select option = new Select(unit);
-        workOrderModel.setUnit("Club house");
+        workOrderModel.setUnit("Zbt Auto Unit");
         option.selectByVisibleText(workOrderModel.getUnit());
     }
 
@@ -159,7 +169,7 @@ public class WorkOrderPages extends PageObject {
         WebElementFacade assignee = element(selectDropdownField("Assignee"));
         waitFor(assignee).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select option = new Select(assignee);
-        option.selectByIndex(1);
+        option.selectByValue(" Arpit Tyagi ");
     }
 
     public void selectWatchers(String option) {
@@ -188,6 +198,7 @@ public class WorkOrderPages extends PageObject {
 
     public void fetchWOId() {
         workOrderModel.setWorkOrderId(element(workOrderDetail("ID")).getText());
+        return;
     }
 
     public void removeAssignee() {
@@ -265,54 +276,7 @@ public class WorkOrderPages extends PageObject {
     public void closedWOShouldNotPresent() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(statusButton).waitUntilPresent();
     }
-    //   withTimeoutOf(20, TimeUnit.SECONDS).waitFor(closedStatusOfWO).waitUntilNotVisible();
 
-
-    //........Activity Log.............
-    public void verifyLogForStatusUpdate() {
-        String statusUpdate = "Work Order " + workOrderModel.getWorkOrderId() + " status changed from " +
-                workOrderModel.getOldStatus() + " to " + workOrderModel.getStatus();
-        vendor.searchContentForActivity(statusUpdate);
-    }
-
-    public void verifyLogForPriorityUpdate() {
-        String priorityUpdate = "Work Order " + workOrderModel.getWorkOrderId() + " priority changed from " +
-                workOrderModel.getOldPriority() + " to " + workOrderModel.getPriority();
-        vendor.searchContentForActivity(priorityUpdate);
-    }
-
-    public void verifyLogForAddWO() {
-        String activity = "Work Order " + workOrderModel.getWorkOrderId() + " created";
-        vendor.searchContentForActivity(activity);
-    }
-
-    public void verifyLogForAssignedWO() {
-//        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
-//        facility.searchNotificationContent(notification);
-    }
-
-    public void verifyLogForRemovedWO() {
-//        String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
-//                + " . Tap to view details.";
-//        facility.searchNotificationContent(notification);
-    }
-
-    //..........Notification............
-    public void verifyAddWONotification() {
-        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been created. Tap to view details.";
-        facility.searchNotificationContent(notification);
-    }
-
-    public void verifyAssignedWONotification() {
-        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
-        facility.searchNotificationContent(notification);
-    }
-
-    public void verifyRemovedWONotification() {
-        String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
-                + " . Tap to view details.";
-        facility.searchNotificationContent(notification);
-    }
 
     public void tapOnListViewIcon() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(listViewIcon).click();
@@ -461,6 +425,84 @@ public class WorkOrderPages extends PageObject {
         }
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(valueOnDetail).waitUntilPresent();
         Assert.assertEquals(value, valueOnDetail.getText());
+    }
+
+    public void dragAndDropWO() {
+        WebElementFacade from = element("(//div[contains(@id,'container-low')]//p)[2]");
+        WebElementFacade to = element(priorityOnGrid("medium"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(from).waitUntilClickable();
+        workOrderModel.setWorkOrderId(from.getText());
+        Actions act = new Actions(getDriver());
+        act.dragAndDrop(from, to).build().perform();
+    }
+
+    public void clickOnDraggedWorkOrder() {
+        waitABit(5000);
+        WebElementFacade id = element(titleOnGrid(workOrderModel.getWorkOrderId()));
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(id).waitUntilClickable().click();
+        WebElementFacade priority = element("//span[text()='Medium']");
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(priority).waitUntilPresent();
+    }
+
+    //........Activity Log.............
+    public void verifyLogForStatusUpdate() {
+        String statusUpdate = "Work Order " + workOrderModel.getWorkOrderId() + " status changed from " +
+                workOrderModel.getOldStatus() + " to " + workOrderModel.getStatus();
+        vendor.searchContentForActivity(statusUpdate);
+    }
+
+    public void verifyLogForPriorityUpdate() {
+        String priorityUpdate = "Work Order " + workOrderModel.getWorkOrderId() + " priority changed from " +
+                workOrderModel.getOldPriority() + " to " + workOrderModel.getPriority();
+        vendor.searchContentForActivity(priorityUpdate);
+    }
+
+    public void verifyLogForAddWO() {
+        String activity = "Work Order " + workOrderModel.getWorkOrderId() + " created";
+        vendor.searchContentForActivity(activity);
+    }
+    public void verifyLogForEditTitleDescription() {
+        String activity1 = "Work Order " + workOrderModel.getWorkOrderId() + " renamed";
+        String activity2 = "Work Order " + workOrderModel.getWorkOrderId() + " description has been changed";
+        vendor.searchContentForActivity(activity1);
+        vendor.searchContentForActivity(activity2);
+    }
+
+    public void verifyLogForAssignedWO() {
+//        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
+//        facility.searchNotificationContent(notification);
+    }
+
+    public void verifyLogForRemovedWO() {
+//        String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
+//                + " . Tap to view details.";
+//        facility.searchNotificationContent(notification);
+    }
+
+    //..........Notification............
+    public void verifyAddWONotification() {
+        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been created. Tap to view details.";
+        facility.searchNotificationContent(notification);
+    }
+
+    public void verifyUpdatedTitleDescriptionNotification() {
+        String notification1 = "Work Order " + workOrderModel.getWorkOrderId() + " renamed to " +
+                workOrderModel.getTitle() + ". Tap to view details.";
+        String notification2 = "Work Order " + workOrderModel.getWorkOrderId() +
+                " description has been changed. Tap to view details.";
+        facility.searchNotificationContent(notification1);
+        facility.searchNotificationContent(notification2);
+    }
+
+    public void verifyAssignedWONotification() {
+        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
+        facility.searchNotificationContent(notification);
+    }
+
+    public void verifyRemovedWONotification() {
+        String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
+                + " . Tap to view details.";
+        facility.searchNotificationContent(notification);
     }
 }
 
