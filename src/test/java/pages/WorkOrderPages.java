@@ -2,6 +2,7 @@ package pages;
 
 import cucumber.api.DataTable;
 import models.WorkOrderModel;
+import net.thucydides.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import utilities.RandomGenerator;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class WorkOrderPages extends PageObject {
 
     private WorkOrderModel workOrderModel = new WorkOrderModel();
-    private VendorManagementPage vendor;
+    VendorManagementPage vendor;
     private FacilityManagementPage facility;
 
     //......Static Locators..........
@@ -80,6 +82,28 @@ public class WorkOrderPages extends PageObject {
     private WebElementFacade noRecords;
     @FindBy(xpath = "//a[contains(@class,'breadcrumbs-link')]")
     private WebElementFacade breadcrumbLink;
+    @FindBy(xpath = "//select[@title='Select year']")
+    private WebElementFacade selectYear;
+    @FindBy(xpath = "//select[@title='Select month']")
+    private WebElementFacade selectmonth;
+    @FindBy(xpath = "//select[@name='ngModelRecurring']")
+    WebElementFacade selectValue;
+    @FindBy(xpath = "//h5[contains(text(),'Set Custom Recurrence')]")
+    WebElementFacade verifymanagesignagepage;
+    @FindBy(xpath = "(//button[text()='Submit'])[2]")
+    WebElementFacade submitbutton;
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElementFacade cancelbutton;
+    @FindBy(xpath = "//h3[text()=' Add Work Order ']")
+    WebElementFacade addworkorderscreen;
+    @FindBy(xpath = "//select[@name='repeatEvery']")
+    WebElementFacade selectweek;
+    @FindBy(xpath = "//button[text()=' W']")
+    WebElementFacade selectday;
+    @FindBy(xpath = "(//div[@class='multiselect-dropdown'])[2]")
+    WebElementFacade clicksonrpeateverymonthdropdown;
+    @FindBy(xpath = "//select[@name='repeatEveryNMonthField']")
+    WebElementFacade repeateverydropdown;
 
 
     //......Dynamic Locators........
@@ -159,7 +183,7 @@ public class WorkOrderPages extends PageObject {
     public void selectUnit() {
         waitABit(7000);
         WebElementFacade unit = element(selectDropdownField("Unit"));
-      //  waitFor(unit).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        //  waitFor(unit).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select option = new Select(unit);
         workOrderModel.setUnit("Zbt Auto Unit");
         option.selectByVisibleText(workOrderModel.getUnit());
@@ -233,6 +257,30 @@ public class WorkOrderPages extends PageObject {
         selectPriority();
         selectFacility();
         selectUnit();
+    }
+
+    public void userSelectsTheDueDate() throws InterruptedException {
+        getDriver().findElement(By.xpath("//input[@name='DueDate']")).click();
+        waitABit(1000);
+        waitFor(selectYear).withTimeoutOf(50, TimeUnit.SECONDS).click();
+        Select year = new Select(selectYear);
+        year.selectByVisibleText("2023");
+        waitFor(selectmonth).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select month = new Select(selectmonth);
+        Thread.sleep(2000);
+        month.selectByValue("8");
+        List<WebElement> dates = getDriver().findElements(By.xpath("//div[contains(@class,'btn-light')]"));
+        int total_node = dates.size();
+        for (int i = 0; i < total_node; i++) {
+            String date = dates.get(i).getText();
+            if (date.equals("31")) {
+                Boolean value = dates.get(i).isEnabled();
+                System.out.println("SELECT DATE " + value);
+                $("(//div[text()='31'])[2]").click();
+                break;
+            }
+        }
+
     }
 
     public void tapOnGridItem() {
@@ -464,6 +512,7 @@ public class WorkOrderPages extends PageObject {
         String activity = "Work Order " + workOrderModel.getWorkOrderId() + " created";
         vendor.searchContentForActivity(activity);
     }
+
     public void verifyLogForEditTitleDescription() {
         String activity1 = "Work Order " + workOrderModel.getWorkOrderId() + " renamed";
         String activity2 = "Work Order " + workOrderModel.getWorkOrderId() + " description has been changed";
@@ -507,5 +556,93 @@ public class WorkOrderPages extends PageObject {
                 + " . Tap to view details.";
         facility.searchNotificationContent(notification);
     }
-}
+
+    public void selectValueFromSetAsRecurringDropdown() {
+        waitFor(selectValue).withTimeoutOf(90, TimeUnit.SECONDS).click();
+        Select selectvaluefromdropdown = new Select(selectValue);
+        selectvaluefromdropdown.selectByIndex(1);
+    }
+
+    public void userRedirectsToSetCustomRecurrencePopup() {
+        Assert.assertTrue(verifymanagesignagepage.isDisplayed());
+
+
+    }
+
+    public void userClicksOnSubmit() {
+        submitbutton.click();
+
+    }
+
+    public void userClicksOnCancelButton() {
+        cancelbutton.click();
+
+    }
+
+    public void verifyRedirection() {
+        Assert.assertTrue(addworkorderscreen.isDisplayed());
+
+
+    }
+
+    public void userSelectsTheWeekFromReapeatOnDropdown() {
+        selectweek.click();
+        Select selectWeekFromRepeatDropdown = new Select(selectweek);
+        selectWeekFromRepeatDropdown.selectByIndex(1);
+    }
+
+    public void userSelectsTheDays() {
+        selectday.click();
+    }
+
+    public void userSelectsTheDateFromTermateOnField() throws InterruptedException {
+        getDriver().findElement(By.xpath("//input[@name='terminateOn']")).click();
+        waitFor(selectYear).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select year = new Select(selectYear);
+        year.selectByVisibleText("2023");
+        waitFor(selectmonth).withTimeoutOf(30, TimeUnit.SECONDS).click();
+        Select month = new Select(selectmonth);
+        Thread.sleep(2000);
+        month.selectByValue("8");
+        List<WebElement> dates = getDriver().findElements(By.xpath("//div[contains(@class,'btn-light')]"));
+        int total_node = dates.size();
+        for (int i = 0; i < total_node; i++) {
+            String date = dates.get(i).getText();
+            if (date.equals("31")) {
+                Boolean value = dates.get(i).isEnabled();
+                System.out.println("SELECT DATE " + value);
+                $("(//div[text()='31'])[2]").click();
+                break;
+            }
+        }
+    }
+
+    public void userClicksOnRepeatEveryMonthDropdown(){
+        waitABit(5000);
+        withTimeoutOf(10, TimeUnit.SECONDS).waitFor(clicksonrpeateverymonthdropdown).click();
+    }
+    public void userSelectsTheDaysFromRepeatEveryMonthOnField(){
+        List<WebElement> dates = getDriver().findElements(By.xpath("(//ul[@class='item2'])[2]/li"));
+        dates.get(3).click();
+        dates.get(4).click();
+        clicksonrpeateverymonthdropdown.click();
+    }
+    public void userSelectsTheDayFromRepeatEveryDayField(){
+        repeateverydropdown.click();
+        Select selectWeekFromRepeatDropdown = new Select(repeateverydropdown);
+        selectWeekFromRepeatDropdown.selectByIndex(2);
+    }
+    public void useEditTheRecurringField(){
+        waitFor(selectValue).withTimeoutOf(90, TimeUnit.SECONDS).click();
+        Select selectvaluefromdropdown = new Select(selectValue);
+        selectvaluefromdropdown.selectByIndex(0);
+
+    }
+
+    }
+
+
+
+
+
 

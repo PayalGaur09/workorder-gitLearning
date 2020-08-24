@@ -1,4 +1,5 @@
 @Automation @Company
+
 Feature: Company module
   As a 10Fed user I can land on Company page So that I can manage companies associated with work order application
   As a client user I can land on Company page So that I can view my company detail

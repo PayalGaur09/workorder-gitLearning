@@ -23,9 +23,9 @@ public class WorkOrderSteps {
     }
 
     @When("^User enters the mandatory fields in work order screen$")
-    public void userEntersTheMandatoryFieldsInWorkOrderScreen() {
+    public void userEntersTheMandatoryFieldsInWorkOrderScreen() throws InterruptedException{
         workOrder.enterMandatoryFields();
-    }
+      }
 
     @Given("^User is on the work order detail screen$")
     public void userIsOnTheWorkOrderDetailScreen() {
@@ -266,4 +266,72 @@ public class WorkOrderSteps {
     public void notificationForWorkOrderUpdateIsDisplayed() {
         workOrder.verifyUpdatedTitleDescriptionNotification();
     }
+
+
+    @When("^User selects the set as custom recurrence$")
+    public void userSelectsTheSetAsCustomRecurrence() {
+        workOrder.selectValueFromSetAsRecurringDropdown();
+
+    }
+
+    @Then("^user should redirects to the Set Custom Recurrence Popup$")
+    public void userShouldRedirectsToTheSetCustomRecurrencePopup() {
+        workOrder.userRedirectsToSetCustomRecurrencePopup();
+
+    }
+
+    @And("^User clicks on the submit button$")
+    public void userTapsClicksOnTheSubmitButton() {
+        workOrder.userClicksOnSubmit();
+    }
+
+    @And("^User Clicks on the cancel button of set custom recurrence popup$")
+    public void userClicksOnTheCancelButtonOfSetCustomRecurrencePopup() {
+        workOrder.userClicksOnCancelButton();
+    }
+
+    @Then("^user redirects to the add workorder screen$")
+    public void userRedirectsToTheAddWorkorderScreen() {
+        workOrder.verifyRedirection();
+    }
+
+    @And("^user selects the week from Repeat Every week drodown$")
+    public void userSelectsTheWeekFromRepeatEveryWeekDrodown() {
+        workOrder.userSelectsTheWeekFromReapeatOnDropdown();
+    }
+
+    @And("^user selects the a days from Repeat on fields$")
+    public void userSelectsTheADaysFromRepeatOnFields() {
+        workOrder.userSelectsTheDays();
+    }
+
+    @And("^user selects the date from Terminate on field$")
+    public void userSelectsTheDateFromTerminateOnField() throws InterruptedException{
+        workOrder.userSelectsTheDateFromTermateOnField();
+    }
+
+
+
+
+    @When("^User enters the  fields in work order screen$")
+    public void userEntersTheFieldsInWorkOrderScreen() throws InterruptedException {
+        workOrder.enterMandatoryFields();
+        workOrder.userSelectsTheDueDate();
+
+    }
+
+    @And("^user selects all the fields for set monthly recurrence$")
+    public void userSelectsAllTheFieldsForSetMonthlyRecurrence() {
+            workOrder.userClicksOnRepeatEveryMonthDropdown();
+            workOrder.userSelectsTheDaysFromRepeatEveryMonthOnField();
+            workOrder.userSelectsTheDayFromRepeatEveryDayField();
+        }
+
+    @And("^user change the field from set as custom recurrence to does not repeat$")
+    public void userChangeTheFieldFromSetAsCustomRecurrenceToDoesNotRepeat() {
+        workOrder.useEditTheRecurringField();
+    }
+
 }
+
+
