@@ -1,4 +1,5 @@
 @Automation @Signage
+
 Feature: Functionality of signage application
 
   Background:
@@ -184,6 +185,7 @@ Feature: Functionality of signage application
       | 25           |
       | 50           |
       | 100          |
+
 
   Scenario: Registration key
     When User get the registration key list

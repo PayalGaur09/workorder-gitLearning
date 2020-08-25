@@ -188,3 +188,76 @@ Feature: Work Order
 
 
 
+
+
+  Scenario: To Verify the Functionality of due date
+    Given User is on add work order screen
+    When User enters the  fields in work order screen
+    And User taps on the Submit button
+    Then Success message "Work Order has been added successfully" should be displayed
+    And User verify work order detail screen
+
+  Scenario: To verify that redirection after selection the set custom recurrence from set as recurring field
+    Given User is on add work order screen
+    When User selects the set as custom recurrence
+    Then user should redirects to the Set Custom Recurrence Popup
+
+  Scenario: To verify the validation on Set Weekly recurrence popup
+    Given User is on add work order screen
+    When User selects the set as custom recurrence
+    And User clicks on the submit button
+    Then Error message should be displayed
+      | Repeat frequency is required | Repeat On is required |
+
+  Scenario: To verify the validation message on monthly recurrence popup and check the  functionality of cancel
+  button
+    Given User is on add work order screen
+    When User selects the set as custom recurrence
+    Then User Select " Set monthly recurrence " Type
+    And User clicks on the submit button
+    Then Error message should be displayed
+      | Repeat day is required |
+    And User Clicks on the cancel button of set custom recurrence popup
+    Then user redirects to the add workorder screen
+
+  Scenario: To verify that user is able to create the workorder when user select the set weekly recurrence
+    Given User is on add work order screen
+    When User enters the mandatory fields in work order screen
+    When User selects the set as custom recurrence
+    And user selects the week from Repeat Every week drodown
+    And user selects the a days from Repeat on fields
+    And user selects the date from Terminate on field
+    And User clicks on the submit button
+    And User taps on the Submit button
+    Then Success message "Work Order has been added successfully" should be displayed
+    And User verify work order detail screen
+
+  Scenario: To verify that user is able to create the workorder when user select the set monthly recurrence
+    Given User is on add work order screen
+    When User enters the mandatory fields in work order screen
+    When User selects the set as custom recurrence
+    Then User Select " Set monthly recurrence " Type
+    And user selects all the fields for set monthly recurrence
+    And User clicks on the submit button
+    And User taps on the Submit button
+    Then Success message "Work Order has been added successfully" should be displayed
+    And User verify work order detail screen
+
+
+  Scenario: To Verify while editing the order user is able to change set as recurring field from set custom
+      recurrence to does not repeat
+    Given User is on add work order screen
+    When User enters the mandatory fields in work order screen
+    When User selects the set as custom recurrence
+    Then User Select " Set monthly recurrence " Type
+    And user selects all the fields for set monthly recurrence
+    And User clicks on the submit button
+    And User taps on the Submit button
+    Then Success message "Work Order has been added successfully" should be displayed
+    And User verify work order detail screen
+    And  user click on the action button
+    When I  clicking  on the "Edit" button
+    And user change the field from set as custom recurrence to does not repeat
+    And User taps on the Submit button
+    Then Success message "Work Order has been updated" should be displayed
+    And User verify work order detail screen

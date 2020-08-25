@@ -38,7 +38,6 @@ public class SignageApplicationSteps {
     public void userClicksOnSelectDropdownAndSelectAFacility() {
         manageKiosk.selectFacilityFromDropdown();
 
-
     }
 
     @And("^user enters the registration key and tag field$")

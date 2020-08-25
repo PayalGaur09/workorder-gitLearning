@@ -1,4 +1,5 @@
 @Automation @Facility
+
 Feature: Facility Management
   As a user I can land on facility page
   So that I can manage facilities of the Company
