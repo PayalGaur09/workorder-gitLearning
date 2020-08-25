@@ -1,3 +1,4 @@
+@Automation @Workorder
 Feature: Work Order
 
   Background:
@@ -11,9 +12,9 @@ Feature: Work Order
     And User taps on the Submit button
     Then Success message "Work Order has been added successfully" should be displayed
     And User verify work order detail screen
-    When User tap on the "Dashboard" link from side navigation
+    When User logout from work order platform
+    When User sign in with valid credential of Client Admin
     Then Activity log for work order added is displayed
-    And User sign in with valid credential of Client Admin
     And User tap on the bell icon
     Then Notification for work order added is displayed
 
@@ -31,14 +32,12 @@ Feature: Work Order
     And User taps on the Submit button
     Then Success message "Work Order has been updated successfully" should be displayed
     And User verify work order detail screen
+    Then User verifies the work order logs
+    When User logout from work order platform
+    When User sign in with valid credential of Client Admin
     Then Activity log for work order update is displayed
-    And User sign in with valid credential of Client Admin
     And User tap on the bell icon
     Then Notification for work order update is displayed
-
-  Scenario: Verify that client user is receiving notification and activity log on updating a WO
-
-  Scenario: Verify the functionality of Cancel button of edit WO screen
 
   Scenario: Verify the functionality of add remove photo
     Given User is on add work order screen
@@ -51,8 +50,6 @@ Feature: Work Order
     When User uploads more than five images to a work order
     Then Success message "Maximum 5 photos can be uploaded" should be displayed
 
-  Scenario: Verify that user is able to add and edit due date field
-
   Scenario Outline: Verify that user is able to add and edit Watchers
     Given User is on the work order detail screen
     When User clicks on edit option from action dropdown
@@ -63,18 +60,18 @@ Feature: Work Order
       | Select All   |
       | UnSelect All |
 
-  Scenario: Verify that client user is receiving notification and activity log on adding/removing assignee
-  and category from a WO
-    Given User creates a work order and reaches to the detail screen
-    When User clicks on edit option from action dropdown
-    And User selects an assignee to the work order
-    And User clicks on edit option from action dropdown
-    And User removes the assignee
-    When User tap on the "Dashboard" link from side navigation
-    Then Activity log for assignee removed and added is displayed
-    And User sign in with valid credential of Client Admin
-    And User tap on the bell icon
-    Then Notification for assignee removed and added is displayed
+#  Scenario: Verify that client user is receiving notification and activity log on adding/removing assignee
+#  and category from a WO
+#    Given User creates a work order and reaches to the detail screen
+#    When User clicks on edit option from action dropdown
+#    And User selects an assignee and category to the work order
+#    And User clicks on edit option from action dropdown
+#    And User removes the assignee
+#    When User logout from work order platform
+#    And User sign in with valid credential of Client Admin
+#    Then Activity log for assignee/category removed and added is displayed
+#    And User tap on the bell icon
+#    Then Notification for assignee/category removed and added is displayed
 
   Scenario: Verify that user is able to update the status and priority of a WO from detail view screen
     Given User is on the work order detail screen
@@ -136,11 +133,6 @@ Feature: Work Order
     And User taps on the Submit button
     Then Success message "Issue has been reported successfully" should be displayed
 
-  Scenario: Verify that email id is pre-filled in send mail screen
-    Given User is on the work order detail screen
-    When User clicks on the report option from action dropdown
-    And User fetches the pre filled email address
-
   Scenario: Verify that facility dropdown should contain the facility listed in the facility page
     Given User is on add work order screen
     When User click on facility dropdown and fetches the facility list
@@ -153,7 +145,6 @@ Feature: Work Order
     And User tap on the "Facilities" link from side navigation
     And User click on "Zbt Automation" facility
 
-  #Scenario: Verify that assignee dropdown should only contain assignee list associated with the selected facility
 
   Scenario Outline: Verify that user is able to filter the WO list with status and priority
     Given User taps on the list view icon
@@ -189,3 +180,11 @@ Feature: Work Order
     And User hits 'Enter' button on keyboard
     Then List displayed is according to the entered keyword
     And User clicks on Reset button
+
+  Scenario: Verify that by default all the notification checkboxes are selected
+    Given User is on add work order screen
+    Then User verifies the the checkbox selection
+
+
+
+

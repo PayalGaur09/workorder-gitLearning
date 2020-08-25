@@ -80,6 +80,12 @@ public class WorkOrderPages extends PageObject {
     private WebElementFacade noRecords;
     @FindBy(xpath = "//a[contains(@class,'breadcrumbs-link')]")
     private WebElementFacade breadcrumbLink;
+    @FindBy(xpath = "//input[@id='sendReadReceiptEmailNotifications']")
+    private WebElementFacade sendReadReceipt;
+    @FindBy(xpath = "//h3[contains(text(),'Logs')]/../../..")
+    private WebElementFacade logsSection;
+    @FindBy(xpath = "//span[text()='Notifications']")
+    private WebElementFacade notificationSpan;
 
 
     //......Dynamic Locators........
@@ -115,6 +121,10 @@ public class WorkOrderPages extends PageObject {
         return By.xpath("//p[text()='" + title + "']");
     }
 
+    private By notificationCheckbox(int count) {
+        return By.xpath("(//label[contains(text(),'notifications')]/..//span)[" + count + "]");
+    }
+
 
     public void tapOnAddNewButtonFromGrid() {
         withTimeoutOf(20, TimeUnit.SECONDS).waitFor(addNewFromGrid).click();
@@ -145,7 +155,15 @@ public class WorkOrderPages extends PageObject {
 
     public void selectCategory() {
         WebElementFacade category = element(selectDropdownField("Category"));
-        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(category).selectByIndex(1);
+        //withTimeoutOf(20, TimeUnit.SECONDS).waitFor(category).click();
+        Select option = new Select(category);
+        workOrderModel.setCategory(" Customer Complaint");
+        option.selectByVisibleText(workOrderModel.getCategory());
+    }
+
+    public void removeCategory() {
+        WebElementFacade category = element(selectDropdownField("Category"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(category).selectByVisibleText("[Select]");
     }
 
     public void selectFacility() {
@@ -156,20 +174,37 @@ public class WorkOrderPages extends PageObject {
         option.selectByVisibleText(workOrderModel.getFacility());
     }
 
+    public void updateFacility() {
+        WebElementFacade facility = element(selectDropdownField("Facility"));
+        waitFor(facility).withTimeoutOf(80, TimeUnit.SECONDS);
+        Select option = new Select(facility);
+        workOrderModel.setFacility("Update Auto");
+        option.selectByVisibleText(workOrderModel.getFacility());
+    }
+
     public void selectUnit() {
         waitABit(7000);
         WebElementFacade unit = element(selectDropdownField("Unit"));
-      //  waitFor(unit).withTimeoutOf(80, TimeUnit.SECONDS).click();
         Select option = new Select(unit);
         workOrderModel.setUnit("Zbt Auto Unit");
         option.selectByVisibleText(workOrderModel.getUnit());
     }
 
+    public void updateUnit() {
+        waitABit(7000);
+        WebElementFacade unit = element(selectDropdownField("Unit"));
+        Select option = new Select(unit);
+        workOrderModel.setUnit("Unit A");
+        option.selectByVisibleText(workOrderModel.getUnit());
+    }
+
     public void selectAssignee() {
+
         WebElementFacade assignee = element(selectDropdownField("Assignee"));
-        waitFor(assignee).withTimeoutOf(80, TimeUnit.SECONDS).click();
+        waitFor(assignee).withTimeoutOf(80, TimeUnit.SECONDS).waitUntilClickable();
         Select option = new Select(assignee);
-        option.selectByValue(" Arpit Tyagi ");
+        workOrderModel.setAssignee(" Arpit Tyagi ");
+        option.selectByVisibleText(workOrderModel.getAssignee());
     }
 
     public void selectWatchers(String option) {
@@ -197,7 +232,9 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void fetchWOId() {
-        workOrderModel.setWorkOrderId(element(workOrderDetail("ID")).getText());
+        WebElementFacade id = element(workOrderDetail("ID"));
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(id).waitUntilVisible();
+        workOrderModel.setWorkOrderId(id.getText());
         return;
     }
 
@@ -461,9 +498,10 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void verifyLogForAddWO() {
-        String activity = "Work Order " + workOrderModel.getWorkOrderId() + " created";
+        String activity = "Work Order " + workOrderModel.getWorkOrderId() + " has been created";
         vendor.searchContentForActivity(activity);
     }
+
     public void verifyLogForEditTitleDescription() {
         String activity1 = "Work Order " + workOrderModel.getWorkOrderId() + " renamed";
         String activity2 = "Work Order " + workOrderModel.getWorkOrderId() + " description has been changed";
@@ -472,14 +510,26 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void verifyLogForAssignedWO() {
-//        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
-//        facility.searchNotificationContent(notification);
+        String addAssignee = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to"
+                + workOrderModel.getAssignee();
+        vendor.searchContentForActivity(addAssignee);
     }
 
     public void verifyLogForRemovedWO() {
-//        String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
-//                + " . Tap to view details.";
-//        facility.searchNotificationContent(notification);
+        String removeAssignee = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
+                + " . Tap to view details.";
+        vendor.searchContentForActivity(removeAssignee);
+    }
+
+    public void verifyLogForCategoryAdded() {
+        String addCategory = "Category has been added to " + workOrderModel.getWorkOrderId();
+        vendor.searchContentForActivity(addCategory);
+
+    }
+
+    public void verifyLogForCategoryRemoved() {
+        String removeCategory = "Category has been removed from " + workOrderModel.getWorkOrderId();
+        vendor.searchContentForActivity(removeCategory);
     }
 
     //..........Notification............
@@ -489,23 +539,48 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void verifyUpdatedTitleDescriptionNotification() {
-        String notification1 = "Work Order " + workOrderModel.getWorkOrderId() + " renamed to " +
+        String notification1 = workOrderModel.getWorkOrderId() + " renamed to " +
                 workOrderModel.getTitle() + ". Tap to view details.";
-        String notification2 = "Work Order " + workOrderModel.getWorkOrderId() +
-                " description has been changed. Tap to view details.";
+        String notification2 = workOrderModel.getWorkOrderId() + " description has been changed. Tap to view details.";
         facility.searchNotificationContent(notification1);
         facility.searchNotificationContent(notification2);
     }
 
     public void verifyAssignedWONotification() {
-        String notification = "Work Order " + workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
+        String notification = workOrderModel.getWorkOrderId() + " has been assigned to you. Tap to view details.";
         facility.searchNotificationContent(notification);
     }
 
     public void verifyRemovedWONotification() {
         String notification = "Assignee has been removed from the workorder " + workOrderModel.getWorkOrderId()
-                + " . Tap to view details.";
+                + ". Tap to view details.";
         facility.searchNotificationContent(notification);
+    }
+
+    public void verifyNotificationForCategoryAdded() {
+        String addCategory = "Category has been added to " + workOrderModel.getWorkOrderId() + ". Tap to view details.";
+        facility.searchNotificationContent(addCategory);
+
+    }
+
+    public void verifyNotificationForCategoryRemoved() {
+        String removeCategory = "Category has been removed from " + workOrderModel.getWorkOrderId() + ". Tap to view details.";
+        vendor.searchContentForActivity(removeCategory);
+    }
+
+    public void checkboxIsSelected() {
+//        for (int i = 1; i <= 4; i++) {
+//            WebElementFacade notificationType = element(notificationCheckbox(i));
+//            Assert.assertTrue(notificationType.isSelected());}
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(notificationSpan).click();
+        waitFor(5000);
+        sendReadReceipt.isSelected();
+        //Assert.assertTrue(sendReadReceipt.isSelected());
+    }
+
+    public void woLogsForTitleDescription() {
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(logsSection).containsText("Title changed");
+        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(logsSection).containsText("Description changed");
     }
 }
 

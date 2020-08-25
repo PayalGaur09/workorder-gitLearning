@@ -302,6 +302,7 @@ public class VendorManagementPage extends PageObject {
 
     public void tapOnActionButton() {
         waitABit(6000);
+        withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).waitUntilVisible();
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(actionButton).click();
     }
 
@@ -310,8 +311,6 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void editOptionIsNotPresent() {
-       // Assert.assertFalse(editButton.isDisplayed());
-        // Assert.assertFalse(editButton.isDisplayed());
         editButton.shouldNotBePresent();
     }
 

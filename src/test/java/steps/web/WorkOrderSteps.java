@@ -30,21 +30,7 @@ public class WorkOrderSteps {
     @Given("^User is on the work order detail screen$")
     public void userIsOnTheWorkOrderDetailScreen() {
         workOrder.tapOnGridItem();
-    }
-
-    @Given("^User creates a work order and reaches to the detail screen$")
-    public void userCreatesAWorkOrderAndReachesToTheDetailScreen() {
-        workOrder.tapOnAddNewButtonFromGrid();
-        workOrder.enterMandatoryFields();
-        vendor.tapOnSubmitButton();
         workOrder.fetchWOId();
-    }
-
-    @Given("^A work order is created$")
-    public void aWorkOrderIsCreated() {
-        workOrder.tapOnAddNewButtonFromGrid();
-        workOrder.enterMandatoryFields();
-        vendor.tapOnSubmitButton();
     }
 
     @And("^User verify work order detail screen$")
@@ -73,15 +59,18 @@ public class WorkOrderSteps {
         workOrder.deleteWOImage();
     }
 
-    @And("^User selects an assignee to the work order$")
-    public void userSelectsAnAssigneeToTheWorkOrder() {
+    @And("^User selects an assignee and category to the work order$")
+    public void userSelectsAnAssigneeAndCategoryToTheWorkOrder() {
+        workOrder.selectCategory();
         workOrder.selectAssignee();
         vendor.tapOnSubmitButton();
-    }
+    }/////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @And("^User removes the assignee$")
     public void userRemovesTheAssignee() {
+        workOrder.removeCategory();
         workOrder.removeAssignee();
+        vendor.tapOnSubmitButton();
     }
 
     @When("^User updates the work order status and priority$")
@@ -103,7 +92,6 @@ public class WorkOrderSteps {
     @Then("^Activity log for work order added is displayed$")
     public void activityLogForWorkOrderAddedIsDisplayed() {
         workOrder.verifyLogForAddWO();
-        userSigninPage.signout();
     }
 
     @And("^User select checkbox \"([^\"]*)\"  in watchers dropdown$")
@@ -120,15 +108,7 @@ public class WorkOrderSteps {
     @Then("^Notification for work order added is displayed$")
     public void notificationForWorkOrderAddedIsDisplayed() {
         workOrder.verifyAddWONotification();
-    }
-
-    @Then("^Activity log for assignee removed and added is displayed$")
-    public void activityLogForAssigneeRemovedAndAddedIsDisplayed() {
-
-    }
-
-    @Then("^Notification for assignee removed and added is displayed$")
-    public void notificationForAssigneeRemovedAndAddedIsDisplayed() {
+        userSigninPage.signout();
     }
 
     @When("^User clicks on add note button$")
@@ -252,11 +232,6 @@ public class WorkOrderSteps {
         workOrder.clickOnDraggedWorkOrder();
     }
 
-    @And("^User fetches the pre filled email address$")
-    public void userFetchesThePreFilledEmailAddress() {
-        /////////////// not completed
-    }
-
     @Then("^Activity log for work order update is displayed$")
     public void activityLogForWorkOrderUpdateIsDisplayed() {
         workOrder.verifyLogForEditTitleDescription();
@@ -265,5 +240,45 @@ public class WorkOrderSteps {
     @Then("^Notification for work order update is displayed$")
     public void notificationForWorkOrderUpdateIsDisplayed() {
         workOrder.verifyUpdatedTitleDescriptionNotification();
+        userSigninPage.signout();
+    }
+
+
+    @And("^User Removes the category from a work order$")
+    public void userRemovesTheCategoryFromAWorkOrder() {
+        workOrder.removeCategory();
+        vendor.tapOnSubmitButton();
+    }
+
+    @Then("^Activity log for assignee/category removed and added is displayed$")
+    public void activityLogForAssigneeCategoryRemovedAndAddedIsDisplayed() {
+        workOrder.verifyLogForAssignedWO();
+        workOrder.verifyLogForCategoryAdded();
+        workOrder.verifyLogForRemovedWO();
+        workOrder.verifyLogForCategoryRemoved();
+    }
+
+    @Then("^Notification for assignee/category removed and added is displayed$")
+    public void notificationForAssigneeCategoryRemovedAndAddedIsDisplayed() {
+        workOrder.verifyAssignedWONotification();
+        workOrder.verifyRemovedWONotification();
+        workOrder.verifyNotificationForCategoryAdded();
+        workOrder.verifyNotificationForCategoryRemoved();
+
+    }
+
+    @When("^User verifies the the checkbox selection$")
+    public void userVerifiesTheTheCheckboxSelection() {
+        workOrder.checkboxIsSelected();
+    }
+
+    @When("^User updates all the field of work order screen$")
+    public void userUpdatesAllTheFieldOfWorkOrderScreen() {
+        workOrder.enterTitleAndDescription();
+    }
+
+    @Then("^User verifies the work order logs$")
+    public void userVerifiesTheWorkOrderLogs() {
+        workOrder.woLogsForTitleDescription();
     }
 }
