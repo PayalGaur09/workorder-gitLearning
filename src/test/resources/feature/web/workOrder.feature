@@ -60,18 +60,18 @@ Feature: Work Order
       | Select All   |
       | UnSelect All |
 
-#  Scenario: Verify that client user is receiving notification and activity log on adding/removing assignee
-#  and category from a WO
-#    Given User creates a work order and reaches to the detail screen
-#    When User clicks on edit option from action dropdown
-#    And User selects an assignee and category to the work order
-#    And User clicks on edit option from action dropdown
-#    And User removes the assignee
-#    When User logout from work order platform
-#    And User sign in with valid credential of Client Admin
-#    Then Activity log for assignee/category removed and added is displayed
-#    And User tap on the bell icon
-#    Then Notification for assignee/category removed and added is displayed
+  Scenario: Verify that client user is receiving notification and activity log on adding/removing assignee
+  and category from a WO
+    Given User is on the work order detail screen
+    When User clicks on edit option from action dropdown
+    And User selects an assignee and category to the work order
+    And User clicks on edit option from action dropdown
+    And User removes the assignee
+    When User logout from work order platform
+    And User sign in with valid credential of Client Admin
+    Then Activity log for assignee/category removed and added is displayed
+    And User tap on the bell icon
+    Then Notification for assignee/category removed and added is displayed
 
   Scenario: Verify that user is able to update the status and priority of a WO from detail view screen
     Given User is on the work order detail screen
@@ -102,7 +102,7 @@ Feature: Work Order
     Then Success message "Note has been edit successfully" should be displayed
 
   Scenario: Notes count associated with a vendor
-    Given User is on detail screen
+    Given User is on the work order detail screen
     When User reached to notes screen of the work order
     Then Notes count is same as the number of notes listed below
 
@@ -184,11 +184,6 @@ Feature: Work Order
   Scenario: Verify that by default all the notification checkboxes are selected
     Given User is on add work order screen
     Then User verifies the the checkbox selection
-
-
-
-
-
 
   Scenario: To Verify the Functionality of due date
     Given User is on add work order screen

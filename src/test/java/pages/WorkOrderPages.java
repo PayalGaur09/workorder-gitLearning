@@ -35,7 +35,7 @@ public class WorkOrderPages extends PageObject {
     private WebElementFacade titleInputbox;
     @FindBy(xpath = "//textarea")
     private WebElementFacade descriptionTesxtArea;
-    @FindBy(xpath = "//app-work-order-grid-view-item")
+    @FindBy(xpath = "//p[text()='Low Priority']/../..//app-work-order-grid-view-item")
     private WebElementFacade gridItem;
     @FindBy(xpath = "//div[@class='col-12']//button")
     private WebElementFacade addWOPhoto;
@@ -81,7 +81,8 @@ public class WorkOrderPages extends PageObject {
     private WebElementFacade noRecords;
     @FindBy(xpath = "//a[contains(@class,'breadcrumbs-link')]")
     private WebElementFacade breadcrumbLink;
-    @FindBy(xpath = "//input[@id='sendReadReceiptEmailNotifications']")
+    //@FindBy(xpath = "//input[@id='sendReadReceiptEmailNotifications']")
+    @FindBy(xpath = "//div[13]//div[1]//div[1]//div[1]//div[1]//label[1]//span[1]")
     private WebElementFacade sendReadReceipt;
     @FindBy(xpath = "//h3[contains(text(),'Logs')]/../../..")
     private WebElementFacade logsSection;
@@ -180,7 +181,7 @@ public class WorkOrderPages extends PageObject {
         WebElementFacade category = element(selectDropdownField("Category"));
         //withTimeoutOf(20, TimeUnit.SECONDS).waitFor(category).click();
         Select option = new Select(category);
-        workOrderModel.setCategory(" Customer Complaint");
+        workOrderModel.setCategory("Customer Complaint");
         option.selectByVisibleText(workOrderModel.getCategory());
     }
 
@@ -222,10 +223,11 @@ public class WorkOrderPages extends PageObject {
     }
 
     public void selectAssignee() {
+        waitABit(5000);
         WebElementFacade assignee = element(selectDropdownField("Assignee"));
         waitFor(assignee).withTimeoutOf(80, TimeUnit.SECONDS).waitUntilClickable();
         Select option = new Select(assignee);
-        workOrderModel.setAssignee(" Arpit Tyagi ");
+        workOrderModel.setAssignee("Arpit Tyagi");
         option.selectByVisibleText(workOrderModel.getAssignee());
     }
 

@@ -23,9 +23,9 @@ public class WorkOrderSteps {
     }
 
     @When("^User enters the mandatory fields in work order screen$")
-    public void userEntersTheMandatoryFieldsInWorkOrderScreen() throws InterruptedException{
+    public void userEntersTheMandatoryFieldsInWorkOrderScreen() throws InterruptedException {
         workOrder.enterMandatoryFields();
-      }
+    }
 
     @Given("^User is on the work order detail screen$")
     public void userIsOnTheWorkOrderDetailScreen() {
@@ -64,7 +64,7 @@ public class WorkOrderSteps {
         workOrder.selectCategory();
         workOrder.selectAssignee();
         vendor.tapOnSubmitButton();
-    }/////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     @And("^User removes the assignee$")
     public void userRemovesTheAssignee() {
@@ -187,12 +187,9 @@ public class WorkOrderSteps {
 
     @When("^User clicks on the dropdown \"([^\"]*)\"$")
     public void userClicksOnTheDropdown(String dropdown, DataTable value) throws Throwable {
-        if (dropdown.equals("unitId")||dropdown.equals("assigneeId")) {
+        if (dropdown.equals("unitId") || dropdown.equals("assigneeId")) {
             workOrder.selectFacilityFilter();
         }
-//        else if (dropdown.equals("assigneeId")) {
-//            workOrder.selectFacilityFilter();
-//        }
         workOrder.selectFilterOption(dropdown, value);
         users.tapOnFilterButton();
     }
@@ -264,7 +261,7 @@ public class WorkOrderSteps {
         workOrder.verifyRemovedWONotification();
         workOrder.verifyNotificationForCategoryAdded();
         workOrder.verifyNotificationForCategoryRemoved();
-
+        userSigninPage.signout();
     }
 
     @When("^User verifies the the checkbox selection$")
@@ -321,11 +318,9 @@ public class WorkOrderSteps {
     }
 
     @And("^user selects the date from Terminate on field$")
-    public void userSelectsTheDateFromTerminateOnField() throws InterruptedException{
+    public void userSelectsTheDateFromTerminateOnField() throws InterruptedException {
         workOrder.userSelectsTheDateFromTermateOnField();
     }
-
-
 
 
     @When("^User enters the  fields in work order screen$")
@@ -337,10 +332,10 @@ public class WorkOrderSteps {
 
     @And("^user selects all the fields for set monthly recurrence$")
     public void userSelectsAllTheFieldsForSetMonthlyRecurrence() {
-            workOrder.userClicksOnRepeatEveryMonthDropdown();
-            workOrder.userSelectsTheDaysFromRepeatEveryMonthOnField();
-            workOrder.userSelectsTheDayFromRepeatEveryDayField();
-        }
+        workOrder.userClicksOnRepeatEveryMonthDropdown();
+        workOrder.userSelectsTheDaysFromRepeatEveryMonthOnField();
+        workOrder.userSelectsTheDayFromRepeatEveryDayField();
+    }
 
     @And("^user change the field from set as custom recurrence to does not repeat$")
     public void userChangeTheFieldFromSetAsCustomRecurrenceToDoesNotRepeat() {

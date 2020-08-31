@@ -32,6 +32,8 @@ public class FacilityManagementPage extends PageObject {
     @FindBy(xpath = "//em[@title='AccountID']/..")
     private WebElementFacade idOnCompanyScreen;
 
+    @FindBy(xpath = "//select[@name='propertyManager']")
+    private WebElementFacade propertyManagerDropdown;
     @FindBy(xpath = "//div[@class='multiselect-dropdown']")
     private WebElementFacade selectedUserGroup;
     @FindBy(xpath = "//select[@name='complaintsAssigneeId']")
@@ -68,7 +70,6 @@ public class FacilityManagementPage extends PageObject {
     private List<WebElementFacade> facilityAssignedToUsers;
 
 
-
     private By facilityField(String text) {
         return By.xpath("//label[contains(text(),'" + text + "')]/..//input");
     }
@@ -96,7 +97,7 @@ public class FacilityManagementPage extends PageObject {
     }
 
     private void enterValueInFacility() {
-         waitABit(5000);
+        waitABit(5000);
         element(facilityField("Facility")).withTimeoutOf(40, TimeUnit.SECONDS).waitUntilVisible().click();
         element(facilityField("Facility")).clear();
         facilityModel.setName("Auto " + RandomGenerator.randomAlphabetic(4) + " Pvt Ltd");
@@ -115,6 +116,13 @@ public class FacilityManagementPage extends PageObject {
         element(facilityField("Zip")).clear();
         facilityModel.setZipCode("123456");
         element(facilityField("Zip")).sendKeys(facilityModel.getZipCode());
+    }
+
+    private void selectPMName() {
+        waitABit(3000);
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(propertyManagerDropdown);
+        Select complaint = new Select(propertyManagerDropdown);
+        complaint.selectByIndex(1);
     }
 
     private void enterValueInManagerName() {
@@ -150,9 +158,10 @@ public class FacilityManagementPage extends PageObject {
         enterValueInFacility();
         enterValueInAddress();
         enterValueInZip();
-        enterValueInManagerName();
-        enterValueInManagerEmail();
-        enterValueInManagerPhone();
+        selectPMName();
+//        enterValueInManagerName();
+//        enterValueInManagerEmail();
+//        enterValueInManagerPhone();
         enterValueInType();
     }
 
@@ -173,9 +182,9 @@ public class FacilityManagementPage extends PageObject {
                 withTimeoutOf(20, TimeUnit.SECONDS).waitFor(a).getText());
         Assert.assertEquals(facilityModel.getFacilityAddress() + ", " + facilityModel.getZipCode(),
                 element(facilityDetail("Address")).getText());
-        Assert.assertEquals(facilityModel.getPmName(), element(facilityDetail("Manager Name")).getText());
-        Assert.assertEquals(facilityModel.getPmEmail(), element(facilityDetail("Email")).getText());
-        Assert.assertEquals(facilityModel.getPmPhone(), element(facilityDetail("Number")).getText());
+        // Assert.assertEquals(facilityModel.getPmName(), element(facilityDetail("Manager Name")).getText());
+        // Assert.assertEquals(facilityModel.getPmEmail(), element(facilityDetail("Email")).getText());
+        //  Assert.assertEquals(facilityModel.getPmPhone(), element(facilityDetail("Number")).getText());
         Assert.assertEquals(facilityModel.getTypeOfConstruction(), element(facilityDetail("Type")).getText());
     }
 
@@ -275,7 +284,7 @@ public class FacilityManagementPage extends PageObject {
 
     //........Impacted area of user group.......
 
-   public static List<String> facilityList;
+    public static List<String> facilityList;
 
     public void facilityAssigned() {
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(facilityAssignedToUsers.get(0)).waitUntilVisible();
@@ -292,7 +301,7 @@ public class FacilityManagementPage extends PageObject {
         record100.click();
     }
 
-    public void tapOnAFacility(String name){
+    public void tapOnAFacility(String name) {
         WebElement facility = element(facilityOnListView(name));
         withTimeoutOf(40, TimeUnit.SECONDS).waitFor(facility).click();
     }
@@ -362,10 +371,10 @@ public class FacilityManagementPage extends PageObject {
         vendor.searchContentForActivity(nameEditLog);
         String pmNameEditLog = facilityModel.getName() + " property manager was updated";
         vendor.searchContentForActivity(pmNameEditLog);
-        String pmContactEditLog = facilityModel.getName() + " property manager's contact number was updated";
-        vendor.searchContentForActivity(pmContactEditLog);
-        String pmNameEmailLog = facilityModel.getName() + " property manager's email was updated";
-        vendor.searchContentForActivity(pmNameEmailLog);
+//        String pmContactEditLog = facilityModel.getName() + " property manager's contact number was updated";
+//        vendor.searchContentForActivity(pmContactEditLog);
+//        String pmNameEmailLog = facilityModel.getName() + " property manager's email was updated";
+//        vendor.searchContentForActivity(pmNameEmailLog);
     }
 
     public void verifyLogForDeactivateActivateFacility() {
@@ -441,13 +450,11 @@ public class FacilityManagementPage extends PageObject {
     public void addFacilityNotification() {
         String notification = facilityModel.getName() + " was created by an admin. Tap to view details.";
         searchNotificationContent(notification);
-        // Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void facilityAssignedNotification() {
         String notification = "You have been assigned to " + facilityModel.getName() + ". Tap to view details.";
         searchNotificationContent(notification);
-        // Assert.assertEquals(notification, notificationContent.getText());
     }
 
     public void facilityRemovedNotification() {
@@ -473,13 +480,11 @@ public class FacilityManagementPage extends PageObject {
 
     public void editUnitNotification() {
         String notification = facilityModel.getUnitName() + " details have been updated. Tap to view details.";
-        //Assert.assertEquals(notification, notificationContent.getText());
         searchNotificationContent(notification);
     }
 
     public void deactivateUnitNotification() {
         String notification = facilityModel.getUnitName() + " from facility " + facilityModel.getName() + " has been deactivated.";
-        //Assert.assertEquals(notification, notificationContent.getText());
         searchNotificationContent(notification);
     }
 
@@ -490,6 +495,6 @@ public class FacilityManagementPage extends PageObject {
 
     public void autoFacilityLink() {
         WebElement autoFacility = element("//span[contains(text(),'Auto')]");
-        withTimeoutOf(20,TimeUnit.SECONDS).waitFor(autoFacility).click();
+        withTimeoutOf(20, TimeUnit.SECONDS).waitFor(autoFacility).click();
     }
 }

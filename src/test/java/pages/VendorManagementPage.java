@@ -331,6 +331,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnEditNoteIcon() {
+        waitABit(1000);
         waitFor(editNoteIcon).withTimeoutOf(10, TimeUnit.SECONDS).click();
     }
 
