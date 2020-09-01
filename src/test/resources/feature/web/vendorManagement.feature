@@ -114,13 +114,13 @@ Feature: Vendor Management
     When User clicks on Reset button
 
   Scenario: User should be able to search when he enters the keyword and clicks on 'Filter' button
-    When User enters a keyword "Vendor" in the search field
+    When User enters a keyword "Ram" in the search field
     And User clicks on Filter button
     Then Vendor list displayed is according to the entered keyword
     And User clicks on Reset button
 
   Scenario: User should be able to search when he enters the keyword and hits ‘Enter’ button on keyboard
-    When User enters a keyword "Vendor" in the search field
+    When User enters a keyword "Ram" in the search field
     And User hits 'Enter' button on keyboard
     Then Vendor list displayed is according to the entered keyword
     And User clicks on Reset button
@@ -151,10 +151,3 @@ Feature: Vendor Management
     And User taps on the Submit button
     Then Success message "Vendor has been updated successfully" should be displayed
     And Verify selected facility has been removed from Facility assignee list
-
-
-
-
-
-
-

@@ -54,9 +54,3 @@ Feature: Dashboard Management
       | Total Personnel     |
       | Total Facilities    |
       | Total Vendors       |
-
-
-
-
-
-

@@ -319,7 +319,7 @@ public class VendorManagementPage extends PageObject {
     }
 
     public void tapOnAddButton() {
-        waitABit(2000);
+        waitABit(4000);
         waitFor(addNoteButton).withTimeoutOf(10, TimeUnit.SECONDS).click();
     }
 
@@ -390,7 +390,7 @@ public class VendorManagementPage extends PageObject {
         waitABit(2000);
         for (int i = 1; i <= num; i++) {
             String vName = element(vendorNameSearch(i)).getText();
-            Assert.assertTrue(vName.contains("Vendor"));
+            Assert.assertTrue(vName.contains("Ram"));
         }
     }
 

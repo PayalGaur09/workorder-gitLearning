@@ -26,7 +26,7 @@ Feature: Facility Management
     Given User is on add facility screen
     When User taps on the Submit button
     Then Error message should be displayed
-      | Facility name is required | The address is required | Zip code is required | Property manager name is required | Property manager email is required | Contact number is required | Type of construction is required |
+      | Facility name is required | The address is required | Zip code is required | Property manager is required | Type of construction is required |
     And User clicks on Cancel button
 
   Scenario: Verify the company ID displayed in add facility screen
